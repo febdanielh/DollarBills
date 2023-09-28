@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6AF6A80D2AC5D09100EA600E /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF6A80C2AC5D09100EA600E /* MapView.swift */; };
+		6AF6A8112AC5D42700EA600E /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF6A8102AC5D42700EA600E /* DescriptionView.swift */; };
+		6AF6A8132AC5D58500EA600E /* RouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF6A8122AC5D58500EA600E /* RouteView.swift */; };
 		E1347E402AC43557008224CF /* DollarBillsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1347E3F2AC43557008224CF /* DollarBillsApp.swift */; };
 		E1347E422AC43557008224CF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1347E412AC43557008224CF /* ContentView.swift */; };
 		E1347E442AC43558008224CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1347E432AC43558008224CF /* Assets.xcassets */; };
@@ -14,6 +17,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6AF6A8072AC5CECE00EA600E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6AF6A80C2AC5D09100EA600E /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		6AF6A8102AC5D42700EA600E /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
+		6AF6A8122AC5D58500EA600E /* RouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteView.swift; sourceTree = "<group>"; };
 		E1347E3C2AC43557008224CF /* DollarBills.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DollarBills.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1347E3F2AC43557008224CF /* DollarBillsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DollarBillsApp.swift; sourceTree = "<group>"; };
 		E1347E412AC43557008224CF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +39,64 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6AF6A7FD2AC5C89700EA600E /* Route */ = {
+			isa = PBXGroup;
+			children = (
+				6AF6A8022AC5C8E400EA600E /* Presenters */,
+				6AF6A8012AC5C8DE00EA600E /* Models */,
+				6AF6A8002AC5C8D300EA600E /* ViewModels */,
+				6AF6A7FE2AC5C8AF00EA600E /* Resources */,
+			);
+			path = Route;
+			sourceTree = "<group>";
+		};
+		6AF6A7FE2AC5C8AF00EA600E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6AF6A8002AC5C8D300EA600E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		6AF6A8012AC5C8DE00EA600E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6AF6A8022AC5C8E400EA600E /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				6AF6A8042AC5C9AD00EA600E /* View */,
+				6AF6A8032AC5C9A600EA600E /* Component */,
+			);
+			path = Presenters;
+			sourceTree = "<group>";
+		};
+		6AF6A8032AC5C9A600EA600E /* Component */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		6AF6A8042AC5C9AD00EA600E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6AF6A80C2AC5D09100EA600E /* MapView.swift */,
+				6AF6A8122AC5D58500EA600E /* RouteView.swift */,
+				6AF6A8102AC5D42700EA600E /* DescriptionView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		E1347E332AC43557008224CF = {
 			isa = PBXGroup;
 			children = (
@@ -51,8 +116,10 @@
 		E1347E3E2AC43557008224CF /* DollarBills */ = {
 			isa = PBXGroup;
 			children = (
+				6AF6A8072AC5CECE00EA600E /* Info.plist */,
 				E1347E3F2AC43557008224CF /* DollarBillsApp.swift */,
 				E1347E412AC43557008224CF /* ContentView.swift */,
+				6AF6A7FD2AC5C89700EA600E /* Route */,
 				E1347E432AC43558008224CF /* Assets.xcassets */,
 				E1347E452AC43558008224CF /* Preview Content */,
 			);
@@ -138,7 +205,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1347E422AC43557008224CF /* ContentView.swift in Sources */,
+				6AF6A8132AC5D58500EA600E /* RouteView.swift in Sources */,
+				6AF6A80D2AC5D09100EA600E /* MapView.swift in Sources */,
 				E1347E402AC43557008224CF /* DollarBillsApp.swift in Sources */,
+				6AF6A8112AC5D42700EA600E /* DescriptionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,9 +337,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DollarBills/Preview Content\"";
-				DEVELOPMENT_TEAM = BVKAMN7JUV;
+				DEVELOPMENT_TEAM = CYJ9M367B2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DollarBills/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +370,7 @@
 				DEVELOPMENT_TEAM = BVKAMN7JUV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DollarBills/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
