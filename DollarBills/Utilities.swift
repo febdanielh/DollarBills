@@ -24,17 +24,24 @@ struct AnnotationModel: Equatable, Identifiable {
 }
 
 class CustomAnnotation: NSObject, MKAnnotation {
+    
     var tag: Int
+    
     var coordinate: CLLocationCoordinate2D
+    
     var title: String?
+    
     var annotationModel: AnnotationModel
     
     init(tag: Int, coordinate: CLLocationCoordinate2D, title: String? = nil, annotationModel: AnnotationModel) {
+        
         self.tag = tag
         self.coordinate = coordinate
         self.title = title
         self.annotationModel = annotationModel
+        
     }
+    
 }
 
 struct CustomAnnotationAndRoute {

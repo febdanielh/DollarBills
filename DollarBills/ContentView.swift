@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject var LM = LocationManager()
+    
     var body: some View {
-        MapView()
+//        
+        NavigationView {
+            MapView(selectedAnnotation: $LM.selectedAnnotation)
+        }
+        .onAppear(perform: {
+            LM.serviceAvailabilityCheck()
+        })
+        
     }
 }
 

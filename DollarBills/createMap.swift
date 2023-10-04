@@ -8,39 +8,89 @@
 import SwiftUI
 import MapKit
 
+class Coordinator: NSObject, MKMapViewDelegate {
+    
+    var parent: createMap
+    
+    init(parent: createMap) {
+        self.parent = parent
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        print("kepencet brodi")
+        parent.routes.removeAll()
+        parent.directions.removeAll()
+        parent.cachedDirections.removeAll()
+        if let annotation = view.annotation as? CustomAnnotation {
+            parent.selectedAnnotation = annotation.annotationModel
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if let polyline = overlay as? MKPolyline {
+            let renderer = MKPolylineRenderer(polyline: polyline)
+            renderer.strokeColor = .red
+            renderer.lineWidth = 5
+            return renderer
+        }
+        return MKOverlayRenderer()
+    }
+    
+}
+
 struct createMap: UIViewRepresentable {
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(parent: self)
+    }
+    
     @Binding var directions: [String]
+    
     @State var routes: [MKRoute] = []
+    
     let region: MKCoordinateRegion
+    
     @Binding var selectedAnnotation: AnnotationModel?
+    
     @State var cachedDirections: [String: [String]] = [:]
     
     var annotations: [CustomAnnotation] = CustomAnnotationAndRoute.customAnnotation
     
     func makeUIView(context: Context) -> MKMapView {
+        // Feb Done
+        // Elv Done
+        // Rez
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
         mapView.showsUserLocation = true
         mapView.region = region
+        mapView.userTrackingMode = .follow
         return mapView
     }
     
     func updateUIView(_ mapView: MKMapView, context: Context) {
+        
         mapView.removeOverlays(mapView.overlays)
+        
         mapView.removeAnnotations(annotations)
+        
         mapView.addAnnotations(annotations)
         
         for annotation in annotations {
             if annotation.annotationModel.id == selectedAnnotation?.id {
+                
+                
                 if let cached = cachedDirections[annotation.annotationModel.routeName] {
                     directions = cached
                 } else {
                     calculateDirections(mapView, annotation: annotation)
                 }
             }
+            
         }
         
         var boundingBox = MKMapRect.null
+        
         let padding = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         
         for route in routes {
@@ -51,9 +101,11 @@ struct createMap: UIViewRepresentable {
                 edgePadding: padding,
                 animated: true)
         }
+        
     }
     
     func calculateDirections(_ mapView: MKMapView, annotation: CustomAnnotation) {
+        
         let annotationModel = annotation.annotationModel
         
         for i in 0..<annotationModel.waypoints.count{
@@ -82,54 +134,5 @@ struct createMap: UIViewRepresentable {
         }
     }
     
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self, selectedAnnotation: $selectedAnnotation)
-    }
-    
-    class Coordinator: NSObject, MKMapViewDelegate {
-        var parent: createMap
-        @Binding var selectedAnnotation: AnnotationModel?
-        
-        init(_ parent: createMap, selectedAnnotation: Binding<AnnotationModel?>) {
-            self.parent = parent
-            _selectedAnnotation = selectedAnnotation
-        }
-        
-        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-            guard !annotation.isKind(of: MKUserLocation.self) else {
-                return nil
-            }
-            let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "customAnnotation")
-            annotationView.canShowCallout = true
-            annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-            
-            return annotationView
-        }
-        
-        func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-            if let annotation = view.annotation as? CustomAnnotation {
-                parent.selectedAnnotation = annotation.annotationModel
-            }
-        }
-        
-        func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-            parent.routes.removeAll()
-            parent.directions.removeAll()
-            parent.cachedDirections.removeAll()
-            if let annotation = view.annotation as? CustomAnnotation {
-                selectedAnnotation = annotation.annotationModel
-            }
-        }
-        
-        func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-            if let polyline = overlay as? MKPolyline {
-                let renderer = MKPolylineRenderer(polyline: polyline)
-                renderer.strokeColor = .red
-                renderer.lineWidth = 5
-                return renderer
-            }
-            return MKOverlayRenderer()
-        }
-    }
 }
 
