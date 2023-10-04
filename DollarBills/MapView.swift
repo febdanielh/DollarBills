@@ -16,7 +16,7 @@ struct MapView: View {
     
     @State private var showDirections: Bool = false
     
-    @State private var selectedAnnotation: AnnotationModel?
+    @Binding var selectedAnnotation: AnnotationModel?
     
     var body: some View {
         VStack {
@@ -51,6 +51,6 @@ struct MapView: View {
     }
 }
 
-#Preview {
-    MapView()
-}
+//#Preview {
+//    MapView(, selectedAnnotation: <#Binding<AnnotationModel?>#>)
+//}

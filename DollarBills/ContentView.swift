@@ -12,9 +12,9 @@ struct ContentView: View {
     @ObservedObject var LM = LocationManager()
     
     var body: some View {
-        
+//        
         NavigationView {
-            MapView()
+            MapView(selectedAnnotation: $LM.selectedAnnotation)
         }
         .onAppear(perform: {
             LM.serviceAvailabilityCheck()
