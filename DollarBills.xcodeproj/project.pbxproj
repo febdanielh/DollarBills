@@ -11,6 +11,10 @@
 		E1347E422AC43557008224CF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1347E412AC43557008224CF /* ContentView.swift */; };
 		E1347E442AC43558008224CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1347E432AC43558008224CF /* Assets.xcassets */; };
 		E1347E472AC43558008224CF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1347E462AC43558008224CF /* Preview Assets.xcassets */; };
+		E168B9972ACD4C0400CF56D9 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168B9962ACD4C0400CF56D9 /* LocationManager.swift */; };
+		E168B9992ACD4C2200CF56D9 /* createMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168B9982ACD4C2200CF56D9 /* createMap.swift */; };
+		E168B99B2ACD4C5400CF56D9 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168B99A2ACD4C5400CF56D9 /* Utilities.swift */; };
+		E168B99D2ACD4CFA00CF56D9 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168B99C2ACD4CFA00CF56D9 /* MapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,10 @@
 		E1347E412AC43557008224CF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E1347E432AC43558008224CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1347E462AC43558008224CF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E168B9962ACD4C0400CF56D9 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		E168B9982ACD4C2200CF56D9 /* createMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createMap.swift; sourceTree = "<group>"; };
+		E168B99A2ACD4C5400CF56D9 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		E168B99C2ACD4CFA00CF56D9 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +61,10 @@
 			children = (
 				E1347E3F2AC43557008224CF /* DollarBillsApp.swift */,
 				E1347E412AC43557008224CF /* ContentView.swift */,
+				E168B9962ACD4C0400CF56D9 /* LocationManager.swift */,
+				E168B9982ACD4C2200CF56D9 /* createMap.swift */,
+				E168B99A2ACD4C5400CF56D9 /* Utilities.swift */,
+				E168B99C2ACD4CFA00CF56D9 /* MapView.swift */,
 				E1347E432AC43558008224CF /* Assets.xcassets */,
 				E1347E452AC43558008224CF /* Preview Content */,
 			);
@@ -137,8 +149,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E168B9992ACD4C2200CF56D9 /* createMap.swift in Sources */,
+				E168B99D2ACD4CFA00CF56D9 /* MapView.swift in Sources */,
 				E1347E422AC43557008224CF /* ContentView.swift in Sources */,
 				E1347E402AC43557008224CF /* DollarBillsApp.swift in Sources */,
+				E168B99B2ACD4C5400CF56D9 /* Utilities.swift in Sources */,
+				E168B9972ACD4C0400CF56D9 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +286,7 @@
 				DEVELOPMENT_TEAM = BVKAMN7JUV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs to access your location.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +316,7 @@
 				DEVELOPMENT_TEAM = BVKAMN7JUV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs to access your location.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
