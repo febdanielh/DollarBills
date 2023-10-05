@@ -17,8 +17,10 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var selectedAnnotation: AnnotationModel?
     {
        didSet {
-           print("Ganti Rute!!!")
-           monitorRegionAtLocation(locations: selectedAnnotation!.waypoints)
+           if ((selectedAnnotation?.waypoints.count)! > 1) {
+               print("Ganti Rute!!!")
+               monitorRegionAtLocation(locations: selectedAnnotation!)
+           }
        }
    }
     
@@ -40,9 +42,23 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-//            removeAnn(region: region)
-        print("eh masuk")
+        print("eh masuk :")
         print(region.identifier)
+        print("sisa:")
+        print(locationManager?.monitoredRegions)
+        removeAnn(region: region)
+    }
+    
+    func removeAnn (region: CLRegion)  {
+        var index: Int = 0
+        for oneRoute in selectedAnnotation!.waypoints {
+            if (oneRoute.title == region.identifier) {
+                locationManager?.stopMonitoring(for: region)
+                selectedAnnotation?.waypoints.remove(at: index)
+                print("ke stop monitor!!!")
+            }
+            index = index + 1
+        }
     }
     
     func askPermission() {
@@ -100,13 +116,14 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         locationAuthorizationCheck()
     }
     
-    func monitorRegionAtLocation(locations: [CLLocationCoordinate2D]) {
+    func monitorRegionAtLocation(locations: AnnotationModel) {
         print("KEPANGILL!!!")
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
             // Register the region.
-            for oneLocation in locations {
-                let region = CLCircularRegion(center: oneLocation,
-                                              radius: 50.0, identifier: "")
+            for oneLocation in locations.waypoints {
+                
+                let region = CLCircularRegion(center: oneLocation.coordinate,
+                                              radius: 5.0, identifier: oneLocation.title!)
                 region.notifyOnEntry = true
                 region.notifyOnExit = false
                 locationManager?.startMonitoring(for: region)

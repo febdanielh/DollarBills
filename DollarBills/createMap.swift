@@ -111,8 +111,8 @@ struct createMap: UIViewRepresentable {
         for i in 0..<annotationModel.waypoints.count{
             if i < annotationModel.waypoints.count - 1 {
                 let request = MKDirections.Request()
-                request.source = MKMapItem(placemark: MKPlacemark(coordinate: annotationModel.waypoints[i]))
-                request.destination = MKMapItem(placemark: MKPlacemark(coordinate: annotationModel.waypoints[i+1]))
+                request.source = MKMapItem(placemark: MKPlacemark(coordinate: annotationModel.waypoints[i].coordinate))
+                request.destination = MKMapItem(placemark: MKPlacemark(coordinate: annotationModel.waypoints[i+1].coordinate))
                 request.transportType = .walking
                 
                 let directions = MKDirections(request: request)

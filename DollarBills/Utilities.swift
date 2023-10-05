@@ -13,14 +13,24 @@ struct RouteOverlay: Identifiable {
     let route: MKRoute
 }
 
-struct AnnotationModel: Equatable, Identifiable {
-    static func == (lhs: AnnotationModel, rhs: AnnotationModel) -> Bool {
-        return lhs.id == rhs.id
+struct AnnotationModel: Identifiable, Hashable {
+    
+    var id = UUID()
+    var routeName: String
+    var waypoints: [Checkpoint]
+    
+}
+
+final class Checkpoint: NSObject, MKAnnotation, Identifiable {
+    
+    let title: String?
+    let coordinate: CLLocationCoordinate2D
+    
+    init(title: String?, coordinate: CLLocationCoordinate2D) {
+        self.title = title
+        self.coordinate = coordinate
     }
     
-    var id: Int
-    var routeName: String
-    var waypoints: [CLLocationCoordinate2D]
 }
 
 class CustomAnnotation: NSObject, MKAnnotation {
@@ -50,27 +60,26 @@ struct CustomAnnotationAndRoute {
                          coordinate: CLLocationCoordinate2D(latitude: -6.29675, longitude: 106.64505),
                          title: "Route 1",
                          annotationModel: AnnotationModel(
-                            id: 1,
                             routeName: "Keliling Foresta",
                             waypoints: [
-                                CLLocationCoordinate2D(latitude: -6.29675, longitude: 106.64505),
-                                CLLocationCoordinate2D(latitude: -6.293920, longitude: 106.642447),
-                                CLLocationCoordinate2D(latitude: -6.293920, longitude: 106.642447),
-                                CLLocationCoordinate2D(latitude: -6.290890, longitude: 106.645503),
-                                CLLocationCoordinate2D(latitude: -6.29675, longitude: 106.64505)
-                            ])),
+                                Checkpoint(title: "Checkpoint 1", coordinate: CLLocationCoordinate2D(latitude: -6.29675, longitude: 106.64505)),
+                                Checkpoint(title: "Checkpoint 2", coordinate: CLLocationCoordinate2D(latitude: -6.293920, longitude: 106.642447)),
+                                Checkpoint(title: "Checkpoint 3", coordinate: CLLocationCoordinate2D(latitude: -6.290890, longitude: 106.645503)),
+                                Checkpoint(title: "Checkpoint 4", coordinate: CLLocationCoordinate2D(latitude: -6.296, longitude: 106.6467))
+                            ]
+                         )),
         CustomAnnotation(tag: 2,
                          coordinate: CLLocationCoordinate2D(latitude: -6.291824, longitude: 106.65344),
                          title: "Route 2",
                          annotationModel: AnnotationModel(
-                            id: 2,
                             routeName: "Keliling Nava",
                             waypoints: [
-                                CLLocationCoordinate2D(latitude: -6.291824, longitude: 106.65344),
-                                CLLocationCoordinate2D(latitude: -6.290008, longitude: 106.653541),
-                                CLLocationCoordinate2D(latitude: -6.291005, longitude: 106.651307),
-                                CLLocationCoordinate2D(latitude: -6.291824, longitude: 106.65344)
-                            ]))
+                                Checkpoint(title: "Checkpoint 1", coordinate: CLLocationCoordinate2D(latitude: -6.291824, longitude: 106.65344)),
+                                Checkpoint(title: "Checkpoint 2", coordinate: CLLocationCoordinate2D(latitude: -6.290008, longitude: 106.653541)),
+                                Checkpoint(title: "Checkpoint 3", coordinate: CLLocationCoordinate2D(latitude: -6.291005, longitude: 106.651307)),
+                                Checkpoint(title: "Checkpoint 4", coordinate: CLLocationCoordinate2D(latitude: -6.29206, longitude: 106.65311))
+                            ]
+                         ))
     ]
 }
 
