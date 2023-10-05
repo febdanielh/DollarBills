@@ -14,12 +14,12 @@ struct ContentView: View {
     var body: some View {
 //        
         NavigationView {
-            MapView(selectedAnnotation: $LM.selectedAnnotation)
+            MapView(
+                selectedAnnotation: $LM.selectedAnnotation)
         }
         .onAppear(perform: {
             LM.serviceAvailabilityCheck()
         })
-        
     }
 }
 

@@ -16,13 +16,13 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     @Published var selectedAnnotation: AnnotationModel?
     {
-       didSet {
-           if ((selectedAnnotation?.waypoints.count)! > 1) {
-               print("Ganti Rute!!!")
-               monitorRegionAtLocation(locations: selectedAnnotation!)
-           }
-       }
-   }
+        didSet {
+            if ((selectedAnnotation?.waypoints.count)! > 1) {
+                print("Ganti Rute!!!")
+                monitorRegionAtLocation(locations: selectedAnnotation!)
+            }
+        }
+    }
     
     @Published var userLocation: CLLocationCoordinate2D?
     
@@ -35,9 +35,20 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             longitudeDelta: 0.02)
     )
     
+    @Published var counter: Int = 0
+    @Published var itemCollected: [Items] = []
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             userLocation = location.coordinate
+        }
+        
+        if let selectedAnnotation = selectedAnnotation {
+            if locationManager?.monitoredRegions.isEmpty == true {
+                print("semua item sudah di collect")
+            } else {
+                print("belum semua item di collect")
+            }
         }
     }
     
@@ -46,7 +57,18 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         print(region.identifier)
         print("sisa:")
         print(locationManager?.monitoredRegions)
+        
+        addRandomItem()
+        print(itemCollected)
+        print("nambah item")
+        
         removeAnn(region: region)
+        
+        counter += 1
+        print(counter)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
     }
     
     func removeAnn (region: CLRegion)  {
@@ -111,7 +133,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
         
     }
-
+    
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         locationAuthorizationCheck()
     }
@@ -130,6 +152,13 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             }
         }
     }
-
+    
+    func addRandomItem() {
+        guard let randomItem = ItemsData.item.randomElement() else {
+            return
+        }
+        itemCollected.append(randomItem)
+        print("Added random item: \(randomItem.namaItem)")
+    }
 }
 

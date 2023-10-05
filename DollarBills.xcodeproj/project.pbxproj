@@ -15,6 +15,7 @@
 		E168B9992ACD4C2200CF56D9 /* createMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168B9982ACD4C2200CF56D9 /* createMap.swift */; };
 		E168B99B2ACD4C5400CF56D9 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168B99A2ACD4C5400CF56D9 /* Utilities.swift */; };
 		E168B99D2ACD4CFA00CF56D9 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168B99C2ACD4CFA00CF56D9 /* MapView.swift */; };
+		E168B99F2ACEAAE400CF56D9 /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168B99E2ACEAAE400CF56D9 /* Items.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		E168B9982ACD4C2200CF56D9 /* createMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createMap.swift; sourceTree = "<group>"; };
 		E168B99A2ACD4C5400CF56D9 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		E168B99C2ACD4CFA00CF56D9 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		E168B99E2ACEAAE400CF56D9 /* Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,12 +63,13 @@
 			children = (
 				E1347E3F2AC43557008224CF /* DollarBillsApp.swift */,
 				E1347E412AC43557008224CF /* ContentView.swift */,
-				E168B9962ACD4C0400CF56D9 /* LocationManager.swift */,
-				E168B9982ACD4C2200CF56D9 /* createMap.swift */,
-				E168B99A2ACD4C5400CF56D9 /* Utilities.swift */,
 				E168B99C2ACD4CFA00CF56D9 /* MapView.swift */,
+				E168B9982ACD4C2200CF56D9 /* createMap.swift */,
+				E168B9962ACD4C0400CF56D9 /* LocationManager.swift */,
+				E168B99A2ACD4C5400CF56D9 /* Utilities.swift */,
 				E1347E432AC43558008224CF /* Assets.xcassets */,
 				E1347E452AC43558008224CF /* Preview Content */,
+				E168B99E2ACEAAE400CF56D9 /* Items.swift */,
 			);
 			path = DollarBills;
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 				E168B99D2ACD4CFA00CF56D9 /* MapView.swift in Sources */,
 				E1347E422AC43557008224CF /* ContentView.swift in Sources */,
 				E1347E402AC43557008224CF /* DollarBillsApp.swift in Sources */,
+				E168B99F2ACEAAE400CF56D9 /* Items.swift in Sources */,
 				E168B99B2ACD4C5400CF56D9 /* Utilities.swift in Sources */,
 				E168B9972ACD4C0400CF56D9 /* LocationManager.swift in Sources */,
 			);
