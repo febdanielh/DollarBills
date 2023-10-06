@@ -10,9 +10,12 @@ import SwiftUI
 struct ContentView: View {
     
     @ObservedObject var LM = LocationManager()
+    @Environment(\.scenePhase) var scenePhase
+    @StateObject var vm = ViewModelWorkout()
+    @AppStorage("launchedBefore") var launchedBefore = false
+    @State var welcome = false
     
     var body: some View {
-//        
         NavigationView {
             MapView(
                 selectedAnnotation: $LM.selectedAnnotation)
