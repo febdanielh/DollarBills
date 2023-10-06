@@ -25,6 +25,8 @@ class Coordinator: NSObject, MKMapViewDelegate {
             parent.selectedAnnotation = annotation.annotationModel
             parent.showDirections = true
         }
+        
+        mapView.removeOverlays(mapView.overlays)
     }
     
     //    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
@@ -42,7 +44,15 @@ class Coordinator: NSObject, MKMapViewDelegate {
             renderer.strokeColor = .red
             renderer.lineWidth = 5
             return renderer
+        } else if let workout = overlay as? Workout {
+            
+            let render = MKPolylineRenderer(polyline: workout.polyline)
+            render.lineWidth = 2
+            
+            render.strokeColor = UIColor(.indigo)
+            return render
         }
+        
         return MKOverlayRenderer()
     }
     
@@ -67,21 +77,29 @@ struct createMap: UIViewRepresentable {
     
     var annotations: [CustomAnnotation] = CustomAnnotationAndRoute.customAnnotation
     
+    @ObservedObject var vm: ViewModelWorkout
+
     func makeUIView(context: Context) -> MKMapView {
         // Feb Done
         // Elv Done
         // Rez
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
+        vm.mapView = mapView
         mapView.showsUserLocation = true
         mapView.region = region
         mapView.userTrackingMode = .follow
+        mapView.showsCompass = true
+        mapView.isPitchEnabled = false
+        
+//        let tapRecognizer = UITapGestureRecognizer(target: context.coordinator, action: #selector(ViewModelWorkout.handleTap))
+//        mapView.addGestureRecognizer(tapRecognizer)
+        
         return mapView
     }
     
     func updateUIView(_ mapView: MKMapView, context: Context) {
         
-        mapView.removeOverlays(mapView.overlays)
         
         mapView.removeAnnotations(annotations)
         
