@@ -8,13 +8,7 @@
 import Foundation
 import MapKit
 
-struct RouteOverlay: Identifiable {
-    let id = UUID()
-    let route: MKRoute
-}
-
 struct AnnotationModel: Identifiable, Hashable {
-    
     var id = UUID()
     var routeName: String
     var waypoints: [Checkpoint]

@@ -23,8 +23,18 @@ class Coordinator: NSObject, MKMapViewDelegate {
         parent.cachedDirections.removeAll()
         if let annotation = view.annotation as? CustomAnnotation {
             parent.selectedAnnotation = annotation.annotationModel
+            parent.showDirections = true
         }
     }
+    
+    //    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+    //        parent.selectedAnnotation = AnnotationModel(id: UUID(uuidString: "")!, routeName: "", waypoints: [])
+    //        parent.showDirections = false
+    //
+    //        parent.routes.removeAll()
+    //        parent.directions.removeAll()
+    //        parent.cachedDirections.removeAll()
+    //    }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if let polyline = overlay as? MKPolyline {
@@ -51,6 +61,7 @@ struct createMap: UIViewRepresentable {
     let region: MKCoordinateRegion
     
     @Binding var selectedAnnotation: AnnotationModel?
+    @Binding var showDirections: Bool
     
     @State var cachedDirections: [String: [String]] = [:]
     
