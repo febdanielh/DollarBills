@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15D24C3F2AD5D20F00AFE89B /* RouteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D24C3E2AD5D20F00AFE89B /* RouteSheet.swift */; };
+		15D24C412AD5D23C00AFE89B /* CustomContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D24C402AD5D23C00AFE89B /* CustomContent.swift */; };
 		9BD93E372ACEB177004862F7 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD93E362ACEB177004862F7 /* Workout.swift */; };
 		9BD93E3A2ACEB1CC004862F7 /* CLLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD93E392ACEB1CC004862F7 /* CLLocation.swift */; };
 		9BD93E3D2ACEB1EE004862F7 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD93E3C2ACEB1EE004862F7 /* Date.swift */; };
@@ -33,6 +35,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15D24C3E2AD5D20F00AFE89B /* RouteSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteSheet.swift; sourceTree = "<group>"; };
+		15D24C402AD5D23C00AFE89B /* CustomContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContent.swift; sourceTree = "<group>"; };
 		9BD93E362ACEB177004862F7 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		9BD93E392ACEB1CC004862F7 /* CLLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocation.swift; sourceTree = "<group>"; };
 		9BD93E3C2ACEB1EE004862F7 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -150,6 +154,8 @@
 				E1347E432AC43558008224CF /* Assets.xcassets */,
 				E1347E452AC43558008224CF /* Preview Content */,
 				E168B99E2ACEAAE400CF56D9 /* Items.swift */,
+				15D24C3E2AD5D20F00AFE89B /* RouteSheet.swift */,
+				15D24C402AD5D23C00AFE89B /* CustomContent.swift */,
 			);
 			path = DollarBills;
 			sourceTree = "<group>";
@@ -240,9 +246,11 @@
 				9BD93E3F2ACEB2CC004862F7 /* HKHelper.swift in Sources */,
 				9BD93E372ACEB177004862F7 /* Workout.swift in Sources */,
 				9BD93E4F2ACF2248004862F7 /* ErrorView.swift in Sources */,
+				15D24C412AD5D23C00AFE89B /* CustomContent.swift in Sources */,
 				9BD93E472ACEC20F004862F7 /* PermissionView.swift in Sources */,
 				9BD93E432ACEB615004862F7 /* WorkoutDate.swift in Sources */,
 				9BD93E3A2ACEB1CC004862F7 /* CLLocation.swift in Sources */,
+				15D24C3F2AD5D20F00AFE89B /* RouteSheet.swift in Sources */,
 				E1347E422AC43557008224CF /* ContentView.swift in Sources */,
 				E1347E402AC43557008224CF /* DollarBillsApp.swift in Sources */,
 				E168B99F2ACEAAE400CF56D9 /* Items.swift in Sources */,

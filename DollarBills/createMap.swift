@@ -28,15 +28,7 @@ class Coordinator: NSObject, MKMapViewDelegate {
         
         mapView.removeOverlays(mapView.overlays)
     }
-    
-    //    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-    //        parent.selectedAnnotation = AnnotationModel(id: UUID(uuidString: "")!, routeName: "", waypoints: [])
-    //        parent.showDirections = false
-    //
-    //        parent.routes.removeAll()
-    //        parent.directions.removeAll()
-    //        parent.cachedDirections.removeAll()
-    //    }
+
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if let polyline = overlay as? MKPolyline {
@@ -56,6 +48,16 @@ class Coordinator: NSObject, MKMapViewDelegate {
         return MKOverlayRenderer()
     }
     
+    
+    //    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+    //        parent.selectedAnnotation = AnnotationModel(id: UUID(uuidString: "")!, routeName: "", waypoints: [])
+    //        parent.showDirections = false
+    //
+    //        parent.routes.removeAll()
+    //        parent.directions.removeAll()
+    //        parent.cachedDirections.removeAll()
+    //    }
+    
 }
 
 struct createMap: UIViewRepresentable {
@@ -71,6 +73,7 @@ struct createMap: UIViewRepresentable {
     let region: MKCoordinateRegion
     
     @Binding var selectedAnnotation: AnnotationModel?
+    
     @Binding var showDirections: Bool
     
     @State var cachedDirections: [String: [String]] = [:]
@@ -80,9 +83,6 @@ struct createMap: UIViewRepresentable {
     @ObservedObject var vm: ViewModelWorkout
 
     func makeUIView(context: Context) -> MKMapView {
-        // Feb Done
-        // Elv Done
-        // Rez
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
         vm.mapView = mapView
@@ -100,14 +100,12 @@ struct createMap: UIViewRepresentable {
     
     func updateUIView(_ mapView: MKMapView, context: Context) {
         
-        
         mapView.removeAnnotations(annotations)
         
         mapView.addAnnotations(annotations)
         
         for annotation in annotations {
             if annotation.annotationModel.id == selectedAnnotation?.id {
-                
                 
                 if let cached = cachedDirections[annotation.annotationModel.routeName] {
                     directions = cached
