@@ -33,8 +33,7 @@ struct MapView: View {
                 directions: $directions,
                 region: locationManager.region,
                 selectedAnnotation: $selectedAnnotation,
-                showDirections: $showDirections,
-                vm: vm
+                showDirections: $showDirections
                 
             )
                 
@@ -44,7 +43,7 @@ struct MapView: View {
                 if let workout = vm.selectedWorkout {
                     WorkoutBar(workout: workout, new: false)
                 }
-                WorkoutMenuView()
+//                WorkoutMenuView()
                 if vm.recording {
                     WorkoutBar(workout: vm.newWorkout, new: true)
                 }
@@ -89,7 +88,7 @@ struct MapView: View {
         }
         .sheet (
             isPresented: $showDirections,
-            content: { routeSheet(locationManager: locationManager, selectedAnnotation: $selectedAnnotation, directions: $directions)}
+            content: { routeSheet(locationManager: locationManager, selectedAnnotation: $selectedAnnotation, directions: $directions).environmentObject(vm) }
         )
         
     }

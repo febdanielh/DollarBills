@@ -12,6 +12,14 @@ struct routeSheet: View {
     
     @ObservedObject var locationManager: LocationManager
     
+    @EnvironmentObject var vm: ViewModelWorkout
+    
+    @State var showStartConfirmation = false
+    
+    @State var showStopConfirmation = false
+    
+    @State var showFilterView = false
+    
     @Binding var selectedAnnotation: AnnotationModel?
     
     @Binding var directions: [String]
@@ -77,11 +85,21 @@ struct routeSheet: View {
                         .padding([.bottom, .leading, .trailing])
                     
                     Button(action: {
-                        
+                        showStartConfirmation = true
                     }, label: {
                         Text("START RUNNING")
                             .bold()
                     })
+                    .confirmationDialog("Record a Workout", isPresented: $showStartConfirmation, titleVisibility: .visible) {
+                        Button("Cancel", role: .cancel) {
+                            // Handle cancellation
+                        }
+                        Button("Start Workout") {
+                            Task {
+                                await vm.startWorkout(type: .running)
+                            }
+                        }
+                    }
                     .buttonStyle(FillButton())
                     .padding(.bottom)
                     

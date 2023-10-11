@@ -80,7 +80,7 @@ struct createMap: UIViewRepresentable {
     
     var annotations: [CustomAnnotation] = CustomAnnotationAndRoute.customAnnotation
     
-    @ObservedObject var vm: ViewModelWorkout
+    @EnvironmentObject var vm: ViewModelWorkout
 
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
