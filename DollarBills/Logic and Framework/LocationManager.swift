@@ -96,16 +96,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     
-    func askPermission() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-            if success {
-                print("Access granted!")
-            } else if let error = error {
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
     func serviceAvailabilityCheck() {
         DispatchQueue.main.async {
             if CLLocationManager.locationServicesEnabled() {
