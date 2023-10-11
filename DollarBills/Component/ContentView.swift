@@ -9,19 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @ObservedObject var LM = LocationManager()
     @Environment(\.scenePhase) var scenePhase
-    @StateObject var vm = ViewModelWorkout()
+    @EnvironmentObject var vm: ViewModel
     @AppStorage("launchedBefore") var launchedBefore = false
     @State var welcome = false
     
     var body: some View {
         NavigationView {
             MapView(
-                selectedAnnotation: $LM.selectedAnnotation)
+                selectedAnnotation: $vm.selectedAnnotation)
         }
         .onAppear(perform: {
-            LM.locationAuthorizationCheck()
+            vm.locationAuthorizationCheck()
         })
         
     }

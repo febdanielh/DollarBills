@@ -11,7 +11,7 @@ import MapKit
 import SwiftUI
 import Combine
 
-@MainActor
+@MainActor //helath workout
 class ViewModelWorkout: NSObject, ObservableObject {
     // MARK: - Properties
     
@@ -75,7 +75,8 @@ class ViewModelWorkout: NSObject, ObservableObject {
     let healthStore = HKHealthStore()
     
     // CLLocationManager used to track the user's location during a workout.
-    var locationManager = CLLocationManager()
+//    var locationManager = CLLocationManager()
+//    @EnvironmentObject var lm: ViewModel
     
     // HKWorkoutBuilder and HKWorkoutRouteBuilder are used to track workouts in HealthKit.
     var workoutBuilder: HKWorkoutBuilder?
@@ -142,25 +143,25 @@ class ViewModelWorkout: NSObject, ObservableObject {
     // MARK: - Initialize
     override init() {
         super.init()
-        setupLocationManager() // Call the function to configure the location manager
+//        setupLocationManager() // Call the function to configure the location manager
         updateHealthStatus() // Update health status
         if healthAuth { // If the application has authorization to access health data
             loadWorkouts() // Load user history data
         }
     }
     
-    func setupLocationManager() {
-        locationManager.delegate = self // Sets the delegate for managing location updates
-    }
+//    func setupLocationManager() {
+//        locationManager.delegate = self // Sets the delegate for managing location updates
+//    }
     
-    func requestLocationAuthorization() {
-        if locationStatus == .notDetermined { // If the location permission status is not yet determined
-            locationManager.requestWhenInUseAuthorization() // Request authorization to access the location in use
-        }
-//        else { // If location permission is already determined
-//            locationManager.requestAlwaysAuthorization() // Request permission to permanently access the location
+//    func requestLocationAuthorization() {
+//        if locationStatus == .notDetermined { // If the location permission status is not yet determined
+//            locationManager.requestWhenInUseAuthorization() // Request authorization to access the location in use
 //        }
-    }
+////        else { // If location permission is already determined
+////            locationManager.requestAlwaysAuthorization() // Request permission to permanently access the location
+////        }
+//    }
     
     func updateHealthStatus() {
         healthStatus = HKHelper.status // Updates permission status to access health data
@@ -335,7 +336,7 @@ class ViewModelWorkout: NSObject, ObservableObject {
         }
         
         
-        locationManager.allowsBackgroundLocationUpdates = true
+//        lm.locationManager.allowsBackgroundLocationUpdates = true
         updateTrackingMode(.followWithHeading) // updates the map view to track the user's location
         
         
@@ -354,7 +355,7 @@ class ViewModelWorkout: NSObject, ObservableObject {
 
     
     func discardWorkout() { // disallow background location updates
-        locationManager.allowsBackgroundLocationUpdates = false
+//        locationManager.allowsBackgroundLocationUpdates = false
         
         timer?.cancel()
         recording = false
@@ -369,7 +370,7 @@ class ViewModelWorkout: NSObject, ObservableObject {
     }
     
     func endWorkout() async {
-        locationManager.allowsBackgroundLocationUpdates = false
+//        locationManager.allowsBackgroundLocationUpdates = false
         
         timer?.cancel()
         recording = false
@@ -470,7 +471,6 @@ extension ViewModelWorkout: CLLocationManagerDelegate {
         }
     }
     
-    
     // Function called when there is a change in location permission
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         locationStatus = manager.authorizationStatus
@@ -484,23 +484,5 @@ extension ViewModelWorkout: CLLocationManagerDelegate {
         if !accuracyAuth {
             showPermissionsView = true
         }
-    }
-}
-
-// MARK: - MKMapView Delegate
-extension ViewModelWorkout: MKMapViewDelegate {
-    
-    // Function called when the user's tracking mode on the map has changed
-    func mapView(_ mapView: MKMapView, didChange mode: MKUserTrackingMode, animated: Bool) {
-        // If the mode change is not animated, update the tracking mode to none
-        if !animated {
-            updateTrackingMode(.none)
-        }
-    }
-    
-    // Function called when the user has selected an annotation on the map
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        // Deselect annotation without animation
-        mapView.deselectAnnotation(view.annotation, animated: false)
     }
 }
