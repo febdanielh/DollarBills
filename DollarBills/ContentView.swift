@@ -21,8 +21,9 @@ struct ContentView: View {
                 selectedAnnotation: $LM.selectedAnnotation)
         }
         .onAppear(perform: {
-            LM.serviceAvailabilityCheck()
+            LM.locationAuthorizationCheck()
         })
+        
     }
 }
 

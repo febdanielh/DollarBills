@@ -14,9 +14,14 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     @Published var locationAccess : Bool = true
     
+    @Published var distance: Double = 0.0
+    
+    @Published var startPoint: CLLocation = CLLocation(latitude: -6.302230, longitude: 106.652264)
+    
     @Published var selectedAnnotation: AnnotationModel?
     {
         didSet {
+            startPoint = CLLocation(latitude: selectedAnnotation!.waypoints.first!.coordinate.latitude, longitude: selectedAnnotation!.waypoints.first!.coordinate.longitude)
             if ((selectedAnnotation?.waypoints.count)! > 1) {
                 print("Ganti Rute!!!")
                 monitorRegionAtLocation(locations: selectedAnnotation!)
@@ -36,27 +41,34 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     )
     
     @Published var counter: Int = 0
+    
     @Published var itemCollected: [Items] = []
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        distance = locations.last!.distance(from: startPoint)
+        distance = distance/1000
+        
         if let location = locations.first {
             userLocation = location.coordinate
         }
         
-        if let selectedAnnotation = selectedAnnotation {
+        if selectedAnnotation != nil {
             if locationManager?.monitoredRegions.isEmpty == true {
                 print("semua item sudah di collect")
             } else {
                 print("belum semua item di collect")
             }
         }
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        
         print("eh masuk :")
         print(region.identifier)
         print("sisa:")
-        print(locationManager?.monitoredRegions)
+//        print(locationManager?.monitoredRegions)
         
         addRandomItem()
         print(itemCollected)
@@ -66,6 +78,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         counter += 1
         print(counter)
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
@@ -160,5 +173,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         itemCollected.append(randomItem)
         print("Added random item: \(randomItem.namaItem)")
     }
+    
 }
 

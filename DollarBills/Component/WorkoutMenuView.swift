@@ -19,9 +19,9 @@ struct WorkoutMenuView: View {
         
         HStack(spacing: 0) {
             Button {
-                updateTrackingMode()
+                vm.updateTrackingMode()
             } label: {
-                Image(systemName: trackingModeImage)
+                Image(systemName: vm.trackingModeImage)
                     .frame(width: 50, height: 50)
                     .scaleEffect(vm.scale)
             }
@@ -79,7 +79,8 @@ struct WorkoutMenuView: View {
                 .pickerStyle(.menu)
                 
                 Text("Filter Workouts")
-            } label: {
+            }
+            label: {
                 if vm.loadingWorkouts {
                     ProgressView()
                         .frame(width: 50, height: 50)
@@ -95,32 +96,6 @@ struct WorkoutMenuView: View {
         
         .font(.system(size: 25))
         .materialBackground()
-    }
-    
-    func updateTrackingMode() {
-        
-        var mode: MKUserTrackingMode {
-            switch vm.trackingMode {
-            case .none:
-                return .follow
-            case .follow:
-                return .followWithHeading
-            default:
-                return .none
-            }
-        }
-        
-    }
-    
-    var trackingModeImage: String {
-        switch vm.trackingMode {
-        case .none:
-            return "location"
-        case .follow:
-            return "location.fill"
-        default:
-            return "location.north.line.fill"
-        }
     }
     
 }

@@ -15,6 +15,32 @@ import Combine
 class ViewModelWorkout: NSObject, ObservableObject {
     // MARK: - Properties
     
+    func updateTrackingMode() {
+        
+        var mode: MKUserTrackingMode {
+            switch trackingMode {
+            case .none:
+                return .follow
+            case .follow:
+                return .followWithHeading
+            default:
+                return .none
+            }
+        }
+        
+    }
+    
+    var trackingModeImage: String {
+        switch trackingMode {
+        case .none:
+            return "location"
+        case .follow:
+            return "location.fill"
+        default:
+            return "location.north.line.fill"
+        }
+    }
+    
     // Workout Tracking
     @Published var recording = false // Whether or not workout tracking is currently active
     @Published var activityType = HKWorkoutActivityType.running // The type of workout followed
@@ -285,6 +311,7 @@ class ViewModelWorkout: NSObject, ObservableObject {
         // Sets the padding for zooming and zooms to the specified overlay
         let padding = UIEdgeInsets(top: 20, left: 20, bottom: bottomPadding, right: 20)
         mapView?.setVisibleMapRect(overlay.boundingMapRect, edgePadding: padding, animated: true)
+        mapView?.isUserInteractionEnabled = true
     }
     
     // MARK: - Workout Tracking // add the heart data recovery part
