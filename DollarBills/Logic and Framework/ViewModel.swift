@@ -169,27 +169,27 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     // MARK: - Initialize
-    //    override init() {
-    //        super.init()
-    ////        setupLocationManager() // Call the function to configure the location manager
-    ////        updateHealthStatus() // Update health status
-    ////        if healthAuth { // If the application has authorization to access health data
-    ////            loadWorkouts() // Load user history data
-    ////        }
-    //    }
-    
-    //    func setupLocationManager() {
-    //        locationManager.delegate = self // Sets the delegate for managing location updates
-    //    }
-    
-    //    func requestLocationAuthorization() {
-    //        if locationStatus == .notDetermined { // If the location permission status is not yet determined
-    //            locationManager.requestWhenInUseAuthorization() // Request authorization to access the location in use
+//        override init() {
+//            super.init()
+//            setupLocationManager() // Call the function to configure the location manager
+//            updateHealthStatus() // Update health status
+//            if healthAuth { // If the application has authorization to access health data
+//                loadWorkouts() // Load user history data
+//            }
+//        }
+//    
+//        func setupLocationManager() {
+//            locationManager.delegate = self // Sets the delegate for managing location updates
+//        }
+//    
+        func requestLocationAuthorization() {
+            if locationStatus == .notDetermined { // If the location permission status is not yet determined
+                locationManager.requestWhenInUseAuthorization() // Request authorization to access the location in use
+            }
+    //        else { // If location permission is already determined
+    //            locationManager.requestAlwaysAuthorization() // Request permission to permanently access the location
     //        }
-    ////        else { // If location permission is already determined
-    ////            locationManager.requestAlwaysAuthorization() // Request permission to permanently access the location
-    ////        }
-    //    }
+        }
     
     func updateHealthStatus() {
         healthStatus = HKHelper.status // Updates permission status to access health data
@@ -557,6 +557,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         if locationStatus == .notDetermined { // If the location permission status is not yet determined
             locationManager.requestWhenInUseAuthorization() // Request authorization to access the location in use
         }
+
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

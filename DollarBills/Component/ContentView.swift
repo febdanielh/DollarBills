@@ -20,7 +20,7 @@ struct ContentView: View {
                 selectedAnnotation: $vm.selectedAnnotation)
         }
         .onAppear(perform: {
-            vm.locationAuthorizationCheck()
+            vm.serviceAvailabilityCheck()
         })
         
     }

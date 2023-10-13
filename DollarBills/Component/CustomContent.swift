@@ -43,3 +43,40 @@ struct RouteInfo : ViewModifier {
             .foregroundStyle(.black)
     }
 }
+
+struct BarProgressStyle: ProgressViewStyle {
+    var color: Color = .green
+    var height: Double = 20.0
+    var labelFontStyle: Font = .body
+    
+    func makeBody(configuration: Configuration) -> some View {
+        let progress = configuration.fractionCompleted ?? 0.0
+        
+        GeometryReader{ geometry in
+            VStack(alignment: .leading) {
+                
+                configuration.label
+                    .font(labelFontStyle)
+                
+                RoundedRectangle(cornerRadius: 12.0)
+                    .fill(Color(red: 1, green: 0.96, blue: 0.75))
+                    .frame(height: height)
+                    .frame(width: geometry.size.width)
+                    .overlay(alignment: .leading) {
+                        
+                        RoundedRectangle(cornerRadius: 12.0)
+                            .fill(Color(red: 1, green: 0.87, blue: 0.2))
+                            .frame(width: geometry.size.width * progress)
+                            .overlay {
+                                if let currentValueLabel = configuration.currentValueLabel {
+                                    
+                                    currentValueLabel
+                                        .font(.headline)
+                                        .foregroundColor(.white)
+                                }
+                            }
+                    }
+            }
+        }
+    }
+}

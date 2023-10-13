@@ -10,6 +10,7 @@
 		15D24C3F2AD5D20F00AFE89B /* RouteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D24C3E2AD5D20F00AFE89B /* RouteSheet.swift */; };
 		15D24C412AD5D23C00AFE89B /* CustomContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D24C402AD5D23C00AFE89B /* CustomContent.swift */; };
 		15D24C432AD6942E00AFE89B /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D24C422AD6942E00AFE89B /* ViewModel.swift */; };
+		9B29AA1F2AD7B362007DBEA5 /* RunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29AA1E2AD7B362007DBEA5 /* RunView.swift */; };
 		9BD93E372ACEB177004862F7 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD93E362ACEB177004862F7 /* Workout.swift */; };
 		9BD93E3A2ACEB1CC004862F7 /* CLLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD93E392ACEB1CC004862F7 /* CLLocation.swift */; };
 		9BD93E3D2ACEB1EE004862F7 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD93E3C2ACEB1EE004862F7 /* Date.swift */; };
@@ -39,6 +40,7 @@
 		15D24C3E2AD5D20F00AFE89B /* RouteSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteSheet.swift; sourceTree = "<group>"; };
 		15D24C402AD5D23C00AFE89B /* CustomContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContent.swift; sourceTree = "<group>"; };
 		15D24C422AD6942E00AFE89B /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		9B29AA1E2AD7B362007DBEA5 /* RunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunView.swift; sourceTree = "<group>"; };
 		9BD93E362ACEB177004862F7 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		9BD93E392ACEB1CC004862F7 /* CLLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocation.swift; sourceTree = "<group>"; };
 		9BD93E3C2ACEB1EE004862F7 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				E168B99C2ACD4CFA00CF56D9 /* MapView.swift */,
 				15D24C402AD5D23C00AFE89B /* CustomContent.swift */,
 				15D24C3E2AD5D20F00AFE89B /* RouteSheet.swift */,
+				9B29AA1E2AD7B362007DBEA5 /* RunView.swift */,
 				9BD93E4E2ACF2248004862F7 /* ErrorView.swift */,
 				9BD93E582ACFFD73004862F7 /* WorkoutBar.swift */,
 				9BD93E482ACEC7CC004862F7 /* WorkoutMenuView.swift */,
@@ -158,10 +161,10 @@
 		E1347E3E2AC43557008224CF /* DollarBills */ = {
 			isa = PBXGroup;
 			children = (
-				15D24C442AD6944300AFE89B /* Logic and Framework */,
 				9BD93E572ACF2ABF004862F7 /* DollarBills.entitlements */,
 				9BD93E562ACF2AB9004862F7 /* Info.plist */,
 				E1347E3F2AC43557008224CF /* DollarBillsApp.swift */,
+				15D24C442AD6944300AFE89B /* Logic and Framework */,
 				9BD93E382ACEB17D004862F7 /* Models */,
 				9BD93E502ACF232A004862F7 /* Component */,
 				9BD93E3B2ACEB1DA004862F7 /* Extensions */,
@@ -262,6 +265,7 @@
 				9BD93E432ACEB615004862F7 /* WorkoutDate.swift in Sources */,
 				9BD93E3A2ACEB1CC004862F7 /* CLLocation.swift in Sources */,
 				15D24C3F2AD5D20F00AFE89B /* RouteSheet.swift in Sources */,
+				9B29AA1F2AD7B362007DBEA5 /* RunView.swift in Sources */,
 				E1347E422AC43557008224CF /* ContentView.swift in Sources */,
 				15D24C432AD6942E00AFE89B /* ViewModel.swift in Sources */,
 				E1347E402AC43557008224CF /* DollarBillsApp.swift in Sources */,
