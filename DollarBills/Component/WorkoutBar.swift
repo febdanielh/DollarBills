@@ -10,7 +10,7 @@ import SwiftUI
 import MapKit
 
 struct WorkoutBar: View {
-     @EnvironmentObject var vm:ViewModelWorkout
+     @EnvironmentObject var vm: ViewModel
      @State var showWorkoutView = false
      @State var offset = Double.zero
     
@@ -88,7 +88,7 @@ struct WorkoutBar_Previews: PreviewProvider {
          ZStack {
              Map(mapRect: .constant(MKMapRect()))
              WorkoutBar(workout: .example, new: true)
-                 .environmentObject(ViewModelWorkout())
+                 .environmentObject(ViewModel())
          }
      }
 }

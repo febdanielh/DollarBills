@@ -47,17 +47,6 @@ class Coordinator: NSObject, MKMapViewDelegate {
         
         return MKOverlayRenderer()
     }
-    
-    
-    //    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-    //        parent.selectedAnnotation = AnnotationModel(id: UUID(uuidString: "")!, routeName: "", waypoints: [])
-    //        parent.showDirections = false
-    //
-    //        parent.routes.removeAll()
-    //        parent.directions.removeAll()
-    //        parent.cachedDirections.removeAll()
-    //    }
-    
 }
 
 struct createMap: UIViewRepresentable {
@@ -104,15 +93,14 @@ struct createMap: UIViewRepresentable {
         
         for annotation in annotations {
             if annotation.annotationModel.id == selectedAnnotation?.id {
-                
                 if let cached = cachedDirections[annotation.annotationModel.routeName] {
                     directions = cached
                 } else {
-                    calculateDirections(mapView, annotation: annotation)
                 }
             }
-            
         }
+        
+        calculateDirections(mapView, annotation: annotations[0])
         
         var boundingBox = MKMapRect.null
         

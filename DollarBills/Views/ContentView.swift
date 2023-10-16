@@ -7,7 +7,13 @@
 
 import SwiftUI
 
+enum DisplayScreen {
+    case viewOnboard
+    case viewIsi
+}
+
 struct ContentView: View {
+    @State var currentDisplayScreen: DisplayScreen = .viewOnboard
     
     @Environment(\.scenePhase) var scenePhase
     @EnvironmentObject var vm: ViewModel
@@ -15,14 +21,15 @@ struct ContentView: View {
     @State var welcome = false
     
     var body: some View {
-        NavigationView {
-            MapView(
-                selectedAnnotation: $vm.selectedAnnotation)
+        switch currentDisplayScreen {
+        case .viewOnboard:
+            OnboardingView(currentDisplayScreen: $currentDisplayScreen)
+        case .viewIsi:
+            MapView(selectedAnnotation: $vm.selectedAnnotation)
+                .onAppear{
+                    vm.serviceAvailabilityCheck()
+                }
         }
-        .onAppear(perform: {
-            vm.serviceAvailabilityCheck()
-        })
-        
     }
 }
 

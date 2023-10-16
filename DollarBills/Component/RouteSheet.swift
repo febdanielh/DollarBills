@@ -30,7 +30,7 @@ struct routeSheet: View {
                 
                 VStack() {
                     
-                    Text(selectedAnnotation!.routeName)
+                    Text(selectedAnnotation?.routeName ?? "No name")
                         .modifier(RouteTitle())
                     
                     HStack (spacing: 20) {

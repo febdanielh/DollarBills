@@ -34,8 +34,8 @@ struct MapView: View {
                 showDirections: $showDirections
                 
             )
-                
             .ignoresSafeArea()
+                
             VStack(spacing: 10) {
                 Spacer()
                 if let workout = vm.selectedWorkout {
@@ -86,7 +86,9 @@ struct MapView: View {
         }
         .sheet (
             isPresented: $showDirections,
-            content: { routeSheet(selectedAnnotation: $selectedAnnotation, directions: $directions).environmentObject(vm) }
+            content: {
+                routeSheet(selectedAnnotation: $selectedAnnotation, directions: $directions).environmentObject(vm)
+            }
         )
         
     }

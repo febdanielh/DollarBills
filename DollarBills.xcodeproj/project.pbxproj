@@ -29,11 +29,14 @@
 		E1347E422AC43557008224CF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1347E412AC43557008224CF /* ContentView.swift */; };
 		E1347E442AC43558008224CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1347E432AC43558008224CF /* Assets.xcassets */; };
 		E1347E472AC43558008224CF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1347E462AC43558008224CF /* Preview Assets.xcassets */; };
+		E16796902AD8E27600340093 /* ExtensionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E167968F2AD8E27600340093 /* ExtensionColor.swift */; };
+		E16796932AD94B8E00340093 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16796922AD94B8E00340093 /* OnboardingView.swift */; };
 		E168B9972ACD4C0400CF56D9 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168B9962ACD4C0400CF56D9 /* LocationManager.swift */; };
 		E168B9992ACD4C2200CF56D9 /* createMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168B9982ACD4C2200CF56D9 /* createMap.swift */; };
 		E168B99B2ACD4C5400CF56D9 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168B99A2ACD4C5400CF56D9 /* Utilities.swift */; };
 		E168B99D2ACD4CFA00CF56D9 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168B99C2ACD4CFA00CF56D9 /* MapView.swift */; };
 		E168B99F2ACEAAE400CF56D9 /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168B99E2ACEAAE400CF56D9 /* Items.swift */; };
+		E1A093712AD7E8A000A8A4AC /* PauseRunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A093702AD7E8A000A8A4AC /* PauseRunView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,11 +65,14 @@
 		E1347E412AC43557008224CF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E1347E432AC43558008224CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1347E462AC43558008224CF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E167968F2AD8E27600340093 /* ExtensionColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionColor.swift; sourceTree = "<group>"; };
+		E16796922AD94B8E00340093 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		E168B9962ACD4C0400CF56D9 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E168B9982ACD4C2200CF56D9 /* createMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createMap.swift; sourceTree = "<group>"; };
 		E168B99A2ACD4C5400CF56D9 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		E168B99C2ACD4CFA00CF56D9 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E168B99E2ACEAAE400CF56D9 /* Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
+		E1A093702AD7E8A000A8A4AC /* PauseRunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseRunView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +118,7 @@
 				9BD93E4C2ACF209D004862F7 /* ViewExt.swift */,
 				9BD93E392ACEB1CC004862F7 /* CLLocation.swift */,
 				9BD93E3C2ACEB1EE004862F7 /* Date.swift */,
+				E167968F2AD8E27600340093 /* ExtensionColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -119,12 +126,8 @@
 		9BD93E502ACF232A004862F7 /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				E1347E412AC43557008224CF /* ContentView.swift */,
-				9BD93E462ACEC20F004862F7 /* PermissionView.swift */,
-				E168B99C2ACD4CFA00CF56D9 /* MapView.swift */,
 				15D24C402AD5D23C00AFE89B /* CustomContent.swift */,
 				15D24C3E2AD5D20F00AFE89B /* RouteSheet.swift */,
-				9B29AA1E2AD7B362007DBEA5 /* RunView.swift */,
 				9BD93E4E2ACF2248004862F7 /* ErrorView.swift */,
 				9BD93E582ACFFD73004862F7 /* WorkoutBar.swift */,
 				9BD93E482ACEC7CC004862F7 /* WorkoutMenuView.swift */,
@@ -164,6 +167,7 @@
 				9BD93E572ACF2ABF004862F7 /* DollarBills.entitlements */,
 				9BD93E562ACF2AB9004862F7 /* Info.plist */,
 				E1347E3F2AC43557008224CF /* DollarBillsApp.swift */,
+				E16796912AD94B1700340093 /* Views */,
 				15D24C442AD6944300AFE89B /* Logic and Framework */,
 				9BD93E382ACEB17D004862F7 /* Models */,
 				9BD93E502ACF232A004862F7 /* Component */,
@@ -180,6 +184,19 @@
 				E1347E462AC43558008224CF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E16796912AD94B1700340093 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E1347E412AC43557008224CF /* ContentView.swift */,
+				E168B99C2ACD4CFA00CF56D9 /* MapView.swift */,
+				9BD93E462ACEC20F004862F7 /* PermissionView.swift */,
+				9B29AA1E2AD7B362007DBEA5 /* RunView.swift */,
+				E1A093702AD7E8A000A8A4AC /* PauseRunView.swift */,
+				E16796922AD94B8E00340093 /* OnboardingView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1A093712AD7E8A000A8A4AC /* PauseRunView.swift in Sources */,
 				9BD93E492ACEC7CC004862F7 /* WorkoutMenuView.swift in Sources */,
 				E168B9992ACD4C2200CF56D9 /* createMap.swift in Sources */,
 				9BD93E4D2ACF209D004862F7 /* ViewExt.swift in Sources */,
@@ -262,6 +280,8 @@
 				9BD93E4F2ACF2248004862F7 /* ErrorView.swift in Sources */,
 				15D24C412AD5D23C00AFE89B /* CustomContent.swift in Sources */,
 				9BD93E472ACEC20F004862F7 /* PermissionView.swift in Sources */,
+				E16796932AD94B8E00340093 /* OnboardingView.swift in Sources */,
+				E16796902AD8E27600340093 /* ExtensionColor.swift in Sources */,
 				9BD93E432ACEB615004862F7 /* WorkoutDate.swift in Sources */,
 				9BD93E3A2ACEB1CC004862F7 /* CLLocation.swift in Sources */,
 				15D24C3F2AD5D20F00AFE89B /* RouteSheet.swift in Sources */,

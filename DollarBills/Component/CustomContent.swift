@@ -23,6 +23,26 @@ struct FillButton: ButtonStyle {
     }
 }
 
+struct ActiveBlackButton: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .frame(width: 360, height: 53)
+            .foregroundColor(.primaryColor02)
+            .background(Color.black)
+            .clipShape(RoundedRectangle(cornerRadius: 26))
+    }
+}
+
+struct ActivePrimaryButton: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .frame(width: 360, height: 53)
+            .foregroundColor(.black)
+            .background(Color.primaryColor01)
+            .clipShape(RoundedRectangle(cornerRadius: 26))
+    }
+}
+
 struct RouteTitle : ViewModifier {
     func body(content: Content) -> some View {
         content
