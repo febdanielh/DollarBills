@@ -6,11 +6,10 @@
 //
 
 import SwiftUI
-import MapKit
 
 struct MapView: View {
     
-    @ObservedObject var locationManager = LocationManager()
+//    @ObservedObject var locationManager = LocationManager()
     
     @State var directions: [String] = []
     
@@ -19,7 +18,7 @@ struct MapView: View {
     @Binding var selectedAnnotation: AnnotationModel?
     
     @Environment(\.scenePhase) var scenePhase
-    @StateObject var vm = ViewModelWorkout()
+    @EnvironmentObject var vm: ViewModel
     @AppStorage("launchedBefore") var launchedBefore = false
     @State var welcome = false
     
@@ -31,7 +30,6 @@ struct MapView: View {
             createMap(
                 
                 directions: $directions,
-                region: locationManager.region,
                 selectedAnnotation: $selectedAnnotation,
                 showDirections: $showDirections
                 
@@ -88,7 +86,7 @@ struct MapView: View {
         }
         .sheet (
             isPresented: $showDirections,
-            content: { routeSheet(locationManager: locationManager, selectedAnnotation: $selectedAnnotation, directions: $directions).environmentObject(vm) }
+            content: { routeSheet(selectedAnnotation: $selectedAnnotation, directions: $directions).environmentObject(vm) }
         )
         
     }

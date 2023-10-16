@@ -70,8 +70,6 @@ struct createMap: UIViewRepresentable {
     
     @State var routes: [MKRoute] = []
     
-    let region: MKCoordinateRegion
-    
     @Binding var selectedAnnotation: AnnotationModel?
     
     @Binding var showDirections: Bool
@@ -80,17 +78,17 @@ struct createMap: UIViewRepresentable {
     
     var annotations: [CustomAnnotation] = CustomAnnotationAndRoute.customAnnotation
     
-    @EnvironmentObject var vm: ViewModelWorkout
+    @EnvironmentObject var vm: ViewModel
 
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
-        mapView.delegate = context.coordinator
-        vm.mapView = mapView
+        mapView.delegate = vm
         mapView.showsUserLocation = true
-        mapView.region = region
         mapView.userTrackingMode = .follow
         mapView.showsCompass = true
         mapView.isPitchEnabled = false
+        
+        vm.mapView = mapView
         
 //        let tapRecognizer = UITapGestureRecognizer(target: context.coordinator, action: #selector(ViewModelWorkout.handleTap))
 //        mapView.addGestureRecognizer(tapRecognizer)

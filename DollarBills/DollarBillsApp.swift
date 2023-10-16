@@ -13,6 +13,7 @@ struct DollarBillsApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(ViewModel())
         }
     }
 }

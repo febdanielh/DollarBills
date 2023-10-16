@@ -10,9 +10,7 @@ import SwiftUI
 
 struct routeSheet: View {
     
-    @ObservedObject var locationManager: LocationManager
-    
-    @EnvironmentObject var vm: ViewModelWorkout
+    @EnvironmentObject var vm: ViewModel
     
     @State var showStartConfirmation = false
     
@@ -66,9 +64,9 @@ struct routeSheet: View {
                     .padding([.leading, .bottom])
                     
                     HStack {
-                        Text("This route is \(locationManager.distance, specifier: "%.1f")km from you.")
+                        Text("This route is \(vm.distance, specifier: "%.1f")km from you.")
                         
-                        if (locationManager.distance > 0.2) {
+                        if (vm.distance > 0.2) {
                             Button(action: {
                                 
                             }, label: {

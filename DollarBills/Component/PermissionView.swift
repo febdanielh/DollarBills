@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PermissionsView: View {
-    @EnvironmentObject var vm: ViewModelWorkout // The ViewModel object is retrieved from the environment
+    @EnvironmentObject var vm: ViewModel
     
     var body: some View {
         NavigationView {
@@ -41,7 +41,7 @@ struct PermissionsView: View {
                                 .cornerRadius(10)
                                 .padding(.top, 10)
                             PermissionRow(title: "Location", description: NAME + " needs access to your location to record a workout route in the background and show your location on the map.", allowed: vm.locationAuth, denied: vm.locationStatus == .denied, instructions: "Please go to Settings > \(NAME) > Location and select \"Always\"", linkTitle: "Settings", linkString: UIApplication.openSettingsURLString, loading: false, allowString: vm.locationStatus == .notDetermined ? "Allow While Using" : "Allow Always") {
-                                vm.requestLocationAuthorization()
+                                vm.locationAuthorizationCheck()
                             }
                         }
                     } footer: {
@@ -60,7 +60,7 @@ struct PermissionsView: View {
                                 .cornerRadius(10)
                                 .padding(.top, 10)
                             PermissionRow(title: "Precise Location", description: NAME + " needs access to your precise location to track your workout routes more accurately.", allowed: vm.accuracyAuth, denied: true, instructions: "Please go to Settings > \(NAME) > Location and toggle \"Precise Location\" to ON", linkTitle: "Settings", linkString: UIApplication.openSettingsURLString, loading: false, allowString: "Allow") {
-                                vm.requestLocationAuthorization()
+                                vm.locationAuthorizationCheck()
                             }
                         }
                     }
@@ -91,7 +91,7 @@ struct PermissionsView_Previews: PreviewProvider {
         Text("")
             .sheet(isPresented: .constant(true)) {
                 PermissionsView()
-                    .environmentObject(ViewModelWorkout()) // An instance of ViewModel is injected here as an environment object
+                    .environmentObject(ViewModel()) // An instance of ViewModel is injected here as an environment object
             }
     }
 }

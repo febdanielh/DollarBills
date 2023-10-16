@@ -1,18 +1,43 @@
 //
-//  ViewModelWorkout.swift
+//  ViewModel.swift
 //  DollarBills
 //
-//  Created by Abiyyu Firmansyah on 05/10/23.
+//  Created by Elvis Susanto on 11/10/23.
 //
 
-import Foundation
-import HealthKit
 import MapKit
-import SwiftUI
+import HealthKit
 import Combine
+import SwiftUI
 
-@MainActor
-class ViewModelWorkout: NSObject, ObservableObject {
+@MainActor//location dan map
+class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
+    
+    var locationManager: CLLocationManager = CLLocationManager()
+    
+    @Published var locationAccess : Bool = true
+    
+    @Published var distance: Double = 0.0
+    
+    @Published var startPoint: CLLocation = CLLocation(latitude: -6.302230, longitude: 106.652264)
+    
+    @Published var selectedAnnotation: AnnotationModel?
+    {
+        didSet {
+            startPoint = CLLocation(latitude: selectedAnnotation!.waypoints.first!.coordinate.latitude, longitude: selectedAnnotation!.waypoints.first!.coordinate.longitude)
+            if ((selectedAnnotation?.waypoints.count)! > 1) {
+                print("Ganti Rute!!!")
+                monitorRegionAtLocation(locations: selectedAnnotation!)
+            }
+        }
+    }
+    
+    @Published var locations: [CLLocation] = []
+    
+    //    @Published var counter: Int = 0
+    
+    @Published var itemCollected: [Items] = []
+    
     // MARK: - Properties
     
     func updateTrackingMode() {
@@ -46,8 +71,7 @@ class ViewModelWorkout: NSObject, ObservableObject {
     @Published var activityType = HKWorkoutActivityType.running // The type of workout followed
     @Published var startDate = Date() // The tracking start date/time
     @Published var meters = 0.0 // The distance traveled during tracking
-    @Published var locations = [CLLocation]() // An array of CLLocation objects representing the traced path
-
+    
     
     // Calculated property that returns an MKPolyline based on the locations array
     var polyline: MKPolyline {
@@ -74,9 +98,6 @@ class ViewModelWorkout: NSObject, ObservableObject {
     // HealthKit store used to request HealthKit authorization.
     let healthStore = HKHealthStore()
     
-    // CLLocationManager used to track the user's location during a workout.
-    var locationManager = CLLocationManager()
-    
     // HKWorkoutBuilder and HKWorkoutRouteBuilder are used to track workouts in HealthKit.
     var workoutBuilder: HKWorkoutBuilder?
     var routeBuilder: HKWorkoutRouteBuilder?
@@ -91,8 +112,16 @@ class ViewModelWorkout: NSObject, ObservableObject {
     @Published var accuracyAuth = false
     @Published var locationStatus = CLAuthorizationStatus.notDetermined
     
+//    {
+//        didSet {
+//            if locationStatus == .authorizedWhenInUse {
+//                locationAuth = true
+//            }
+//        }
+//    }
+    
     // Calculated property that returns true if location permission has been granted.
-    var locationAuth: Bool { locationStatus == .authorizedWhenInUse }
+    var locationAuth: Bool {locationStatus == .authorizedWhenInUse}
     // The MKMapView which displays the map
     var mapView: MKMapView?
     
@@ -114,9 +143,9 @@ class ViewModelWorkout: NSObject, ObservableObject {
     
     // Filters
     // The currently selected workout type filter.
-//    @Published var workoutType: WorkoutType? { didSet {
-//        filterWorkouts()
-//    }}
+    //    @Published var workoutType: WorkoutType? { didSet {
+    //        filterWorkouts()
+    //    }}
     
     
     // The currently selected workout date filter.
@@ -130,7 +159,7 @@ class ViewModelWorkout: NSObject, ObservableObject {
     @Published var pulse = false
     @Published var showInfoView = false
     @Published var showAccountView = false
-
+    
     // Errors
     @Published var showErrorAlert = false
     @Published var error = MyError.noWorkouts
@@ -140,27 +169,27 @@ class ViewModelWorkout: NSObject, ObservableObject {
     }
     
     // MARK: - Initialize
-    override init() {
-        super.init()
-        setupLocationManager() // Call the function to configure the location manager
-        updateHealthStatus() // Update health status
-        if healthAuth { // If the application has authorization to access health data
-            loadWorkouts() // Load user history data
-        }
-    }
-    
-    func setupLocationManager() {
-        locationManager.delegate = self // Sets the delegate for managing location updates
-    }
-    
-    func requestLocationAuthorization() {
-        if locationStatus == .notDetermined { // If the location permission status is not yet determined
-            locationManager.requestWhenInUseAuthorization() // Request authorization to access the location in use
-        }
-//        else { // If location permission is already determined
-//            locationManager.requestAlwaysAuthorization() // Request permission to permanently access the location
+//        override init() {
+//            super.init()
+//            setupLocationManager() // Call the function to configure the location manager
+//            updateHealthStatus() // Update health status
+//            if healthAuth { // If the application has authorization to access health data
+//                loadWorkouts() // Load user history data
+//            }
 //        }
-    }
+//    
+//        func setupLocationManager() {
+//            locationManager.delegate = self // Sets the delegate for managing location updates
+//        }
+//    
+        func requestLocationAuthorization() {
+            if locationStatus == .notDetermined { // If the location permission status is not yet determined
+                locationManager.requestWhenInUseAuthorization() // Request authorization to access the location in use
+            }
+    //        else { // If location permission is already determined
+    //            locationManager.requestAlwaysAuthorization() // Request permission to permanently access the location
+    //        }
+        }
     
     func updateHealthStatus() {
         healthStatus = HKHelper.status // Updates permission status to access health data
@@ -195,17 +224,17 @@ class ViewModelWorkout: NSObject, ObservableObject {
             
             var tally = 0
             for hkWorkout in hkWorkouts {
-                        guard hkWorkout.workoutActivityType == .running else {
-                            // Skip non-running workouts
-                            tally += 1
-                            if tally == hkWorkouts.count {
-                                DispatchQueue.main.async {
-                                    
-                                    self.loadingWorkouts = false
-                                }
-                            }
-                            continue
+                guard hkWorkout.workoutActivityType == .running else {
+                    // Skip non-running workouts
+                    tally += 1
+                    if tally == hkWorkouts.count {
+                        DispatchQueue.main.async {
+                            
+                            self.loadingWorkouts = false
                         }
+                    }
+                    continue
+                }
                 // Load workout coordinates from HealthKit API
                 HKHelper.loadWorkoutRoute(hkWorkout: hkWorkout) { locations in
                     tally += 1
@@ -257,7 +286,7 @@ class ViewModelWorkout: NSObject, ObservableObject {
         // Finally checks if the workout date matches the selected date or if no date has been selected
         
         (selectedWorkout == nil || workout == selectedWorkout) &&
-//        (workoutType == nil || workoutType == workout.type) &&
+        //        (workoutType == nil || workoutType == workout.type) &&
         (workoutDate == nil || Calendar.current.isDate(workout.date, equalTo: .now, toGranularity: workoutDate!.granularity))
     }
     
@@ -323,7 +352,7 @@ class ViewModelWorkout: NSObject, ObservableObject {
         let config = HKWorkoutConfiguration() // create a configuration for the workout
         config.activityType = type // sets the activity type based on the input parameter
         config.locationType = .outdoor // sets the location type to outdoor
-//        self.type = WorkoutType(hkType: type) // sets the workout type to the appropriate type
+        //        self.type = WorkoutType(hkType: type) // sets the workout type to the appropriate type
         
         routeBuilder = HKWorkoutRouteBuilder(healthStore: healthStore, device: .local()) // create a route builder to capture GPS data
         workoutBuilder = HKWorkoutBuilder(healthStore: healthStore, configuration: config, device: .local()) // create a workout builder to capture workout data
@@ -351,7 +380,7 @@ class ViewModelWorkout: NSObject, ObservableObject {
         }
         
     }
-
+    
     
     func discardWorkout() { // disallow background location updates
         locationManager.allowsBackgroundLocationUpdates = false
@@ -381,7 +410,6 @@ class ViewModelWorkout: NSObject, ObservableObject {
             filterWorkouts()
             selectWorkout(workout)
         }
-
         
         meters = 0
         locations = []
@@ -436,13 +464,10 @@ class ViewModelWorkout: NSObject, ObservableObject {
         let tapCoord = mapView.convert(tapPoint, toCoordinateFrom: mapView)
         selectClosestWorkout(to: tapCoord)
     }
-}
-
-// MARK: - CLLocationManagerDelegate
-extension ViewModelWorkout: CLLocationManagerDelegate {
     
-    // Function called when a new location is available
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
         guard recording else { return }
         
         // Filtering rentals according to precision
@@ -468,10 +493,73 @@ extension ViewModelWorkout: CLLocationManagerDelegate {
                 }
             }
         }
+        
+        distance = locations.last!.distance(from: startPoint)
+        distance = distance/1000
+        
+        if selectedAnnotation != nil {
+            if locationManager.monitoredRegions.isEmpty == true {
+                print("semua item sudah di collect")
+            } else {
+                print("belum semua item di collect")
+            }
+        }
     }
     
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        
+        print("eh masuk :")
+        print(region.identifier)
+        print("sisa:")
+        //        print(locationManager?.monitoredRegions)
+        
+        addRandomItem()
+        print(itemCollected)
+        print("nambah item")
+        
+        removeAnn(region: region)
+        
+        //        counter += 1
+        //        print(counter)
+        
+    }
     
-    // Function called when there is a change in location permission
+    func removeAnn (region: CLRegion)  {
+        var index: Int = 0
+        for oneRoute in selectedAnnotation!.waypoints {
+            if (oneRoute.title == region.identifier) {
+                locationManager.stopMonitoring(for: region)
+                selectedAnnotation?.waypoints.remove(at: index)
+                print("ke stop monitor!!!")
+            }
+            index = index + 1
+        }
+    }
+    
+    func serviceAvailabilityCheck() {
+        DispatchQueue.main.async {
+            if CLLocationManager.locationServicesEnabled() {
+                self.locationManager = CLLocationManager()
+                self.locationManager.delegate = self
+                self.locationManager.startUpdatingLocation()
+                self.updateHealthStatus() // Update health status
+                
+                if self.healthAuth { // If the application has authorization to access health data
+                    self.loadWorkouts() // Load user history data
+                }
+            } else {
+                print("Location Services not Enabled.")
+            }
+        }
+    }
+    
+    func locationAuthorizationCheck() {
+        if locationStatus == .notDetermined { // If the location permission status is not yet determined
+            locationManager.requestWhenInUseAuthorization() // Request authorization to access the location in use
+        }
+
+    }
+    
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         locationStatus = manager.authorizationStatus
         if locationAuth {
@@ -485,22 +573,46 @@ extension ViewModelWorkout: CLLocationManagerDelegate {
             showPermissionsView = true
         }
     }
-}
-
-// MARK: - MKMapView Delegate
-extension ViewModelWorkout: MKMapViewDelegate {
     
-    // Function called when the user's tracking mode on the map has changed
-    func mapView(_ mapView: MKMapView, didChange mode: MKUserTrackingMode, animated: Bool) {
-        // If the mode change is not animated, update the tracking mode to none
-        if !animated {
-            updateTrackingMode(.none)
+    func monitorRegionAtLocation(locations: AnnotationModel) {
+        print("KEPANGILL!!!")
+        if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+            // Register the region.
+            for oneLocation in locations.waypoints {
+                
+                let region = CLCircularRegion(center: oneLocation.coordinate,
+                                              radius: 5.0, identifier: oneLocation.title!)
+                region.notifyOnEntry = true
+                region.notifyOnExit = false
+                locationManager.startMonitoring(for: region)
+            }
         }
     }
     
-    // Function called when the user has selected an annotation on the map
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        // Deselect annotation without animation
-        mapView.deselectAnnotation(view.annotation, animated: false)
+    func addRandomItem() {
+        guard let randomItem = ItemsData.item.randomElement() else {
+            return
+        }
+        itemCollected.append(randomItem)
+        print("Added random item: \(randomItem.namaItem)")
+    }
+}
+
+extension ViewModel: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if let polyline = overlay as? MKPolyline {
+            let renderer = MKPolylineRenderer(polyline: polyline)
+            renderer.strokeColor = .red
+            renderer.lineWidth = 6
+            return renderer
+        } else if let workout = overlay as? Workout {
+            
+            let render = MKPolylineRenderer(polyline: workout.polyline)
+            render.lineWidth = 2
+            
+            render.strokeColor = UIColor(.indigo)
+            return render
+        }
+        return MKOverlayRenderer()
     }
 }

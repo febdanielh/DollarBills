@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		15D24C3F2AD5D20F00AFE89B /* RouteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D24C3E2AD5D20F00AFE89B /* RouteSheet.swift */; };
 		15D24C412AD5D23C00AFE89B /* CustomContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D24C402AD5D23C00AFE89B /* CustomContent.swift */; };
+		15D24C432AD6942E00AFE89B /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D24C422AD6942E00AFE89B /* ViewModel.swift */; };
+		9B29AA1F2AD7B362007DBEA5 /* RunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29AA1E2AD7B362007DBEA5 /* RunView.swift */; };
 		9BD93E372ACEB177004862F7 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD93E362ACEB177004862F7 /* Workout.swift */; };
 		9BD93E3A2ACEB1CC004862F7 /* CLLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD93E392ACEB1CC004862F7 /* CLLocation.swift */; };
 		9BD93E3D2ACEB1EE004862F7 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD93E3C2ACEB1EE004862F7 /* Date.swift */; };
@@ -37,6 +39,8 @@
 /* Begin PBXFileReference section */
 		15D24C3E2AD5D20F00AFE89B /* RouteSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteSheet.swift; sourceTree = "<group>"; };
 		15D24C402AD5D23C00AFE89B /* CustomContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContent.swift; sourceTree = "<group>"; };
+		15D24C422AD6942E00AFE89B /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		9B29AA1E2AD7B362007DBEA5 /* RunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunView.swift; sourceTree = "<group>"; };
 		9BD93E362ACEB177004862F7 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		9BD93E392ACEB1CC004862F7 /* CLLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocation.swift; sourceTree = "<group>"; };
 		9BD93E3C2ACEB1EE004862F7 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -78,15 +82,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15D24C442AD6944300AFE89B /* Logic and Framework */ = {
+			isa = PBXGroup;
+			children = (
+				15D24C422AD6942E00AFE89B /* ViewModel.swift */,
+				E168B9962ACD4C0400CF56D9 /* LocationManager.swift */,
+				E168B9982ACD4C2200CF56D9 /* createMap.swift */,
+				9BD93E402ACEB455004862F7 /* ViewModelWorkout.swift */,
+			);
+			path = "Logic and Framework";
+			sourceTree = "<group>";
+		};
 		9BD93E382ACEB17D004862F7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9BD93E402ACEB455004862F7 /* ViewModelWorkout.swift */,
+				E168B99E2ACEAAE400CF56D9 /* Items.swift */,
+				E168B99A2ACD4C5400CF56D9 /* Utilities.swift */,
 				9BD93E442ACEB6EB004862F7 /* MyError.swift */,
 				9BD93E422ACEB615004862F7 /* WorkoutDate.swift */,
 				9BD93E362ACEB177004862F7 /* Workout.swift */,
 				9BD93E3E2ACEB2CC004862F7 /* HKHelper.swift */,
-				9BD93E3B2ACEB1DA004862F7 /* Extensions */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -104,6 +119,12 @@
 		9BD93E502ACF232A004862F7 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				E1347E412AC43557008224CF /* ContentView.swift */,
+				9BD93E462ACEC20F004862F7 /* PermissionView.swift */,
+				E168B99C2ACD4CFA00CF56D9 /* MapView.swift */,
+				15D24C402AD5D23C00AFE89B /* CustomContent.swift */,
+				15D24C3E2AD5D20F00AFE89B /* RouteSheet.swift */,
+				9B29AA1E2AD7B362007DBEA5 /* RunView.swift */,
 				9BD93E4E2ACF2248004862F7 /* ErrorView.swift */,
 				9BD93E582ACFFD73004862F7 /* WorkoutBar.swift */,
 				9BD93E482ACEC7CC004862F7 /* WorkoutMenuView.swift */,
@@ -143,19 +164,12 @@
 				9BD93E572ACF2ABF004862F7 /* DollarBills.entitlements */,
 				9BD93E562ACF2AB9004862F7 /* Info.plist */,
 				E1347E3F2AC43557008224CF /* DollarBillsApp.swift */,
-				E1347E412AC43557008224CF /* ContentView.swift */,
-				E168B9962ACD4C0400CF56D9 /* LocationManager.swift */,
-				E168B9982ACD4C2200CF56D9 /* createMap.swift */,
-				9BD93E462ACEC20F004862F7 /* PermissionView.swift */,
-				E168B99C2ACD4CFA00CF56D9 /* MapView.swift */,
-				9BD93E502ACF232A004862F7 /* Component */,
+				15D24C442AD6944300AFE89B /* Logic and Framework */,
 				9BD93E382ACEB17D004862F7 /* Models */,
-				E168B99A2ACD4C5400CF56D9 /* Utilities.swift */,
+				9BD93E502ACF232A004862F7 /* Component */,
+				9BD93E3B2ACEB1DA004862F7 /* Extensions */,
 				E1347E432AC43558008224CF /* Assets.xcassets */,
 				E1347E452AC43558008224CF /* Preview Content */,
-				E168B99E2ACEAAE400CF56D9 /* Items.swift */,
-				15D24C3E2AD5D20F00AFE89B /* RouteSheet.swift */,
-				15D24C402AD5D23C00AFE89B /* CustomContent.swift */,
 			);
 			path = DollarBills;
 			sourceTree = "<group>";
@@ -251,7 +265,9 @@
 				9BD93E432ACEB615004862F7 /* WorkoutDate.swift in Sources */,
 				9BD93E3A2ACEB1CC004862F7 /* CLLocation.swift in Sources */,
 				15D24C3F2AD5D20F00AFE89B /* RouteSheet.swift in Sources */,
+				9B29AA1F2AD7B362007DBEA5 /* RunView.swift in Sources */,
 				E1347E422AC43557008224CF /* ContentView.swift in Sources */,
+				15D24C432AD6942E00AFE89B /* ViewModel.swift in Sources */,
 				E1347E402AC43557008224CF /* DollarBillsApp.swift in Sources */,
 				E168B99F2ACEAAE400CF56D9 /* Items.swift in Sources */,
 				E168B99B2ACD4C5400CF56D9 /* Utilities.swift in Sources */,
@@ -390,7 +406,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DollarBills/Preview Content\"";
-				DEVELOPMENT_TEAM = KCXWQSNV6P;
+				DEVELOPMENT_TEAM = BVKAMN7JUV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DollarBills/Info.plist;
@@ -407,7 +423,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = binus.DollarBills;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DollarBills;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -424,7 +440,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DollarBills/Preview Content\"";
-				DEVELOPMENT_TEAM = KCXWQSNV6P;
+				DEVELOPMENT_TEAM = BVKAMN7JUV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DollarBills/Info.plist;
@@ -441,7 +457,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = binus.DollarBills;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DollarBills;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
