@@ -23,7 +23,6 @@ private let onboardingSteps = [
 struct OnboardingView: View {
     @State var currentStep = 0
     @EnvironmentObject var vm: ViewModel
-    @Binding var currentDisplayScreen: DisplayScreen
     
     var body: some View {
         ZStack{
@@ -91,7 +90,7 @@ struct OnboardingView: View {
                     if self.currentStep < onboardingSteps.count - 1 {
                         self.currentStep += 1
                     } else {
-                        self.currentDisplayScreen = .viewIsi
+                        vm.currentDisplayScreen = .viewMain
                         print("button pencet")
                     }
                 }, label: {
@@ -105,5 +104,5 @@ struct OnboardingView: View {
 }
 
 #Preview {
-    OnboardingView(currentDisplayScreen: .constant(.viewOnboard))
+    OnboardingView()
 }

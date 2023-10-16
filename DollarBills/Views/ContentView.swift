@@ -9,11 +9,11 @@ import SwiftUI
 
 enum DisplayScreen {
     case viewOnboard
-    case viewIsi
+    case viewMain
+    case viewMap
 }
 
 struct ContentView: View {
-    @State var currentDisplayScreen: DisplayScreen = .viewOnboard
     
     @Environment(\.scenePhase) var scenePhase
     @EnvironmentObject var vm: ViewModel
@@ -21,10 +21,12 @@ struct ContentView: View {
     @State var welcome = false
     
     var body: some View {
-        switch currentDisplayScreen {
+        switch vm.currentDisplayScreen {
         case .viewOnboard:
-            OnboardingView(currentDisplayScreen: $currentDisplayScreen)
-        case .viewIsi:
+            OnboardingView()
+        case .viewMain:
+            MainView()
+        case .viewMap:
             MapView(selectedAnnotation: $vm.selectedAnnotation)
                 .onAppear{
                     vm.serviceAvailabilityCheck()
@@ -33,8 +35,6 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+#Preview {
+    ContentView().environmentObject(ViewModel())
 }

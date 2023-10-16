@@ -15,6 +15,10 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager = CLLocationManager()
     
+    @Published var currentDisplayScreen: DisplayScreen = .viewOnboard
+    
+    @Published var selectedSegment = 0
+    
     @Published var locationAccess : Bool = true
     
     @Published var distance: Double = 0.0
