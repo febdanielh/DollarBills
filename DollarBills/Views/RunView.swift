@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct RunView: View {
+    
+    let workout: Workout
+    
+    var progressValue: Double {
+        return workout.distance / 500.0
+    }
     var body: some View {
         VStack {
             HStack {
@@ -20,14 +26,14 @@ struct RunView: View {
                 }
                 Spacer()
                 VStack {
-                    Text("- -")
+                    Text(workout.formattedDuration())
                     Text("Duration")
                         .font(.system(size: 20))
                         .bold()
                 }
                 Spacer()
                 VStack {
-                    Text("-'-\"")
+                    Text(workout.formattedPace())
                     Text("Pace")
                         .font(.system(size: 20))
                         .bold()
@@ -35,12 +41,16 @@ struct RunView: View {
                 Spacer()
             }
             .padding(.vertical, 30)
-            Text("5.00KM")
+            Text(workout.formattedDistance())
                 .font(.system(size: 28).weight(.bold))
                 .foregroundColor(Color(red: 0.44, green: 0.44, blue: 0.48))
             Image("Quokka")
-            ProgressView(value: 0.2, label: { Text("Your Progress") }, currentValueLabel: { Text("20%") })
+//            ProgressView(value: 0.2, label: { Text("Your Progress") }, currentValueLabel: { Text("20%") })
+//                .progressViewStyle(BarProgressStyle(height: 25.0))
+            
+            ProgressView(value: progressValue, label: { Text("Your Progress") }, currentValueLabel: { Text("\(Int(progressValue * 100))%") })
                 .progressViewStyle(BarProgressStyle(height: 25.0))
+            
             Image(systemName: "pause.circle.fill")
                 .resizable()
                 .frame(width: 80, height: 80)
@@ -53,6 +63,6 @@ struct RunView: View {
     }
 }
 
-#Preview {
-    RunView()
-}
+//#Preview {
+//    RunView()
+//}

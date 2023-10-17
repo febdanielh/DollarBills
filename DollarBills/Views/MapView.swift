@@ -36,17 +36,17 @@ struct MapView: View {
             )
             .ignoresSafeArea()
                 
-            VStack(spacing: 10) {
-                Spacer()
-                if let workout = vm.selectedWorkout {
-                    WorkoutBar(workout: workout, new: false)
-                }
-//                WorkoutMenuView()
-                if vm.recording {
-                    WorkoutBar(workout: vm.newWorkout, new: true)
-                }
-            }
-            .padding(10)
+//            VStack(spacing: 10) {
+//                Spacer()
+//                if let workout = vm.selectedWorkout {
+//                    WorkoutBar(workout: workout, new: false)
+//                }
+////                WorkoutMenuView()
+//                if vm.recording {
+//                    WorkoutBar(workout: vm.newWorkout, new: true)
+//                }
+//            }
+//            .padding(10)
         }
         .animation(.default, value: vm.recording)
         .animation(.default, value: vm.selectedWorkout)

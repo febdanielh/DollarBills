@@ -96,6 +96,7 @@ struct routeSheet: View {
                             Task {
                                 await vm.startWorkout(type: .running)
                             }
+                            vm.currentDisplayScreen = .viewRun
                         }
                     }
                     .buttonStyle(FillButton())

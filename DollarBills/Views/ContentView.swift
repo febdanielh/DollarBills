@@ -11,6 +11,7 @@ enum DisplayScreen {
     case viewOnboard
     case viewMain
     case viewMap
+    case viewRun
 }
 
 struct ContentView: View {
@@ -31,6 +32,8 @@ struct ContentView: View {
                 .onAppear{
                     vm.serviceAvailabilityCheck()
                 }
+        case .viewRun:
+            RunView(workout: vm.newWorkout)
         }
     }
 }

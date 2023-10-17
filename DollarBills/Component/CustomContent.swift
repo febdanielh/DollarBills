@@ -86,13 +86,13 @@ struct BarProgressStyle: ProgressViewStyle {
                         
                         RoundedRectangle(cornerRadius: 12.0)
                             .fill(Color(red: 1, green: 0.87, blue: 0.2))
-                            .frame(width: geometry.size.width * progress)
+                            .frame(width: geometry.size.width * min(progress, 1.0))
                             .overlay {
                                 if let currentValueLabel = configuration.currentValueLabel {
                                     
                                     currentValueLabel
                                         .font(.headline)
-                                        .foregroundColor(.white)
+                                        .foregroundColor(.black)
                                 }
                             }
                     }
