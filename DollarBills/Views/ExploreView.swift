@@ -18,294 +18,372 @@ struct ExploreView: View {
     
     var body: some View {
         
-        ScrollView {
+        VStack {
             
-            VStack {
+            // GM & Race
+            HStack {
                 
-                // GM & Race
-                HStack {
-                    
-                    Text("Good Morning")
-                        .font(.system(size: 13))
-                    
-                    Spacer()
-                    
-                    Button(action: {
-                        
-                        vm.currentDisplayScreen = .viewMap
-                        
-                    }, label: {
-                        
-                        HStack (spacing: -4) {
-                            Circle()
-                                .foregroundStyle(.yellow)
-                                .frame(width: 10, height: 10)
-                                .padding(.leading)
-                            Text("Qokka Race")
-                                .frame(width: 102, height: 2)
-                                .font(.system(size: 14))
-                                .padding([.top, .bottom])
-                                .foregroundColor(.black)
-                                
-                        }
-                        .padding([.leading, .trailing])
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 15)
-                        .stroke(Color.black, lineWidth: 2)
-                        )
-                        .background(Color.white) // If you have this
-                        .cornerRadius(15)
-                        
-                    })
-                    
-                }
-                .frame(width: 361)
+                Text("Good Morning")
+                    .font(.system(size: 13))
                 
-                // Search Bar
-                TextField("Search for places or running routes", text: $username)
-                    .font(.body)
-                    .padding(7)
-                    .padding(.horizontal, 10)
-                    .background(Color(.systemGray6))
-                    .cornerRadius(30)
-                    .onTapGesture {
-                        self.isEditing = true
-                    }
-                    .padding([.top, .bottom])
-                    .frame(width: 361)
-                    
-                Text("Routes of The Week")
-                    .foregroundStyle(Color.YellowDarker)
-                    .font(.title2)
-                    .bold()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.top)
-                    .frame(width: 361)
+                Spacer()
                 
-                // Routes of The Week
-                ScrollView(.horizontal) {
+                Button(action: {
                     
-                    // All Image
-                    HStack {
-                        
-                        ForEach (1 ..< 4) { i in
-                            
-                            ZStack {
-                                
-                                // One Image
-                                Image("Keliling Foresta/\(i)")
-                                    .resizable()
-                                    .frame(width: 350, height: 187)
-                                    .clipShape(RoundedRectangle(cornerSize: CGSize(width: 16, height: 16)))
-                                
-                                // Location Tag
-                                VStack {
-                                    
-                                    Text("Tanjung Duren Gaming")
-                                        .font(.system(size: 8))
-                                        .foregroundStyle(.black)
-                                        .frame(width: 110, height: 20, alignment: .center)
-                                        .background(
-                                            Color.YellowLightactive)
-                                        .clipShape(RoundedRectangle(cornerRadius: 16.0))
-                                    
-                                    Spacer()
-                                    
-                                }
-                                .frame(maxWidth: 330, maxHeight: 160, alignment: .leading)
-                                
-                                // Route Name
-                                VStack {
-                                    
-                                    Spacer()
-                                    
-                                    Text("\(i)")
-                                        .font(.title2)
-                                        .fontWeight(.semibold)
-                                        .foregroundStyle(.white)
-                                        .frame(width: 190, height: 50, alignment: .center)
-                                        .background(
-                                            Color.black
-                                                .opacity(0.6))
-                                        .clipShape(UnevenRoundedRectangle(topLeadingRadius: 16, bottomLeadingRadius: 16))
-                                    
-                                }
-                                .frame(maxWidth: .infinity, maxHeight: 120, alignment: .trailing)
-                                
-                            }
-                            
-                            
-                        }
-                    }
-                    .padding([.leading,.trailing])
+                    vm.currentDisplayScreen = .viewMap
                     
-                }
-                
-                Divider()
-                    .padding()
-                
-                // Nearest to You
-                HStack {
+                }, label: {
                     
-                    Text("Nearest to You")
-                        .foregroundStyle(Color.YellowDarker)
-                        .font(.title2)
-                        .bold()
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    Button(action: {
-                        
-                    }, label: {
-                        Text("See All >")
-                            .font(.callout)
+                    HStack (spacing: -4) {
+                        Circle()
                             .foregroundStyle(Color.YellowDark)
-                    })
-                    
-                    
-                }
-                .frame(width: 361)
-                
-                // Nearest to You 1
-                ScrollView(.horizontal) {
-                    
-                    // All Image
-                    HStack {
+                            .frame(width: 10, height: 10)
+                            .padding(.leading)
+                        Text("Qokka Race")
+                            .frame(width: 102, height: 2)
+                            .font(.system(size: 14))
+                            .padding([.top, .bottom])
+                            .foregroundColor(Color.YellowDark)
                         
-                        ForEach (1 ..< 4) { i in
-                            
-                            VStack {
-                                
-                                // One Image
-                                ZStack {
-                                    
-                                    Image("Keliling Foresta/\(i)")
-                                        .resizable()
-                                        .frame(width: 165, height: 179)
-                                        .clipShape(RoundedRectangle(cornerSize: CGSize(width: 16, height: 16)))
-                                    
-                                    // Location Tag
-                                    VStack {
-                                        
-                                        Text("Tanjung Duren Gaming")
-                                            .font(.system(size: 8))
-                                            .foregroundStyle(.black)
-                                            .frame(width: 110, height: 20, alignment: .center)
-                                            .background(
-                                                Color.YellowLightactive)
-                                            .clipShape(RoundedRectangle(cornerRadius: 16.0))
-                                        
-                                        Spacer()
-                                        
-                                    }
-                                    .frame(maxWidth: 150, maxHeight: 160, alignment: .leading)
-                                    
-                                }
-                                
-                                VStack {
-                                    Text("Foresta")
-                                        .font(.title3)
-                                        .fontWeight(.semibold)
-                                        .frame(width: 160, alignment: .leading)
-                                    Text("50m away")
-                                        .font(.callout)
-                                        .foregroundStyle(Color.TextDimGray)
-                                        .frame(width: 160, alignment: .leading)
-                                }
-                                
-                                
-                            }
-                            
-                        }
                     }
-                    .padding([.leading,.trailing])
+                    .padding([.leading, .trailing])
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 15)
+                            .stroke(Color.YellowNormal, lineWidth: 2)
+                    )
+                    .background(Color.YellowNormal) // If you have this
+                    .cornerRadius(15)
                     
-                }
-                
-                Divider()
-                    .padding()
-                
-                HStack {
-                    
-                    Text("Nearest to You")
-                        .foregroundStyle(Color.YellowDarker)
-                        .font(.title2)
-                        .bold()
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    Button(action: {
-                        
-                    }, label: {
-                        Text("See All >")
-                            .font(.callout)
-                            .foregroundStyle(Color.YellowDark)
-                    })
-                    
-                    
-                }
-                .frame(width: 361)
-                
-                // Nearest to You 2
-                ScrollView(.horizontal) {
-                    
-                    // All Image
-                    HStack {
-                        
-                        ForEach (1 ..< 4) { i in
-                            
-                            VStack {
-                                
-                                ZStack {
-                                    
-                                    // One Image
-                                    Image("Keliling Nava/\(i)")
-                                        .resizable()
-                                        .frame(width: 165, height: 179)
-                                        .clipShape(RoundedRectangle(cornerSize: CGSize(width: 16, height: 16)))
-                                    
-                                    // Location Tag
-                                    VStack {
-                                        
-                                        Text("Tanjung Duren Gaming")
-                                            .font(.system(size: 8))
-                                            .foregroundStyle(.black)
-                                            .frame(width: 110, height: 20, alignment: .center)
-                                            .background(
-                                                Color.YellowLightactive)
-                                            .clipShape(RoundedRectangle(cornerRadius: 16.0))
-                                        
-                                        Spacer()
-                                        
-                                    }
-                                    .frame(maxWidth: 310, maxHeight: 160, alignment: .leading)
-                                    
-                                }
-                                
-                                VStack {
-                                    Text("Foresta")
-                                        .font(.title3)
-                                        .fontWeight(.semibold)
-                                        .frame(width: 160, alignment: .leading)
-                                    Text("50m away")
-                                        .font(.callout)
-                                        .foregroundStyle(Color.TextDimGray)
-                                        .frame(width: 160, alignment: .leading)
-                                }
-                                
-                            }
-                            
-                            
-                        }
-                    }
-                    .padding([.leading,.trailing])
-                    
-                }
-                
+                })
                 
             }
-            .frame(width: .infinity)
+            .padding(.leading)
+            .frame(width: 356)
+            
+            // Search Bar
+            TextField("Search for places or running routes", text: $username)
+                .font(.body)
+                .padding(7)
+                .padding(.horizontal, 10)
+                .background(Color(.systemGray6))
+                .cornerRadius(30)
+                .onTapGesture {
+                    self.isEditing = true
+                }
+                .padding([.top, .bottom])
+                .frame(width: 356)
+            
+            Divider()
+            
+            ScrollView {
+                
+                VStack {
+                    
+                    Text("Routes of The Week 🔥")
+                        .foregroundStyle(.black)
+                        .font(.title2)
+                        .bold()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top)
+                        .frame(width: 361)
+                    
+                    // Routes of The Week
+                    ScrollView(.horizontal) {
+                        
+                        // All Image
+                        HStack {
+                            
+                            ForEach (1 ..< 4) { i in
+                                
+                                    ZStack {
+                                        
+                                        VStack {
+                                            
+                                            Spacer()
+                                            
+                                            RoundedRectangle(cornerRadius: 16)
+                                                .foregroundStyle(.white)
+                                                .background(
+                                                    Color.YellowNormal)
+                                                .cornerRadius(16.0)
+                                                .overlay (
+                                                    RoundedRectangle(cornerRadius: 16.0)
+                                                        .stroke(Color.gray, lineWidth: 1)
+                                                )
+                                                .frame(width: 359, height: 210)
+                                            
+                                        }
+                                        
+                                        VStack (alignment: .leading)
+                                        {
+                                            
+                                            // One Image
+                                            Image("Foresta/\(i)")
+                                                .resizable()
+                                                .frame(width: 360, height: 155)
+                                                .clipShape(RoundedRectangle(cornerSize: CGSize(width: 16, height: 16)))
+                                            
+                                            VStack (alignment: .leading) {
+                                                Text("Central Park Run")
+                                                    .font(.title3)
+                                                    .fontWeight(.semibold)
+                                                HStack {
+                                                    Text("Green Office Park, BSD, Tangerang")
+                                                        .font(.caption)
+                                                }
+                                                
+                                            }
+                                            .padding(.leading)
+                                            
+                                        }
+                                        
+                                        // Location Tag
+                                        VStack {
+                                            
+                                            Spacer()
+                                            
+                                            Text("5 km")
+                                                .font(.system(size: 13))
+                                                .foregroundStyle(Color.YellowDark)
+                                                .frame(width: 55, height: 20, alignment: .center)
+                                                .background(
+                                                    Color.YellowNormal)
+                                                .cornerRadius(16.0)
+                                                .overlay (
+                                                    RoundedRectangle(cornerRadius: 16.0)
+                                                        .stroke(Color.YellowDark, lineWidth: 1)
+                                                )
+                                            
+                                        }
+                                        .frame(width: 290, height: 130, alignment: .trailing)
+                                        
+                                    }
+                                    .padding(.bottom)
+                                
+                            }
+                        }
+                        .padding([.leading,.trailing])
+                        
+                    }
+                    .padding(.bottom)
+                    
+                    // Nearest to You
+                    HStack {
+                        
+                        Text("Nearest to You")
+                            .foregroundStyle(.black)
+                            .font(.title2)
+                            .bold()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        Button(action: {
+                            
+                        }, label: {
+                            Text("See All >")
+                                .font(.callout)
+                                .foregroundStyle(Color.YellowDark)
+                        })
+                        
+                        
+                    }
+                    .frame(width: 361)
+                    
+                    // Nearest to You 1
+                    ScrollView(.horizontal) {
+                        
+                        // All Image
+                        HStack {
+                            
+                            ForEach (1 ..< 4) { i in
+                                
+                                VStack {
+                                    
+                                    ZStack {
+                                        
+                                        VStack (alignment: .leading)
+                                        {
+                                            
+                                            // One Image
+                                            Image("ForestaDetail/\(i)")
+                                                .resizable()
+                                                .frame(width: 180, height: 155)
+                                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                            
+                                            VStack (alignment: .leading) {
+                                                
+                                                HStack {
+                                                    Text("Foresta")
+                                                        .font(.title3)
+                                                        .fontWeight(.semibold)
+                                                }
+                                                
+                                                HStack {
+                                                    Text("BSD, Tangerang")
+                                                        .font(.caption)
+                                                }
+                                                
+                                                HStack {
+                                                    Text("50m away")
+                                                        .font(.caption)
+                                                }
+                                                
+                                            }
+                                            .padding(.leading)
+                                            
+                                        }
+                                        
+                                        // New!
+                                        VStack {
+                                            Image("New!")
+                                                .frame(width: 180, height: 21, alignment: .leading)
+                                            Spacer()
+                                        }
+                                        
+                                        
+                                        // Location Tag
+                                        VStack {
+                                            
+                                            Spacer()
+                                            
+                                            Text("5 km")
+                                                .font(.system(size: 13))
+                                                .foregroundStyle(Color.YellowDark)
+                                                .frame(width: 55, height: 20, alignment: .center)
+                                                .background(
+                                                    Color.YellowNormal)
+                                                .cornerRadius(16.0)
+                                                .overlay (
+                                                    RoundedRectangle(cornerRadius: 16.0)
+                                                        .stroke(Color.YellowDark, lineWidth: 1)
+                                                )
+                                            
+                                        }
+                                        .frame(width: 160, height: 110, alignment: .trailing)
+                                        
+                                    }
+                                    .padding(.bottom)
+                                    
+                                }
+                                .background(.white)
+                                .cornerRadius(8)
+                                .shadow(color: .black.opacity(0.1), radius: 15, x: 0, y: 4)
+                                
+                            }
+                        }
+                        .padding([.bottom, .leading,.trailing])
+                        
+                    }
+                    .padding(.bottom)
+
+                    .cornerRadius(8)
+                    
+                    HStack {
+                        
+                        Text("Qokka's Pick")
+                            .foregroundStyle(.black)
+                            .font(.title2)
+                            .bold()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        Button(action: {
+                            
+                        }, label: {
+                            Text("See All >")
+                                .font(.callout)
+                                .foregroundStyle(Color.YellowDark)
+                        })
+                        
+                        
+                    }
+                    .frame(width: 361)
+                    
+                    // Nearest to You 2
+                    ScrollView(.horizontal) {
+                        
+                        // All Image
+                        HStack {
+                            
+                            ForEach (1 ..< 4) { i in
+                                
+                                VStack {
+                                    
+                                    ZStack {
+                                        
+                                        VStack (alignment: .leading)
+                                        {
+                                            
+                                            // One Image
+                                            Image("ForestaDetail/\(i)")
+                                                .resizable()
+                                                .frame(width: 180, height: 155)
+                                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                            
+                                            VStack (alignment: .leading) {
+                                                
+                                                HStack {
+                                                    Text("Foresta")
+                                                        .font(.title3)
+                                                        .fontWeight(.semibold)
+                                                }
+                                                
+                                                HStack {
+                                                    Text("BSD, Tangerang")
+                                                        .font(.caption)
+                                                }
+                                                
+                                                HStack {
+                                                    Text("50m away")
+                                                        .font(.caption)
+                                                }
+                                                
+                                            }
+                                            .padding(.leading)
+                                            
+                                        }
+                                        
+                                        // Location Tag
+                                        VStack {
+                                            
+                                            Spacer()
+                                            
+                                            Text("5 km")
+                                                .font(.system(size: 13))
+                                                .foregroundStyle(Color.YellowDark)
+                                                .frame(width: 55, height: 20, alignment: .center)
+                                                .background(
+                                                    Color.YellowNormal)
+                                                .cornerRadius(16.0)
+                                                .overlay (
+                                                    RoundedRectangle(cornerRadius: 16.0)
+                                                        .stroke(Color.YellowDark, lineWidth: 1)
+                                                )
+                                            
+                                        }
+                                        .frame(width: 160, height: 110, alignment: .trailing)
+                                        
+                                    }
+                                    .padding(.bottom)
+                                    
+                                }
+                                .background(.white)
+                                .cornerRadius(8)
+                                .shadow(color: .black.opacity(0.1), radius: 15, x: 0, y: 4)
+                                
+                            }
+                        }
+                        .padding([.bottom, .leading,.trailing])
+                        
+                    }
+                    .padding(.bottom)
+                    
+                    
+                }
+                .frame(width: .infinity)
+                
+            }
+            .scrollIndicators(.hidden)
             
         }
-        .scrollIndicators(.hidden)
         
     }
     

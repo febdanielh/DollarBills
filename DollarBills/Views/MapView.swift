@@ -37,6 +37,7 @@ struct MapView: View {
                 )
                 .frame(height: 400)
                 .shadow(radius: 5)
+                
                 //                .ignoresSafeArea()
                 
                 //            VStack(spacing: 10) {
@@ -50,6 +51,7 @@ struct MapView: View {
                 //                }
                 //            }
                 //            .padding(10)
+                
             }
             .animation(.default, value: vm.recording)
             .animation(.default, value: vm.selectedWorkout)
@@ -84,6 +86,9 @@ struct MapView: View {
                     directions.removeAll()
                     vm.mapView?.removeOverlays((vm.mapView?.overlays)!)
                 }
+            
+            
+            
         }
     }
 }

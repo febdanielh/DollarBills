@@ -13,5 +13,6 @@ extension Color {
     static var YellowDarker = Color("Yellow: Darker")
     static var YellowLightactive = Color("Yellow: Light: active")
     static var YellowDark = Color("Yellow: Dark")
+    static var YellowNormal = Color("Yellow: Normal")
     static var TextDimGray = Color("Text Dim Gray")
 }
