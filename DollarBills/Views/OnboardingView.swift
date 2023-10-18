@@ -44,12 +44,12 @@ struct OnboardingView: View {
                             Rectangle()
                                 .frame(width: 44, height: 16)
                                 .cornerRadius(10)
-                                .foregroundColor(Color.white)
+                                .foregroundColor(Color.primaryColor02)
                         } else {
                             Rectangle()
                                 .frame(width: 44, height: 16)
                                 .cornerRadius(10)
-                                .foregroundColor(Color.primaryColor02)
+                                .foregroundColor(Color.YellowDark)
                         }
                     }
                 }

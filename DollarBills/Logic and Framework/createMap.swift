@@ -8,67 +8,21 @@
 import SwiftUI
 import MapKit
 
-class Coordinator: NSObject, MKMapViewDelegate {
-    
-    var parent: createMap
-    
-    init(parent: createMap) {
-        self.parent = parent
-    }
-    
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        print("kepencet brodi")
-        parent.routes.removeAll()
-        parent.directions.removeAll()
-        parent.cachedDirections.removeAll()
-        if let annotation = view.annotation as? CustomAnnotation {
-            parent.selectedAnnotation = annotation.annotationModel
-            parent.showDirections = true
-        }
-        
-        mapView.removeOverlays(mapView.overlays)
-    }
-
-    
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        if let polyline = overlay as? MKPolyline {
-            let renderer = MKPolylineRenderer(polyline: polyline)
-            renderer.strokeColor = .red
-            renderer.lineWidth = 5
-            return renderer
-        } else if let workout = overlay as? Workout {
-            
-            let render = MKPolylineRenderer(polyline: workout.polyline)
-            render.lineWidth = 2
-            
-            render.strokeColor = UIColor(.indigo)
-            return render
-        }
-        
-        return MKOverlayRenderer()
-    }
-}
-
 struct createMap: UIViewRepresentable {
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(parent: self)
-    }
-    
     @Binding var directions: [String]
     
-    @State var routes: [MKRoute] = []
+    @Binding var routes: [MKRoute]
     
     @Binding var selectedAnnotation: AnnotationModel?
     
     @Binding var showDirections: Bool
     
-    @State var cachedDirections: [String: [String]] = [:]
+    @Binding var cachedDirections: [String: [String]]
     
     var annotations: [CustomAnnotation] = CustomAnnotationAndRoute.customAnnotation
     
     @EnvironmentObject var vm: ViewModel
-
+    
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
         mapView.delegate = vm
@@ -79,16 +33,12 @@ struct createMap: UIViewRepresentable {
         
         vm.mapView = mapView
         
-//        let tapRecognizer = UITapGestureRecognizer(target: context.coordinator, action: #selector(ViewModelWorkout.handleTap))
-//        mapView.addGestureRecognizer(tapRecognizer)
-        
         return mapView
     }
     
     func updateUIView(_ mapView: MKMapView, context: Context) {
         
         mapView.removeAnnotations(annotations)
-        
         mapView.addAnnotations(annotations)
         
         for annotation in annotations {
@@ -96,23 +46,27 @@ struct createMap: UIViewRepresentable {
                 if let cached = cachedDirections[annotation.annotationModel.routeName] {
                     directions = cached
                 } else {
+                    showDirections = true
+                    calculateDirections(mapView, annotation: annotation)
                 }
             }
         }
-        
-        calculateDirections(mapView, annotation: annotations[0])
         
         var boundingBox = MKMapRect.null
         
         let padding = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         
         for route in routes {
-            boundingBox = boundingBox.union(route.polyline.boundingMapRect)
-            mapView.addOverlay(route.polyline)
-            mapView.setVisibleMapRect(
-                boundingBox,
-                edgePadding: padding,
-                animated: true)
+            if routes.count > 1{
+                boundingBox = boundingBox.union(route.polyline.boundingMapRect)
+                mapView.addOverlay(route.polyline)
+                mapView.setVisibleMapRect(
+                    boundingBox,
+                    edgePadding: padding,
+                    animated: true)
+            } else {
+                mapView.removeOverlays(mapView.overlays)
+            }
         }
         
     }

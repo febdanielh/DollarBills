@@ -21,6 +21,10 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     @Published var locationAccess : Bool = true
     
+    @Published var routes: [MKRoute] = []
+    
+    @Published var cachedDirections: [String: [String]] = [:]
+    
     @Published var distance: Double = 0.0
     
     @Published var startPoint: CLLocation = CLLocation(latitude: -6.302230, longitude: 106.652264)
@@ -535,15 +539,6 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
                     self.loadWorkouts() // Load user history data
                 }
                 
-                self.selectedAnnotation = AnnotationModel(
-                    routeName: "Keliling Foresta",
-                    waypoints: [
-                        Checkpoint(title: "Checkpoint 1", coordinate: CLLocationCoordinate2D(latitude: -6.29675, longitude: 106.64505)),
-                        Checkpoint(title: "Checkpoint 2", coordinate: CLLocationCoordinate2D(latitude: -6.293920, longitude: 106.642447)),
-                        Checkpoint(title: "Checkpoint 3", coordinate: CLLocationCoordinate2D(latitude: -6.290890, longitude: 106.645503)),
-                        Checkpoint(title: "Checkpoint 4", coordinate: CLLocationCoordinate2D(latitude: -6.296, longitude: 106.6467))
-                    ]
-                )
             } else {
                 print("Location Services not Enabled.")
             }

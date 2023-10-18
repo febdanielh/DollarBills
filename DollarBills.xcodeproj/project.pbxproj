@@ -35,6 +35,7 @@
 		E1347E472AC43558008224CF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1347E462AC43558008224CF /* Preview Assets.xcassets */; };
 		E16796902AD8E27600340093 /* ExtensionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E167968F2AD8E27600340093 /* ExtensionColor.swift */; };
 		E16796932AD94B8E00340093 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16796922AD94B8E00340093 /* OnboardingView.swift */; };
+		E167969B2ADDA4A600340093 /* RouteCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = E167969A2ADDA4A600340093 /* RouteCards.swift */; };
 		E168B9972ACD4C0400CF56D9 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168B9962ACD4C0400CF56D9 /* LocationManager.swift */; };
 		E168B9992ACD4C2200CF56D9 /* createMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168B9982ACD4C2200CF56D9 /* createMap.swift */; };
 		E168B99B2ACD4C5400CF56D9 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168B99A2ACD4C5400CF56D9 /* Utilities.swift */; };
@@ -75,6 +76,7 @@
 		E1347E462AC43558008224CF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E167968F2AD8E27600340093 /* ExtensionColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionColor.swift; sourceTree = "<group>"; };
 		E16796922AD94B8E00340093 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		E167969A2ADDA4A600340093 /* RouteCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCards.swift; sourceTree = "<group>"; };
 		E168B9962ACD4C0400CF56D9 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E168B9982ACD4C2200CF56D9 /* createMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createMap.swift; sourceTree = "<group>"; };
 		E168B99A2ACD4C5400CF56D9 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				9BD93E4E2ACF2248004862F7 /* ErrorView.swift */,
 				9BD93E582ACFFD73004862F7 /* WorkoutBar.swift */,
 				9BD93E482ACEC7CC004862F7 /* WorkoutMenuView.swift */,
+				E167969A2ADDA4A600340093 /* RouteCards.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				9BD93E412ACEB455004862F7 /* ViewModelWorkout.swift in Sources */,
 				9BD93E3F2ACEB2CC004862F7 /* HKHelper.swift in Sources */,
 				9BD93E372ACEB177004862F7 /* Workout.swift in Sources */,
+				E167969B2ADDA4A600340093 /* RouteCards.swift in Sources */,
 				9BD93E4F2ACF2248004862F7 /* ErrorView.swift in Sources */,
 				15D24C412AD5D23C00AFE89B /* CustomContent.swift in Sources */,
 				9BD93E472ACEC20F004862F7 /* PermissionView.swift in Sources */,

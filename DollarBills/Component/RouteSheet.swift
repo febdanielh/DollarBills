@@ -105,7 +105,7 @@ struct routeSheet: View {
                     ScrollView (.horizontal) {
                         HStack {
                             ForEach (1 ..< 4) { i in
-                                Image("\(selectedAnnotation!.routeName)/\(i)")
+                                Image("\(selectedAnnotation?.routeName ?? "No name")/\(i)")
                                     .resizable()
                                     .frame(width: 300, height: 160)
                             }
