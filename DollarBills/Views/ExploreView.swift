@@ -30,7 +30,7 @@ struct ExploreView: View {
                 
                 Button(action: {
                     
-                    vm.currentDisplayScreen = .viewMap
+                    
                     
                 }, label: {
                     
@@ -93,8 +93,16 @@ struct ExploreView: View {
                         // All Image
                         HStack {
                             
-                            ForEach (1 ..< 4) { i in
+                            ForEach (vm.annotations, id:\.self) { i in
                                 
+                                Button {
+                                    
+                                    vm.selectedAnnotation = i.annotationModel
+                                    vm.currentDisplayScreen = .viewMap
+                                    
+                                    
+                                } label: {
+                                    
                                     ZStack {
                                         
                                         VStack {
@@ -118,18 +126,20 @@ struct ExploreView: View {
                                         {
                                             
                                             // One Image
-                                            Image("Foresta/\(i)")
+                                            Image(i.annotationModel.routeName)
                                                 .resizable()
                                                 .frame(width: 360, height: 155)
                                                 .clipShape(RoundedRectangle(cornerSize: CGSize(width: 16, height: 16)))
                                             
                                             VStack (alignment: .leading) {
-                                                Text("Central Park Run")
+                                                Text(i.title!)
+                                                    .foregroundStyle(Color.black)
                                                     .font(.title3)
                                                     .fontWeight(.semibold)
                                                 HStack {
-                                                    Text("Green Office Park, BSD, Tangerang")
+                                                    Text(i.location!)
                                                         .font(.caption)
+                                                        .foregroundStyle(Color.black)
                                                 }
                                                 
                                             }
@@ -159,6 +169,9 @@ struct ExploreView: View {
                                         
                                     }
                                     .padding(.bottom)
+                                    
+                                }
+                                
                                 
                             }
                         }
@@ -204,7 +217,7 @@ struct ExploreView: View {
                                         {
                                             
                                             // One Image
-                                            Image("ForestaDetail/\(i)")
+                                            Image("RouteBox/\(i)")
                                                 .resizable()
                                                 .frame(width: 180, height: 155)
                                                 .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -239,28 +252,25 @@ struct ExploreView: View {
                                             Spacer()
                                         }
                                         
-                                        
-                                        // Location Tag
-                                        VStack {
-                                            
-                                            Spacer()
-                                            
-                                            Text("5 km")
-                                                .font(.system(size: 13))
-                                                .foregroundStyle(Color.YellowDark)
-                                                .frame(width: 55, height: 20, alignment: .center)
-                                                .background(
-                                                    Color.YellowNormal)
-                                                .cornerRadius(16.0)
-                                                .overlay (
-                                                    RoundedRectangle(cornerRadius: 16.0)
-                                                        .stroke(Color.YellowDark, lineWidth: 1)
-                                                )
-                                            
-                                        }
-                                        .frame(width: 160, height: 110, alignment: .trailing)
-                                        
                                     }
+                                    
+                                    // Location Tag
+                                    VStack {
+                                        
+                                        Text("4+ Routes")
+                                            .font(.system(size: 13))
+                                            .fontWeight(.semibold)
+                                            .foregroundStyle(Color.black)
+                                            .frame(width: 90, height: 20, alignment: .center)
+                                            .background(
+                                                Color.YellowNormal)
+                                            .cornerRadius(16.0)
+                                            .overlay (
+                                                RoundedRectangle(cornerRadius: 16.0)
+                                                    .stroke(Color.YellowNormal, lineWidth: 0)
+                                            )
+                                    }
+                                    .frame(width: 160, alignment: .leading)
                                     .padding(.bottom)
                                     
                                 }
@@ -313,7 +323,7 @@ struct ExploreView: View {
                                         {
                                             
                                             // One Image
-                                            Image("ForestaDetail/\(i)")
+                                            Image("RouteBox/\(i)")
                                                 .resizable()
                                                 .frame(width: 180, height: 155)
                                                 .clipShape(RoundedRectangle(cornerRadius: 10))

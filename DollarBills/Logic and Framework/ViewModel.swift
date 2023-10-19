@@ -16,6 +16,14 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     var locationManager: CLLocationManager = CLLocationManager()
     
     @Published var currentDisplayScreen: DisplayScreen = .viewOnboard
+    {
+        didSet {
+            if (currentDisplayScreen == .viewMap) {
+                mapView?.removeOverlays((mapView?.overlays)!)
+                mapView?.removeAnnotations((mapView?.annotations)!)
+            }
+        }
+    }
     
     @Published var selectedSegment = 0
     
@@ -29,13 +37,17 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     @Published var startPoint: CLLocation = CLLocation(latitude: -6.302230, longitude: 106.652264)
     
+    @Published var annotations = CustomAnnotationAndRoute.customAnnotation
+    
     @Published var selectedAnnotation: AnnotationModel?
     {
         didSet {
-            startPoint = CLLocation(latitude: selectedAnnotation!.waypoints.first!.coordinate.latitude, longitude: selectedAnnotation!.waypoints.first!.coordinate.longitude)
-            if ((selectedAnnotation?.waypoints.count)! > 1) {
-                print("Ganti Rute!!!")
-                monitorRegionAtLocation(locations: selectedAnnotation!)
+            if (selectedAnnotation != nil) {
+                startPoint = CLLocation(latitude: selectedAnnotation?.waypoints.first?.coordinate.latitude ?? 0.0, longitude: selectedAnnotation?.waypoints.first?.coordinate.longitude ?? 0.0)
+                if ((selectedAnnotation?.waypoints.count)! > 1) {
+                    print("Ganti Rute!!!")
+                    monitorRegionAtLocation(locations: selectedAnnotation!)
+                }
             }
         }
     }

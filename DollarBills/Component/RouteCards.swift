@@ -9,10 +9,18 @@ import SwiftUI
 import MapKit
 
 struct RouteCards: View {
+    
     @EnvironmentObject var vm: ViewModel
     @Binding var selectedRoute: AnnotationModel?
     
     var body: some View {
+        Button {
+            vm.currentDisplayScreen = .viewMain
+        } label: {
+            Text("Back")
+        }
+
+        
         ScrollView {
             LazyVStack() {
                 ForEach(CustomAnnotationAndRoute.customAnnotation, id: \.self) { route in

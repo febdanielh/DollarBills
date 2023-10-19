@@ -18,6 +18,7 @@ struct SegmentTabView: View {
     ]
 
     var body: some View {
+        
         TabView(selection: $vm.selectedSegment) {
             ForEach(0 ..< segments.count, id: \.self) { index in
                 Text("")
@@ -28,6 +29,8 @@ struct SegmentTabView: View {
                     }
             }
         }
+        .tint(Color.YellowDark)
+        
     }
 }
 
