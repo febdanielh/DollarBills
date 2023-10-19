@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
+class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate, Encodable {
     
     private var locationManager: CLLocationManager?
     
@@ -68,7 +68,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         print("eh masuk :")
         print(region.identifier)
         print("sisa:")
-//        print(locationManager?.monitoredRegions)
+        //        print(locationManager?.monitoredRegions)
         
         addRandomItem()
         print(itemCollected)
@@ -162,6 +162,22 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
         itemCollected.append(randomItem)
         print("Added random item: \(randomItem.namaItem)")
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        // Encode any properties that you want to be included when encoding LocationManager
+        // For example, if you want to encode the 'distance' property:
+        try container.encode(distance, forKey: .distance)
+//        try container.encode(region, forKey: .region)
+        // Encode other properties as needed
+    }
+    
+    // Define CodingKeys to specify which properties to encode
+    private enum CodingKeys: String, CodingKey {
+        case distance
+//        case region
+        // Add other properties you want to encode here
     }
     
 }
