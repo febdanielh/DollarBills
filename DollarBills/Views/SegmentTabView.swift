@@ -14,6 +14,7 @@ struct SegmentTabView: View {
     let segments: [Segment] = [
         Segment(page: "Explore"),
         Segment(page: "Activity"),
+        Segment(page: "Duel Mode"),
         Segment(page: "Profile")
     ]
 
@@ -30,7 +31,6 @@ struct SegmentTabView: View {
             }
         }
         .tint(Color.YellowDark)
-        
     }
 }
 

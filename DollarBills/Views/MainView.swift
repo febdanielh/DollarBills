@@ -21,7 +21,9 @@ struct MainView: View {
             } else if (vm.selectedSegment == 1) {
                 ActivityView().environmentObject(vm)
             } else if (vm.selectedSegment == 2) {
-                
+                DuelModeView().environmentObject(vm)
+            } else if (vm.selectedSegment == 3) {
+                ProfileView().environmentObject(vm)
             }
             
         }

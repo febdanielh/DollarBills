@@ -35,15 +35,13 @@ struct ExploreView: View {
                 }, label: {
                     
                     HStack (spacing: -4) {
-                        Circle()
-                            .foregroundStyle(Color.YellowDark)
-                            .frame(width: 10, height: 10)
-                            .padding(.leading)
-                        Text("Qokka Race")
+                        
+                        Text("User ID")
                             .frame(width: 102, height: 2)
                             .font(.system(size: 14))
                             .padding([.top, .bottom])
                             .foregroundColor(Color.YellowDark)
+                        
                         
                     }
                     .padding([.leading, .trailing])
@@ -51,7 +49,7 @@ struct ExploreView: View {
                         RoundedRectangle(cornerRadius: 15)
                             .stroke(Color.YellowNormal, lineWidth: 2)
                     )
-                    .background(Color.YellowNormal) // If you have this
+                    .background(Color.YellowLightactive) // If you have this
                     .cornerRadius(15)
                     
                 })
@@ -147,26 +145,6 @@ struct ExploreView: View {
                                             
                                         }
                                         
-                                        // Location Tag
-                                        VStack {
-                                            
-                                            Spacer()
-                                            
-                                            Text("5 km")
-                                                .font(.system(size: 13))
-                                                .foregroundStyle(Color.YellowDark)
-                                                .frame(width: 55, height: 20, alignment: .center)
-                                                .background(
-                                                    Color.YellowNormal)
-                                                .cornerRadius(16.0)
-                                                .overlay (
-                                                    RoundedRectangle(cornerRadius: 16.0)
-                                                        .stroke(Color.YellowDark, lineWidth: 1)
-                                                )
-                                            
-                                        }
-                                        .frame(width: 290, height: 130, alignment: .trailing)
-                                        
                                     }
                                     .padding(.bottom)
                                     
@@ -194,7 +172,7 @@ struct ExploreView: View {
                         }, label: {
                             Text("See All >")
                                 .font(.callout)
-                                .foregroundStyle(Color.YellowDark)
+                                .foregroundStyle(Color.TextDimGray)
                         })
                         
                         
@@ -300,7 +278,7 @@ struct ExploreView: View {
                         }, label: {
                             Text("See All >")
                                 .font(.callout)
-                                .foregroundStyle(Color.YellowDark)
+                                .foregroundStyle(Color.TextDimGray)
                         })
                         
                         
@@ -351,27 +329,32 @@ struct ExploreView: View {
                                             
                                         }
                                         
-                                        // Location Tag
+                                        // New!
                                         VStack {
-                                            
+                                            Image("New!")
+                                                .frame(width: 180, height: 21, alignment: .leading)
                                             Spacer()
-                                            
-                                            Text("5 km")
-                                                .font(.system(size: 13))
-                                                .foregroundStyle(Color.YellowDark)
-                                                .frame(width: 55, height: 20, alignment: .center)
-                                                .background(
-                                                    Color.YellowNormal)
-                                                .cornerRadius(16.0)
-                                                .overlay (
-                                                    RoundedRectangle(cornerRadius: 16.0)
-                                                        .stroke(Color.YellowDark, lineWidth: 1)
-                                                )
-                                            
                                         }
-                                        .frame(width: 160, height: 110, alignment: .trailing)
                                         
                                     }
+                                    
+                                    // Location Tag
+                                    VStack {
+                                        
+                                        Text("4+ Routes")
+                                            .font(.system(size: 13))
+                                            .fontWeight(.semibold)
+                                            .foregroundStyle(Color.black)
+                                            .frame(width: 90, height: 20, alignment: .center)
+                                            .background(
+                                                Color.YellowNormal)
+                                            .cornerRadius(16.0)
+                                            .overlay (
+                                                RoundedRectangle(cornerRadius: 16.0)
+                                                    .stroke(Color.YellowNormal, lineWidth: 0)
+                                            )
+                                    }
+                                    .frame(width: 160, alignment: .leading)
                                     .padding(.bottom)
                                     
                                 }
