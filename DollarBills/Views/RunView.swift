@@ -14,6 +14,10 @@ struct RunView: View {
     var progressValue: Double {
         return workout.distance / 500.0
     }
+    
+    @State private var isPaused = false
+    @EnvironmentObject var vm: ViewModel
+
     var body: some View {
         VStack {
             HStack {
@@ -56,6 +60,13 @@ struct RunView: View {
                 .frame(width: 80, height: 80)
                 .padding(.top, 80)
                 .foregroundStyle(Color(red: 1, green: 0.87, blue: 0.2))
+                .onTapGesture {
+                    isPaused.toggle()
+                    if isPaused {
+                        vm.pauseWorkout()
+                    }
+                }
+
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 80)
