@@ -16,13 +16,86 @@ struct DuelModeView: View {
     
     var body: some View {
         
-        ScrollView {
+        VStack {
             
-            Text("Duel Mode View")
+            Text("Duel Mode")
+                .font(.title2)
+                .fontWeight(.semibold)
+                .padding()
+            
+            Divider()
+            
+            ScrollView {
+                
+                VStack {
+                    
+                    ZStack {
+                        
+                        HStack {
+                            
+                            VStack (alignment: .leading) {
+                                
+                                Spacer()
+                                
+                                Text ("Hey Buddies!")
+                                
+                                Text("Invite your friend by creating new room or join room to start the duel")
+                                    .fontWeight(.semibold)
+                                
+                            }
+                            .frame(width: 160, height: 190)
+                            
+                            Spacer()
+                            
+                        }
+                        .frame(width: 330)
+                        
+                        
+                        HStack {
+                            
+                            Spacer()
+                            
+                                Image("ButoIjo")
+                            
+                        }
+                        
+                        
+                        
+                    }
+                    .ignoresSafeArea()
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        
+                    }, label: {
+                        Text("Create Room")
+                            .font(.title3)
+                    })
+                    .buttonStyle(ActiveBlackButtonDuel())
+                    .padding()
+                    
+                    Button(action: {
+                        
+                    }, label: {
+                        Text("Join Room")
+                            .font(.title3)
+                    })
+                    .buttonStyle(ActiveBlackButtonDuel())
+                    
+                }
+                .frame(height: 526)
+                
+            }
+            .scrollIndicators(.hidden)
+            .scrollDisabled(true)
             
         }
-        .scrollIndicators(.hidden)
         
     }
     
+}
+
+#Preview {
+    DuelModeView()
 }
