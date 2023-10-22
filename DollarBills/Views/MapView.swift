@@ -52,8 +52,6 @@ struct MapView: View {
                 //            }
                 //            .padding(10)
                 
-                
-                
             }
             .animation(.default, value: vm.recording)
             .animation(.default, value: vm.selectedWorkout)

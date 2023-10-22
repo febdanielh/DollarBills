@@ -100,3 +100,62 @@ struct BarProgressStyle: ProgressViewStyle {
         }
     }
 }
+
+struct ExDivider: View {
+    let color: Color = .black
+    let height: CGFloat = 2
+    let width: CGFloat
+    var body: some View {
+        Rectangle()
+            .fill(color)
+            .frame(width: width, height: height)
+    }
+}
+
+struct VerticalProgressBar: View {
+    
+    var progress: Double
+    var day: Int
+    var body: some View {
+        
+        GeometryReader { geometry in
+            
+            VStack (alignment: .center) {
+                Spacer()
+                ZStack() {
+                    RoundedRectangle(cornerRadius: 25)
+                        .frame(width: 26, height: CGFloat(progress) * geometry.size.height)
+                        .foregroundColor(Color.YellowNormal)
+                        
+                }
+                .padding(.bottom)
+                if (day == 1) {
+                    Text("S")
+                }
+                if (day == 2) {
+                    Text("S")
+                }
+                if (day == 3) {
+                    Text("M")
+                }
+                if (day == 4) {
+                    Text("T")
+                }
+                if (day == 5) {
+                    Text("W")
+                }
+                if (day == 6) {
+                    Text("T")
+                }
+                if (day == 7) {
+                    Text("F")
+                }
+                
+            }
+            .font(.caption)
+            .fontWeight(.semibold)
+            
+        }
+        
+    }
+}

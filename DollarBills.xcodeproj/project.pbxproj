@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		153E11B42AE53C5600B173F5 /* Summary View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E11B32AE53C5600B173F5 /* Summary View.swift */; };
+		153E11B82AE53F9200B173F5 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E11B72AE53F9200B173F5 /* LeaderboardView.swift */; };
 		15D24C3F2AD5D20F00AFE89B /* RouteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D24C3E2AD5D20F00AFE89B /* RouteSheet.swift */; };
 		15D24C412AD5D23C00AFE89B /* CustomContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D24C402AD5D23C00AFE89B /* CustomContent.swift */; };
 		15D24C432AD6942E00AFE89B /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D24C422AD6942E00AFE89B /* ViewModel.swift */; };
@@ -47,6 +49,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		153E11B32AE53C5600B173F5 /* Summary View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Summary View.swift"; sourceTree = "<group>"; };
+		153E11B72AE53F9200B173F5 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		15D24C3E2AD5D20F00AFE89B /* RouteSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteSheet.swift; sourceTree = "<group>"; };
 		15D24C402AD5D23C00AFE89B /* CustomContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContent.swift; sourceTree = "<group>"; };
 		15D24C422AD6942E00AFE89B /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -216,6 +220,8 @@
 				15D24CBE2ADD372400AFE89B /* ActivityView.swift */,
 				15D24D142AE0FA9400AFE89B /* DuelModeView.swift */,
 				15D24D162AE0FAB600AFE89B /* ProfileView.swift */,
+				153E11B32AE53C5600B173F5 /* Summary View.swift */,
+				153E11B72AE53F9200B173F5 /* LeaderboardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -300,6 +306,7 @@
 				9BD93E412ACEB455004862F7 /* ViewModelWorkout.swift in Sources */,
 				9BD93E3F2ACEB2CC004862F7 /* HKHelper.swift in Sources */,
 				9BD93E372ACEB177004862F7 /* Workout.swift in Sources */,
+				153E11B82AE53F9200B173F5 /* LeaderboardView.swift in Sources */,
 				E167969B2ADDA4A600340093 /* RouteCards.swift in Sources */,
 				9BD93E4F2ACF2248004862F7 /* ErrorView.swift in Sources */,
 				15D24C412AD5D23C00AFE89B /* CustomContent.swift in Sources */,
@@ -314,6 +321,7 @@
 				15D24C432AD6942E00AFE89B /* ViewModel.swift in Sources */,
 				15D24CB92ADD325700AFE89B /* MainView.swift in Sources */,
 				15D24D152AE0FA9400AFE89B /* DuelModeView.swift in Sources */,
+				153E11B42AE53C5600B173F5 /* Summary View.swift in Sources */,
 				E1347E402AC43557008224CF /* DollarBillsApp.swift in Sources */,
 				15D24CBF2ADD372400AFE89B /* ActivityView.swift in Sources */,
 				E168B99F2ACEAAE400CF56D9 /* Items.swift in Sources */,

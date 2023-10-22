@@ -17,13 +17,13 @@ struct MainView: View {
         VStack {
             
             if (vm.selectedSegment == 0) {
-                ExploreView().environmentObject(vm)
+                ExploreView()
             } else if (vm.selectedSegment == 1) {
-                ActivityView().environmentObject(vm)
+                ActivityView()
             } else if (vm.selectedSegment == 2) {
-                DuelModeView().environmentObject(vm)
+                DuelModeView()
             } else if (vm.selectedSegment == 3) {
-                ProfileView().environmentObject(vm)
+                ProfileView()
             }
             
         }
@@ -32,7 +32,7 @@ struct MainView: View {
             
             Spacer()
             
-            SegmentTabView().environmentObject(vm)
+            SegmentTabView()
             
         }
         .frame(height: 60)
