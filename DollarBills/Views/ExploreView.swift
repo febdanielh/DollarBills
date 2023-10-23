@@ -13,7 +13,7 @@ struct ExploreView: View {
     
     @EnvironmentObject var vm : ViewModel
     @State var selectedStatement = 0
-    @State var username = ""
+    @State var routeSearching = ""
     @State private var isEditing = false
     
     var body: some View {
@@ -59,7 +59,7 @@ struct ExploreView: View {
             .frame(width: 356)
             
             // Search Bar
-            TextField("Search for places or running routes", text: $username)
+            TextField("Search for places or running routes", text: $routeSearching)
                 .font(.body)
                 .padding(7)
                 .padding(.horizontal, 10)

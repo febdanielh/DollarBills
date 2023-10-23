@@ -43,6 +43,16 @@ struct ActiveBlackButtonDuel: ButtonStyle {
     }
 }
 
+struct ActiveBlackButtonProfile: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .frame(width: 310, height: 60)
+            .foregroundColor(.primaryColor02)
+            .background(Color.black)
+            .clipShape(RoundedRectangle(cornerRadius: 25))
+    }
+}
+
 struct ActivePrimaryButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -95,6 +105,43 @@ struct BarProgressStyle: ProgressViewStyle {
                     .overlay(alignment: .leading) {
                         
                         RoundedRectangle(cornerRadius: 12.0)
+                            .fill(Color(red: 1, green: 0.87, blue: 0.2))
+                            .frame(width: geometry.size.width * min(progress, 1.0))
+                            .overlay {
+                                if let currentValueLabel = configuration.currentValueLabel {
+                                    
+                                    currentValueLabel
+                                        .font(.headline)
+                                        .foregroundColor(.black)
+                                }
+                            }
+                    }
+            }
+        }
+    }
+}
+
+struct BarProgressStyleDuel: ProgressViewStyle {
+    var color: Color = .green
+    var height: Double = 12.0
+    var labelFontStyle: Font = .body
+    
+    func makeBody(configuration: Configuration) -> some View {
+        let progress = configuration.fractionCompleted ?? 0.0
+        
+        GeometryReader{ geometry in
+            VStack(alignment: .leading) {
+                
+                configuration.label
+                    .font(labelFontStyle)
+                
+                RoundedRectangle(cornerRadius: 8.0)
+                    .fill(Color.PBBG)
+                    .frame(height: height)
+                    .frame(width: geometry.size.width)
+                    .overlay(alignment: .leading) {
+                        
+                        RoundedRectangle(cornerRadius: 8.0)
                             .fill(Color(red: 1, green: 0.87, blue: 0.2))
                             .frame(width: geometry.size.width * min(progress, 1.0))
                             .overlay {
