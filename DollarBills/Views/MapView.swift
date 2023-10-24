@@ -54,7 +54,6 @@ struct MapView: View {
                 
             }
             .animation(.default, value: vm.recording)
-            .animation(.default, value: vm.selectedWorkout)
             .alert(vm.error.rawValue, isPresented: $vm.showErrorAlert) {} message: {
                 Text(vm.error.message)
             }
@@ -62,8 +61,6 @@ struct MapView: View {
                 if !launchedBefore {
                     launchedBefore = true
                     welcome = true
-                    vm.showInfoView = true
-                    vm.showAccountView = false
                     
                 }
             }

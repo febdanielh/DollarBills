@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PauseRunView: View {
+    let workout: Workout
+
     @EnvironmentObject var vm: ViewModel
     var body: some View {
         VStack(spacing: 40){
@@ -19,7 +21,7 @@ struct PauseRunView: View {
             HStack(){
                 Spacer()
                 VStack(spacing: 20){
-                    Text("160")
+                    Text(String(workout.heartRate))
                         .font(.system(size: 20))
                         .bold()
                     Text("BPM")
@@ -28,7 +30,7 @@ struct PauseRunView: View {
                 }
                 Spacer()
                 VStack(spacing: 20){
-                    Text("03:40")
+                    Text(workout.formattedDuration())
                         .font(.system(size: 20))
                         .bold()
                     Text("Duration")
@@ -37,7 +39,7 @@ struct PauseRunView: View {
                 }
                 Spacer()
                 VStack(spacing: 20){
-                    Text("7'54")
+                    Text(workout.formattedPace())
                         .font(.system(size: 20))
                         .bold()
                     Text("Pace")
@@ -49,7 +51,7 @@ struct PauseRunView: View {
             HStack(){
                 Spacer()
                 VStack(spacing: 20){
-                    Text("1.2 km")
+                    Text(workout.formattedDistance())
                         .font(.system(size: 20))
                         .bold()
                     Text("Distance")
@@ -58,7 +60,7 @@ struct PauseRunView: View {
                 }
                 Spacer()
                 VStack(spacing: 20){
-                    Text("10 m")
+                    Text(workout.formattedElevation())
                         .font(.system(size: 20))
                         .bold()
                     Text("Elevation")
@@ -67,7 +69,7 @@ struct PauseRunView: View {
                 }
                 Spacer()
                 VStack(spacing: 20){
-                    Text("110 kcal")
+                    Text(String(workout.calorieBurned))
                         .font(.system(size: 20))
                         .bold()
                     Text("Calories")
@@ -101,6 +103,6 @@ struct PauseRunView: View {
     }
 }
 
-#Preview {
-    PauseRunView()
-}
+//#Preview {
+//    PauseRunView()
+//}

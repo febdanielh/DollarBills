@@ -65,6 +65,7 @@ struct RunView: View {
                     if isPaused {
                         vm.pauseWorkout()
                     }
+                    PauseRunView(workout: workout)
                 }
 
         }
