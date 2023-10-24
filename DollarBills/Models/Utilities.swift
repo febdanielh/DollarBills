@@ -27,7 +27,7 @@ final class Checkpoint: NSObject, MKAnnotation, Identifiable {
     
 }
 
-class CustomAnnotation: NSObject, MKAnnotation {
+class CustomAnnotation: NSObject, MKAnnotation, Identifiable {
     
     var tag: Int
     
@@ -35,13 +35,16 @@ class CustomAnnotation: NSObject, MKAnnotation {
     
     var title: String?
     
+    var location: String?
+    
     var annotationModel: AnnotationModel
     
-    init(tag: Int, coordinate: CLLocationCoordinate2D, title: String? = nil, annotationModel: AnnotationModel) {
+    init(tag: Int, coordinate: CLLocationCoordinate2D, title: String? = nil, location: String?, annotationModel: AnnotationModel) {
         
         self.tag = tag
         self.coordinate = coordinate
         self.title = title
+        self.location = location
         self.annotationModel = annotationModel
         
     }
@@ -52,28 +55,34 @@ struct CustomAnnotationAndRoute {
     static let customAnnotation = [
         CustomAnnotation(tag: 1,
                          coordinate: CLLocationCoordinate2D(latitude: -6.29675, longitude: 106.64505),
-                         title: "Route 1",
-                         annotationModel: AnnotationModel(
-                            routeName: "Keliling Foresta",
-                            waypoints: [
-                                Checkpoint(title: "Checkpoint 1", coordinate: CLLocationCoordinate2D(latitude: -6.29675, longitude: 106.64505)),
-                                Checkpoint(title: "Checkpoint 2", coordinate: CLLocationCoordinate2D(latitude: -6.293920, longitude: 106.642447)),
-                                Checkpoint(title: "Checkpoint 3", coordinate: CLLocationCoordinate2D(latitude: -6.290890, longitude: 106.645503)),
-                                Checkpoint(title: "Checkpoint 4", coordinate: CLLocationCoordinate2D(latitude: -6.296, longitude: 106.6467))
-                            ]
-                         )),
+                         title: "Foresta",
+                         location: "BSD, Tangerang",
+                         annotationModel:
+                            AnnotationModel (
+                                routeName: "Foresta 1",
+                                waypoints: [
+                                    Checkpoint(title: "Checkpoint 1", coordinate: CLLocationCoordinate2D(latitude: -6.29675, longitude: 106.64505)),
+                                    Checkpoint(title: "Checkpoint 2", coordinate: CLLocationCoordinate2D(latitude: -6.293920, longitude: 106.642447)),
+                                    Checkpoint(title: "Checkpoint 3", coordinate: CLLocationCoordinate2D(latitude: -6.290890, longitude: 106.645503)),
+                                    Checkpoint(title: "Checkpoint 4", coordinate: CLLocationCoordinate2D(latitude: -6.296, longitude: 106.6467))
+                                ]
+                            )
+        ),
         CustomAnnotation(tag: 2,
                          coordinate: CLLocationCoordinate2D(latitude: -6.291824, longitude: 106.65344),
-                         title: "Route 2",
-                         annotationModel: AnnotationModel(
-                            routeName: "Keliling Nava",
-                            waypoints: [
-                                Checkpoint(title: "Checkpoint 1", coordinate: CLLocationCoordinate2D(latitude: -6.291824, longitude: 106.65344)),
-                                Checkpoint(title: "Checkpoint 2", coordinate: CLLocationCoordinate2D(latitude: -6.290008, longitude: 106.653541)),
-                                Checkpoint(title: "Checkpoint 3", coordinate: CLLocationCoordinate2D(latitude: -6.291005, longitude: 106.651307)),
-                                Checkpoint(title: "Checkpoint 4", coordinate: CLLocationCoordinate2D(latitude: -6.29206, longitude: 106.65311))
-                            ]
-                         ))
+                         title: "Nava",
+                         location: "BSD, Tangerang",
+                         annotationModel:
+                            AnnotationModel(
+                                routeName: "Nava 1",
+                                waypoints: [
+                                    Checkpoint(title: "Checkpoint 1", coordinate: CLLocationCoordinate2D(latitude: -6.291824, longitude: 106.65344)),
+                                    Checkpoint(title: "Checkpoint 2", coordinate: CLLocationCoordinate2D(latitude: -6.290008, longitude: 106.653541)),
+                                    Checkpoint(title: "Checkpoint 3", coordinate: CLLocationCoordinate2D(latitude: -6.291005, longitude: 106.651307)),
+                                    Checkpoint(title: "Checkpoint 4", coordinate: CLLocationCoordinate2D(latitude: -6.29206, longitude: 106.65311))
+                                ]
+                            )
+                        )
     ]
 }
 

@@ -26,7 +26,7 @@ struct OnboardingView: View {
     
     var body: some View {
         ZStack{
-            Color.primaryColor01
+            Color.YellowNormal
                 .ignoresSafeArea()
             Image("puzzle piece 1")
                 .offset(x: -90, y: 315)
@@ -49,7 +49,7 @@ struct OnboardingView: View {
                             Rectangle()
                                 .frame(width: 44, height: 16)
                                 .cornerRadius(10)
-                                .foregroundColor(Color.YellowDark)
+                                .foregroundColor(Color.YellowDark4)
                         }
                     }
                 }
@@ -85,7 +85,6 @@ struct OnboardingView: View {
                     }
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                
                 Button(action: {
                     if self.currentStep < onboardingSteps.count - 1 {
                         self.currentStep += 1

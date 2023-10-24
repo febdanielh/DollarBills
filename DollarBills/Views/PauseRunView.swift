@@ -11,13 +11,20 @@ struct PauseRunView: View {
     let workout: Workout
 
     @EnvironmentObject var vm: ViewModel
+    @Binding var directions: [String]
+    
     var body: some View {
         VStack(spacing: 40){
-            MapView(selectedAnnotation: $vm.selectedAnnotation)
-                .frame(width: 400, height: 400)
-                .foregroundColor(Color.primaryColor01)
-                .ignoresSafeArea()
-                .shadow(radius: 8)
+            createMap(
+                directions: $directions,
+                routes: $vm.routes,
+                selectedAnnotation: $vm.selectedAnnotation,
+                cachedDirections: $vm.cachedDirections
+            )
+            .ignoresSafeArea()
+            .frame(height: 400)
+            .shadow(radius: 5)
+            
             HStack(){
                 Spacer()
                 VStack(spacing: 20){
@@ -86,7 +93,7 @@ struct PauseRunView: View {
                     Image(systemName: "stop.circle.fill")
                         .resizable()
                         .frame(width: 80.56, height: 80.56)
-                        .foregroundColor(.primaryColor01)
+                        .foregroundColor(.YellowNormal)
                 })
                 
                 Button(action: {
@@ -95,7 +102,7 @@ struct PauseRunView: View {
                     Image(systemName: "play.circle.fill")
                         .resizable()
                         .frame(width: 80.56, height: 80.56)
-                        .foregroundColor(.primaryColor01)
+                        .foregroundColor(.YellowNormal)
                 })
             }
             Spacer()
@@ -104,5 +111,5 @@ struct PauseRunView: View {
 }
 
 //#Preview {
-//    PauseRunView()
+//    PauseRunView(workout: workout, directions: .constant([]))
 //}

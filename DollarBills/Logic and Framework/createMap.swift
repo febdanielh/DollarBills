@@ -13,9 +13,9 @@ struct createMap: UIViewRepresentable {
     
     @Binding var routes: [MKRoute]
     
-    @Binding var selectedAnnotation: AnnotationModel?
+    @Binding var selectedAnnotation: AnnotationModel
     
-    @Binding var showDirections: Bool
+    //    @Binding var showDirections: Bool
     
     @Binding var cachedDirections: [String: [String]]
     
@@ -24,14 +24,12 @@ struct createMap: UIViewRepresentable {
     @EnvironmentObject var vm: ViewModel
     
     func makeUIView(context: Context) -> MKMapView {
-        let mapView = MKMapView()
+        let mapView = vm.mapView
         mapView.delegate = vm
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
         mapView.showsCompass = true
         mapView.isPitchEnabled = false
-        
-        vm.mapView = mapView
         
         return mapView
     }
@@ -42,11 +40,11 @@ struct createMap: UIViewRepresentable {
         mapView.addAnnotations(annotations)
         
         for annotation in annotations {
-            if annotation.annotationModel.id == selectedAnnotation?.id {
+            if annotation.annotationModel.id == selectedAnnotation.id {
                 if let cached = cachedDirections[annotation.annotationModel.routeName] {
                     directions = cached
                 } else {
-                    showDirections = true
+                    //                    showDirections = true
                     calculateDirections(mapView, annotation: annotation)
                 }
             }

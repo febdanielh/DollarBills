@@ -12,6 +12,7 @@ enum DisplayScreen {
     case viewMain
     case viewMap
     case viewRun
+    case viewPause
 }
 
 struct ContentView: View {
@@ -20,21 +21,35 @@ struct ContentView: View {
     @EnvironmentObject var vm: ViewModel
     @AppStorage("launchedBefore") var launchedBefore = false
     @State var welcome = false
+    @State var directions: [String] = []
     
     var body: some View {
         switch vm.currentDisplayScreen {
         case .viewOnboard:
             OnboardingView()
         case .viewMain:
-            MainView()
+            MainView(tag: $vm.tag, isRouteSelected: $vm.isRouteSelected)
+                .onAppear {
+                    removeAll()
+                }
         case .viewMap:
-            MapView(selectedAnnotation: $vm.selectedAnnotation)
-                .onAppear{
+            MapView(selectedAnnotation: $vm.selectedAnnotation, directions: $directions, tag: $vm.tag, isRouteSelected: $vm.isRouteSelected)
+                .onAppear {
                     vm.serviceAvailabilityCheck()
                 }
         case .viewRun:
             RunView(workout: vm.newWorkout)
+        case .viewPause:
+            PauseRunView(directions: $directions)
         }
+    }
+    
+    func removeAll() {
+        vm.selectedAnnotation = AnnotationModel(routeName: "", waypoints: [])
+        vm.mapView.removeOverlays((vm.mapView.overlays))
+        vm.routes.removeAll()
+        vm.cachedDirections.removeAll()
+        directions.removeAll()
     }
 }
 

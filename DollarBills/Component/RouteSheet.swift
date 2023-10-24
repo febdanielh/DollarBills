@@ -15,8 +15,8 @@ struct routeSheet: View {
     @State var showFilterView = false
     @Binding var selectedAnnotation: AnnotationModel
     @Binding var directions: [String]
-    @Binding var isSelected: Bool
     @State var isStarted: Bool = false
+    @Binding var isRouteSelected: Bool
     
     var body: some View {
         
@@ -32,7 +32,7 @@ struct routeSheet: View {
                             .bold()
                         Spacer()
                         Button {
-                            isSelected = false
+                            isRouteSelected = false
                         } label: {
                             Image("close button yellow")
                         }
@@ -94,10 +94,10 @@ struct routeSheet: View {
                         Text("START RUNNING")
                             .bold()
                     })
-//                    .buttonStyle(ActiveBlackSheetButton())
+                    .buttonStyle(ActiveBlackSheetButton())
                     .padding(.bottom)
                     .fullScreenCover(isPresented: $isStarted, content: {
-//                        CountdownView()
+                        CountdownView()
                     })
                     
                     ScrollView (.horizontal) {
@@ -113,8 +113,8 @@ struct routeSheet: View {
                 }
             }
         }
-        .presentationDetents([.fraction(0.48)])
-        .presentationBackgroundInteraction(.disabled)
+        .presentationDetents([.fraction(0.47)])
         .interactiveDismissDisabled(true)
+        .presentationBackgroundInteraction(.enabled)
     }
 }

@@ -11,12 +11,13 @@ struct RunView: View {
     
     let workout: Workout
     
+    @EnvironmentObject var vm: ViewModel
+    
     var progressValue: Double {
         return workout.distance / 500.0
     }
     
     @State private var isPaused = false
-    @EnvironmentObject var vm: ViewModel
 
     var body: some View {
         VStack {
@@ -49,8 +50,6 @@ struct RunView: View {
                 .font(.system(size: 28).weight(.bold))
                 .foregroundColor(Color(red: 0.44, green: 0.44, blue: 0.48))
             Image("Quokka")
-//            ProgressView(value: 0.2, label: { Text("Your Progress") }, currentValueLabel: { Text("20%") })
-//                .progressViewStyle(BarProgressStyle(height: 25.0))
             
             ProgressView(value: progressValue, label: { Text("Your Progress") }, currentValueLabel: { Text("\(Int(progressValue * 100))%") })
                 .progressViewStyle(BarProgressStyle(height: 25.0))
@@ -65,14 +64,18 @@ struct RunView: View {
                     if isPaused {
                         vm.pauseWorkout()
                     }
-                    PauseRunView(workout: workout)
+                    vm.currentDisplayScreen = .viewPause
                 }
-
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 80)
         .padding(.horizontal, 30)
     }
+}
+
+#Preview {
+    ProgressView(value: 0.5, label: { Text("Your Progress") }, currentValueLabel: { Text("\(Int(0.5 * 100))%") })
+        .progressViewStyle(BarProgressStyle(height: 25.0))
 }
 
 //#Preview {
