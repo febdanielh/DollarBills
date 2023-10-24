@@ -18,9 +18,13 @@ struct routeSheet: View {
     
     @State var showFilterView = false
     
-    @Binding var selectedAnnotation: AnnotationModel?
+    @Binding var selectedAnnotation: AnnotationModel
     
     @Binding var directions: [String]
+    
+    @Binding var isRouteSelected: Bool
+    
+    @State var isStarted: Bool = false
     
     var body: some View {
         
@@ -30,13 +34,22 @@ struct routeSheet: View {
                 
                 VStack() {
                     
-                    Text(selectedAnnotation?.routeName ?? "No name")
-                        .modifier(RouteTitle())
+                    HStack {
+                        Text(selectedAnnotation.routeName)
+                            .font(.title)
+                            .bold()
+                        Spacer()
+                        Button {
+                            isRouteSelected = false
+                        } label: {
+                            Image("close button yellow")
+                        }
+                    }.padding([.top, .horizontal]).padding(.top)
                     
                     HStack (spacing: 20) {
                         
                         HStack{
-                            Image("Flag")
+                            Image("Flag 2")
                                 .resizable()
                                 .frame(width: 20, height: 20)
                             Text("5 km")
@@ -44,7 +57,7 @@ struct routeSheet: View {
                         }
                         
                         HStack{
-                            Image("Clock")
+                            Image("Clock 2")
                                 .resizable()
                                 .frame(width: 20, height: 20)
                             Text("40 min - 1 hr")
@@ -52,7 +65,7 @@ struct routeSheet: View {
                         }
                         
                         HStack{
-                            Image("Running Shoes")
+                            Image("Running Shoes 2")
                                 .resizable()
                                 .frame(width: 20, height: 20)
                             Text("Pavement")
@@ -61,7 +74,7 @@ struct routeSheet: View {
                         
                     }
                     .frame(width: 356, alignment: .leading)
-                    .padding([.leading, .bottom])
+                    .padding([.bottom])
                     
                     HStack {
                         Text("This route is \(vm.distance, specifier: "%.1f")km from you.")
@@ -84,50 +97,32 @@ struct routeSheet: View {
                     
                     Button(action: {
                         showStartConfirmation = true
+                        isStarted = true
                     }, label: {
                         Text("START RUNNING")
                             .bold()
                     })
-                    .confirmationDialog("Record a Workout", isPresented: $showStartConfirmation, titleVisibility: .visible) {
-                        Button("Cancel", role: .cancel) {
-                            // Handle cancellation
-                        }
-                        Button("Start Workout") {
-                            Task {
-                                await vm.startWorkout(type: .running)
-                            }
-                            vm.currentDisplayScreen = .viewRun
-                        }
-                    }
-                    .buttonStyle(FillButton())
+                    .buttonStyle(ActiveBlackSheetButton())
                     .padding(.bottom)
+                    .fullScreenCover(isPresented: $isStarted, content: {
+                        CountdownView()
+                    })
                     
                     ScrollView (.horizontal) {
                         HStack {
                             ForEach (1 ..< 4) { i in
-                                Image("\(selectedAnnotation?.routeName ?? "No name")/\(i)")
+                                Image("\(selectedAnnotation.routeName)/\(i)")
                                     .resizable()
                                     .frame(width: 300, height: 160)
                             }
                         }
                     }
                     .padding([.bottom, .leading, .trailing])
-                    
                 }
-                
             }
-            
-//            List{
-//                ForEach(directions.indices, id: \.self) { i in
-//                    Text(directions[i])
-//                        .padding()
-//                }
-//            }
-            
         }
-        .presentationDetents([.medium])
-        .presentationBackgroundInteraction(.disabled)
-        .interactiveDismissDisabled(false)
-        
+        .presentationDetents([.fraction(0.47)])
+        .interactiveDismissDisabled(true)
+        .presentationBackgroundInteraction(.enabled)
     }
 }

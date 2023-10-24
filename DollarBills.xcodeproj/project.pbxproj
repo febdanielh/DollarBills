@@ -45,6 +45,13 @@
 		E168B99B2ACD4C5400CF56D9 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168B99A2ACD4C5400CF56D9 /* Utilities.swift */; };
 		E168B99D2ACD4CFA00CF56D9 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168B99C2ACD4CFA00CF56D9 /* MapView.swift */; };
 		E168B99F2ACEAAE400CF56D9 /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168B99E2ACEAAE400CF56D9 /* Items.swift */; };
+		E1941FFE2AE28F8500E29394 /* NearestToYouDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1941FFD2AE28F8500E29394 /* NearestToYouDetailView.swift */; };
+		E19420002AE38C7E00E29394 /* NearestRouteDetailCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1941FFF2AE38C7E00E29394 /* NearestRouteDetailCard.swift */; };
+		E19420042AE40DBE00E29394 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19420032AE40DBE00E29394 /* CountdownView.swift */; };
+		E19420172AE668EA00E29394 /* RoutesOfTheWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19420162AE668EA00E29394 /* RoutesOfTheWeek.swift */; };
+		E195B66C2AE0D32E00FB32C1 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195B66B2AE0D32E00FB32C1 /* Routes.swift */; };
+		E195B66E2AE0EFEE00FB32C1 /* NearestRouteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195B66D2AE0EFEE00FB32C1 /* NearestRouteCard.swift */; };
+		E195B6722AE219DA00FB32C1 /* QokkaPickCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195B6712AE219DA00FB32C1 /* QokkaPickCard.swift */; };
 		E1A093712AD7E8A000A8A4AC /* PauseRunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A093702AD7E8A000A8A4AC /* PauseRunView.swift */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +97,13 @@
 		E168B99A2ACD4C5400CF56D9 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		E168B99C2ACD4CFA00CF56D9 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E168B99E2ACEAAE400CF56D9 /* Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
+		E1941FFD2AE28F8500E29394 /* NearestToYouDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestToYouDetailView.swift; sourceTree = "<group>"; };
+		E1941FFF2AE38C7E00E29394 /* NearestRouteDetailCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestRouteDetailCard.swift; sourceTree = "<group>"; };
+		E19420032AE40DBE00E29394 /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
+		E19420162AE668EA00E29394 /* RoutesOfTheWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesOfTheWeek.swift; sourceTree = "<group>"; };
+		E195B66B2AE0D32E00FB32C1 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
+		E195B66D2AE0EFEE00FB32C1 /* NearestRouteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestRouteCard.swift; sourceTree = "<group>"; };
+		E195B6712AE219DA00FB32C1 /* QokkaPickCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QokkaPickCard.swift; sourceTree = "<group>"; };
 		E1A093702AD7E8A000A8A4AC /* PauseRunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseRunView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,6 +140,7 @@
 				9BD93E422ACEB615004862F7 /* WorkoutDate.swift */,
 				9BD93E362ACEB177004862F7 /* Workout.swift */,
 				9BD93E3E2ACEB2CC004862F7 /* HKHelper.swift */,
+				E195B66B2AE0D32E00FB32C1 /* Routes.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -150,6 +165,10 @@
 				9BD93E582ACFFD73004862F7 /* WorkoutBar.swift */,
 				9BD93E482ACEC7CC004862F7 /* WorkoutMenuView.swift */,
 				E167969A2ADDA4A600340093 /* RouteCards.swift */,
+				E195B66D2AE0EFEE00FB32C1 /* NearestRouteCard.swift */,
+				E195B6712AE219DA00FB32C1 /* QokkaPickCard.swift */,
+				E1941FFF2AE38C7E00E29394 /* NearestRouteDetailCard.swift */,
+				E19420162AE668EA00E29394 /* RoutesOfTheWeek.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -222,6 +241,8 @@
 				15D24D162AE0FAB600AFE89B /* ProfileView.swift */,
 				153E11B32AE53C5600B173F5 /* Summary View.swift */,
 				153E11B72AE53F9200B173F5 /* LeaderboardView.swift */,
+				E1941FFD2AE28F8500E29394 /* NearestToYouDetailView.swift */,
+				E19420032AE40DBE00E29394 /* CountdownView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -302,14 +323,20 @@
 				E168B9992ACD4C2200CF56D9 /* createMap.swift in Sources */,
 				9BD93E4D2ACF209D004862F7 /* ViewExt.swift in Sources */,
 				15D24CBB2ADD328000AFE89B /* SegmentTabView.swift in Sources */,
+				E1941FFE2AE28F8500E29394 /* NearestToYouDetailView.swift in Sources */,
 				E168B99D2ACD4CFA00CF56D9 /* MapView.swift in Sources */,
 				9BD93E412ACEB455004862F7 /* ViewModelWorkout.swift in Sources */,
 				9BD93E3F2ACEB2CC004862F7 /* HKHelper.swift in Sources */,
+				E195B66C2AE0D32E00FB32C1 /* Routes.swift in Sources */,
 				9BD93E372ACEB177004862F7 /* Workout.swift in Sources */,
+				E19420172AE668EA00E29394 /* RoutesOfTheWeek.swift in Sources */,
 				153E11B82AE53F9200B173F5 /* LeaderboardView.swift in Sources */,
 				E167969B2ADDA4A600340093 /* RouteCards.swift in Sources */,
+				E19420002AE38C7E00E29394 /* NearestRouteDetailCard.swift in Sources */,
 				9BD93E4F2ACF2248004862F7 /* ErrorView.swift in Sources */,
+				E19420042AE40DBE00E29394 /* CountdownView.swift in Sources */,
 				15D24C412AD5D23C00AFE89B /* CustomContent.swift in Sources */,
+				E195B6722AE219DA00FB32C1 /* QokkaPickCard.swift in Sources */,
 				9BD93E472ACEC20F004862F7 /* PermissionView.swift in Sources */,
 				E16796932AD94B8E00340093 /* OnboardingView.swift in Sources */,
 				E16796902AD8E27600340093 /* ExtensionColor.swift in Sources */,
@@ -327,6 +354,7 @@
 				E168B99F2ACEAAE400CF56D9 /* Items.swift in Sources */,
 				E168B99B2ACD4C5400CF56D9 /* Utilities.swift in Sources */,
 				9BD93E592ACFFD73004862F7 /* WorkoutBar.swift in Sources */,
+				E195B66E2AE0EFEE00FB32C1 /* NearestRouteCard.swift in Sources */,
 				9BD93E3D2ACEB1EE004862F7 /* Date.swift in Sources */,
 				9BD93E452ACEB6EB004862F7 /* MyError.swift in Sources */,
 				15D24D172AE0FAB600AFE89B /* ProfileView.swift in Sources */,

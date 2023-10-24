@@ -30,7 +30,7 @@ struct SegmentTabView: View {
                     }
             }
         }
-        .tint(Color.YellowDark)
+        .tint(Color.YellowDark4)
     }
 }
 

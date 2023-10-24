@@ -88,7 +88,7 @@ struct SummaryView: View {
                             
                             Text("BSD, Tangerang")
                                 .font(.subheadline)
-                                .foregroundStyle(Color.YellowDarker)
+                                .foregroundStyle(Color.YellowDark4)
                             
                         }
                         .frame(height: 5)

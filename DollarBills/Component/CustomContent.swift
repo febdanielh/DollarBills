@@ -15,9 +15,9 @@ struct FillButton: ButtonStyle {
             .frame(width: 293, height: 56)
             .background(configuration.isPressed ? Color("Green: Active") : Color("Green: Normal"))
             .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(configuration.isPressed ? Color("Green: Active") : Color("Green: Normal"))
-                    )
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(configuration.isPressed ? Color("Green: Active") : Color("Green: Normal"))
+            )
             .cornerRadius(6)
             .foregroundColor(configuration.isPressed ? Color(.white) : Color(.white))
     }
@@ -47,6 +47,16 @@ struct ActiveBlackButtonProfile: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(width: 310, height: 60)
+            .foregroundColor(Color.white)
+            .background(Color.black)
+            .clipShape(RoundedRectangle(cornerRadius: 25))
+    }
+}
+
+struct ActiveBlackSheetButton: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .frame(width: 306, height: 60)
             .foregroundColor(.primaryColor02)
             .background(Color.black)
             .clipShape(RoundedRectangle(cornerRadius: 25))
@@ -58,7 +68,7 @@ struct ActivePrimaryButton: ButtonStyle {
         configuration.label
             .frame(width: 360, height: 53)
             .foregroundColor(.black)
-            .background(Color.primaryColor01)
+            .background(Color.YellowNormal)
             .clipShape(RoundedRectangle(cornerRadius: 26))
     }
 }
@@ -183,7 +193,7 @@ struct VerticalProgressBar: View {
                     RoundedRectangle(cornerRadius: 25)
                         .frame(width: 26, height: CGFloat(progress) * geometry.size.height)
                         .foregroundColor(Color.YellowNormal)
-                        
+                    
                 }
                 .padding(.bottom)
                 if (day == 1) {

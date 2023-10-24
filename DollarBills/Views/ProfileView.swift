@@ -48,7 +48,7 @@ struct ProfileView: View {
                     HStack (spacing: 2) {
                         
                         Text("●")
-                            .foregroundStyle(Color.YellowDark)
+                            .foregroundStyle(Color.YellowDark4)
                         Text("15000")
                         
                     }

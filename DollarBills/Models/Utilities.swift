@@ -27,7 +27,7 @@ final class Checkpoint: NSObject, MKAnnotation, Identifiable {
     
 }
 
-class CustomAnnotation: NSObject, MKAnnotation {
+class CustomAnnotation: NSObject, MKAnnotation, Identifiable {
     
     var tag: Int
     

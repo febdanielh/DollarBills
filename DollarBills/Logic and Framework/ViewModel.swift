@@ -13,49 +13,36 @@ import SwiftUI
 @MainActor//location dan map
 class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
-    var locationManager: CLLocationManager = CLLocationManager()
+    private var locationManager: CLLocationManager = CLLocationManager()
     
-    @Published var currentDisplayScreen: DisplayScreen = .viewOnboard
-    {
-        didSet {
-            if (currentDisplayScreen == .viewMap) {
-                mapView?.removeOverlays((mapView?.overlays)!)
-                mapView?.removeAnnotations((mapView?.annotations)!)
-            }
-        }
-    }
+    @Published var currentDisplayScreen: DisplayScreen = .viewMain
     
     @Published var selectedSegment = 0
-    
     @Published var locationAccess : Bool = true
     
     @Published var routes: [MKRoute] = []
-    
     @Published var cachedDirections: [String: [String]] = [:]
-    
+    @Published var tag: Int = 0
     @Published var distance: Double = 0.0
+    
+    @Published var isRouteSelected: Bool = false
     
     @Published var startPoint: CLLocation = CLLocation(latitude: -6.302230, longitude: 106.652264)
     
     @Published var annotations = CustomAnnotationAndRoute.customAnnotation
-    
-    @Published var selectedAnnotation: AnnotationModel?
+    @Published var selectedAnnotation: AnnotationModel = AnnotationModel(routeName: "", waypoints: [])
     {
         didSet {
-            if (selectedAnnotation != nil) {
-                startPoint = CLLocation(latitude: selectedAnnotation?.waypoints.first?.coordinate.latitude ?? 0.0, longitude: selectedAnnotation?.waypoints.first?.coordinate.longitude ?? 0.0)
-                if ((selectedAnnotation?.waypoints.count)! > 1) {
-                    print("Ganti Rute!!!")
-                    monitorRegionAtLocation(locations: selectedAnnotation!)
-                }
+            startPoint = CLLocation(latitude: (selectedAnnotation.waypoints.first?.coordinate.latitude ?? 0.0), longitude: (selectedAnnotation.waypoints.first?.coordinate.longitude ?? 0.0))
+            if ((selectedAnnotation.waypoints.count) > 1) {
+                print("Ganti Rute!!!")
+                monitorRegionAtLocation(locations: selectedAnnotation)
             }
         }
     }
     
     @Published var locations: [CLLocation] = []
-    
     //    @Published var counter: Int = 0
-    
     @Published var itemCollected: [Items] = []
     
     // MARK: - Properties
@@ -132,18 +119,10 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var accuracyAuth = false
     @Published var locationStatus = CLAuthorizationStatus.notDetermined
     
-    //    {
-    //        didSet {
-    //            if locationStatus == .authorizedWhenInUse {
-    //                locationAuth = true
-    //            }
-    //        }
-    //    }
-    
     // Calculated property that returns true if location permission has been granted.
     var locationAuth: Bool {locationStatus == .authorizedWhenInUse}
     // The MKMapView which displays the map
-    var mapView: MKMapView?
+    var mapView: MKMapView = MKMapView()
     
     // Workouts
     // The table of workouts that the user has completed.
@@ -160,13 +139,6 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         updatePolylines()
         filterWorkouts()
     }}
-    
-    // Filters
-    // The currently selected workout type filter.
-    //    @Published var workoutType: WorkoutType? { didSet {
-    //        filterWorkouts()
-    //    }}
-    
     
     // The currently selected workout date filter.
     @Published var workoutDate: WorkoutDate? { didSet {
@@ -249,7 +221,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
                                 self.workouts.append(workout)
                                 if self.showWorkout(workout) {
                                     self.filteredWorkouts.append(workout)
-                                    self.mapView?.addOverlay(workout, level: .aboveRoads)
+                                    self.mapView.addOverlay(workout, level: .aboveRoads)
                                 }
                             }
                         }
@@ -270,11 +242,11 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     // Filter workouts based on search criteria
     func filterWorkouts() {
         // Remove existing workouts from the map
-        mapView?.removeOverlays(mapView?.overlays(in: .aboveRoads) ?? [])
+        mapView.removeOverlays(mapView.overlays(in: .aboveRoads) /*?? []*/)
         // Filter workouts based on search criteria
         filteredWorkouts = workouts.filter { showWorkout($0) }
         // Add filtered workouts to the map
-        mapView?.addOverlays(filteredWorkouts, level: .aboveRoads)
+        mapView.addOverlays(filteredWorkouts, level: .aboveRoads)
         // Checks if the selected workout is no longer visible and deselects it if so
         if let selectedWorkout, !filteredWorkouts.contains(selectedWorkout) {
             self.selectedWorkout = nil
@@ -299,7 +271,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         var closestWorkout: Workout?
         
         // Check if the map is currently visible, otherwise stop the function
-        guard let rect = mapView?.visibleMapRect else { return }
+        /*guard*/ let rect = mapView.visibleMapRect /*else { return }*/
         let left = MKMapPoint(x: rect.minX, y: rect.midY)
         let right = MKMapPoint(x: rect.maxX, y: rect.midY)
         let maxDelta = left.distance(to: right) / 20
@@ -342,8 +314,8 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
         // Sets the padding for zooming and zooms to the specified overlay
         let padding = UIEdgeInsets(top: 20, left: 20, bottom: bottomPadding, right: 20)
-        mapView?.setVisibleMapRect(overlay.boundingMapRect, edgePadding: padding, animated: true)
-        mapView?.isUserInteractionEnabled = true
+        mapView.setVisibleMapRect(overlay.boundingMapRect, edgePadding: padding, animated: true)
+        mapView.isUserInteractionEnabled = true
     }
     
     // MARK: - Workout Tracking // add the heart data recovery part
@@ -431,7 +403,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     // MARK: - Map
     func updateTrackingMode(_ newMode: MKUserTrackingMode) {
         // Update map view user tracking mode
-        mapView?.setUserTrackingMode(newMode, animated: true)
+        mapView.setUserTrackingMode(newMode, animated: true)
         // Animates the tracking mode change with a scaling effect
         if trackingMode == .followWithHeading || newMode == .followWithHeading {
             withAnimation(.easeInOut(duration: 0.25)) {
@@ -452,17 +424,17 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func updatePolylines() {
         // Remove existing overlays and add updated polylines to the map view
-        mapView?.removeOverlays(mapView?.overlays(in: .aboveLabels) ?? [])
-        mapView?.addOverlay(polyline, level: .aboveLabels)
+        mapView.removeOverlays(mapView.overlays(in: .aboveLabels) /*?? []*/)
+        mapView.addOverlay(polyline, level: .aboveLabels)
         // Add the polyline of the selected workout, if applicable
         if let selectedWorkout {
-            mapView?.addOverlay(selectedWorkout.polyline, level: .aboveLabels)
+            mapView.addOverlay(selectedWorkout.polyline, level: .aboveLabels)
         }
     }
     
     @objc func handleTap(tap: UITapGestureRecognizer) {
         // Select the workout closest to the selected location on the map view
-        guard let mapView = mapView else { return }
+        /*guard*/ let mapView = mapView /*else { return }*/
         let tapPoint = tap.location(in: mapView)
         let tapCoord = mapView.convert(tapPoint, toCoordinateFrom: mapView)
         selectClosestWorkout(to: tapCoord)
@@ -500,7 +472,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         distance = locations.last!.distance(from: startPoint)
         distance = distance/1000
         
-        if selectedAnnotation != nil {
+        if selectedAnnotation != AnnotationModel(routeName: "", waypoints: []) {
             if locationManager.monitoredRegions.isEmpty == true {
                 print("semua item sudah di collect")
             } else {
@@ -529,10 +501,10 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func removeAnn (region: CLRegion)  {
         var index: Int = 0
-        for oneRoute in selectedAnnotation!.waypoints {
+        for oneRoute in selectedAnnotation.waypoints {
             if (oneRoute.title == region.identifier) {
                 locationManager.stopMonitoring(for: region)
-                selectedAnnotation!.waypoints.remove(at: index)
+                selectedAnnotation.waypoints.remove(at: index)
                 print("ke stop monitor!!!")
             }
             index = index + 1
@@ -541,6 +513,8 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func serviceAvailabilityCheck() {
         DispatchQueue.main.async {
+            self.locationAuthorizationCheck()
+            
             if CLLocationManager.locationServicesEnabled() {
                 self.locationManager = CLLocationManager()
                 self.locationManager.delegate = self
@@ -599,6 +573,12 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
         itemCollected.append(randomItem)
         print("Added random item: \(randomItem.namaItem)")
+    }
+    
+    func deselectAll() {
+        selectedAnnotation = AnnotationModel(routeName: "", waypoints: [])
+        cachedDirections.removeAll()
+        routes.removeAll()
     }
 }
 

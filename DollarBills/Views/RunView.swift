@@ -11,6 +11,8 @@ struct RunView: View {
     
     let workout: Workout
     
+    @EnvironmentObject var vm: ViewModel
+    
     var progressValue: Double {
         return workout.distance / 500.0
     }
@@ -45,8 +47,6 @@ struct RunView: View {
                 .font(.system(size: 28).weight(.bold))
                 .foregroundColor(Color(red: 0.44, green: 0.44, blue: 0.48))
             Image("Quokka")
-//            ProgressView(value: 0.2, label: { Text("Your Progress") }, currentValueLabel: { Text("20%") })
-//                .progressViewStyle(BarProgressStyle(height: 25.0))
             
             ProgressView(value: progressValue, label: { Text("Your Progress") }, currentValueLabel: { Text("\(Int(progressValue * 100))%") })
                 .progressViewStyle(BarProgressStyle(height: 25.0))
@@ -56,6 +56,9 @@ struct RunView: View {
                 .frame(width: 80, height: 80)
                 .padding(.top, 80)
                 .foregroundStyle(Color(red: 1, green: 0.87, blue: 0.2))
+                .onTapGesture {
+                    vm.currentDisplayScreen = .viewPause
+                }
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 80)
