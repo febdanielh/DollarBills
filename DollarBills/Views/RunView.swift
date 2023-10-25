@@ -66,11 +66,10 @@ struct RunView: View {
     }
 }
 
-#Preview {
-    ProgressView(value: 0.5, label: { Text("Your Progress") }, currentValueLabel: { Text("\(Int(0.5 * 100))%") })
-        .progressViewStyle(BarProgressStyle(height: 25.0))
-}
-
 //#Preview {
-//    RunView()
+//    ProgressView(value: 0.5, label: { Text("Your Progress") }, currentValueLabel: { Text("\(Int(0.5 * 100))%") })
+//        .progressViewStyle(BarProgressStyle(height: 25.0))
+//    RunView.
 //}
+
+

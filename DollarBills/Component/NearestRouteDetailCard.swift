@@ -16,42 +16,44 @@ struct NearestRouteDetailCard: View {
             VStack {
                 ForEach(RouteData.routeData, id: \.self) { route in
                     VStack {
-                        ZStack {
-                            HStack(spacing: 16) {
-                                // One Image
-                                Image(route.routeImage)
-                                    .resizable()
-                                    .frame(width: 121, height: 107)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                                    .padding(8)
-                                
-                                VStack (alignment: .leading, spacing: 8) {
-                                    Text("\(route.routeName) (\(route.routeNameDetail))")
-                                        .font(.system(size: 16))
-                                        .fontWeight(.semibold)
-                                    Text("50m away")
-                                        .font(.caption)
-                                        .fontWeight(.semibold)
-                                        .foregroundColor(Color.TextDimGray)
-                                    Spacer().frame(height: 2)
-                                    // Location Tag
-                                    Text("4+ Routes")
-                                        .font(.system(size: 14))
-                                        .fontWeight(.semibold)
-                                        .foregroundColor(.black)
-                                        .frame(width: 74, alignment: .center)
-                                        .padding(.vertical, 3.6)
-                                        .padding(.horizontal, 9.8)
-                                        .background(
-                                            Color.YellowNormal)
-                                        .cornerRadius(9.0)
+                        if route.routeCount > 0 {
+                            ZStack {
+                                HStack(spacing: 16) {
+                                    // One Image
+                                    Image(route.routeImage)
+                                        .resizable()
+                                        .frame(width: 121, height: 107)
+                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        .padding(8)
+                                    
+                                    VStack (alignment: .leading, spacing: 8) {
+                                        Text("\(route.routeName) (\(route.routeNameDetail))")
+                                            .font(.system(size: 16))
+                                            .fontWeight(.semibold)
+                                        Text(String(format: "%.1f km", vm.getUserDistance(latitude: route.latitude, longitude: route.longitude)))
+                                            .font(.caption)
+                                            .fontWeight(.semibold)
+                                            .foregroundColor(Color.TextDimGray)
+                                        Spacer().frame(height: 2)
+                                        // Location Tag
+                                        Text("\(route.routeCount) Route(s)")
+                                            .font(.system(size: 14))
+                                            .fontWeight(.semibold)
+                                            .foregroundColor(.black)
+                                            .frame(width: 74, alignment: .center)
+                                            .padding(.vertical, 3.6)
+                                            .padding(.horizontal, 9.8)
+                                            .background(
+                                                Color.YellowNormal)
+                                            .cornerRadius(9.0)
+                                    }
+                                    .padding(.vertical, 10)
+                                    .frame(width: 202, alignment: .leading)
                                 }
-                                .padding(.vertical, 10)
-                                .frame(width: 202, alignment: .leading)
-                            }
-                            .onTapGesture {
-                                vm.currentDisplayScreen = .viewMap
-                                tag = route.tag
+                                .onTapGesture {
+                                    vm.currentDisplayScreen = .viewMap
+                                    tag = route.tag
+                                }
                             }
                         }
                     }
@@ -70,4 +72,5 @@ struct NearestRouteDetailCard: View {
 
 #Preview {
     NearestRouteDetailCard(tag: .constant(0))
+        .environmentObject(ViewModel())
 }

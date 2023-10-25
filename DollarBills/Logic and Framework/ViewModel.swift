@@ -422,6 +422,10 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     
+    func getUserDistance (latitude: CLLocationDegrees, longitude: CLLocationDegrees) -> Double {
+        return (locationManager.location?.distance(from: CLLocation(latitude: latitude, longitude: longitude)))!/1000
+    }
+    
     func updatePolylines() {
         // Remove existing overlays and add updated polylines to the map view
         mapView.removeOverlays(mapView.overlays(in: .aboveLabels) /*?? []*/)

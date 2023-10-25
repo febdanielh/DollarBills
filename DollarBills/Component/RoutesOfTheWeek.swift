@@ -77,4 +77,5 @@ struct RoutesOfTheWeek: View {
 
 #Preview {
     RoutesOfTheWeek(isRouteSelected: .constant(false))
+        .environmentObject(ViewModel())
 }

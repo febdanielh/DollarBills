@@ -76,9 +76,9 @@ struct ExploreView: View {
                     VStack {
                         RoutesOfTheWeek(isRouteSelected: $isRouteSelected)
                         
-                        NearestRouteCard(vm: _vm, tag: $tag)
+                        NearestRouteCard(tag: $tag)
                         
-                        QokkaPickCard(vm: _vm, tag: $tag)
+                        QokkaPickCard(tag: $tag)
                     }
                     .frame(maxWidth: .infinity)
                     
