@@ -40,7 +40,7 @@ struct ContentView: View {
         case .viewRun:
             RunView(workout: vm.newWorkout)
         case .viewPause:
-            PauseRunView(directions: $directions)
+            PauseRunView(workout: vm.newWorkout, directions: $directions)
         }
     }
     

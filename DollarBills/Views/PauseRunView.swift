@@ -12,7 +12,9 @@ struct PauseRunView: View {
 
     @EnvironmentObject var vm: ViewModel
     @Binding var directions: [String]
-    
+    @State private var isPaused = false
+    @State private var showAlert = false
+
     var body: some View {
         VStack(spacing: 40){
             createMap(
@@ -89,13 +91,30 @@ struct PauseRunView: View {
             HStack(spacing: 40){
                 Button(action: {
                     print("stop pressed")
+                    showAlert = true
                 }, label: {
                     Image(systemName: "stop.circle.fill")
                         .resizable()
                         .frame(width: 80.56, height: 80.56)
                         .foregroundColor(.YellowNormal)
+                        .alert("Finish?", isPresented: $showAlert) {
+                            Button("Yes") {}
+                                .onTapGesture {
+                                    Task {
+                                        await vm.endWorkout()
+                                    }
+                                }
+                            Button("No", role: .cancel) {}
+                                .onTapGesture {
+                                    Task {
+                                        vm.discardWorkout()
+                                    }
+                                }
+                        } message: {
+                            Text("Are you sure you are finished? You cannot come back to this later")
+                        }
                 })
-                
+
                 Button(action: {
                     print("play pressed")
                 }, label: {
@@ -103,6 +122,15 @@ struct PauseRunView: View {
                         .resizable()
                         .frame(width: 80.56, height: 80.56)
                         .foregroundColor(.YellowNormal)
+                        .onTapGesture {
+                            isPaused.toggle()
+                            if !isPaused {
+                                Task {
+                                    await vm.resumeWorkout()
+                                    vm.currentDisplayScreen = .viewRun
+                                }
+                            }
+                        }
                 })
             }
             Spacer()

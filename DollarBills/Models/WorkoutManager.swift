@@ -132,44 +132,6 @@ extension WorkoutManager {
     }
 }
 
-// MARK: - HKWorkoutSessionDelegate
-//
-extension WorkoutManager: HKWorkoutSessionDelegate {
-    nonisolated func workoutSession(_ workoutSession: HKWorkoutSession,
-                                    didChangeTo toState: HKWorkoutSessionState,
-                                    from fromState: HKWorkoutSessionState,
-                                    date: Date) {
-        print("Session state changed from \(fromState.rawValue) to \(toState.rawValue)")
-
-        let sessionStateChanges = sessionStateChange(newState: toState, date: date)
-        asynStreamTuple.continuation.yield(sessionStateChanges)
-    }
-    
-    nonisolated func workoutSession(_ workoutSession: HKWorkoutSession,
-                                    didFailWithError error: Error) {
-        print("\(#function): \(error)")
-    }
-    
-    nonisolated func workoutSession(_ workoutSession: HKWorkoutSession,
-                                    didDisconnectFromRemoteDeviceWithError error: Error?) {
-        print("\(#function): \(error)")
-    }
-    
-    nonisolated func workoutSession(_ workoutSession: HKWorkoutSession,
-                                    didReceiveDataFromRemoteWorkoutSession data: [Data]) {
-        print("\(#function): \(data.debugDescription)")
-        Task { @MainActor in
-            do {
-                for anElement in data {
-                    try handleReceivedData(anElement)
-                }
-            } catch {
-                print("Failed to handle received data: \(error))")
-            }
-        }
-    }
-}
-
 // MARK: - A structure for synchronizing the elapsed time.
 //
 struct WorkoutElapsedTime: Codable {

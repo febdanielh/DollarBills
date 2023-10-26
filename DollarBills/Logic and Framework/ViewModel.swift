@@ -86,8 +86,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     var newWorkout: Workout {
-        let duration = Date.now.timeIntervalSince(startDate)
-        return Workout(activityType: activityType, polyline: polyline, locations: locations, date: startDate, duration: duration, heartRate: heartRate, calorieBurned: calorieBurned)
+        return Workout(activityType: activityType, polyline: polyline, locations: locations, date: startDate, duration: totalElapsedTime, heartRate: heartRate, calorieBurned: calorieBurned)
     }
     
     @Published var showPermissionsView = false
@@ -202,6 +201,8 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     
+    
+    
     // MARK: - Workout Tracking // add the heart data recovery part
     
     func startTotalElapsedTimeTimer() {
@@ -278,8 +279,8 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         
     }
     
-    func pauseWorkout() {
-        isPaused.toggle()
+    func pauseWorkout() async {
+        isPaused = true
         if isPaused {
             locationManager.stopUpdatingLocation()
             timer?.invalidate()
@@ -290,16 +291,15 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     
-    func resumeWorkout() {
-        
+    func resumeWorkout() async {
+        isPaused = false
         locationManager.startUpdatingLocation()
-        isPaused.toggle()
         
         lastDateObserved = Date()
         startTotalElapsedTimeTimer()
     }
 
-    func discardWorkout() { // disallow background location updates
+    func discardWorkout() {
         locationManager.allowsBackgroundLocationUpdates = false
         
         timer?.invalidate()
@@ -418,16 +418,12 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         print("eh masuk :")
         print(region.identifier)
         print("sisa:")
-        //        print(locationManager?.monitoredRegions)
         
         addRandomItem()
         print(itemCollected)
         print("nambah item")
         
         removeAnn(region: region)
-        
-        //        counter += 1
-        //        print(counter)
         
     }
     

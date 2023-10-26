@@ -62,9 +62,11 @@ struct RunView: View {
                 .onTapGesture {
                     isPaused.toggle()
                     if isPaused {
-                        vm.pauseWorkout()
+                        Task {
+                            await vm.pauseWorkout()
+                            vm.currentDisplayScreen = .viewPause
+                        }
                     }
-                    vm.currentDisplayScreen = .viewPause
                 }
         }
         .frame(maxWidth: .infinity)

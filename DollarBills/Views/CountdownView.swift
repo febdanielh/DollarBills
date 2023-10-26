@@ -33,6 +33,9 @@ struct CountdownView: View {
                     .font(.largeTitle)
                     .onAppear(perform: {
                         vm.currentDisplayScreen = .viewRun
+                        Task {
+                            await vm.startWorkout(type: .running)
+                        }
                     })
             }
         }
