@@ -49,10 +49,13 @@
 		E19420002AE38C7E00E29394 /* NearestRouteDetailCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1941FFF2AE38C7E00E29394 /* NearestRouteDetailCard.swift */; };
 		E19420042AE40DBE00E29394 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19420032AE40DBE00E29394 /* CountdownView.swift */; };
 		E19420172AE668EA00E29394 /* RoutesOfTheWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19420162AE668EA00E29394 /* RoutesOfTheWeek.swift */; };
+		E194201F2AE916DF00E29394 /* SnapCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194201E2AE916DF00E29394 /* SnapCarouselView.swift */; };
 		E195B66C2AE0D32E00FB32C1 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195B66B2AE0D32E00FB32C1 /* Routes.swift */; };
 		E195B66E2AE0EFEE00FB32C1 /* NearestRouteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195B66D2AE0EFEE00FB32C1 /* NearestRouteCard.swift */; };
 		E195B6722AE219DA00FB32C1 /* QokkaPickCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195B6712AE219DA00FB32C1 /* QokkaPickCard.swift */; };
 		E1A093712AD7E8A000A8A4AC /* PauseRunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A093702AD7E8A000A8A4AC /* PauseRunView.swift */; };
+		E1FE623A2AEB5A6400D1736C /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FE62392AEB5A6400D1736C /* GifImage.swift */; };
+		E1FE623C2AEB5C3C00D1736C /* spruto lari.gif in Resources */ = {isa = PBXBuildFile; fileRef = E1FE623B2AEB5C3C00D1736C /* spruto lari.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,7 +90,7 @@
 		E1347E3C2AC43557008224CF /* DollarBills.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DollarBills.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1347E3F2AC43557008224CF /* DollarBillsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DollarBillsApp.swift; sourceTree = "<group>"; };
 		E1347E412AC43557008224CF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		E1347E432AC43558008224CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = /Users/elsst/Documents/GitHub/DollarBills/DollarBills/Assets.xcassets; sourceTree = "<absolute>"; };
+		E1347E432AC43558008224CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = /Users/febriandaniel/Desktop/Daniel/Macros/DollarBills/DollarBills/Assets.xcassets; sourceTree = "<absolute>"; };
 		E1347E462AC43558008224CF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E167968F2AD8E27600340093 /* ExtensionColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionColor.swift; sourceTree = "<group>"; };
 		E16796922AD94B8E00340093 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -101,10 +104,13 @@
 		E1941FFF2AE38C7E00E29394 /* NearestRouteDetailCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestRouteDetailCard.swift; sourceTree = "<group>"; };
 		E19420032AE40DBE00E29394 /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
 		E19420162AE668EA00E29394 /* RoutesOfTheWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesOfTheWeek.swift; sourceTree = "<group>"; };
+		E194201E2AE916DF00E29394 /* SnapCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapCarouselView.swift; sourceTree = "<group>"; };
 		E195B66B2AE0D32E00FB32C1 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		E195B66D2AE0EFEE00FB32C1 /* NearestRouteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestRouteCard.swift; sourceTree = "<group>"; };
 		E195B6712AE219DA00FB32C1 /* QokkaPickCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QokkaPickCard.swift; sourceTree = "<group>"; };
 		E1A093702AD7E8A000A8A4AC /* PauseRunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseRunView.swift; sourceTree = "<group>"; };
+		E1FE62392AEB5A6400D1736C /* GifImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImage.swift; sourceTree = "<group>"; };
+		E1FE623B2AEB5C3C00D1736C /* spruto lari.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "spruto lari.gif"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,10 +154,12 @@
 		9BD93E3B2ACEB1DA004862F7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				E1FE623B2AEB5C3C00D1736C /* spruto lari.gif */,
 				9BD93E4C2ACF209D004862F7 /* ViewExt.swift */,
 				9BD93E392ACEB1CC004862F7 /* CLLocation.swift */,
 				9BD93E3C2ACEB1EE004862F7 /* Date.swift */,
 				E167968F2AD8E27600340093 /* ExtensionColor.swift */,
+				E1FE62392AEB5A6400D1736C /* GifImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -243,6 +251,7 @@
 				153E11B72AE53F9200B173F5 /* LeaderboardView.swift */,
 				E1941FFD2AE28F8500E29394 /* NearestToYouDetailView.swift */,
 				E19420032AE40DBE00E29394 /* CountdownView.swift */,
+				E194201E2AE916DF00E29394 /* SnapCarouselView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -307,6 +316,7 @@
 			files = (
 				E1347E472AC43558008224CF /* Preview Assets.xcassets in Resources */,
 				E1347E442AC43558008224CF /* Assets.xcassets in Resources */,
+				E1FE623C2AEB5C3C00D1736C /* spruto lari.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +329,7 @@
 			files = (
 				E1A093712AD7E8A000A8A4AC /* PauseRunView.swift in Sources */,
 				15D24CBD2ADD32E300AFE89B /* ExploreView.swift in Sources */,
+				E1FE623A2AEB5A6400D1736C /* GifImage.swift in Sources */,
 				9BD93E492ACEC7CC004862F7 /* WorkoutMenuView.swift in Sources */,
 				E168B9992ACD4C2200CF56D9 /* createMap.swift in Sources */,
 				9BD93E4D2ACF209D004862F7 /* ViewExt.swift in Sources */,
@@ -326,6 +337,7 @@
 				E1941FFE2AE28F8500E29394 /* NearestToYouDetailView.swift in Sources */,
 				E168B99D2ACD4CFA00CF56D9 /* MapView.swift in Sources */,
 				9BD93E412ACEB455004862F7 /* ViewModelWorkout.swift in Sources */,
+				E194201F2AE916DF00E29394 /* SnapCarouselView.swift in Sources */,
 				9BD93E3F2ACEB2CC004862F7 /* HKHelper.swift in Sources */,
 				E195B66C2AE0D32E00FB32C1 /* Routes.swift in Sources */,
 				9BD93E372ACEB177004862F7 /* Workout.swift in Sources */,

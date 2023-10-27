@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-let NAME = "BitRun"
+let NAME = "Furthr"
 @main
 struct DollarBillsApp: App {
     var body: some Scene {

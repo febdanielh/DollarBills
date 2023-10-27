@@ -63,7 +63,7 @@ struct NearestRouteDetailCard: View {
                     .shadow(color: .black.opacity(0.1), radius: 15, x: 0, y: 4)
                 }
             }
-            .padding([.bottom, .leading,.trailing])
+            .padding([.bottom, .horizontal])
         }
         .padding(.bottom)
         .cornerRadius(8)

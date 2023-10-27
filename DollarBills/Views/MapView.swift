@@ -24,7 +24,7 @@ struct MapView: View {
     
     var body: some View {
         ZStack{
-            Color.SheetGray.ignoresSafeArea()
+//            Color.SheetGray.ignoresSafeArea()
             VStack{
                 ZStack {
                     createMap(

@@ -26,7 +26,7 @@ struct ContentView: View {
     var body: some View {
         switch vm.currentDisplayScreen {
         case .viewOnboard:
-            OnboardingView()
+            AnotherOnboardingView()
         case .viewMain:
             MainView(tag: $vm.tag, isRouteSelected: $vm.isRouteSelected)
                 .onAppear {
@@ -38,7 +38,7 @@ struct ContentView: View {
                     vm.serviceAvailabilityCheck()
                 }
         case .viewRun:
-            RunView(workout: vm.newWorkout)
+            RunView(workout: vm.newWorkout, itemCollected: $vm.itemCollected)
         case .viewPause:
             PauseRunView(directions: $directions)
         }

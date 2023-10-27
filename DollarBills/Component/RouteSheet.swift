@@ -60,6 +60,7 @@ struct routeSheet: View {
                             Image("Clock 2")
                                 .resizable()
                                 .frame(width: 20, height: 20)
+//                                .fill(Color.black)
                             Text("40 min - 1 hr")
                                 .modifier(RouteInfo())
                         }
@@ -68,6 +69,7 @@ struct routeSheet: View {
                             Image("Running Shoes 2")
                                 .resizable()
                                 .frame(width: 20, height: 20)
+//                                .fill(Color.black)
                             Text("Pavement")
                                 .modifier(RouteInfo())
                         }

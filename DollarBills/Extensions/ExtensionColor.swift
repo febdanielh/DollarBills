@@ -8,9 +8,6 @@
 import SwiftUI
 
 extension Color {
-    static var primaryColor01 = Color("PrimaryColor01")
-    static var primaryColor02 = Color("PrimaryColor02")
-    
     //Yellow Light
     static var YellowLight1 = Color("Yellow: Light 1")
     static var YellowLight2 = Color("Yellow: Light 2")
@@ -18,6 +15,7 @@ extension Color {
     
     //Yellow Normal
     static var YellowNormal = Color("Yellow: Normal")
+    static var YellowNormal2 = Color("Yellow: Normal 2")
     
     //Yellow Dark
     static var YellowDark1 = Color("Yellow: Dark 1")
@@ -30,4 +28,7 @@ extension Color {
     static var WPBG = Color("WeeklyPerformanceBackground")
     static var PBBG = Color("ProgressBarBackground")
     static var SheetGray = Color("Sheet Gray")
+    static var emptyProgressBar = Color("EmptyProgressBar")
+    
+    static let redStopButton = Color("Red Stop Button")
 }

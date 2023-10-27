@@ -42,7 +42,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     @Published var locations: [CLLocation] = []
-    //    @Published var counter: Int = 0
+    
     @Published var itemCollected: [Items] = []
     
     // MARK: - Properties
@@ -489,7 +489,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         print("eh masuk :")
         print(region.identifier)
-        print("sisa:")
+        //        print("sisa:")
         //        print(locationManager?.monitoredRegions)
         
         addRandomItem()
@@ -497,10 +497,6 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         print("nambah item")
         
         removeAnn(region: region)
-        
-        //        counter += 1
-        //        print(counter)
-        
     }
     
     func removeAnn (region: CLRegion)  {

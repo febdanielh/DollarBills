@@ -11,21 +11,23 @@ import SwiftUI
 struct Items: Identifiable {
     var id = UUID()
     var namaItem: String
-    var points: Int
     var image: String
+//    var effect: String
 }
 
 struct ItemsData {
     //item dummy
     static let item = [
-        Items(namaItem: "Kayu",
-              points: 1000,
-              image: ""),
-        Items(namaItem: "Diamond",
-              points: 3000,
-              image: ""),
-        Items(namaItem: "Daun",
-              points: 500,
-              image: "")
+        Items(namaItem: "Blue Potion",
+              image: "0Potion"),
+        
+        Items(namaItem: "Rock",
+              image: "1Rock"),
+        
+        Items(namaItem: "Red Potion",
+              image: "2Potion"),
+        
+        Items(namaItem: "Three Rocks",
+              image: "3Rock")
     ]
 }

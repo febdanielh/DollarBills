@@ -71,6 +71,7 @@ struct ProfileView: View {
                 
                 HStack {
                     Text("User ID")
+                        .font(.system(size: 15)).fontWeight(.semibold)
                         .padding(.leading)
                     Image(systemName: "pencil.line")
                     Spacer()
@@ -82,9 +83,9 @@ struct ProfileView: View {
                     .padding()
                     .frame(height: 46)
                     .overlay(
-                            RoundedRectangle(cornerRadius: 14)
-                                .stroke(Color.gray, lineWidth: 1)
-                        )
+                        RoundedRectangle(cornerRadius: 14)
+                            .stroke(Color.gray, lineWidth: 1)
+                    )
                     .padding([.leading, .trailing])
                 
                 Divider()
@@ -135,8 +136,12 @@ struct ProfileView: View {
                                 
                                 if (i % 2 == 0) {
                                     Image("\(i)Potion")
+                                        .resizable()
+                                        .frame(width: 80, height: 60)
                                 } else {
                                     Image("\(i)Rock")
+                                        .resizable()
+                                        .frame(width: 80, height: 60)
                                 }
                                 
                                 VStack (alignment: .trailing) {
@@ -148,7 +153,7 @@ struct ProfileView: View {
                                         Spacer()
                                         
                                         ZStack {
-                                        
+                                            
                                             Image("x1")
                                             Text("x1")
                                                 .foregroundStyle(.white)

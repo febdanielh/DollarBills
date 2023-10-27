@@ -16,17 +16,16 @@ struct ExploreView: View {
     @State var routeSearching = ""
     @State private var isEditing = false
     @Binding var tag: Int
+    
     @Binding var isRouteSelected: Bool
+    @State var currentIndex: Int = 0
     
     var body: some View {
-        NavigationView(content: {
+        NavigationStack {
             VStack {
-                
                 // GM & Race
                 HStack {
                     
-                    Text("Good Morning!")
-                        .font(.system(size: 15))
                     
                     Spacer()
                     
@@ -34,24 +33,20 @@ struct ExploreView: View {
                         
                     }, label: {
                         
-                        HStack (spacing: -4) {
+                        HStack {
                             
                             Text("User ID")
-                                .frame(width: 102, height: 2)
-                                .font(.system(size: 14))
-                                .padding([.top, .bottom])
+                                .frame(width: 125, height: 30)
+                                .font(.system(size: 13)).fontWeight(.semibold)
                                 .foregroundColor(Color.YellowDark4)
                         }
-                        .padding([.leading, .trailing])
                         .overlay(
-                            RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color.YellowNormal, lineWidth: 2)
+                            RoundedRectangle(cornerRadius: 200)
+                                .stroke(Color.YellowDark4, lineWidth: 2)
                         )
-                        .background(Color.YellowLight3) // If you have this
-                        .cornerRadius(15)
-                        
+                        .background(Color.YellowLight3)
+                        .cornerRadius(200)
                     })
-                    
                 }
                 .padding(.leading)
                 .frame(width: 356)
@@ -72,20 +67,42 @@ struct ExploreView: View {
                 Divider()
                 
                 ScrollView {
-                    
-                    VStack {
-                        RoutesOfTheWeek(isRouteSelected: $isRouteSelected)
-                        
-                        NearestRouteCard(tag: $tag)
-                        
-                        QokkaPickCard(tag: $tag)
+                    ZStack {
+                        Color.SheetGray
+                            .ignoresSafeArea()
+                        VStack(spacing: 20) {
+                            Text("Routes of The Week")
+                                .foregroundStyle(.black)
+                                .font(.system(size: 20)).fontWeight(.semibold)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.top)
+                                .frame(width: 361)
+                            
+                            SnapCarouselView(trailingSpace: 10, index: $currentIndex, items: vm.annotations) { routes in
+                                RoutesOfTheWeek(isRouteSelected: $isRouteSelected, routes: routes)
+                            }
+                            .padding(.bottom, 210)
+                            
+                            HStack(spacing: 6) {
+                                ForEach(vm.annotations.indices, id: \.self) { index in
+                                    RoundedRectangle(cornerRadius: currentIndex == index ? 24 : 100, style: .continuous)
+                                        .fill(.black)
+                                        .frame(width: currentIndex == index ? 13 : 5, height: 6)
+                                        .opacity(currentIndex == index ? 1 : 0.2)
+                                        .animation(.spring(), value: currentIndex == index )
+                                }
+                            }
+                            
+                            NearestRouteCard(vm: _vm, tag: $tag, routes: RouteData.routeData)
+                            
+                            QokkaPickCard(vm: _vm, tag: $tag, routes: RouteData.furthrPick)
+                        }
+                        .frame(maxWidth: .infinity)
                     }
-                    .frame(maxWidth: .infinity)
-                    
                 }
                 .scrollIndicators(.hidden)
             }
-        })
+        }
     }
     
 }

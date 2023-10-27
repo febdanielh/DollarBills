@@ -28,28 +28,28 @@ struct PauseRunView: View {
                 VStack(spacing: 20){
                     Text("160")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.black)
                     Text("BPM")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.semibold)
                 }
                 Spacer()
                 VStack(spacing: 20){
                     Text("03:40")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.black)
                     Text("Duration")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.semibold)
                 }
                 Spacer()
                 VStack(spacing: 20){
                     Text("7'54")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.black)
                     Text("Pace")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.semibold)
                 }
                 Spacer()
             }
@@ -58,28 +58,28 @@ struct PauseRunView: View {
                 VStack(spacing: 20){
                     Text("1.2 km")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.black)
                     Text("Distance")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.semibold)
                 }
                 Spacer()
                 VStack(spacing: 20){
                     Text("10 m")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.black)
                     Text("Elevation")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.semibold)
                 }
                 Spacer()
                 VStack(spacing: 20){
                     Text("110 kcal")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.black)
                     Text("Calories")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.semibold)
                 }
                 Spacer()
             }
@@ -91,7 +91,7 @@ struct PauseRunView: View {
                     Image(systemName: "stop.circle.fill")
                         .resizable()
                         .frame(width: 80.56, height: 80.56)
-                        .foregroundColor(.YellowNormal)
+                        .foregroundColor(.redStopButton)
                 })
                 
                 Button(action: {
