@@ -106,7 +106,7 @@ struct RunView: View {
                 
                 Image(systemName: "pause.circle.fill")
                     .resizable()
-                    .frame(width: 81, height: 81)
+                    .frame(width: 80.56, height: 80.56)
                     .foregroundStyle(Color.YellowNormal2)
                     .onTapGesture {
                         vm.currentDisplayScreen = .viewPause

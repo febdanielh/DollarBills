@@ -21,6 +21,7 @@ struct MapView: View {
     @State var welcome = false
     
     @Binding var isRouteSelected: Bool
+    @Binding var selectedRoute: Routes
     
     var body: some View {
         ZStack{
@@ -49,7 +50,7 @@ struct MapView: View {
                     }
                 }
                 
-                RouteCards(selectedAnnotation: $selectedAnnotation, tag: $tag, isRouteSelected: $isRouteSelected)
+                RouteCards(selectedAnnotation: $selectedAnnotation, tag: $tag, isRouteSelected: $isRouteSelected, selectedRoute: $selectedRoute)
             }
         }
         .sheet(isPresented: $isRouteSelected, content: {

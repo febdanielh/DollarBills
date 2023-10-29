@@ -12,6 +12,7 @@ struct QokkaPickCard: View {
     @Binding var tag: Int
     
     let routes: [Routes]
+    @Binding var selectedRoute: Routes
     
     var body: some View {
         HStack {
@@ -61,13 +62,14 @@ struct QokkaPickCard: View {
                                             .frame(width: 140, height: 25, alignment: .leading)
                                     }
                                     
-                                    HStack {
-                                        Text("50m away")
-                                            .font(.system(size: 15))
-                                            .fontWeight(.semibold)
-                                            .padding(.leading)
-                                            .foregroundColor(Color.TextDimGray)
-                                    }
+                                    Spacer()
+//                                    HStack { --> ini kasih kondisi kali ya ama spacer kalo udah allowed location muncul hstack
+//                                        Text("50m away")
+//                                            .font(.system(size: 15))
+//                                            .fontWeight(.semibold)
+//                                            .padding(.leading)
+//                                            .foregroundColor(Color.TextDimGray)
+//                                    }
                                     
                                     // Location Tag
                                     VStack {
@@ -91,6 +93,7 @@ struct QokkaPickCard: View {
                             }
                             .onTapGesture {
                                 vm.currentDisplayScreen = .viewMap
+                                selectedRoute = route
                                 tag = route.tag
                             }
                         }
@@ -107,5 +110,8 @@ struct QokkaPickCard: View {
 }
 
 #Preview {
-    QokkaPickCard(tag: .constant(0), routes: RouteData.furthrPick)
+    QokkaPickCard(
+        tag: .constant(0),
+        routes: RouteData.furthrPick,
+        selectedRoute: .constant(Routes(tag: 0, routeName: "", routeNameDetail: "", routeImage: "", routeCount: 0, latitude: 0.0, longitude: 0.0)))
 }

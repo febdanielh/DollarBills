@@ -31,4 +31,5 @@ extension Color {
     static var emptyProgressBar = Color("EmptyProgressBar")
     
     static let redStopButton = Color("Red Stop Button")
+    static let blueResumeButton = Color("Blue Resume Button")
 }

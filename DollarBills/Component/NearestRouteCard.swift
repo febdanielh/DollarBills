@@ -12,6 +12,7 @@ struct NearestRouteCard: View {
     @Binding var tag: Int
     
     let routes: [Routes]
+    @Binding var selectedRoute: Routes
     
     var body: some View {
         HStack {
@@ -53,13 +54,14 @@ struct NearestRouteCard: View {
                                     
                                     HStack {
                                         Image("marker pin black")
+                                        
                                         Text("\(route.routeName) (\(route.routeNameDetail))")
                                             .font(.title3)
                                             .fontWeight(.semibold)
                                             .frame(width: 140, height: 25, alignment: .leading)
                                     }
                                     
-                                    //                                    Spacer()
+                                    // Spacer()
                                     HStack {
                                         Text("50m away")
                                             .font(.system(size: 15))
@@ -89,6 +91,7 @@ struct NearestRouteCard: View {
                             }
                             .onTapGesture {
                                 vm.currentDisplayScreen = .viewMap
+                                selectedRoute = route
                                 tag = route.tag
                             }
                         }
@@ -105,11 +108,14 @@ struct NearestRouteCard: View {
 }
 
 #Preview {
-    //    NearestRouteCard(tag: .constant(0), routes: RouteData.routeData)
-    AllowLocationRect()
+    NearestRouteCard(
+        tag: .constant(0),
+        routes: RouteData.routeData,
+        selectedRoute: .constant(Routes(tag: 0, routeName: "", routeNameDetail: "", routeImage: "", routeCount: 0, latitude: 0.0, longitude: 0.0)))
 }
 
 struct AllowLocationRect: View {
+    @EnvironmentObject var vm: ViewModel
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
@@ -121,7 +127,7 @@ struct AllowLocationRect: View {
                         .stroke(Color.YellowLight3, style: StrokeStyle(lineWidth: 2, dash: [5, 5]))
                 )
             
-            VStack(spacing: 8) {
+            VStack(spacing: 8){
                 Text("Allow Location")
                     .font(.title3).fontWeight(.semibold)
                     .padding(.vertical)
@@ -134,6 +140,7 @@ struct AllowLocationRect: View {
                     .padding(.bottom)
                 
                 Button(action: {
+                    vm.locationAuthorizationCheck()
                     print("allowed")
                 }, label: {
                     Text("Allow")

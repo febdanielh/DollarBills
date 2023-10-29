@@ -84,26 +84,25 @@ struct PauseRunView: View {
                 Spacer()
             }
             Spacer()
-            HStack(spacing: 40){
-                Button(action: {
-                    print("stop pressed")
-                }, label: {
-                    Image(systemName: "stop.circle.fill")
-                        .resizable()
-                        .frame(width: 80.56, height: 80.56)
-                        .foregroundColor(.redStopButton)
-                })
+            HStack(spacing: 30){
+                Image(systemName: "stop.circle.fill")
+                    .resizable()
+                    .frame(width: 80.56, height: 80.56)
+                    .foregroundColor(.redStopButton)
+                    .onTapGesture {
+                        print("stop pressed")
+                    }
                 
-                Button(action: {
-                    print("play pressed")
-                }, label: {
-                    Image(systemName: "play.circle.fill")
-                        .resizable()
-                        .frame(width: 80.56, height: 80.56)
-                        .foregroundColor(.YellowNormal)
-                })
+                Image(systemName: "play.circle.fill")
+                    .resizable()
+                    .frame(width: 80.56, height: 80.56)
+                    .foregroundColor(.blueResumeButton)
+                    .onTapGesture {
+                        print("resume pressed")
+                        vm.currentDisplayScreen = .viewRun
+                    }
             }
-            Spacer()
+            Spacer().frame(height: 45)
         }
     }
 }

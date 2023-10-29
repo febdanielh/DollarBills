@@ -70,7 +70,7 @@ struct RouteData {
     
     static let furthrPick = [
         Routes(
-            tag: 1,
+            tag: 10,
             routeName: "Bukit Golf",
             routeNameDetail: "BSD, Tangerang",
             routeImage: "bukit golf",
@@ -79,7 +79,7 @@ struct RouteData {
             longitude: 106.652226
         ),
         Routes(
-            tag: 2,
+            tag: 11,
             routeName: "Living World",
             routeNameDetail: "BSD, Tangerang",
             routeImage: "living world",

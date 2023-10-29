@@ -15,20 +15,28 @@ struct RouteCards: View {
     @Binding var tag: Int
     @Binding var isRouteSelected: Bool
     
+    @Binding var selectedRoute: Routes
+    
     var body: some View {
         VStack (alignment: .leading) {
             HStack{
-                VStack (alignment: .leading, spacing: 5){
-                    ForEach(RouteData.routeData, id: \.self) { title in
-                        if tag == title.tag {
-                            Text(title.routeName)
-                                .font(.system(size: 36))
-                                .fontWeight(.bold)
-                                .padding(.top)
-                            Text(title.routeNameDetail)
-                                .font(.system(size: 22))
-                                .fontWeight(.bold)
-                        }
+                VStack (alignment: .leading, spacing: 5) {
+                    if selectedRoute != Routes(tag: 0, routeName: "", routeNameDetail: "", routeImage: "", routeCount: 0, latitude: 0.0, longitude: 0.0) {
+                        Text(selectedRoute.routeName)
+                            .font(.system(size: 36))
+                            .fontWeight(.bold)
+                            .padding(.top)
+                        Text(selectedRoute.routeNameDetail)
+                            .font(.system(size: 22))
+                            .fontWeight(.bold)
+                    } else {
+                        Text(selectedAnnotation.routeName)
+                            .font(.system(size: 36))
+                            .fontWeight(.bold)
+                            .padding(.top)
+                        Text(selectedAnnotation.routeName)
+                            .font(.system(size: 22))
+                            .fontWeight(.bold)
                     }
                 }
                 Spacer()
@@ -94,5 +102,9 @@ struct RouteCards: View {
 
 
 #Preview {
-    RouteCards(selectedAnnotation: .constant(CustomAnnotationAndRoute.customAnnotation[0].annotationModel), tag: .constant(0), isRouteSelected: .constant(true))
+    RouteCards(
+        selectedAnnotation: .constant(CustomAnnotationAndRoute.customAnnotation[0].annotationModel),
+        tag: .constant(0),
+        isRouteSelected: .constant(true),
+        selectedRoute: .constant(Routes(tag: 10, routeName: "", routeNameDetail: "", routeImage: "", routeCount: 0, latitude: 0.0, longitude: 0.0)))
 }

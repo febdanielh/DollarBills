@@ -18,7 +18,7 @@ struct NearestRouteDetailCard: View {
                     VStack {
                         if route.routeCount > 0 {
                             ZStack {
-                                HStack(spacing: 16) {
+                                HStack(spacing: 10) {
                                     // One Image
                                     Image(route.routeImage)
                                         .resizable()
@@ -28,17 +28,19 @@ struct NearestRouteDetailCard: View {
                                     
                                     VStack (alignment: .leading, spacing: 8) {
                                         Text("\(route.routeName) (\(route.routeNameDetail))")
-                                            .font(.system(size: 16))
-                                            .fontWeight(.semibold)
-                                        Text(String(format: "%.1f km", vm.getUserDistance(latitude: route.latitude, longitude: route.longitude)))
-                                            .font(.caption)
-                                            .fontWeight(.semibold)
+                                            .font(.callout).fontWeight(.semibold)
+                                            .multilineTextAlignment(.leading)
+//                                            .frame(width: 180, alignment: .leading)
+                                        
+                                        Text("\(String(format: "%.1f km", vm.getUserDistance(latitude: route.latitude, longitude: route.longitude))) away")
+                                            .font(.footnote).fontWeight(.semibold)
                                             .foregroundColor(Color.TextDimGray)
-                                        Spacer().frame(height: 2)
+                                        
+                                        Spacer()
+                                        
                                         // Location Tag
                                         Text("\(route.routeCount) Route(s)")
-                                            .font(.system(size: 14))
-                                            .fontWeight(.semibold)
+                                            .font(.system(size: 14)).fontWeight(.semibold)
                                             .foregroundColor(.black)
                                             .frame(width: 74, alignment: .center)
                                             .padding(.vertical, 3.6)
@@ -47,8 +49,8 @@ struct NearestRouteDetailCard: View {
                                                 Color.YellowNormal)
                                             .cornerRadius(9.0)
                                     }
-                                    .padding(.vertical, 10)
-                                    .frame(width: 202, alignment: .leading)
+                                    .padding(.vertical, 5)
+                                    .frame(width: 202, height: 107, alignment: .leading)
                                 }
                                 .onTapGesture {
                                     vm.currentDisplayScreen = .viewMap

@@ -109,7 +109,7 @@ struct OnboardingView: View {
 }
 
 #Preview {
-    AnotherOnboardingView()
+    AnotherOnboardingView(shouldShowOnboarding: .constant(true))
 }
 
 struct NewOnboardingView: View {
@@ -141,7 +141,7 @@ struct NewOnboardingView: View {
                         ZStack {
                             Image("bg spruto")
                                 .rotationEffect(Angle(degrees: rotationAngle), anchor: .center)
-                            //                                .transition(.slide)
+                                .transition(.slide)
                             Image("spruto lari")
                         }.padding(.bottom)
                         
@@ -181,6 +181,7 @@ struct AnotherOnboardingView: View {
     @State var currentStep = -1
     @State private var rotationAngle: Double = 0
     @EnvironmentObject var vm: ViewModel
+    @Binding var shouldShowOnboarding: Bool
     
     @State var anotherOnboardSteps = [
         "",
@@ -194,31 +195,52 @@ struct AnotherOnboardingView: View {
     
     @State var visibleTexts: [String] = []
     @State var topLine: String = "Furthr"
-    var furthr: String = "Furthr"
+    @State var fontSize: CGFloat = 20
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            ForEach(visibleTexts, id: \.self) { text in
-                Text(text)
-                    .font(.system(size: text == furthr ? 28 : 20))
-                    .multilineTextAlignment(.leading)
-                    .bold()
-                    .opacity(text == topLine ? 1 : 0.5)
-                    .frame(width: 320, alignment: .leading)
-                    .padding(.horizontal)
+        VStack {
+            VStack(alignment: .leading, spacing: 20) {
+                ForEach(visibleTexts, id: \.self) { text in
+                    Text(text)
+                        .font(.system(size: text == "Furthr" ? 28 : fontSize)).bold()
+                        .multilineTextAlignment(.leading)
+                        .opacity(text == topLine ? 1 : 0.5)
+                        .frame(width: 320, alignment: .leading)
+                        .padding(.horizontal).padding(.horizontal)
+                        .transition(AnyTransition.opacity.animation(.smooth(duration: 0.5)))
+                }
+                Spacer()
+                Image("spruto")
+                Spacer()
             }
-            Spacer()
-            Image("spruto")
+            .padding()
+            
+            if currentStep == anotherOnboardSteps.count - 1 {
+                Button(action: {
+                    vm.currentDisplayScreen = .viewMain
+                    shouldShowOnboarding = false
+                    print("go to main")
+                }) {
+                    Text("Let's Go")
+                        .fontWeight(.semibold)
+                }
+                .buttonStyle(ActiveBlackSheetButton())
+            }
         }
         .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onAppear {
             updateVisibleTexts()
-            if topLine == "Furthr" {
+            if currentStep == 0 {
                 Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { timer in
                     updateVisibleTexts()
+                    if currentStep == anotherOnboardSteps.count - 1 {
+                        timer.invalidate()
+                        visibleTexts = ["Your adventure begins now!"]
+                        topLine = "Your adventure begins now!"
+                        fontSize = 50
+                    }
                 }
-            } else if topLine == "And increase your sense of competitiveness!" {
-                visibleTexts = ["Your adventure begins now!"]
             }
         }
     }

@@ -26,16 +26,15 @@ struct ExploreView: View {
             VStack {
                 // GM & Race
                 HStack {
-                    
+                    Text("Explore")
+                        .font(.title)
+                        .bold()
                     
                     Spacer()
                     
                     Button(action: {
-                        
                     }, label: {
-                        
                         HStack {
-                            
                             Text("User ID")
                                 .frame(width: 125, height: 30)
                                 .font(.system(size: 13)).fontWeight(.semibold)
@@ -49,7 +48,6 @@ struct ExploreView: View {
                         .cornerRadius(200)
                     })
                 }
-                .padding(.leading)
                 .frame(width: 356)
                 
                 // Search Bar
@@ -62,7 +60,7 @@ struct ExploreView: View {
                     .onTapGesture {
                         self.isEditing = true
                     }
-                    .padding([.top, .bottom])
+                    .padding(.bottom)
                     .frame(width: 356)
                 
                 Divider()
@@ -94,9 +92,13 @@ struct ExploreView: View {
                                 }
                             }
                             
-                            NearestRouteCard(vm: _vm, tag: $tag, routes: RouteData.routeData)
+                            if CLLocationManager.authorizationStatus() == .notDetermined {
+                                AllowLocationRect()
+                            } else {
+                                NearestRouteCard(vm: _vm, tag: $tag, routes: RouteData.routeData, selectedRoute: $vm.selectedRoute)
+                            }
                             
-                            QokkaPickCard(vm: _vm, tag: $tag, routes: RouteData.furthrPick)
+                            QokkaPickCard(vm: _vm, tag: $tag, routes: RouteData.furthrPick, selectedRoute: $vm.selectedRoute)
                         }
                         .frame(maxWidth: .infinity)
                     }

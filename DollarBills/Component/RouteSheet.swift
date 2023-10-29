@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import CoreLocation
 
 struct routeSheet: View {
     
@@ -26,6 +27,8 @@ struct routeSheet: View {
     
     @State var isStarted: Bool = false
     
+    var distance: CLLocationDistance = 0
+    
     var body: some View {
         
         VStack() {
@@ -42,22 +45,26 @@ struct routeSheet: View {
                         Button {
                             isRouteSelected = false
                         } label: {
-                            Image("close button yellow")
+                            Image("close black")
                         }
                     }.padding([.top, .horizontal]).padding(.top)
                     
                     HStack (spacing: 20) {
                         
                         HStack{
-                            Image("Flag 2")
+                            Image("Flag 3")
                                 .resizable()
                                 .frame(width: 20, height: 20)
-                            Text("5 km")
+                            
+                            let totalDistance = vm.routes.reduce(0) { $0 + $1.distance }
+                            let totalDistanceKM = totalDistance / 1000
+                            
+                            Text(String(format: "%.2f km", totalDistanceKM))
                                 .modifier(RouteInfo())
                         }
                         
                         HStack{
-                            Image("Clock 2")
+                            Image("Clock 3")
                                 .resizable()
                                 .frame(width: 20, height: 20)
 //                                .fill(Color.black)
@@ -66,7 +73,7 @@ struct routeSheet: View {
                         }
                         
                         HStack{
-                            Image("Running Shoes 2")
+                            Image("Running Shoes 3")
                                 .resizable()
                                 .frame(width: 20, height: 20)
 //                                .fill(Color.black)
@@ -79,11 +86,12 @@ struct routeSheet: View {
                     .padding([.bottom])
                     
                     HStack {
-                        Text("This route is \(vm.distance, specifier: "%.1f")km from you.")
+                        let distance = vm.getUserDistance(latitude: selectedAnnotation.waypoints[0].coordinate.latitude, longitude: selectedAnnotation.waypoints[0].coordinate.longitude)
+                        
+                        Text("This route is \(distance, specifier: "%.2f") km from you.")
                         
                         if (vm.distance > 0.2) {
                             Button(action: {
-                                
                             }, label: {
                                 Text("Get Direction")
                                     .bold()
