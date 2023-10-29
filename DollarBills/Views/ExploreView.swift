@@ -21,6 +21,7 @@ struct ExploreView: View {
     @State var currentIndex: Int = 0
     
     var body: some View {
+        
         NavigationStack {
             VStack {
                 // GM & Race
@@ -103,6 +104,8 @@ struct ExploreView: View {
                 .scrollIndicators(.hidden)
             }
         }
+        .navigationTitle("Explore")
+        
     }
     
 }
