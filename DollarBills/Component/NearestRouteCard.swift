@@ -63,7 +63,7 @@ struct NearestRouteCard: View {
                                     
                                     // Spacer()
                                     HStack {
-                                        Text("50m away")
+                                        Text("\(String(format: "%.1f km", vm.getUserDistance(latitude: route.latitude, longitude: route.longitude))) away")
                                             .font(.system(size: 15))
                                             .fontWeight(.semibold)
                                             .padding(.leading)

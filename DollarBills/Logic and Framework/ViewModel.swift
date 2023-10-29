@@ -18,7 +18,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var currentDisplayScreen: DisplayScreen = .viewMain
     
     @Published var selectedSegment = 0
-    @Published var locationAccess : Bool = true
+    @Published var locationAccess : Bool = false
     
     @Published var routes: [MKRoute] = []
     @Published var cachedDirections: [String: [String]] = [:]
@@ -119,10 +119,18 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var trackingMode = MKUserTrackingMode.none
     @Published var mapType = MKMapType.standard
     @Published var accuracyAuth = false
-    @Published var locationStatus = CLAuthorizationStatus.notDetermined
+    @Published var locationStatus = CLAuthorizationStatus.notDetermined {
+        didSet {
+            if (locationAuth) {
+                locationAccess = true
+            } else {
+                locationAccess = false
+            }
+        }
+    }
     
     // Calculated property that returns true if location permission has been granted.
-    var locationAuth: Bool {locationStatus == .authorizedWhenInUse}
+    var locationAuth: Bool {locationStatus == .authorizedWhenInUse || locationStatus == .authorizedAlways}
     // The MKMapView which displays the map
     var mapView: MKMapView = MKMapView()
     
@@ -160,12 +168,6 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     func showError(_ error: MyError) {
         self.error = error
         self.showErrorAlert = true
-    }
-    
-    func requestLocationAuthorization() {
-        if locationStatus == .notDetermined { // If the location permission status is not yet determined
-            locationManager.requestWhenInUseAuthorization() // Request authorization to access the location in use
-        }
     }
     
     func updateHealthStatus() {
@@ -535,6 +537,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func locationAuthorizationCheck() {
         if locationStatus == .notDetermined { // If the location permission status is not yet determined
+            locationAccess = false
             locationManager.requestWhenInUseAuthorization() // Request authorization to access the location in use
         }
         

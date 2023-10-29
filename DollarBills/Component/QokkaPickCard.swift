@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct QokkaPickCard: View {
     @EnvironmentObject var vm: ViewModel
@@ -63,13 +64,16 @@ struct QokkaPickCard: View {
                                     }
                                     
                                     Spacer()
-//                                    HStack { --> ini kasih kondisi kali ya ama spacer kalo udah allowed location muncul hstack
-//                                        Text("50m away")
-//                                            .font(.system(size: 15))
-//                                            .fontWeight(.semibold)
-//                                            .padding(.leading)
-//                                            .foregroundColor(Color.TextDimGray)
-//                                    }
+                                    
+                                    if (CLLocationManager.authorizationStatus() == .authorizedAlways || CLLocationManager.authorizationStatus() == .authorizedWhenInUse) {
+                                        HStack {
+                                            Text("\(String(format: "%.1f km", vm.getUserDistance(latitude: route.latitude, longitude: route.longitude))) away")
+                                                .font(.system(size: 15))
+                                                .fontWeight(.semibold)
+                                                .padding(.leading)
+                                                .foregroundColor(Color.TextDimGray)
+                                        }
+                                    }
                                     
                                     // Location Tag
                                     VStack {
