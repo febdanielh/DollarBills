@@ -108,7 +108,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     // HealthKit store used to request HealthKit authorization.
     let healthStore = HKHealthStore()
     
-    // HKWorkoutBuilder and HKWorkoutRouteBuilder are used to track workouts in HealthKit.
+    // HKWorkoutBuilder and HKWorkoutRouteBuilder are used to trgettodayack workouts in HealthKit.
     var workoutBuilder: HKWorkoutBuilder?
     var routeBuilder: HKWorkoutRouteBuilder?
     
@@ -258,6 +258,27 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     
+    func getToday() -> Workout? {
+        for i in workouts {
+            print(i.date.formatted(date:.complete, time: .omitted))
+            if (i.date.formatted(date: .complete, time: .omitted) ==
+                "Wednesday, 11 October 2023") {
+                return i
+            }
+        }
+        return nil
+    }
+    
+    func getThatDay(pickedDate: Date) -> Workout? {
+        for i in workouts {
+            print(pickedDate.formatted(date:.complete, time: .omitted))
+            if (i.date.formatted(date: .complete, time: .omitted) ==
+                pickedDate.formatted(date: .complete, time: .omitted)) {
+                return i
+            }
+        }
+        return nil
+    }
     
     // Determines whether a workout should be displayed based on search criteria
     func showWorkout(_ workout: Workout) -> Bool {

@@ -24,7 +24,7 @@ struct SummaryView: View {
                 // Date and See All
                 VStack (alignment: .leading) {
                     
-                    Text("Thursday, 28 Sep")
+                    Text(Date.now.formatted(date: .complete, time: .omitted))
                         .textCase(.uppercase)
                         .font(.caption2)
                         .bold()
@@ -48,178 +48,211 @@ struct SummaryView: View {
                 .frame(width: 357)
                 .padding(.horizontal)
                 
-                // All Image
-                VStack(spacing: 12) {
+                if (VM.getToday() == nil) {
                     
-                    // Image Container
-                    Button (action: {
-                        
-                    }, label: {
-                        RoundedRectangle(cornerRadius: 10)
-                            .foregroundStyle(Color.TextDimGray)
-                            .frame(width: 357, height: 159)
-                    })
+                    Text("No workout has been recorded yet for today!")
                     
-                    // Statistic Container
-                    VStack (alignment: .leading) {
+                } else {
+                    
+                    // All Image
+                    VStack(spacing: 12) {
                         
-                        Text("Foresta Lumino Run")
-                            .font(.title2)
-                            .fontWeight(.bold)
+                        // Image Container
+                        Button (action: {
+                            
+                        }, label: {
+                            Rectangle()
+                                .foregroundStyle(Color.TextDimGray)
+                                .frame(width: 357, height: 159)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                        })
                         
+                        // Statistic Container
+                        VStack (alignment: .leading) {
+                            
+                            Text("Foresta Lumino Run")
+                                .font(.title2)
+                                .fontWeight(.bold)
+                            
+                            HStack {
+                                
+                                Image("Pinpoint")
+                                
+                                Text("BSD, Tangerang")
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                                    .foregroundStyle(Color.YellowDark4)
+                                
+                            }
+                            .frame(height: 5)
+                            .padding(.bottom)
+                            
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text ("\(VM.getToday()!.formattedDistance())")
+                                        .font(.headline)
+                                    Text ("Distance")
+                                        .font(.footnote)
+                                }
+                                
+                                Spacer()
+                                
+                                VStack {
+                                    Text ("\(VM.getToday()!.formattedDuration())")
+                                        .font(.headline)
+                                    Text ("Duration")
+                                        .font(.footnote)
+                                }
+                                
+                                Spacer()
+                                
+                                VStack {
+                                    Text ("\(VM.getToday()!.formattedPace())")
+                                        .font(.headline)
+                                    Text ("Pace")
+                                        .font(.footnote)
+                                }
+                            }
+                            .padding(.trailing)
+                            
+                            VStack (alignment: .leading) {
+                                Text ("Elevation")
+                                    .font(.footnote)
+                                    .fontWeight(.semibold)
+                                Image ("Elevation")
+                            }
+                            .padding([.trailing, .top])
+                            
+                            HStack {
+                                VStack {
+                                    Text ("103-168 bpm")
+                                        .font(.footnote)
+                                        .fontWeight(.semibold)
+                                    Text ("Heart Rate")
+                                        .font(.caption2)
+                                }
+                                
+                                Spacer()
+                                
+                                VStack {
+                                    Text ("400 kcal")
+                                        .font(.footnote)
+                                        .fontWeight(.semibold)
+                                    Text ("Energy")
+                                        .font(.caption2)
+                                }
+                                
+                                Spacer()
+                                
+                                VStack {
+                                    Text ("4123")
+                                        .font(.footnote)
+                                        .fontWeight(.semibold)
+                                    Text ("Steps")
+                                        .font(.caption2)
+                                }
+                            }
+                            .padding([.vertical, .trailing])
+                            
+                        }
+                        .padding(.leading)
+                        
+                        // Content
                         HStack {
                             
-                            Image("Pinpoint")
-                            
-                            Text("BSD, Tangerang")
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
-                                .foregroundStyle(Color.YellowDark4)
-                            
+                            if (itemCount <= 5) {
+                                
+                                ForEach (0 ..< itemCount) { i in
+                                    
+                                    ZStack {
+                                        
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .foregroundStyle(.white)
+                                            .frame(width: 48, height: 48)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 15)
+                                                    .stroke(Color(red: 236/255, green: 234/255, blue: 235/255),
+                                                            lineWidth: 2)
+                                                    .shadow(color: Color(red: 192/255, green: 189/255, blue: 191/255),
+                                                            radius: 3, x: 2, y: 2)
+                                                    .clipShape(
+                                                        RoundedRectangle(cornerRadius: 15)
+                                                    )
+                                                    .shadow(color: Color.white, radius: 3, x: 2, y: 2)
+                                                    .clipShape(
+                                                        RoundedRectangle(cornerRadius: 15)
+                                                    )
+                                            )
+                                        
+                                        if (i % 2 == 0) {
+                                            Image("\(i)Potion")
+                                                .resizable()
+                                                .frame(width: 80, height: 60)
+                                        } else {
+                                            Image("\(i)Rock")
+                                                .resizable()
+                                                .frame(width: 80, height: 60)
+                                        }
+                                        
+                                    }
+                                }
+                                
+                            } else {
+                                
+                                ForEach (0 ..< 5) { i in
+                                    
+                                    ZStack {
+                                        
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .foregroundStyle(.white)
+                                            .frame(width: 48, height: 48)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 15)
+                                                    .stroke(Color(red: 236/255, green: 234/255, blue: 235/255),
+                                                            lineWidth: 2)
+                                                    .shadow(color: Color(red: 192/255, green: 189/255, blue: 191/255),
+                                                            radius: 3, x: 2, y: 2)
+                                                    .clipShape(
+                                                        RoundedRectangle(cornerRadius: 15)
+                                                    )
+                                                    .shadow(color: Color.white, radius: 3, x: 2, y: 2)
+                                                    .clipShape(
+                                                        RoundedRectangle(cornerRadius: 15)
+                                                    )
+                                            )
+                                        
+                                        if (i % 2 == 0) {
+                                            Image("\(i)Potion")
+                                                .resizable()
+                                                .frame(width: 48, height: 36)
+                                        } else {
+                                            Image("\(i)Rock")
+                                                .resizable()
+                                                .frame(width: 48, height: 36)
+                                        }
+                                        
+                                    }
+                                }
+                                
+                                Button(action: {
+                                    
+                                }, label: {
+                                    Text("More")
+                                        .font(.caption2)
+                                        .foregroundStyle(.black)
+                                        .frame(width: 53, height: 21)
+                                        .background(Color.YellowNormal)
+                                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                                })
+                            }
                         }
                         .padding(.bottom)
-                        
-                        HStack() {
-                            VStack(alignment: .leading) {
-                                Text ("5km")
-                                    .font(.headline)
-                                Text ("Distance")
-                                    .font(.footnote)
-                            }
-                            Spacer()
-                            VStack {
-                                Text ("45 min")
-                                    .font(.headline)
-                                Text ("Duration")
-                                    .font(.footnote)
-                            }
-                            Spacer()
-                            VStack {
-                                Text ("8'00\"")
-                                    .font(.headline)
-                                Text ("Pace")
-                                    .font(.footnote)
-                            }
-                        }
-                        .padding(.horizontal, 5)
-                        
-                        VStack (alignment: .leading) {
-                            Text ("Elevation")
-                                .font(.footnote)
-                                .fontWeight(.semibold)
-                            Image ("Elevation")
-                        }
-                        .padding(.top).padding(.horizontal, 5)
-                        
-                        HStack (spacing: 45){
-                            VStack {
-                                Text ("103-168 bpm")
-                                    .font(.footnote)
-                                    .fontWeight(.semibold)
-                                Text ("Heart Rate")
-                                    .font(.caption2)
-                            }
-                            VStack {
-                                Text ("400 kcal")
-                                    .font(.footnote)
-                                    .fontWeight(.semibold)
-                                Text ("Energy")
-                                    .font(.caption2)
-                            }
-                            VStack {
-                                Text ("4123")
-                                    .font(.footnote)
-                                    .fontWeight(.semibold)
-                                Text ("Steps")
-                                    .font(.caption2)
-                            }
-                        }
-                        .padding(.vertical)
-                        .padding(.horizontal, 5)
-                        
                     }
-                    .padding(.horizontal)
-                    
-                    // Content
-                    HStack {
-                        
-                        if (itemCount <= 5) {
-                            
-                                ForEach (0 ..< itemCount) { i in
-                                
-                                ZStack {
-                                    
-                                    RoundedRectangle(cornerRadius: 15)
-                                        .foregroundStyle(.white)
-                                        .frame(width: 48, height: 48)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 15)
-                                                .stroke(Color(red: 236/255, green: 234/255, blue: 235/255),
-                                                        lineWidth: 2)
-                                                .shadow(color: Color(red: 192/255, green: 189/255, blue: 191/255),
-                                                        radius: 3, x: 2, y: 2)
-                                                .clipShape(
-                                                    RoundedRectangle(cornerRadius: 15)
-                                                )
-                                                .shadow(color: Color.white, radius: 3, x: 2, y: 2)
-                                                .clipShape(
-                                                    RoundedRectangle(cornerRadius: 15)
-                                                )
-                                        )
-                                    
-                                    Image("Potion\(i)")
-                                    
-                                }
-                            }
-                            
-                        } else {
-                            
-                            ForEach (0 ..< 3) { i in
-                                
-                                ZStack {
-                                    
-                                    RoundedRectangle(cornerRadius: 15)
-                                        .foregroundStyle(.white)
-                                        .frame(width: 48, height: 48)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 15)
-                                                .stroke(Color(red: 236/255, green: 234/255, blue: 235/255),
-                                                        lineWidth: 2)
-                                                .shadow(color: Color(red: 192/255, green: 189/255, blue: 191/255),
-                                                        radius: 3, x: 2, y: 2)
-                                                .clipShape(
-                                                    RoundedRectangle(cornerRadius: 15)
-                                                )
-                                                .shadow(color: Color.white, radius: 3, x: 2, y: 2)
-                                                .clipShape(
-                                                    RoundedRectangle(cornerRadius: 15)
-                                                )
-                                        )
-                                    
-                                    Image("Potion\(i)")
-                                    
-                                }
-                            }
-                            
-                            Button(action: {
-                                
-                            }, label: {
-                                Text("More")
-                                    .font(.caption2)
-                                    .foregroundStyle(.black)
-                                    .frame(width: 53, height: 21)
-                                    .background(Color.YellowNormal)
-                                    .clipShape(RoundedRectangle(cornerRadius: 15))
-                            })
-                        }
-                        Spacer()
-                    }
-                    .padding([.bottom, .horizontal])
+                    .background(.white)
+                    .cornerRadius(8)
+                    .shadow(color: .black.opacity(0.1), radius: 15, x: 0, y: 4)
+                    .padding([.bottom, .leading, .trailing])
                 }
-                .background(.white)
-                .cornerRadius(10)
-                .shadow(color: .black.opacity(0.1), radius: 15, x: 0, y: 4)
-                .padding([.bottom, .horizontal])
                 
                 // Weekly Perfomance
                 HStack {
@@ -260,6 +293,10 @@ struct SummaryView: View {
                 .frame(width: 354, height: 344)
             }
         }
+        .onAppear {
+            VM.loadWorkouts()
+        }
+        
     }
 }
 
