@@ -10,7 +10,7 @@ import MapKit
 import HealthKit
 
 struct WorkoutMenuView: View {
-    @EnvironmentObject var vm: ViewModelWorkout
+    @EnvironmentObject var vm: ViewModel
     @State var showStartConfirmation = false
     @State var showStopConfirmation = false
     @State var showFilterView = false
@@ -103,6 +103,6 @@ struct WorkoutMenuView: View {
 struct WorkoutMenuView_Previews: PreviewProvider {
     static var previews: some View {
         WorkoutMenuView()
-            .environmentObject(ViewModelWorkout())
+            .environmentObject(ViewModel())
     }
 }
