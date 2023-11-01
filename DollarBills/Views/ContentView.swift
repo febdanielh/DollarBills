@@ -30,7 +30,10 @@ struct ContentView: View {
             case .viewMain:
                 MainView(tag: $vm.tag, isRouteSelected: $vm.isRouteSelected)
                     .onAppear {
-                        removeAll()
+                        vm.removeAll()
+                        
+                        vm.selectedRoute = Routes(tag: 0, routeName: "", routeNameDetail: "", routeImage: "", routeCount: 0, latitude: 0.0, longitude: 0.0)
+                        directions.removeAll()
                     }
             case .viewMap:
                 MapView(selectedAnnotation: $vm.selectedAnnotation, directions: $directions, tag: $vm.tag, isRouteSelected: $vm.isRouteSelected, selectedRoute: $vm.selectedRoute)
@@ -51,14 +54,6 @@ struct ContentView: View {
                     vm.currentDisplayScreen = .viewMain
                 }
         }
-    }
-    
-    func removeAll() {
-        vm.selectedAnnotation = AnnotationModel(routeName: "", waypoints: [])
-        vm.mapView.removeOverlays((vm.mapView.overlays))
-        vm.routes.removeAll()
-        vm.cachedDirections.removeAll()
-        directions.removeAll()
     }
 }
 

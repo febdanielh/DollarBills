@@ -205,7 +205,7 @@ struct AnotherOnboardingView: View {
                         .font(.system(size: text == "Furthr" ? 28 : fontSize)).bold()
                         .multilineTextAlignment(.leading)
                         .opacity(text == topLine ? 1 : 0.5)
-                        .frame(width: 320, alignment: .leading)
+                        .frame(width: 320, alignment: .topLeading)
                         .padding(.horizontal).padding(.horizontal)
                         .transition(AnyTransition.opacity.animation(.smooth(duration: 0.5)))
                 }

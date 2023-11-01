@@ -14,40 +14,34 @@ struct routeSheet: View {
     @EnvironmentObject var vm: ViewModel
     
     @State var showStartConfirmation = false
-    
     @State var showStopConfirmation = false
-    
     @State var showFilterView = false
     
     @Binding var selectedAnnotation: AnnotationModel
-    
     @Binding var directions: [String]
     
     @Binding var isRouteSelected: Bool
-    
     @State var isStarted: Bool = false
+    @Binding var showSheet: Bool
     
     var distance: CLLocationDistance = 0
     
     var body: some View {
-        
-        VStack() {
-            
+        VStack {
             ScrollView {
-                
-                VStack() {
-                    
+                VStack(alignment: .leading) {
                     HStack {
                         Text(selectedAnnotation.routeName)
-                            .font(.title)
+                            .font(.system(size: 30))
                             .bold()
                         Spacer()
                         Button {
+                            showSheet = true
                             isRouteSelected = false
                         } label: {
                             Image("close black")
                         }
-                    }.padding([.top, .horizontal]).padding(.top)
+                    }.padding(.top)
                     
                     HStack (spacing: 20) {
                         
@@ -67,7 +61,6 @@ struct routeSheet: View {
                             Image("Clock 3")
                                 .resizable()
                                 .frame(width: 20, height: 20)
-//                                .fill(Color.black)
                             Text("40 min - 1 hr")
                                 .modifier(RouteInfo())
                         }
@@ -76,7 +69,6 @@ struct routeSheet: View {
                             Image("Running Shoes 3")
                                 .resizable()
                                 .frame(width: 20, height: 20)
-//                                .fill(Color.black)
                             Text("Pavement")
                                 .modifier(RouteInfo())
                         }
@@ -102,8 +94,11 @@ struct routeSheet: View {
                     .frame(width: 356, alignment: .leading)
                     .padding(.bottom)
                     
-                    Divider()
-                        .padding([.bottom, .leading, .trailing])
+                    Text("Elevation")
+                        .font(.system(size: 14)).fontWeight(.medium)
+                        .padding(.vertical)
+                    
+                    Divider().padding(.vertical)
                     
                     Button(action: {
                         showStartConfirmation = true
@@ -112,6 +107,7 @@ struct routeSheet: View {
                         Text("START RUNNING")
                             .bold()
                     })
+                    .frame(maxWidth: .infinity)
                     .buttonStyle(ActiveBlackSheetButton())
                     .padding(.bottom)
                     .fullScreenCover(isPresented: $isStarted, content: {
@@ -128,10 +124,10 @@ struct routeSheet: View {
                         }
                     }
                     .padding([.bottom, .leading, .trailing])
-                }
+                }.padding(.vertical).padding(.horizontal, 24)
             }
         }
-        .presentationDetents([.fraction(0.47)])
+        .presentationDetents([.fraction(0.47), .medium])
         .interactiveDismissDisabled(true)
         .presentationBackgroundInteraction(.enabled)
     }

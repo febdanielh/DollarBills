@@ -25,47 +25,46 @@ struct RunView: View {
     }
     var body: some View {
         VStack(spacing: 20) {
-            HStack {
-                VStack {
-                    Text("- -")
-                        .bold()
-                    Text("BPM")
-                        .font(.system(size: 20)).fontWeight(.medium)
-                }
-                Spacer()
-                VStack {
-                    Text(workout.formattedDuration())
-                        .bold()
-                    Text("Duration")
-                        .font(.system(size: 20)).fontWeight(.medium)
-                }
-                Spacer()
-                VStack {
-                    Text(workout.formattedPace())
-                        .bold()
-                    Text("Pace")
-                        .font(.system(size: 20)).fontWeight(.medium)
+            VStack (alignment: .leading, spacing: 30){
+                HStack(spacing: 17) {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 200)
+                            .fill(Color(red: 1, green: 0.54, blue: 0))
+                            .frame(width: 59, height: 20)
+                        Text("Target")
+                            .font(.system(size: 13)).fontWeight(.semibold)
+                            .foregroundColor(.white)
+                    }
+                    
+                    Text(workout.formattedDistance())
+                        .font(.system(size: 25).weight(.bold))
+                        .foregroundColor(Color(red: 0.18, green: 0.19, blue: 0.2))
+                    
+                }.padding(.bottom, 20)
+                
+                HStack {
+                    VStack(spacing: 17) {
+                        Text("- -")
+                            .font(.title3).fontWeight(.black)
+                        Text("BPM")
+                            .font(.body).fontWeight(.medium)
+                    }
+                    Spacer()
+                    VStack(spacing: 17) {
+                        Text(workout.formattedDuration())
+                            .font(.title3).fontWeight(.black)
+                        Text("Duration")
+                            .font(.body).fontWeight(.medium)
+                    }
+                    Spacer()
+                    VStack(spacing: 17) {
+                        Text(workout.formattedPace())
+                            .font(.title3).fontWeight(.black)
+                        Text("Pace")
+                            .font(.body).fontWeight(.medium)
+                    }
                 }
             }
-            
-            Spacer()
-            
-            HStack {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 200)
-                        .fill(Color(red: 1, green: 0.54, blue: 0))
-                        .frame(width: 59, height: 20)
-                    Text("Target")
-                        .font(.system(size: 13))
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                }
-                
-                Text(workout.formattedDistance())
-                    .font(.system(size: 28).weight(.bold))
-                    .foregroundColor(Color(red: 0.18, green: 0.19, blue: 0.2))
-                
-            }.padding(.bottom, 20)
             
             VStack {
                 if isGif {
@@ -94,6 +93,7 @@ struct RunView: View {
             
             ProgressView(value: progressValue, label: { Text("Your Progress") }, currentValueLabel: { Text("\(Int(progressValue * 100))%") })
                 .progressViewStyle(BarProgressStyle(height: 25.0))
+                .padding(.top)
             
             HStack(spacing: 30){
                 Image(systemName: "stop.circle.fill")

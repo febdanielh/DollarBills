@@ -26,6 +26,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var distance: Double = 0.0
     
     @Published var isRouteSelected: Bool = false
+//    @Published var showSheet: Bool = false
     
     @Published var startPoint: CLLocation = CLLocation(latitude: -6.302230, longitude: 106.652264)
     
@@ -580,10 +581,11 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         print("Added random item: \(randomItem.namaItem)")
     }
     
-    func deselectAll() {
+    func removeAll() {
         selectedAnnotation = AnnotationModel(routeName: "", waypoints: [])
-        cachedDirections.removeAll()
+        mapView.removeOverlays((mapView.overlays))
         routes.removeAll()
+        cachedDirections.removeAll()
     }
 }
 

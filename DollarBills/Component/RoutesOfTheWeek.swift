@@ -28,7 +28,7 @@ struct RoutesOfTheWeek: View {
             
             VStack (alignment: .leading) {
                 // One Image
-                Image(routes.annotationModel.routeName)
+                Image("dummyROTW")
                     .resizable()
                     .frame(width: 334, height: 155)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -60,10 +60,9 @@ struct RoutesOfTheWeek: View {
             vm.currentDisplayScreen = .viewMap
             isRouteSelected = true
         }
-        //        }
     }
 }
 
 #Preview {
-    RoutesOfTheWeek(isRouteSelected: .constant(false), routes: CustomAnnotationAndRoute.customAnnotation[0])
+    RoutesOfTheWeek(isRouteSelected: .constant(false), routes: CustomAnnotationAndRoute.customAnnotation[2])
 }

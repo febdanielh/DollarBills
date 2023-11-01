@@ -77,7 +77,7 @@ struct QokkaPickCard: View {
                                     
                                     // Location Tag
                                     VStack {
-                                        Text("4 Routes")
+                                        Text("\(route.routeCount) Routes")
                                             .font(.system(size: 13))
                                             .fontWeight(.semibold)
                                             .foregroundStyle(Color.black)

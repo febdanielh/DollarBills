@@ -32,7 +32,7 @@ struct RouteData {
         ),
         Routes(
             tag: 2,
-            routeName: "Naturale",
+            routeName: "Nava Park",
             routeNameDetail: "BSD, Tangerang",
             routeImage: "naturale",
             routeCount: 1,
@@ -44,7 +44,7 @@ struct RouteData {
             routeName: "Green Office Park",
             routeNameDetail: "BSD, Tangerang",
             routeImage: "green office park",
-            routeCount: 0,
+            routeCount: 2,
             latitude: -6.301616,
             longitude: 106.651096
         ),

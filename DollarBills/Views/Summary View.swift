@@ -55,10 +55,9 @@ struct SummaryView: View {
                     Button (action: {
                         
                     }, label: {
-                        Rectangle()
+                        RoundedRectangle(cornerRadius: 10)
                             .foregroundStyle(Color.TextDimGray)
                             .frame(width: 357, height: 159)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
                     })
                     
                     // Statistic Container
@@ -78,36 +77,31 @@ struct SummaryView: View {
                                 .foregroundStyle(Color.YellowDark4)
                             
                         }
-                        .frame(height: 5)
                         .padding(.bottom)
                         
-                        HStack {
+                        HStack() {
                             VStack(alignment: .leading) {
                                 Text ("5km")
                                     .font(.headline)
                                 Text ("Distance")
                                     .font(.footnote)
                             }
-                            
                             Spacer()
-                            
                             VStack {
                                 Text ("45 min")
                                     .font(.headline)
                                 Text ("Duration")
                                     .font(.footnote)
                             }
-                            
                             Spacer()
-                            
                             VStack {
-                                Text ("8")
+                                Text ("8'00\"")
                                     .font(.headline)
                                 Text ("Pace")
                                     .font(.footnote)
                             }
                         }
-                        .padding(.trailing)
+                        .padding(.horizontal, 5)
                         
                         VStack (alignment: .leading) {
                             Text ("Elevation")
@@ -115,9 +109,9 @@ struct SummaryView: View {
                                 .fontWeight(.semibold)
                             Image ("Elevation")
                         }
-                        .padding([.trailing, .top])
+                        .padding(.top).padding(.horizontal, 5)
                         
-                        HStack {
+                        HStack (spacing: 45){
                             VStack {
                                 Text ("103-168 bpm")
                                     .font(.footnote)
@@ -125,9 +119,6 @@ struct SummaryView: View {
                                 Text ("Heart Rate")
                                     .font(.caption2)
                             }
-                            
-                            Spacer()
-                            
                             VStack {
                                 Text ("400 kcal")
                                     .font(.footnote)
@@ -135,9 +126,6 @@ struct SummaryView: View {
                                 Text ("Energy")
                                     .font(.caption2)
                             }
-                            
-                            Spacer()
-                            
                             VStack {
                                 Text ("4123")
                                     .font(.footnote)
@@ -146,17 +134,18 @@ struct SummaryView: View {
                                     .font(.caption2)
                             }
                         }
-                        .padding([.vertical, .trailing])
+                        .padding(.vertical)
+                        .padding(.horizontal, 5)
                         
                     }
-                    .padding(.leading)
+                    .padding(.horizontal)
                     
                     // Content
                     HStack {
                         
                         if (itemCount <= 5) {
                             
-                            ForEach (0 ..< itemCount) { i in
+                                ForEach (0 ..< itemCount) { i in
                                 
                                 ZStack {
                                     
@@ -185,7 +174,7 @@ struct SummaryView: View {
                             
                         } else {
                             
-                            ForEach (0 ..< 5) { i in
+                            ForEach (0 ..< 3) { i in
                                 
                                 ZStack {
                                     
@@ -223,13 +212,14 @@ struct SummaryView: View {
                                     .clipShape(RoundedRectangle(cornerRadius: 15))
                             })
                         }
+                        Spacer()
                     }
-                    .padding(.bottom)
+                    .padding([.bottom, .horizontal])
                 }
                 .background(.white)
-                .cornerRadius(8)
+                .cornerRadius(10)
                 .shadow(color: .black.opacity(0.1), radius: 15, x: 0, y: 4)
-                .padding([.bottom, .leading, .trailing])
+                .padding([.bottom, .horizontal])
                 
                 // Weekly Perfomance
                 HStack {
