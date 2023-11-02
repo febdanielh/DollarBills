@@ -15,7 +15,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager = CLLocationManager()
     @Published var isPaused = false
-    @Published var currentDisplayScreen: DisplayScreen = .viewOnboard
+    @Published var currentDisplayScreen: DisplayScreen = .viewMain
     @Published var selectedSegment = 0
     @Published var locationAccess : Bool = true
     @Published var routes: [MKRoute] = []
