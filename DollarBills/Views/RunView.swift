@@ -19,10 +19,14 @@ struct RunView: View {
     @Binding var itemCollected: [Items]
     
     @State var isGif: Bool = true
+    @State var showAlert: Bool = false
     
     var progressValue: Double {
         return workout.distance / 500.0
     }
+    
+    @State private var isPaused = false
+    
     var body: some View {
         VStack(spacing: 20) {
             VStack (alignment: .leading, spacing: 30){
@@ -102,6 +106,23 @@ struct RunView: View {
                     .foregroundColor(.redStopButton)
                     .onTapGesture {
                         print("stop pressed")
+                        showAlert = true
+                    }
+                    .alert("Finish?", isPresented: $showAlert) {
+                        Button("Yes") {
+                            Task {
+                                await vm.endWorkout()
+                            }
+                            vm.currentDisplayScreen = .viewMain
+                        }
+                        Button("No", role: .cancel) {
+                            Task {
+                                vm.discardWorkout()
+                            }
+                            vm.currentDisplayScreen = .viewMain
+                        }
+                    } message: {
+                        Text("Are you sure you are finished? You cannot come back to this later")
                     }
                 
                 Image(systemName: "pause.circle.fill")
@@ -109,7 +130,13 @@ struct RunView: View {
                     .frame(width: 80.56, height: 80.56)
                     .foregroundStyle(Color.YellowNormal2)
                     .onTapGesture {
-                        vm.currentDisplayScreen = .viewPause
+                        isPaused.toggle()
+                        if isPaused {
+                            Task {
+                                await vm.pauseWorkout()
+                                vm.currentDisplayScreen = .viewPause
+                            }
+                        }
                     }
             }
         }
