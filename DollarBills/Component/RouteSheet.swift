@@ -12,11 +12,9 @@ import CoreLocation
 struct routeSheet: View {
     
     @EnvironmentObject var vm: ViewModel
-    
     @State var showStartConfirmation = false
     @State var showStopConfirmation = false
     @State var showFilterView = false
-    
     @Binding var selectedAnnotation: AnnotationModel
     @Binding var directions: [String]
     
@@ -107,6 +105,11 @@ struct routeSheet: View {
                         Text("START RUNNING")
                             .bold()
                     })
+                    .onTapGesture {
+                        Task {
+                            await vm.startWorkout(type: .running)
+                        }
+                    }
                     .frame(maxWidth: .infinity)
                     .buttonStyle(ActiveBlackSheetButton())
                     .padding(.bottom)

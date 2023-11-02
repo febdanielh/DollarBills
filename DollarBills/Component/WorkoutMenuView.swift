@@ -67,28 +67,28 @@ struct WorkoutMenuView: View {
 
             Divider().frame(height: 50)
             
-            Menu {
-                Picker("Date", selection: $vm.workoutDate) {
-                    Text("All")
-                        .tag(nil as WorkoutDate?)
-                    ForEach(WorkoutDate.allCases.reversed(), id: \.self) { type in
-                        Text(type.rawValue)
-                            .tag(type as WorkoutDate?)
-                    }
-                }
-                .pickerStyle(.menu)
-                
-                Text("Filter Workouts")
-            }
-            label: {
-                if vm.loadingWorkouts {
-                    ProgressView()
-                        .frame(width: 50, height: 50)
-                } else if !vm.workouts.isEmpty {
-                    Image(systemName: "line.3.horizontal.decrease.circle" + (vm.workoutDate == nil ? "" : ".fill"))
-                        .frame(width: 50, height: 50)
-                }
-            }
+//            Menu {
+//                Picker("Date", selection: $vm.workoutDate) {
+//                    Text("All")
+//                        .tag(nil as WorkoutDate?)
+//                    ForEach(WorkoutDate.allCases.reversed(), id: \.self) { type in
+//                        Text(type.rawValue)
+//                            .tag(type as WorkoutDate?)
+//                    }
+//                }
+//                .pickerStyle(.menu)
+//                
+//                Text("Filter Workouts")
+//            }
+//            label: {
+//                if vm.loadingWorkouts {
+//                    ProgressView()
+//                        .frame(width: 50, height: 50)
+//                } else if !vm.workouts.isEmpty {
+//                    Image(systemName: "line.3.horizontal.decrease.circle" + (vm.workoutDate == nil ? "" : ".fill"))
+//                        .frame(width: 50, height: 50)
+//                }
+//            }
 //            Divider().frame(height: SIZE)
             
         }

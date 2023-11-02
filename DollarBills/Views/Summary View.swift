@@ -15,6 +15,13 @@ struct SummaryView: View {
     var itemCount: Int = 6
     @State var progress = 0.1
     
+    @State private var durationFormatter: DateComponentsFormatter = {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.zeroFormattingBehavior = .pad
+        return formatter
+    }()
+
     var body: some View {
         
         ScrollView {

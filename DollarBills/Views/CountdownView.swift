@@ -41,6 +41,9 @@ struct CountdownView: View {
                 Text("")
                     .onAppear(perform: {
                         vm.currentDisplayScreen = .viewRun
+                        Task {
+                            await vm.startWorkout(type: .running)
+                        }
                     })
             }
         }

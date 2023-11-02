@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct PauseRunView: View {
+    let workout: Workout
+    
     @EnvironmentObject var vm: ViewModel
     @Binding var directions: [String]
+    @State private var isPaused = false
+    @State private var showAlert = false
     
     var body: some View {
         VStack(spacing: 40){
@@ -26,7 +30,7 @@ struct PauseRunView: View {
             HStack(){
                 Spacer()
                 VStack(spacing: 20){
-                    Text("160")
+                    Text(String(workout.heartRate))
                         .font(.system(size: 20))
                         .fontWeight(.black)
                     Text("BPM")
@@ -35,7 +39,7 @@ struct PauseRunView: View {
                 }
                 Spacer()
                 VStack(spacing: 20){
-                    Text("03:40")
+                    Text(workout.formattedDuration())
                         .font(.system(size: 20))
                         .fontWeight(.black)
                     Text("Duration")
@@ -44,7 +48,7 @@ struct PauseRunView: View {
                 }
                 Spacer()
                 VStack(spacing: 20){
-                    Text("7'54")
+                    Text(workout.formattedPace())
                         .font(.system(size: 20))
                         .fontWeight(.black)
                     Text("Pace")
@@ -56,7 +60,7 @@ struct PauseRunView: View {
             HStack(){
                 Spacer()
                 VStack(spacing: 20){
-                    Text("1.2 km")
+                    Text(workout.formattedDistance())
                         .font(.system(size: 20))
                         .fontWeight(.black)
                     Text("Distance")
@@ -65,7 +69,7 @@ struct PauseRunView: View {
                 }
                 Spacer()
                 VStack(spacing: 20){
-                    Text("10 m")
+                    Text(workout.formattedElevation())
                         .font(.system(size: 20))
                         .fontWeight(.black)
                     Text("Elevation")
@@ -74,7 +78,7 @@ struct PauseRunView: View {
                 }
                 Spacer()
                 VStack(spacing: 20){
-                    Text("110 kcal")
+                    Text(String(workout.calorieBurned))
                         .font(.system(size: 20))
                         .fontWeight(.black)
                     Text("Calories")
@@ -84,6 +88,7 @@ struct PauseRunView: View {
                 Spacer()
             }
             Spacer()
+            
             HStack(spacing: 30){
                 Image(systemName: "stop.circle.fill")
                     .resizable()
@@ -91,6 +96,23 @@ struct PauseRunView: View {
                     .foregroundColor(.redStopButton)
                     .onTapGesture {
                         print("stop pressed")
+                        showAlert = true
+                    }
+                    .alert("Finish?", isPresented: $showAlert) {
+                        Button("Yes") {
+                            Task {
+                                await vm.endWorkout()
+                            }
+                            vm.currentDisplayScreen = .viewMain
+                        }
+                        Button("No", role: .cancel) {
+                            Task {
+                                vm.discardWorkout()
+                            }
+                            vm.currentDisplayScreen = .viewMain
+                        }
+                    } message: {
+                        Text("Are you sure you are finished? You cannot come back to this later")
                     }
                 
                 Image(systemName: "play.circle.fill")
@@ -98,8 +120,13 @@ struct PauseRunView: View {
                     .frame(width: 80.56, height: 80.56)
                     .foregroundColor(.blueResumeButton)
                     .onTapGesture {
-                        print("resume pressed")
-                        vm.currentDisplayScreen = .viewRun
+                        isPaused.toggle()
+                        if !isPaused {
+                            Task {
+                                await vm.resumeWorkout()
+                                vm.currentDisplayScreen = .viewRun
+                            }
+                        }
                     }
             }
             Spacer().frame(height: 45)
@@ -107,6 +134,6 @@ struct PauseRunView: View {
     }
 }
 
-#Preview {
-    PauseRunView(directions: .constant([]))
-}
+//#Preview {
+//    PauseRunView(workout: workout, directions: .constant([]))
+//}
