@@ -13,23 +13,19 @@ import SwiftUI
 @MainActor//location dan map
 class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
-    private var locationManager: CLLocationManager = CLLocationManager()
-    
+    var locationManager: CLLocationManager = CLLocationManager()
+    @Published var isPaused = false
     @Published var currentDisplayScreen: DisplayScreen = .viewMain
-    
     @Published var selectedSegment = 0
-    @Published var locationAccess : Bool = false
-    
+    @Published var locationAccess : Bool = true
     @Published var routes: [MKRoute] = []
     @Published var cachedDirections: [String: [String]] = [:]
-    @Published var tag: Int = 0
     @Published var distance: Double = 0.0
-    
+    @Published var tag: Int = 0
     @Published var isRouteSelected: Bool = false
 //    @Published var showSheet: Bool = false
     
     @Published var startPoint: CLLocation = CLLocation(latitude: -6.302230, longitude: 106.652264)
-    
     @Published var annotations = CustomAnnotationAndRoute.customAnnotation
     @Published var selectedAnnotation: AnnotationModel = AnnotationModel(routeName: "", waypoints: [])
     {
@@ -77,46 +73,40 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     // Workout Tracking
-    @Published var recording = false // Whether or not workout tracking is currently active
-    @Published var activityType = HKWorkoutActivityType.running // The type of workout followed
-    @Published var startDate = Date() // The tracking start date/time
-    @Published var meters = 0.0 // The distance traveled during tracking
+    @Published var recording = false
+    @Published var activityType = HKWorkoutActivityType.running
+    @Published var startDate = Date()
+    @Published var meters = 0.0
+    @Published var heartRate = 40
+    @Published var calorieBurned: Double = 0.0
+    @Published var totalElapsedTime: TimeInterval = 0.0
+    @Published var timer: Timer?
+    @Published var lastDateObserved: Date?
+    @Published var currentAccumulatedTime: TimeInterval = 0.0
     
-    
-    // Calculated property that returns an MKPolyline based on the locations array
     var polyline: MKPolyline {
         let coords = locations.map(\.coordinate)
         return MKPolyline(coordinates: coords, count: coords.count)
     }
     
-    // Calculated property that returns a new training object based on the current state of the ViewModel.
     var newWorkout: Workout {
-        let duration = Date.now.timeIntervalSince(startDate)
-        return Workout(activityType: activityType, polyline: polyline, locations: locations, date: startDate, duration: duration)
+        return Workout(activityType: activityType, polyline: polyline, locations: locations, date: startDate, duration: totalElapsedTime, heartRate: heartRate, calorieBurned: calorieBurned)
     }
     
-    
-    // HealthKit-related properties and permissions
     @Published var showPermissionsView = false
     @Published var healthUnavailable = !HKHelper.available
     @Published var healthStatus = HKAuthorizationStatus.notDetermined
     @Published var healthLoading = false
     
-    // Calculated property that returns true if HealthKit permission has been granted
     var healthAuth: Bool { healthStatus == .sharingAuthorized }
     
-    // HealthKit store used to request HealthKit authorization.
     let healthStore = HKHealthStore()
     
     // HKWorkoutBuilder and HKWorkoutRouteBuilder are used to trgettodayack workouts in HealthKit.
     var workoutBuilder: HKWorkoutBuilder?
     var routeBuilder: HKWorkoutRouteBuilder?
     
-    // Cancelable used to cancel the timer that updates the elapsed time of the workout while recording.
-    var timer: Cancellable?
-    
     // Map
-    // Map-related properties
     @Published var trackingMode = MKUserTrackingMode.none
     @Published var mapType = MKMapType.standard
     @Published var accuracyAuth = false
@@ -130,38 +120,21 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     
-    // Calculated property that returns true if location permission has been granted.
-    var locationAuth: Bool {locationStatus == .authorizedWhenInUse || locationStatus == .authorizedAlways}
-    // The MKMapView which displays the map
+    var locationAuth: Bool {locationStatus == .authorizedWhenInUse}
     var mapView: MKMapView = MKMapView()
     
     // Workouts
-    // The table of workouts that the user has completed.
     @Published var workouts = [Workout]()
-    
-    // The array of workouts that were filtered based on workoutType and workoutDate.
-    @Published var filteredWorkouts = [Workout]()
-    
-    // Boolean that indicates whether the workouts are loading.
     @Published var loadingWorkouts = true
     
-    // The currently selected workout
     @Published var selectedWorkout: Workout? { didSet {
         updatePolylines()
-        filterWorkouts()
-    }}
-    
-    // The currently selected workout date filter.
-    @Published var workoutDate: WorkoutDate? { didSet {
-        filterWorkouts()
     }}
     
     // View
     @Published var degrees = 0.0
     @Published var scale = 1.0
     @Published var pulse = false
-    @Published var showInfoView = false
-    @Published var showAccountView = false
     
     // Errors
     @Published var showErrorAlert = false
@@ -171,20 +144,26 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         self.showErrorAlert = true
     }
     
+    func requestLocationAuthorization() {
+        if locationStatus == .notDetermined {
+            locationManager.requestWhenInUseAuthorization()
+        }
+    }
+    
     func updateHealthStatus() {
-        healthStatus = HKHelper.status // Updates permission status to access health data
-        if !healthAuth {// If the application does not yet have authorization to access health data
-            showPermissionsView = true // Shows the permission view to access health data
+        healthStatus = HKHelper.status
+        if !healthAuth {
+            showPermissionsView = true
         }
     }
     
     func requestHealthAuthorization() async {
-        healthLoading = true // Enable loading spinner
-        healthStatus = await HKHelper.requestAuth() // Wait for authorization to access health data
-        if healthAuth { // If the application has permission to access health data
-            loadWorkouts() // Load user history data
+        healthLoading = true
+        healthStatus = await HKHelper.requestAuth()
+        if healthAuth {
+            loadWorkouts()
         }
-        healthLoading = false // Disable loading spinner
+        healthLoading = false
     }
     
     // MARK: - Workouts
@@ -193,7 +172,6 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     func loadWorkouts() {
         loadingWorkouts = true
         HKHelper.loadWorkouts { hkWorkouts in
-            // Check if any workouts have been returned
             guard !hkWorkouts.isEmpty else {
                 DispatchQueue.main.async {
                     self.loadingWorkouts = false
@@ -218,24 +196,16 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
                 // Load workout coordinates from HealthKit API
                 HKHelper.loadWorkoutRoute(hkWorkout: hkWorkout) { locations in
                     tally += 1
-                    // Check if any coordinates were returned
                     if !locations.isEmpty {
-                        // Create a new Workout object from the workout data and coordinates
                         if let workout = Workout(hkWorkout: hkWorkout, locations: locations) {
                             DispatchQueue.main.async {
                                 self.workouts.append(workout)
-                                if self.showWorkout(workout) {
-                                    self.filteredWorkouts.append(workout)
-                                    self.mapView.addOverlay(workout, level: .aboveRoads)
-                                }
                             }
                         }
                     }
                     // Check if all workouts have been processed
                     if tally == hkWorkouts.count {
                         DispatchQueue.main.async {
-                            // If all workouts have been processed, stop the loading animation
-                            
                             self.loadingWorkouts = false
                         }
                     }
@@ -328,35 +298,38 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     
-    func zoomTo(_ overlay: MKOverlay) {
-        var bottomPadding = 20.0
-        // Add additional padding if a workout is selected
-        if selectedWorkout != nil {
-            bottomPadding += 160
-        }
-        // Add additional padding if recording is active
-        if recording {
-            bottomPadding += 160
-        }
-        // Sets the padding for zooming and zooms to the specified overlay
-        let padding = UIEdgeInsets(top: 20, left: 20, bottom: bottomPadding, right: 20)
-        mapView.setVisibleMapRect(overlay.boundingMapRect, edgePadding: padding, animated: true)
-        mapView.isUserInteractionEnabled = true
-    }
     
     // MARK: - Workout Tracking // add the heart data recovery part
     
+    func startTotalElapsedTimeTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+            Task {
+                await self?.updateTotalElapsedTime()
+            }
+        }
+    }
+
+    
+    private func updateTotalElapsedTime() {
+        if let currentDate = lastDateObserved {
+            let currentAccumulatedTime = Date().timeIntervalSince(currentDate)
+            totalElapsedTime += currentAccumulatedTime
+            lastDateObserved = Date()
+        }
+    }
+    
     func startWorkout(type: HKWorkoutActivityType) async {
+        
         updateHealthStatus()
         guard healthAuth else { return }
         
-        let config = HKWorkoutConfiguration() // create a configuration for the workout
-        config.activityType = type // sets the activity type based on the input parameter
-        config.locationType = .outdoor // sets the location type to outdoor
-        //        self.type = WorkoutType(hkType: type) // sets the workout type to the appropriate type
+        let config = HKWorkoutConfiguration()
+        config.activityType = type
+        config.locationType = .outdoor
         
-        routeBuilder = HKWorkoutRouteBuilder(healthStore: healthStore, device: .local()) // create a route builder to capture GPS data
-        workoutBuilder = HKWorkoutBuilder(healthStore: healthStore, configuration: config, device: .local()) // create a workout builder to capture workout data
+        routeBuilder = HKWorkoutRouteBuilder(healthStore: healthStore, device: .local())
+        workoutBuilder = HKWorkoutBuilder(healthStore: healthStore, configuration: config, device: .local())
+        
         do {
             try await workoutBuilder?.beginCollection(at: .now)
         } catch {
@@ -364,31 +337,71 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
             return
         }
         
-        
+        do {
+            let heartRateType = HKQuantityType.quantityType(forIdentifier: .heartRate)!
+            let heartRateQuery = HKAnchoredObjectQuery(type: heartRateType, predicate: nil, anchor: nil, limit: HKObjectQueryNoLimit) { (query, samples, deletedObjects, anchor, error) in
+                if let error = error {
+                    print("Error retrieving heart rate samples: \(error.localizedDescription)")
+                    return
+                }
+
+                guard let samples = samples as? [HKQuantitySample] else { return }
+
+                for sample in samples {
+                    let heartRateUnit = HKUnit(from: "count/min")
+                    let heartRate = sample.quantity.doubleValue(for: heartRateUnit)
+                    DispatchQueue.main.async { [weak self] in
+                        self?.heartRate = Int(heartRate)
+                    }
+                }
+            }
+
+            healthStore.execute(heartRateQuery)
+        } catch {
+            print("Error retrieving heart rate: \(error.localizedDescription)")
+        }
+
         locationManager.allowsBackgroundLocationUpdates = true
-        updateTrackingMode(.followWithHeading) // updates the map view to track the user's location
+        updateTrackingMode(.followWithHeading)
+                
+        lastDateObserved = Date()
+        totalElapsedTime = 0
         
-        
-        startDate = .now // set the start date of the workout
-        
-        // Dispatch the update to recording on the main thread
+        startTotalElapsedTimeTimer()
+
         DispatchQueue.main.async { [weak self] in
             self?.recording = true
         }
         
-        timer = Timer.publish(every: 0.5, on: .main, in: .default).autoconnect().sink { _ in // creates a timer to pulse the UI every 0.5 seconds
-            self.pulse.toggle()
-        }
-        
     }
     
+    func pauseWorkout() async {
+        isPaused = true
+        if isPaused {
+            locationManager.stopUpdatingLocation()
+            timer?.invalidate()
+            timer = nil
+            lastDateObserved = Date()
+        } else {
+            locationManager.startUpdatingLocation()
+        }
+    }
     
-    func discardWorkout() { // disallow background location updates
+    func resumeWorkout() async {
+        isPaused = false
+        locationManager.startUpdatingLocation()
+        
+        lastDateObserved = Date()
+        startTotalElapsedTimeTimer()
+    }
+
+    func discardWorkout() {
         locationManager.allowsBackgroundLocationUpdates = false
         
-        timer?.cancel()
+        timer?.invalidate()
         recording = false
         
+        heartRate = 0
         meters = 0
         locations = []
         updatePolylines()
@@ -401,36 +414,34 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     func endWorkout() async {
         locationManager.allowsBackgroundLocationUpdates = false
         
-        timer?.cancel()
+        timer?.invalidate()
         recording = false
         
         let workout = newWorkout
         if workout.activityType == .running {
             workouts.append(workout)
             updatePolylines()
-            filterWorkouts()
-            selectWorkout(workout)
         }
         
+        heartRate = 0
         meters = 0
         locations = []
-        
+
         do {
-            try await workoutBuilder?.endCollection(at: .now) // ends training data collection
-            if let workout = try await workoutBuilder?.finishWorkout() { // finish workout
-                try await routeBuilder?.finishRoute(with: workout, metadata: nil) // finish GPS data
+            try await workoutBuilder?.endCollection(at: .now)
+            if let workout = try await workoutBuilder?.finishWorkout() {
+                try await routeBuilder?.finishRoute(with: workout, metadata: nil)
             }
             
         } catch {
-            showError(.endingWorkout) // show an error message if there is a problem completing the workout
+            showError(.endingWorkout)
         }
     }
     
     // MARK: - Map
     func updateTrackingMode(_ newMode: MKUserTrackingMode) {
-        // Update map view user tracking mode
         mapView.setUserTrackingMode(newMode, animated: true)
-        // Animates the tracking mode change with a scaling effect
+        
         if trackingMode == .followWithHeading || newMode == .followWithHeading {
             withAnimation(.easeInOut(duration: 0.25)) {
                 scale = 0
@@ -453,23 +464,14 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func updatePolylines() {
-        // Remove existing overlays and add updated polylines to the map view
+        
         mapView.removeOverlays(mapView.overlays(in: .aboveLabels) /*?? []*/)
         mapView.addOverlay(polyline, level: .aboveLabels)
-        // Add the polyline of the selected workout, if applicable
+        
         if let selectedWorkout {
             mapView.addOverlay(selectedWorkout.polyline, level: .aboveLabels)
         }
     }
-    
-    @objc func handleTap(tap: UITapGestureRecognizer) {
-        // Select the workout closest to the selected location on the map view
-        /*guard*/ let mapView = mapView /*else { return }*/
-        let tapPoint = tap.location(in: mapView)
-        let tapCoord = mapView.convert(tapPoint, toCoordinateFrom: mapView)
-        selectClosestWorkout(to: tapCoord)
-    }
-    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -515,14 +517,14 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         print("eh masuk :")
         print(region.identifier)
-        //        print("sisa:")
-        //        print(locationManager?.monitoredRegions)
+        print("sisa:")
         
         addRandomItem()
         print(itemCollected)
         print("nambah item")
         
         removeAnn(region: region)
+        
     }
     
     func removeAnn (region: CLRegion)  {

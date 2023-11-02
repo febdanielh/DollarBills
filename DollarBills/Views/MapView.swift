@@ -25,6 +25,7 @@ struct MapView: View {
     @Binding var selectedRoute: Routes
     
     var body: some View {
+        
         ZStack{
             VStack{
                 ZStack {
