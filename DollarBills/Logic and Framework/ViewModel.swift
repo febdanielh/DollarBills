@@ -23,6 +23,8 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var distance: Double = 0.0
     @Published var tag: Int = 0
     @Published var isRouteSelected: Bool = false
+//    @Published var showSheet: Bool = false
+    
     @Published var startPoint: CLLocation = CLLocation(latitude: -6.302230, longitude: 106.652264)
     @Published var annotations = CustomAnnotationAndRoute.customAnnotation
     @Published var selectedAnnotation: AnnotationModel = AnnotationModel(routeName: "", waypoints: [])
@@ -36,8 +38,10 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     
+    @Published var selectedRoute: Routes = Routes(tag: 0, routeName: "", routeNameDetail: "", routeImage: "", routeCount: 0, latitude: 0.0, longitude: 0.0)
+    
     @Published var locations: [CLLocation] = []
-    //    @Published var counter: Int = 0
+    
     @Published var itemCollected: [Items] = []
     
     // MARK: - Properties
@@ -105,7 +109,15 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var trackingMode = MKUserTrackingMode.none
     @Published var mapType = MKMapType.standard
     @Published var accuracyAuth = false
-    @Published var locationStatus = CLAuthorizationStatus.notDetermined
+    @Published var locationStatus = CLAuthorizationStatus.notDetermined {
+        didSet {
+            if (locationAuth) {
+                locationAccess = true
+            } else {
+                locationAccess = false
+            }
+        }
+    }
     
     var locationAuth: Bool {locationStatus == .authorizedWhenInUse}
     var mapView: MKMapView = MKMapView()
@@ -363,6 +375,10 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     
+    func getUserDistance (latitude: CLLocationDegrees, longitude: CLLocationDegrees) -> Double {
+        return (locationManager.location?.distance(from: CLLocation(latitude: latitude, longitude: longitude)))!/1000
+    }
+    
     func updatePolylines() {
         
         mapView.removeOverlays(mapView.overlays(in: .aboveLabels) /*?? []*/)
@@ -461,6 +477,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func locationAuthorizationCheck() {
         if locationStatus == .notDetermined { // If the location permission status is not yet determined
+            locationAccess = false
             locationManager.requestWhenInUseAuthorization() // Request authorization to access the location in use
         }
         
@@ -503,10 +520,11 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         print("Added random item: \(randomItem.namaItem)")
     }
     
-    func deselectAll() {
+    func removeAll() {
         selectedAnnotation = AnnotationModel(routeName: "", waypoints: [])
-        cachedDirections.removeAll()
+        mapView.removeOverlays((mapView.overlays))
         routes.removeAll()
+        cachedDirections.removeAll()
     }
 }
 

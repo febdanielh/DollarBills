@@ -7,13 +7,14 @@
 
 import SwiftUI
 
-let NAME = "BitRun"
+let NAME = "Furthr"
 @main
 struct DollarBillsApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(ViewModel())
+                .preferredColorScheme(.light)
         }
     }
 }

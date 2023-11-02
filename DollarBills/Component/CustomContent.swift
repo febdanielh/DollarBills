@@ -26,8 +26,8 @@ struct FillButton: ButtonStyle {
 struct ActiveBlackButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .frame(width: 360, height: 53)
-            .foregroundColor(.primaryColor02)
+            .frame(width: 336, height: 50)
+            .foregroundColor(.white)
             .background(Color.black)
             .clipShape(RoundedRectangle(cornerRadius: 26))
     }
@@ -37,7 +37,7 @@ struct ActiveBlackButtonDuel: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(width: 326, height: 60)
-            .foregroundColor(.primaryColor02)
+            .foregroundColor(.YellowLight1)
             .background(Color.black)
             .clipShape(RoundedRectangle(cornerRadius: 25))
     }
@@ -57,7 +57,7 @@ struct ActiveBlackSheetButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(width: 306, height: 60)
-            .foregroundColor(.primaryColor02)
+            .foregroundColor(.white)
             .background(Color.black)
             .clipShape(RoundedRectangle(cornerRadius: 25))
     }
@@ -109,13 +109,13 @@ struct BarProgressStyle: ProgressViewStyle {
                     .font(labelFontStyle)
                 
                 RoundedRectangle(cornerRadius: 12.0)
-                    .fill(Color(red: 1, green: 0.96, blue: 0.75))
+                    .fill(Color.emptyProgressBar)
                     .frame(height: height)
                     .frame(width: geometry.size.width)
                     .overlay(alignment: .leading) {
                         
                         RoundedRectangle(cornerRadius: 12.0)
-                            .fill(Color(red: 1, green: 0.87, blue: 0.2))
+                            .fill(Color.YellowNormal2)
                             .frame(width: geometry.size.width * min(progress, 1.0))
                             .overlay {
                                 if let currentValueLabel = configuration.currentValueLabel {

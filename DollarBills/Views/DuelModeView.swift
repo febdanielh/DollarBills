@@ -58,9 +58,6 @@ struct DuelModeView: View {
                                 Image("ButoIjo")
                             
                         }
-                        
-                        
-                        
                     }
                     .ignoresSafeArea()
                     

@@ -32,28 +32,28 @@ struct PauseRunView: View {
                 VStack(spacing: 20){
                     Text(String(workout.heartRate))
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.black)
                     Text("BPM")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.semibold)
                 }
                 Spacer()
                 VStack(spacing: 20){
                     Text(workout.formattedDuration())
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.black)
                     Text("Duration")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.semibold)
                 }
                 Spacer()
                 VStack(spacing: 20){
                     Text(workout.formattedPace())
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.black)
                     Text("Pace")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.semibold)
                 }
                 Spacer()
             }
@@ -62,28 +62,28 @@ struct PauseRunView: View {
                 VStack(spacing: 20){
                     Text(workout.formattedDistance())
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.black)
                     Text("Distance")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.semibold)
                 }
                 Spacer()
                 VStack(spacing: 20){
                     Text(workout.formattedElevation())
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.black)
                     Text("Elevation")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.semibold)
                 }
                 Spacer()
                 VStack(spacing: 20){
                     Text(String(workout.calorieBurned))
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.black)
                     Text("Calories")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.semibold)
                 }
                 Spacer()
             }
@@ -133,7 +133,7 @@ struct PauseRunView: View {
                         }
                 })
             }
-            Spacer()
+            Spacer().frame(height: 45)
         }
     }
 }
