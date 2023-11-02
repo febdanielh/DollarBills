@@ -21,10 +21,13 @@ struct LandingPageView: View {
                         NavigationLink {
                             RouteDetailView()
                         } label: {
+                            RoundedRectangle(cornerRadius: 25)
+                                .frame(width: 150, height: 50)
+                                .foregroundStyle(Color.yellow)
                             Text("Mozia Loop")
                         }
-                        .foregroundStyle(Color.yellow)
                         .padding(.top,3)
+                        .buttonStyle(PlainButtonStyle())
                         
                     }
                     

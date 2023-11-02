@@ -25,8 +25,7 @@ struct RunViewPage3: View {
                 Text("00:20,04")
             }
             .fontWeight(.semibold)
-            
-            Spacer()
+        
             
             
             HStack {

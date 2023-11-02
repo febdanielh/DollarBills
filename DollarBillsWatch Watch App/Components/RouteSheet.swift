@@ -49,7 +49,7 @@ struct RouteSheet: View {
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 25)
-                        .frame(width: 175, height: 50)
+                        .frame(width: 155, height: 50)
                         .foregroundStyle(Color.yellow)
                     Text("Start Running")
                         .foregroundStyle(Color.black)
@@ -57,6 +57,7 @@ struct RouteSheet: View {
                 }
             }
             .padding(.top, 8)
+            .buttonStyle(PlainButtonStyle())
 
             
             Spacer()

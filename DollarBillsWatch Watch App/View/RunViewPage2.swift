@@ -12,19 +12,15 @@ struct RunViewPage2: View {
     @State private var ItemReceived = true
     
     var body: some View {
-//        GIFImage()
-        ScrollView {
             VStack {
                 if ItemReceived  {
                     ItemProgress()
                         .frame(width: 10, height: 10, alignment: .topLeading)
-                        .padding(.leading, 30)
-                        .padding(.top, -30)
+                        .padding(.leading, -70)
+                        .padding(.top, -20)
                 }
                 GIFImage()
-                RunViewPage2Directions()
             }
-        }
     }
 }
 

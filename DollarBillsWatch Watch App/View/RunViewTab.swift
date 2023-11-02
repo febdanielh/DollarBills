@@ -14,7 +14,7 @@ struct RunViewTab: View {
             TabView(selection: $currentPage) {
                 RunViewPage1()
                     .tag(0)
-                RunViewPage2()
+                VerticalTabView()
                     .tag(1)
                 RunViewPage3()
                     .tag(2)

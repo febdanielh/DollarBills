@@ -11,6 +11,7 @@ struct RunViewPage4: View {
     var body: some View {
         MapView()
             .ignoresSafeArea()
+            .allowsHitTesting(false)
     }
 }
 
