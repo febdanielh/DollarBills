@@ -1,16 +1,16 @@
 //
-//  LeaderboardView.swift
-//  CobaInterface
+//  LeaderboardDetailView.swift
+//  DollarBills
 //
-//  Created by Elvis Susanto on 20/10/23.
+//  Created by Febrian Daniel on 03/11/23.
 //
 
-import Foundation
 import SwiftUI
 
-struct LeaderboardView: View {
+struct LeaderboardDetailView: View {
+    @EnvironmentObject var vm: ViewModel
     
-    @EnvironmentObject var VM : ViewModel
+    let users = [ "Angelica", "Elvis", "Febrian", "Reza", "You", "Daniel", "Abbiyu"]
     
     var body: some View {
         ScrollView {
@@ -20,7 +20,7 @@ struct LeaderboardView: View {
                         .font(.title3).fontWeight(.semibold)
                     Spacer()
                     NavigationLink {
-                        LeaderboardDetailView()
+                        EmptyView()
                     } label: {
                         Text("See All >")
                             .font(.subheadline).fontWeight(.semibold)
@@ -58,38 +58,42 @@ struct LeaderboardView: View {
                 
                 Spacer().frame(height: 100)
                 
-                ZStack {
-                    Rectangle()
-                        .frame(height: 61)
-                        .foregroundColor(Color.YellowLight23)
-                    HStack {
-                        Image("leaderboard triangle")
-                        Text("You")
-                            .font(.body).bold()
-                            .padding(.leading, 15)
-                        Spacer()
-                        HStack {
-                            Image("coin")
-                            Text("15000")
-                                .font(.headline)
-                                .foregroundColor(Color.YellowDark26)
-                        }
-                        .frame(width: 151, height: 42)
-                        .background(Color.YellowLight2)
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                        .overlay(
+                VStack {
+                    ForEach(users, id: \.self) { i in
+                        ZStack {
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.YellowLight22)
-                        )
-                        .cornerRadius(8)
-                        .padding(.trailing, 30)
+                                .frame(height: 61)
+                                .foregroundColor(Color.YellowLight23)
+                            HStack {
+                                Image("full triangle")
+                                Text(i)
+                                    .font(.body)
+                                    .padding(.leading, 15)
+                                Spacer()
+                                HStack {
+                                    Image("coin")
+                                    Text("15000")
+                                        .font(.headline)
+                                        .foregroundColor(Color.YellowDark26)
+                                }
+                                .frame(width: 151, height: 42)
+                                .background(Color.YellowLight2)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(Color.YellowLight22)
+                                )
+                                .cornerRadius(8)
+                                .padding(.trailing, 30)
+                            }
+                        }.padding(.horizontal)
                     }
-                }.padding(.top)
+                }
             }
         }
     }
 }
 
 #Preview {
-    LeaderboardView()
+    LeaderboardDetailView()
 }

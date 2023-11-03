@@ -48,6 +48,7 @@ struct ExploreView: View {
                         .cornerRadius(200)
                     })
                 }
+                .padding(.top)
                 .frame(width: 356)
                 
                 // Search Bar
@@ -60,7 +61,7 @@ struct ExploreView: View {
                     .onTapGesture {
                         self.isEditing = true
                     }
-                    .padding(.bottom)
+                    .padding(.bottom, 5)
                     .frame(width: 356)
                 
                 Divider()
@@ -106,7 +107,6 @@ struct ExploreView: View {
                 .scrollIndicators(.hidden)
             }
         }
-        .navigationTitle("Explore")
         
     }
     

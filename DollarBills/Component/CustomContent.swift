@@ -226,3 +226,55 @@ struct VerticalProgressBar: View {
         
     }
 }
+
+struct LeaderboardBar: View {
+    
+    var points: Double
+    var rank: Int
+    var name: String
+    var body: some View {
+        
+        GeometryReader { geometry in
+            VStack(alignment: .center, spacing: 10) {
+                Spacer()
+                Text("\(rank)")
+                    .font(.system(size: 45)).fontWeight(.black)
+                    .italic()
+                ZStack(alignment: .bottom) {
+                    RoundedRectangle(cornerRadius: 7)
+                        .frame(width: 96, height: CGFloat(points) / 2.5)
+                        .foregroundColor(Color.leaderboardOrange)
+                    RoundedRectangle(cornerRadius: 150)
+                        .frame(width: 100, height: 10)
+                        .foregroundColor(Color.leaderboardLightOrange)
+                    VStack{
+                        Text(name)
+                            .font(.footnote).bold()
+                            .foregroundColor(.white)
+                        HStack {
+                            Image("coin")
+                                .resizable()
+                                .frame(width: 14, height: 14)
+                            Text("15000")
+                                .font(.system(size: 9))
+                                .foregroundColor(Color.YellowDark26)
+                        }
+                        .frame(width: 80, height: 18)
+                        .background(Color.YellowLight2)
+                        .clipShape(RoundedRectangle(cornerRadius: 4))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 4)
+                                .stroke(Color.YellowLight3)
+                        )
+                        .cornerRadius(4)
+                    }
+                    .offset(y: -CGFloat(points / 5))
+                }
+            }
+        }
+    }
+}
+
+#Preview(body: {
+    LeaderboardBar(points: 800, rank: 1, name: "Guest 7777")
+})

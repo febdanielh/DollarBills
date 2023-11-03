@@ -35,7 +35,7 @@ class Workout: NSObject {
     
     convenience init?(hkWorkout: HKWorkout, locations: [CLLocation]) {
         guard hkWorkout.workoutActivityType == .running else {
-            return nil 
+            return nil
         }
         
         let coords = locations.map(\.coordinate)
@@ -43,7 +43,7 @@ class Workout: NSObject {
         let polyline = MKPolyline(coordinates: coords, count: coords.count)
         let date = hkWorkout.startDate
         let duration = hkWorkout.duration
-        let calorieBurned = hkWorkout.totalCalorieBurned
+//        let calorieBurned = hkWorkout.totalCalorieBurned
         var heartRate = 0
         
         let heartRateUnit = HKUnit.count().unitDivided(by: .minute())
@@ -61,7 +61,7 @@ class Workout: NSObject {
         }
         HKHealthStore().execute(query)
         
-        let workout = Workout(activityType: activityType, polyline: polyline, locations: locations, date: date, duration: duration, heartRate: heartRate, calorieBurned: calorieBurned)
+        let workout = Workout(activityType: activityType, polyline: polyline, locations: locations, date: date, duration: duration, heartRate: heartRate, calorieBurned: 0)
         self.init(activityType: workout.activityType, polyline: workout.polyline, locations: workout.locations, date: workout.date, duration: workout.duration, heartRate: workout.heartRate, calorieBurned: workout.calorieBurned)
     }
     
