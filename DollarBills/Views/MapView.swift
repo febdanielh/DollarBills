@@ -20,6 +20,7 @@ struct MapView: View {
     @AppStorage("launchedBefore") var launchedBefore = false
     @State var welcome = false
     
+    @State var currentRouteIndex: Int = 0
     @State var showSheet: Bool = false
     @Binding var isRouteSelected: Bool
     @Binding var selectedRoute: Routes
@@ -38,17 +39,31 @@ struct MapView: View {
                     .ignoresSafeArea()
                     .frame(height: 410)
                     
-                    if isRouteSelected == true {
+                    if isRouteSelected == true && selectedRoute.routeCount > 1 {
                         HStack {
-                            Image("back button")
-                                .onTapGesture {
-                                    
-                                }
-                            Spacer()
-                            Image("next button")
-                                .onTapGesture {
-                                    
-                                }
+                            if currentRouteIndex > 0 {
+                                Image("back button")
+                                    .onTapGesture {
+                                        currentRouteIndex -= 1
+                                    }
+                                Spacer()
+                                Image("next button")
+                                    .onTapGesture {
+                                        currentRouteIndex += 1
+                                    }
+                            } else if currentRouteIndex == 0 {
+                                Spacer()
+                                Image("next button")
+                                    .onTapGesture {
+                                        currentRouteIndex += 1
+                                    }
+                            } else if currentRouteIndex == selectedRoute.routeCount - 1 {
+                                Image("back button")
+                                    .onTapGesture {
+                                        currentRouteIndex -= 1
+                                    }
+                                Spacer()
+                            }
                         }
                         .padding(.horizontal)
                         .offset(y: 20)
@@ -66,11 +81,11 @@ struct MapView: View {
                     }
                 }
                 
-                RouteCards(selectedAnnotation: $selectedAnnotation, tag: $tag, isRouteSelected: $isRouteSelected, showSheet: $showSheet, selectedRoute: $selectedRoute, directions: $directions)
+                RouteCards(selectedAnnotation: $selectedAnnotation, tag: $tag, isRouteSelected: $isRouteSelected, showSheet: $showSheet, selectedRoute: $selectedRoute, directions: $directions, currentRouteIndex: $currentRouteIndex)
             }
         }
         .sheet(isPresented: $isRouteSelected, content: {
-            routeSheet(selectedAnnotation: $selectedAnnotation, directions: $directions, isRouteSelected: $isRouteSelected, showSheet: $showSheet)
+            routeSheet(selectedAnnotation: $selectedAnnotation, directions: $directions, isRouteSelected: $isRouteSelected, showSheet: $showSheet, currentRouteIndex: $currentRouteIndex)
         })
     }
 }

@@ -19,13 +19,12 @@ struct RunView: View {
     @Binding var itemCollected: [Items]
     
     @State var isGif: Bool = true
+    @State var isPaused: Bool = false
     @State var showAlert: Bool = false
     
     var progressValue: Double {
         return workout.distance / 500.0
     }
-    
-    @State private var isPaused = false
     
     var body: some View {
         VStack(spacing: 20) {
@@ -84,6 +83,7 @@ struct RunView: View {
                     runImage = lastItem.image
                     runDescription = "You obtain a \(lastItem.namaItem). Finish the route to claim it"
                     isGif = false
+                    Haptics.instance.complexSuccess()
                 }
             })
             
@@ -94,6 +94,11 @@ struct RunView: View {
                 .foregroundColor(Color.TextDimGray)
                 .padding(.horizontal, 10)
                 .padding(.bottom)
+            
+            let totalDistance = vm.routes.reduce(0) { $0 + $1.distance }
+            var progressValue: Double {
+                return workout.distance / totalDistance
+            }
             
             ProgressView(value: progressValue, label: { Text("Your Progress") }, currentValueLabel: { Text("\(Int(progressValue * 100))%") })
                 .progressViewStyle(BarProgressStyle(height: 25.0))

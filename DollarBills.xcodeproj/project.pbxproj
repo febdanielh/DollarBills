@@ -40,6 +40,8 @@
 		E1347E422AC43557008224CF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1347E412AC43557008224CF /* ContentView.swift */; };
 		E1347E442AC43558008224CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1347E432AC43558008224CF /* Assets.xcassets */; };
 		E1347E472AC43558008224CF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1347E462AC43558008224CF /* Preview Assets.xcassets */; };
+		E15C45942AF3AA8D00D215AB /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15C45932AF3AA8D00D215AB /* Haptics.swift */; };
+		E15C45962AF4940200D215AB /* LeaderboardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15C45952AF4940200D215AB /* LeaderboardDetailView.swift */; };
 		E16796902AD8E27600340093 /* ExtensionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E167968F2AD8E27600340093 /* ExtensionColor.swift */; };
 		E16796932AD94B8E00340093 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16796922AD94B8E00340093 /* OnboardingView.swift */; };
 		E167969B2ADDA4A600340093 /* RouteCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = E167969A2ADDA4A600340093 /* RouteCards.swift */; };
@@ -99,6 +101,8 @@
 		E1347E412AC43557008224CF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E1347E432AC43558008224CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = /Users/febriandaniel/Desktop/Daniel/Macros/DollarBills/DollarBills/Assets.xcassets; sourceTree = "<absolute>"; };
 		E1347E462AC43558008224CF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E15C45932AF3AA8D00D215AB /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
+		E15C45952AF4940200D215AB /* LeaderboardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardDetailView.swift; sourceTree = "<group>"; };
 		E167968F2AD8E27600340093 /* ExtensionColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionColor.swift; sourceTree = "<group>"; };
 		E16796922AD94B8E00340093 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		E167969A2ADDA4A600340093 /* RouteCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCards.swift; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 				15D24C422AD6942E00AFE89B /* ViewModel.swift */,
 				E168B9962ACD4C0400CF56D9 /* LocationManager.swift */,
 				E168B9982ACD4C2200CF56D9 /* createMap.swift */,
+				E15C45932AF3AA8D00D215AB /* Haptics.swift */,
 			);
 			path = "Logic and Framework";
 			sourceTree = "<group>";
@@ -264,6 +269,7 @@
 				E194201E2AE916DF00E29394 /* SnapCarouselView.swift */,
 				E1FE623D2AECBF4300D1736C /* SummaryDetailView.swift */,
 				150CC29A2AEB747900527BED /* ItemDetailView.swift */,
+				E15C45952AF4940200D215AB /* LeaderboardDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -364,6 +370,7 @@
 				E195B6722AE219DA00FB32C1 /* QokkaPickCard.swift in Sources */,
 				9BD93E472ACEC20F004862F7 /* PermissionView.swift in Sources */,
 				E16796932AD94B8E00340093 /* OnboardingView.swift in Sources */,
+				E15C45962AF4940200D215AB /* LeaderboardDetailView.swift in Sources */,
 				E16796902AD8E27600340093 /* ExtensionColor.swift in Sources */,
 				9BD93E432ACEB615004862F7 /* WorkoutDate.swift in Sources */,
 				9BD93E3A2ACEB1CC004862F7 /* CLLocation.swift in Sources */,
@@ -374,6 +381,7 @@
 				15D24C432AD6942E00AFE89B /* ViewModel.swift in Sources */,
 				15D24CB92ADD325700AFE89B /* MainView.swift in Sources */,
 				15D24D152AE0FA9400AFE89B /* DuelModeView.swift in Sources */,
+				E15C45942AF3AA8D00D215AB /* Haptics.swift in Sources */,
 				153E11B42AE53C5600B173F5 /* Summary View.swift in Sources */,
 				E1347E402AC43557008224CF /* DollarBillsApp.swift in Sources */,
 				15D24CBF2ADD372400AFE89B /* ActivityView.swift in Sources */,
@@ -444,7 +452,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -499,7 +507,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
