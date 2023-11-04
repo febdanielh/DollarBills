@@ -18,6 +18,7 @@ struct RouteCards: View {
     
     @Binding var selectedRoute: Routes
     @Binding var directions: [String]
+    @Binding var currentRouteIndex: Int
     
     var body: some View {
         VStack (alignment: .leading) {
@@ -43,7 +44,7 @@ struct RouteCards: View {
                 Button {
                     vm.currentDisplayScreen = .viewMain
                 } label: {
-                    Image("close button yellow").padding()
+                    Image("close black").padding()
                 }
             }.padding(.leading)
             
@@ -92,6 +93,7 @@ struct RouteCards: View {
                                     
                                     selectedAnnotation = route.annotationModel
                                     isRouteSelected = true
+                                    currentRouteIndex = route.index(ofAccessibilityElement: self)
                                 }
                             }
                         }
@@ -117,5 +119,6 @@ struct RouteCards: View {
         isRouteSelected: .constant(true),
         showSheet: .constant(true),
         selectedRoute: .constant(Routes(tag: 10, routeName: "", routeNameDetail: "", routeImage: "", routeCount: 0, latitude: 0.0, longitude: 0.0)),
-        directions: .constant([]))
+        directions: .constant([]),
+        currentRouteIndex: .constant(0))
 }

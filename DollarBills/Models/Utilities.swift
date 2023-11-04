@@ -87,10 +87,8 @@ struct CustomAnnotationAndRoute {
                                 waypoints: [
                                     Checkpoint(title: "Checkpoint 1", coordinate: CLLocationCoordinate2D(latitude: -6.302834, longitude: 106.651986)),
                                     Checkpoint(title: "Checkpoint 2", coordinate: CLLocationCoordinate2D(latitude: -6.301771, longitude:  106.650747)),
-                                    Checkpoint(title: "Checkpoint 3", coordinate: CLLocationCoordinate2D(latitude: -6.300251, longitude:  106.651243)),
-                                    Checkpoint(title: "Checkpoint 4", coordinate: CLLocationCoordinate2D(latitude:  -6.300367, longitude:   106.652501)),
-                                    Checkpoint(title: "Checkpoint 5", coordinate: CLLocationCoordinate2D(latitude: -6.301510, longitude:  106.652996)),
-                                    Checkpoint(title: "Checkpoint 6", coordinate: CLLocationCoordinate2D(latitude: -6.302713, longitude:  106.652440))
+                                    Checkpoint(title: "Checkpoint 3", coordinate: CLLocationCoordinate2D(latitude:  -6.300367, longitude:   106.652501)),
+                                    Checkpoint(title: "Checkpoint 4", coordinate: CLLocationCoordinate2D(latitude: -6.302823, longitude:  106.652180))
                                 ]
                             )
                         ),

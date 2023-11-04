@@ -9,12 +9,12 @@ import MapKit
 import HealthKit
 import Combine
 import SwiftUI
+import CoreHaptics
 
 @MainActor//location dan map
 class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
-    var locationManager: CLLocationManager = CLLocationManager()
-    @Published var isPaused = false
+    private var locationManager: CLLocationManager = CLLocationManager()
     @Published var currentDisplayScreen: DisplayScreen = .viewMain
     @Published var selectedSegment = 0
     @Published var locationAccess : Bool = true
@@ -23,8 +23,6 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var distance: Double = 0.0
     @Published var tag: Int = 0
     @Published var isRouteSelected: Bool = false
-//    @Published var showSheet: Bool = false
-    
     @Published var startPoint: CLLocation = CLLocation(latitude: -6.302230, longitude: 106.652264)
     @Published var annotations = CustomAnnotationAndRoute.customAnnotation
     @Published var selectedAnnotation: AnnotationModel = AnnotationModel(routeName: "", waypoints: [])
@@ -39,13 +37,10 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     @Published var selectedRoute: Routes = Routes(tag: 0, routeName: "", routeNameDetail: "", routeImage: "", routeCount: 0, latitude: 0.0, longitude: 0.0)
-    
     @Published var locations: [CLLocation] = []
-    
     @Published var itemCollected: [Items] = []
     
     // MARK: - Properties
-    
     func updateTrackingMode() {
         
         var mode: MKUserTrackingMode {
@@ -83,7 +78,10 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var timer: Timer?
     @Published var lastDateObserved: Date?
     @Published var currentAccumulatedTime: TimeInterval = 0.0
+    @Published var isPaused: Bool = false
     
+    
+    // Calculated property that returns an MKPolyline based on the locations array
     var polyline: MKPolyline {
         let coords = locations.map(\.coordinate)
         return MKPolyline(coordinates: coords, count: coords.count)
@@ -308,7 +306,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
             }
         }
     }
-
+    
     
     private func updateTotalElapsedTime() {
         if let currentDate = lastDateObserved {
@@ -344,9 +342,9 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
                     print("Error retrieving heart rate samples: \(error.localizedDescription)")
                     return
                 }
-
+                
                 guard let samples = samples as? [HKQuantitySample] else { return }
-
+                
                 for sample in samples {
                     let heartRateUnit = HKUnit(from: "count/min")
                     let heartRate = sample.quantity.doubleValue(for: heartRateUnit)
@@ -355,20 +353,20 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
                     }
                 }
             }
-
+            
             healthStore.execute(heartRateQuery)
         } catch {
             print("Error retrieving heart rate: \(error.localizedDescription)")
         }
-
+        
         locationManager.allowsBackgroundLocationUpdates = true
         updateTrackingMode(.followWithHeading)
-                
+        
         lastDateObserved = Date()
         totalElapsedTime = 0
         
         startTotalElapsedTimeTimer()
-
+        
         DispatchQueue.main.async { [weak self] in
             self?.recording = true
         }
@@ -394,7 +392,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         lastDateObserved = Date()
         startTotalElapsedTimeTimer()
     }
-
+    
     func discardWorkout() {
         locationManager.allowsBackgroundLocationUpdates = false
         
@@ -426,7 +424,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         heartRate = 0
         meters = 0
         locations = []
-
+        
         do {
             try await workoutBuilder?.endCollection(at: .now)
             if let workout = try await workoutBuilder?.finishWorkout() {
@@ -504,13 +502,13 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         distance = locations.last!.distance(from: startPoint)
         distance = distance/1000
         
-        if selectedAnnotation != AnnotationModel(routeName: "", waypoints: []) {
-            if locationManager.monitoredRegions.isEmpty == true {
-                print("semua item sudah di collect")
-            } else {
-                print("belum semua item di collect")
-            }
-        }
+        //        if selectedAnnotation != AnnotationModel(routeName: "", waypoints: []) {
+        //            if locationManager.monitoredRegions.isEmpty == true {
+        //                print("semua item sudah di collect")
+        //            } else {
+        //                print("belum semua item di collect")
+        //            }
+        //        }
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
@@ -619,14 +617,16 @@ extension ViewModel: MKMapViewDelegate {
             renderer.strokeColor = .red
             renderer.lineWidth = 6
             return renderer
-        } else if let workout = overlay as? Workout {
-            
-            let render = MKPolylineRenderer(polyline: workout.polyline)
-            render.lineWidth = 2
-            
-            render.strokeColor = UIColor(.indigo)
-            return render
         }
+        //        else if let workout = overlay as? Workout {
+        //
+        //            let render = MKPolylineRenderer(polyline: workout.polyline)
+        //            render.lineWidth = 2
+        //
+        //            render.strokeColor = UIColor(.indigo)
+        //            return render
+        //        }
+        
         return MKOverlayRenderer()
     }
 }

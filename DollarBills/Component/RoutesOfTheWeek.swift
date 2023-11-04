@@ -24,13 +24,13 @@ struct RoutesOfTheWeek: View {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.gray, lineWidth: 1)
                 )
-                .frame(width: 334, height: 222)
+                .frame(width: 354, height: 222)
             
             VStack (alignment: .leading) {
                 // One Image
                 Image("dummyROTW")
                     .resizable()
-                    .frame(width: 334, height: 155)
+                    .frame(width: 354, height: 155)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .padding(.bottom, 4)
                 

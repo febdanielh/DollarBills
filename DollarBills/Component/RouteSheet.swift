@@ -21,6 +21,7 @@ struct routeSheet: View {
     @Binding var isRouteSelected: Bool
     @State var isStarted: Bool = false
     @Binding var showSheet: Bool
+    @Binding var currentRouteIndex: Int
     
     var distance: CLLocationDistance = 0
     

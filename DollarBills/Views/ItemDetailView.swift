@@ -32,7 +32,7 @@ struct ItemDetailView: View {
             ZStack {
                 
                 Color.WPBG
-                .ignoresSafeArea()
+                    .ignoresSafeArea()
                 
                 VStack {
                     
@@ -41,7 +41,6 @@ struct ItemDetailView: View {
                         Image(selectedItem.image)
                             .resizable()
                             .frame(width: 220, height: 160)
-                            .padding()
                         
                         VStack (alignment: .trailing) {
                             
@@ -50,7 +49,7 @@ struct ItemDetailView: View {
                             HStack {
                                 
                                 Spacer()
-
+                                
                                 ZStack {
                                     
                                     Image("x1")
@@ -79,7 +78,6 @@ struct ItemDetailView: View {
                     Text(selectedItem.desc)
                         .frame(width: 310)
                         .multilineTextAlignment(.center)
-                        .padding()
                     
                 }
                 .frame(height: 350)
@@ -94,7 +92,7 @@ struct ItemDetailView: View {
                     .frame(height: 230)
                     .shadow(radius: 5)
                     .mask(Rectangle().padding(.top, -20))
-                          
+                
                 VStack {
                     
                     HStack {
@@ -119,8 +117,8 @@ struct ItemDetailView: View {
                             )
                         
                     }
-                    .frame(width: 308)
-                    .padding([.top, .bottom])
+                    .frame(width: 330)
+                    .padding(.bottom)
                     
                     ScrollView (.horizontal, showsIndicators: false) {
                         
