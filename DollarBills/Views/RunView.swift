@@ -78,7 +78,7 @@ struct RunView: View {
                     Image(runImage)
                         .padding()
                 }
-            }.onReceive(vm.$itemCollected, perform: { items in
+            }.onReceive(vm.$itemsCollected, perform: { items in
                 if let lastItem = items.last {
                     runImage = lastItem.image
                     runDescription = "You obtain a \(lastItem.namaItem). Finish the route to claim it"

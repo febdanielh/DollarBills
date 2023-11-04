@@ -38,7 +38,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     @Published var selectedRoute: Routes = Routes(tag: 0, routeName: "", routeNameDetail: "", routeImage: "", routeCount: 0, latitude: 0.0, longitude: 0.0)
     @Published var locations: [CLLocation] = []
-    @Published var itemCollected: [Items] = []
+    @Published var itemsCollected: [Items] = []
     
     // MARK: - Properties
     func updateTrackingMode() {
@@ -88,7 +88,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     var newWorkout: Workout {
-        return Workout(activityType: activityType, polyline: polyline, locations: locations, date: startDate, duration: totalElapsedTime, heartRate: heartRate, calorieBurned: calorieBurned)
+        return Workout(activityType: activityType, polyline: polyline, locations: locations, date: startDate, duration: totalElapsedTime, heartRate: heartRate, calorieBurned: calorieBurned, itemsCollected: itemsCollected)
     }
     
     @Published var showPermissionsView = false
@@ -212,20 +212,6 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     
-    // Filter workouts based on search criteria
-    func filterWorkouts() {
-        // Remove existing workouts from the map
-        mapView.removeOverlays(mapView.overlays(in: .aboveRoads) /*?? []*/)
-        // Filter workouts based on search criteria
-        filteredWorkouts = workouts.filter { showWorkout($0) }
-        // Add filtered workouts to the map
-        mapView.addOverlays(filteredWorkouts, level: .aboveRoads)
-        // Checks if the selected workout is no longer visible and deselects it if so
-        if let selectedWorkout, !filteredWorkouts.contains(selectedWorkout) {
-            self.selectedWorkout = nil
-        }
-    }
-    
     func getToday() -> Workout? {
         for i in workouts {
             print(i.date.formatted(date:.complete, time: .omitted))
@@ -246,54 +232,6 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
             }
         }
         return nil
-    }
-    
-    // Determines whether a workout should be displayed based on search criteria
-    func showWorkout(_ workout: Workout) -> Bool {
-        // Checks if the current workout is selected or if no workout has been selected
-        // Also checks if the workout type matches the selected workout type or if no type has been selected
-        // Finally checks if the workout date matches the selected date or if no date has been selected
-        
-        (selectedWorkout == nil || workout == selectedWorkout) &&
-        //        (workoutType == nil || workoutType == workout.type) &&
-        (workoutDate == nil || Calendar.current.isDate(workout.date, equalTo: .now, toGranularity: workoutDate!.granularity))
-    }
-    
-    func selectClosestWorkout(to targetCoord: CLLocationCoordinate2D) {
-        let targetLocation = targetCoord.location
-        var shortestDistance = Double.infinity
-        var closestWorkout: Workout?
-        
-        // Check if the map is currently visible, otherwise stop the function
-        /*guard*/ let rect = mapView.visibleMapRect /*else { return }*/
-        let left = MKMapPoint(x: rect.minX, y: rect.midY)
-        let right = MKMapPoint(x: rect.maxX, y: rect.midY)
-        let maxDelta = left.distance(to: right) / 20
-        
-        
-        // Iterates through all filtered workouts
-        for workout in filteredWorkouts {
-            // Iterates through all locations of each workout
-            for location in workout.locations {
-                let delta = location.distance(from: targetLocation)
-                
-                // Updates the closest workout if it is closer than the previous workout and if it is inside the maximum detection zone
-                if delta < shortestDistance && delta < maxDelta {
-                    shortestDistance = delta
-                    closestWorkout = workout
-                }
-            }
-        }
-        selectWorkout(closestWorkout)
-    }
-    
-    func selectWorkout(_ workout: Workout?) {
-        // Select the specified workout
-        selectedWorkout = workout
-        // Zoom into the selected workout if a workout is selected
-        if let workout {
-            zoomTo(workout)
-        }
     }
     
     
@@ -416,6 +354,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         recording = false
         
         let workout = newWorkout
+        
         if workout.activityType == .running {
             workouts.append(workout)
             updatePolylines()
@@ -518,7 +457,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         print("sisa:")
         
         addRandomItem()
-        print(itemCollected)
+        print(itemsCollected)
         print("nambah item")
         
         removeAnn(region: region)
@@ -598,7 +537,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         guard let randomItem = ItemsData.item.randomElement() else {
             return
         }
-        itemCollected.append(randomItem)
+        itemsCollected.append(randomItem)
         print("Added random item: \(randomItem.namaItem)")
     }
     
