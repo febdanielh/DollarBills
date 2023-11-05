@@ -99,7 +99,7 @@
 		E1347E3C2AC43557008224CF /* DollarBills.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DollarBills.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1347E3F2AC43557008224CF /* DollarBillsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DollarBillsApp.swift; sourceTree = "<group>"; };
 		E1347E412AC43557008224CF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		E1347E432AC43558008224CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = /Users/febriandaniel/Desktop/Daniel/Macros/DollarBills/DollarBills/Assets.xcassets; sourceTree = "<absolute>"; };
+		E1347E432AC43558008224CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = /Users/elsst/Documents/GitHub/DollarBills/DollarBills/Assets.xcassets; sourceTree = "<absolute>"; };
 		E1347E462AC43558008224CF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E15C45932AF3AA8D00D215AB /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		E15C45952AF4940200D215AB /* LeaderboardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardDetailView.swift; sourceTree = "<group>"; };

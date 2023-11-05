@@ -41,7 +41,7 @@ struct ContentView: View {
                         vm.serviceAvailabilityCheck()
                     }
             case .viewRun:
-                RunView(workout: vm.newWorkout, itemCollected: $vm.itemCollected)
+                RunView(workout: vm.newWorkout, itemCollected: $vm.itemsCollected)
             case .viewPause:
                 PauseRunView(workout: vm.newWorkout, directions: $directions)
             default:

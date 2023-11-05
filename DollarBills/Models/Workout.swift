@@ -20,8 +20,9 @@ class Workout: NSObject {
     let elevation: Double
     let heartRate: Int
     let calorieBurned: Double
+    var itemsCollected: [Items]
     
-    init(activityType: HKWorkoutActivityType, polyline: MKPolyline, locations: [CLLocation], date: Date, duration: Double, heartRate: Int, calorieBurned: Double) {
+    init(activityType: HKWorkoutActivityType, polyline: MKPolyline, locations: [CLLocation], date: Date, duration: Double, heartRate: Int, calorieBurned: Double, itemsCollected: [Items]) {
         self.activityType = activityType
         self.polyline = polyline
         self.locations = locations
@@ -31,6 +32,7 @@ class Workout: NSObject {
         self.elevation = locations.elevation
         self.heartRate = heartRate
         self.calorieBurned = calorieBurned
+        self.itemsCollected = itemsCollected
     }
     
     convenience init?(hkWorkout: HKWorkout, locations: [CLLocation]) {
@@ -45,6 +47,7 @@ class Workout: NSObject {
         let duration = hkWorkout.duration
 //        let calorieBurned = hkWorkout.totalCalorieBurned
         var heartRate = 0
+        var itemsCollected : [Items] = []
         
         let heartRateUnit = HKUnit.count().unitDivided(by: .minute())
         let predicate = HKQuery.predicateForSamples(withStart: hkWorkout.startDate, end: hkWorkout.endDate, options: .strictEndDate)
@@ -61,11 +64,19 @@ class Workout: NSObject {
         }
         HKHealthStore().execute(query)
         
-        let workout = Workout(activityType: activityType, polyline: polyline, locations: locations, date: date, duration: duration, heartRate: heartRate, calorieBurned: 0)
-        self.init(activityType: workout.activityType, polyline: workout.polyline, locations: workout.locations, date: workout.date, duration: workout.duration, heartRate: workout.heartRate, calorieBurned: workout.calorieBurned)
+        let workout = Workout(activityType: activityType, polyline: polyline, locations: locations, date: date, duration: duration, heartRate: heartRate, calorieBurned: 0, itemsCollected: itemsCollected)
+        
+//        let tommorow = Date().addingTimeInterval(86400)
+//        let example = Workout(activityType: .running, polyline: MKPolyline(), locations: [], date: tommorow, duration: 3456, heartRate: 120, calorieBurned: 282, itemsCollected: [
+//            ItemsData.item[0],
+//            ItemsData.item[1],
+//            ItemsData.item[2]
+//            ]
+//        )
+        
+        self.init(activityType: workout.activityType, polyline: workout.polyline, locations: workout.locations, date: workout.date, duration: workout.duration, heartRate: workout.heartRate, calorieBurned: workout.calorieBurned, itemsCollected: workout.itemsCollected)
     }
     
-    static let example = Workout(activityType: .running, polyline: MKPolyline(), locations: [], date: .now, duration: 3456, heartRate: 120, calorieBurned: 282)
 }
 
 extension Workout: MKOverlay {

@@ -38,7 +38,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     @Published var selectedRoute: Routes = Routes(tag: 0, routeName: "", routeNameDetail: "", routeImage: "", routeCount: 0, latitude: 0.0, longitude: 0.0)
     @Published var locations: [CLLocation] = []
-    @Published var itemCollected: [Items] = []
+    @Published var itemsCollected: [Items] = []
     
     // MARK: - Properties
     func updateTrackingMode() {
@@ -88,7 +88,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     var newWorkout: Workout {
-        return Workout(activityType: activityType, polyline: polyline, locations: locations, date: startDate, duration: totalElapsedTime, heartRate: heartRate, calorieBurned: calorieBurned)
+        return Workout(activityType: activityType, polyline: polyline, locations: locations, date: startDate, duration: totalElapsedTime, heartRate: heartRate, calorieBurned: calorieBurned, itemsCollected: itemsCollected)
     }
     
     @Published var showPermissionsView = false
@@ -354,6 +354,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         recording = false
         
         let workout = newWorkout
+        
         if workout.activityType == .running {
             workouts.append(workout)
             updatePolylines()
@@ -456,7 +457,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         print("sisa:")
         
         addRandomItem()
-        print(itemCollected)
+        print(itemsCollected)
         print("nambah item")
         
         removeAnn(region: region)
@@ -536,7 +537,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         guard let randomItem = ItemsData.item.randomElement() else {
             return
         }
-        itemCollected.append(randomItem)
+        itemsCollected.append(randomItem)
         print("Added random item: \(randomItem.namaItem)")
     }
     
