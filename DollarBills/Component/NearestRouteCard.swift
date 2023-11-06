@@ -32,7 +32,11 @@ struct NearestRouteCard: View {
         ScrollView(.horizontal) {
             // All Image
             HStack {
-                ForEach(routes, id: \.self) { route in
+                ForEach(routes.sorted { route1, route2 in
+                    let distance1 = vm.getUserDistance(latitude: route1.latitude, longitude: route1.longitude)
+                    let distance2 = vm.getUserDistance(latitude: route2.latitude, longitude: route2.longitude)
+                    return distance1 < distance2
+                }, id: \.self) { route in
                     VStack {
                         ZStack {
                             VStack (alignment: .leading) {

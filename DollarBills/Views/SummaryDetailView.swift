@@ -311,16 +311,57 @@ struct SummaryDetailView: View {
                                 .font(.title3).bold()
                                 .padding(.leading)
                             ZStack {
-                                RoundedRectangle(cornerRadius: 8)
-                                    .foregroundColor(.white)
-                                    .frame(height: 100)
-                                HStack{
-                                    Text("User")
-                                    Spacer()
-                                    Text("Opponent")
-                                }.padding(.horizontal)
+                                HStack(spacing: 3){
+                                    Rectangle()
+                                        .frame(height: 128)
+                                        .foregroundColor(Color.lightBlueDuel)
+                                    Rectangle()
+                                        .frame(height: 128)
+                                        .foregroundColor(Color.lightRedDuel)
+                                }.clipShape(RoundedRectangle(cornerRadius: 8))
+                                VStack (spacing: 8){
+                                    HStack{
+                                        ZStack {
+                                            RoundedRectangle(cornerRadius: 15)
+                                                .frame(width: 102, height: 24, alignment: .center)
+                                                .foregroundColor(Color.blueResumeButton)
+                                            Text("You")
+                                                .font(.system(size: 10)).bold()
+                                                .foregroundColor(.white)
+                                        }
+                                        Text("You Win")
+                                            .font(.system(size: 14)).fontWeight(.semibold)
+                                            .frame(width: 110)
+                                        ZStack {
+                                            RoundedRectangle(cornerRadius: 15)
+                                                .frame(width: 102, height: 24, alignment: .center)
+                                                .foregroundColor(Color.redStopButton)
+                                            Text("Reza")
+                                                .font(.system(size: 10)).bold()
+                                                .foregroundColor(.white)
+                                        }
+                                    }.padding(.horizontal)
+                                    HStack {
+                                        VStack(alignment: .leading, spacing: 5) {
+                                            Text("Total Distance")
+                                                .font(.caption)
+                                            Text("4.72 km")
+                                                .font(.subheadline)
+                                                .fontWeight(.black)
+                                        }
+                                        Spacer()
+                                        VStack(alignment: .trailing, spacing: 5){
+                                            Text("Total Distance")
+                                                .font(.caption)
+                                            Text("3.57 km")
+                                                .font(.subheadline)
+                                                .fontWeight(.black)
+                                        }
+                                    }.frame(width: 314).padding(.top, 10)
+                                }.padding(.bottom)
+                                CircleDuel()
+                                    .offset(y: 15)
                             }.padding([.horizontal, .bottom])
-                            
                         }
                         
                     }
@@ -335,5 +376,24 @@ struct SummaryDetailView: View {
 }
 
 #Preview {
-    SummaryDetailView()
+    CircleDuel()
+}
+
+struct CircleDuel: View {
+    var body: some View {
+        ZStack {
+            Circle()
+                .frame(height: 63)
+                .foregroundColor(Color.YellowLight23)
+            Circle()
+                .frame(height: 56)
+                .foregroundColor(Color.YellowNormal2)
+            Circle()
+                .frame(height: 44)
+                .foregroundColor(Color.YellowDark2)
+            Text("VS")
+                .font(.title3).bold()
+                .foregroundColor(.white)
+        }
+    }
 }

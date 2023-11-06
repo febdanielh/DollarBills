@@ -75,20 +75,24 @@ struct RunView: View {
                         .frame(width: 220, height: 220)
                         .padding()
                 } else {
-                    Image(runImage)
-                        .padding()
+                    ZStack {
+                        Image(runImage)
+                            .resizable()
+                            .frame(width: 300, height: 210)
+                            .padding()
+                    }
                 }
             }.onReceive(vm.$itemsCollected, perform: { items in
                 if let lastItem = items.last {
                     runImage = lastItem.image
                     runDescription = "You obtain a \(lastItem.namaItem). Finish the route to claim it"
                     isGif = false
-                    Haptics.instance.complexSuccess()
                 }
+                Haptics.instance.simpleSuccess(type: .success)
             })
             
             Text(runDescription)
-                .font(.system(size: 17))
+                .font(.body)
                 .multilineTextAlignment(.center)
                 .italic()
                 .foregroundColor(Color.TextDimGray)

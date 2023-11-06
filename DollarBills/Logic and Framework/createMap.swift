@@ -35,8 +35,8 @@ struct createMap: UIViewRepresentable {
     }
     
     func updateUIView(_ mapView: MKMapView, context: Context) {
-        mapView.removeAnnotations(annotations)
-        mapView.addAnnotations(annotations)
+//        mapView.removeAnnotations(annotations)
+//        mapView.addAnnotations(annotations)
         
         for annotation in annotations {
             if annotation.annotationModel.id == selectedAnnotation.id {

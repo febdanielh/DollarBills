@@ -5,7 +5,6 @@
 //  Created by Febrian Daniel on 02/11/23.
 //
 
-import Foundation
 import CoreHaptics
 import SwiftUI
 
@@ -14,9 +13,9 @@ class Haptics {
     
     static let instance = Haptics()
     
-    func simpleSuccess() {
+    func simpleSuccess(type: UINotificationFeedbackGenerator.FeedbackType) {
         let generator = UINotificationFeedbackGenerator()
-        generator.notificationOccurred(.success)
+        generator.notificationOccurred(type)
     }
     
     func prepareHaptics() {
