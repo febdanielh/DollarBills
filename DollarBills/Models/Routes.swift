@@ -44,7 +44,7 @@ struct RouteData {
             routeName: "Green Office Park",
             routeNameDetail: "BSD, Tangerang",
             routeImage: "green office park",
-            routeCount: 2,
+            routeCount: 3,
             latitude: -6.301616,
             longitude: 106.651096
         ),

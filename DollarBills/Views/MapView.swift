@@ -44,23 +44,25 @@ struct MapView: View {
                             if currentRouteIndex > 0 {
                                 Image("back button")
                                     .onTapGesture {
-                                        currentRouteIndex -= 1
+                                        //                                        currentRouteIndex -= 1
                                     }
                                 Spacer()
                                 Image("next button")
                                     .onTapGesture {
-                                        currentRouteIndex += 1
+                                        //                                        currentRouteIndex += 1
                                     }
-                            } else if currentRouteIndex == 0 {
+                            }
+                            if currentRouteIndex == 0 {
                                 Spacer()
                                 Image("next button")
                                     .onTapGesture {
-                                        currentRouteIndex += 1
+                                        //                                        currentRouteIndex += 1
                                     }
-                            } else if currentRouteIndex == selectedRoute.routeCount - 1 {
+                            }
+                            if currentRouteIndex == selectedRoute.routeCount - 1 {
                                 Image("back button")
                                     .onTapGesture {
-                                        currentRouteIndex -= 1
+                                        //                                        currentRouteIndex -= 1
                                     }
                                 Spacer()
                             }

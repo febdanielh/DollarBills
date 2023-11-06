@@ -112,6 +112,21 @@ struct CustomAnnotationAndRoute {
                                     Checkpoint(title: "Checkpoint 10", coordinate: CLLocationCoordinate2D(latitude: -6.302625, longitude: 106.652549))
                                 ]
                             )
+                        ),
+        CustomAnnotation(tag: 3,
+                         coordinate: CLLocationCoordinate2D(latitude: -6.301924, longitude: 106.652088),
+                         title: "Green Office Park",
+                         location: "BSD, Tangerang",
+                         annotationModel:
+                            AnnotationModel(
+                                routeName: "Apple - Halte Run",
+                                waypoints: [
+                                    Checkpoint(title: "Checkpoint 1", coordinate: CLLocationCoordinate2D(latitude: -6.301924, longitude: 106.652088)),
+                                    Checkpoint(title: "Checkpoint 2", coordinate: CLLocationCoordinate2D(latitude: -6.301948, longitude:    106.651732)),
+                                    Checkpoint(title: "Checkpoint 3", coordinate: CLLocationCoordinate2D(latitude: -6.301866, longitude:  106.651536)),
+                                    
+                                ]
+                            )
                         )
     ]
 }

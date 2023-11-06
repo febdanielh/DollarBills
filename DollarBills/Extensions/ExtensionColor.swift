@@ -40,4 +40,6 @@ extension Color {
     
     static let leaderboardOrange = Color("Leaderboard Orange")
     static let leaderboardLightOrange = Color("Leaderborad LightOrange")
+    static let lightBlueDuel = Color("Light Blue Duel")
+    static let lightRedDuel = Color("Light Red Duel")
 }

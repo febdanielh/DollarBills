@@ -58,7 +58,7 @@ struct RouteCards: View {
                                         .stroke(Color.gray, lineWidth: 1)
                                         .frame(width: 357, height: 123)
                                         .background(Color.white)
-                                    HStack(spacing: 16){
+                                    HStack(spacing: 12){
                                         Image("dummy-image")
                                             .resizable()
                                             .frame(width: 121, height: 107)
@@ -66,10 +66,21 @@ struct RouteCards: View {
                                         VStack(alignment: .leading, spacing: 8) {
                                             Text(route.annotationModel.routeName)
                                                 .font(.headline)
+                                            
+                                            let totalDistance = vm.routes.reduce(0){$0 + $1.distance}
+                                            let totalDistanceKM = totalDistance / 1000
+                                            
+//                                            \(String(format: "%.2f km", totalDistanceKM))
+                                            
                                             Text("Collect 5km in \(route.annotationModel.routeName)")
                                                 .font(.footnote).fontWeight(.medium)
+                                                .frame(width: 170, height: 30, alignment: .topLeading)
+                                                .multilineTextAlignment(.leading)
+                                                .lineLimit(nil)
                                                 .foregroundStyle(Color.TextDimGray)
-                                            Spacer()
+                                            
+//                                            Spacer()
+                                            
                                             ZStack {
                                                 RoundedRectangle(cornerRadius: 8)
                                                     .stroke(Color.YellowLight2)
@@ -77,15 +88,19 @@ struct RouteCards: View {
                                                     .background(Color.YellowLight2)
                                                 HStack(spacing: 3){
                                                     Image("marker-pin-01")
-                                                    Text("50 m")
+                                                    
+                                                    let distance = vm.getUserDistance(latitude: route.coordinate.latitude, longitude: route.coordinate.longitude)
+                                                    let distanceMeter = distance*100
+                                                    
+                                                    Text("\(distanceMeter, specifier: "%.1f m")")
                                                         .font(.caption).fontWeight(.semibold)
                                                         .foregroundColor(Color.black)
                                                 }
                                             }
                                         }
-                                        .frame(height: 91)
+                                        .frame(width: 185, height: 83)
                                         Spacer()
-                                    }.frame(width: 361)
+                                    }.frame(width: 357)
                                 }
                                 .onTapGesture {
                                     vm.removeAll()
@@ -99,7 +114,9 @@ struct RouteCards: View {
                         }
                     } else {
                         VStack{
+                            Spacer().frame(height: 50)
                             Text("Sorry this route doesn't have any routes yet!")
+                                .padding(.vertical)
                         }
                     }
                 }

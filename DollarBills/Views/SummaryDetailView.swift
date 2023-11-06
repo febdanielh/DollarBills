@@ -15,8 +15,12 @@ struct SummaryDetailView: View {
     
     @State var pickedDate = Date()
     
+    @State var todaysWorkout : Workout?
+    
     var body: some View {
-        VStack(alignment: .leading){
+        
+        VStack(alignment: .leading) {
+            
             HStack (spacing: 12) {
                 
                 Button(action: {
@@ -32,6 +36,7 @@ struct SummaryDetailView: View {
                 
                 Button(action: {
                     pickedDate = pickedDate.addingTimeInterval(86400)
+                    
                 }, label: {
                     Image(systemName: "chevron.right") ///sama ni per minggu, maju mundur
                 })
@@ -63,6 +68,7 @@ struct SummaryDetailView: View {
             Divider()
             
             ScrollView {
+                
                 ZStack {
                     Color.SheetGray
                     VStack(alignment: .leading) {
@@ -156,7 +162,7 @@ struct SummaryDetailView: View {
                             .font(.title3).bold()
                             .padding(.horizontal)
                         
-                        if (vm.getThatDay(pickedDate: pickedDate) == nil) {
+                        if (todaysWorkout == nil) {
                             
                             Text("No runs found on this day.")
                                 .padding(.horizontal)
@@ -170,14 +176,14 @@ struct SummaryDetailView: View {
                                     .foregroundColor(Color.TextDimGray)
                                     .frame(height: 350)
                                 VStack(alignment: .leading){
-                                    Text("Foresta BSD Run")
+                                    Text("HARUSNYA NAMA RUTE")
                                         .font(.title2)
                                         .bold()
                                         .padding(.leading)
                                     
                                     HStack {
                                         Image("Pinpoint")
-                                        Text("BSD, Tangerang")
+                                        Text("HARUSNYA NAMA DAERAH")
                                             .font(.subheadline)
                                             .fontWeight(.semibold)
                                             .foregroundStyle(Color.YellowDark4)
@@ -193,7 +199,7 @@ struct SummaryDetailView: View {
                                     RoundedRectangle(cornerRadius: 8)
                                         .foregroundColor(.white)
                                     VStack{
-                                        Text("5.00 km")
+                                        Text((todaysWorkout?.formattedDistance())!)
                                             .font(.headline).padding(.bottom, 10)
                                         Text("Distance")
                                             .font(.footnote)
@@ -203,7 +209,7 @@ struct SummaryDetailView: View {
                                     RoundedRectangle(cornerRadius: 8)
                                         .foregroundColor(.white)
                                     VStack{
-                                        Text("45 min")
+                                        Text((todaysWorkout?.formattedDuration())!)
                                             .font(.headline).padding(.bottom, 10)
                                         Text("Duration")
                                             .font(.footnote)
@@ -214,7 +220,7 @@ struct SummaryDetailView: View {
                                         .foregroundColor(.white)
                                         .frame(height: 115)
                                     VStack{
-                                        Text("8'00\"")
+                                        Text((todaysWorkout?.formattedPace())!)
                                             .font(.headline).padding(.bottom, 10)
                                         Text("Pace")
                                             .font(.footnote)
@@ -237,9 +243,9 @@ struct SummaryDetailView: View {
                                     RoundedRectangle(cornerRadius: 8)
                                         .foregroundColor(.white)
                                     VStack{
-                                        Text("103 - 168 BPM")
+                                        Text(String(todaysWorkout!.heartRate))
                                             .font(.footnote).fontWeight(.semibold).padding(.bottom, 10)
-                                        Text("Distance")
+                                        Text("Heart Rate")
                                             .font(.caption2)
                                     }
                                 }
@@ -247,7 +253,7 @@ struct SummaryDetailView: View {
                                     RoundedRectangle(cornerRadius: 8)
                                         .foregroundColor(.white)
                                     VStack{
-                                        Text("400 kcal")
+                                        Text(String(todaysWorkout!.calorieBurned))
                                             .font(.footnote).fontWeight(.semibold).padding(.bottom, 10)
                                         Text("Energy")
                                             .font(.caption2)
@@ -258,7 +264,7 @@ struct SummaryDetailView: View {
                                         .foregroundColor(.white)
                                         .frame(height: 115)
                                     VStack{
-                                        Text("4.123")
+                                        Text("BELUM ADA")
                                             .font(.footnote).fontWeight(.semibold).padding(.bottom, 10)
                                         Text("Steps")
                                             .font(.caption2)
@@ -275,8 +281,9 @@ struct SummaryDetailView: View {
                                     .foregroundColor(.white)
                                     .frame(height: 87)
                                 HStack{
-                                    ForEach (0 ..< 3) { i in
+                                    ForEach (0 ..< todaysWorkout!.itemsCollected.count) { i in
                                         ZStack {
+                                            
                                             RoundedRectangle(cornerRadius: 15)
                                                 .foregroundStyle(.white)
                                                 .frame(width: 48, height: 48)
@@ -289,6 +296,11 @@ struct SummaryDetailView: View {
                                                             RoundedRectangle(cornerRadius: 15)
                                                         )
                                                 )
+                                            
+                                            Image(todaysWorkout!.itemsCollected[i].image)
+                                                .resizable()
+                                                .frame(width: 48, height: 48)
+                                            
                                         }
                                     }
                                     Spacer()
@@ -299,25 +311,89 @@ struct SummaryDetailView: View {
                                 .font(.title3).bold()
                                 .padding(.leading)
                             ZStack {
-                                RoundedRectangle(cornerRadius: 8)
-                                    .foregroundColor(.white)
-                                    .frame(height: 100)
-                                HStack{
-                                    Text("User")
-                                    Spacer()
-                                    Text("Opponent")
-                                }.padding(.horizontal)
+                                HStack(spacing: 3){
+                                    Rectangle()
+                                        .frame(height: 128)
+                                        .foregroundColor(Color.lightBlueDuel)
+                                    Rectangle()
+                                        .frame(height: 128)
+                                        .foregroundColor(Color.lightRedDuel)
+                                }.clipShape(RoundedRectangle(cornerRadius: 8))
+                                VStack (spacing: 8){
+                                    HStack{
+                                        ZStack {
+                                            RoundedRectangle(cornerRadius: 15)
+                                                .frame(width: 102, height: 24, alignment: .center)
+                                                .foregroundColor(Color.blueResumeButton)
+                                            Text("You")
+                                                .font(.system(size: 10)).bold()
+                                                .foregroundColor(.white)
+                                        }
+                                        Text("You Win")
+                                            .font(.system(size: 14)).fontWeight(.semibold)
+                                            .frame(width: 110)
+                                        ZStack {
+                                            RoundedRectangle(cornerRadius: 15)
+                                                .frame(width: 102, height: 24, alignment: .center)
+                                                .foregroundColor(Color.redStopButton)
+                                            Text("Reza")
+                                                .font(.system(size: 10)).bold()
+                                                .foregroundColor(.white)
+                                        }
+                                    }.padding(.horizontal)
+                                    HStack {
+                                        VStack(alignment: .leading, spacing: 5) {
+                                            Text("Total Distance")
+                                                .font(.caption)
+                                            Text("4.72 km")
+                                                .font(.subheadline)
+                                                .fontWeight(.black)
+                                        }
+                                        Spacer()
+                                        VStack(alignment: .trailing, spacing: 5){
+                                            Text("Total Distance")
+                                                .font(.caption)
+                                            Text("3.57 km")
+                                                .font(.subheadline)
+                                                .fontWeight(.black)
+                                        }
+                                    }.frame(width: 314).padding(.top, 10)
+                                }.padding(.bottom)
+                                CircleDuel()
+                                    .offset(y: 15)
                             }.padding([.horizontal, .bottom])
-                            
                         }
                         
                     }
                 }
             }
         }
+        .onChange(of: pickedDate) { oldValue, newValue in
+            todaysWorkout = vm.getThatDay(pickedDate: pickedDate)
+        }
+        
     }
 }
 
 #Preview {
-    SummaryDetailView()
+    CircleDuel()
+}
+
+struct CircleDuel: View {
+    var body: some View {
+        ZStack {
+            Circle()
+                .frame(height: 63)
+                .foregroundColor(Color.YellowLight23)
+            Circle()
+                .frame(height: 56)
+                .foregroundColor(Color.YellowNormal2)
+            Circle()
+                .frame(height: 44)
+                .foregroundColor(Color.YellowDark2)
+            Text("VS")
+                .font(.title3).bold()
+                .foregroundColor(.white)
+        }
+    }
 }

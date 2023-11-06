@@ -11,7 +11,7 @@ import MapKit
 
 struct SummaryView: View {
     
-    @EnvironmentObject var VM : ViewModel
+    @EnvironmentObject var vm : ViewModel
     var itemCount: Int = 6
     @State var progress = 0.1
     
@@ -43,7 +43,7 @@ struct SummaryView: View {
                             .bold()
                         Spacer()
                         NavigationLink {
-                            SummaryDetailView()
+                            SummaryDetailView(todaysWorkout: vm.getThatDay(pickedDate: Date()))
                         } label: {
                             Text("See All >")
                                 .font(.callout)
@@ -55,7 +55,7 @@ struct SummaryView: View {
                 .frame(width: 357)
                 .padding(.horizontal)
                 
-                if (VM.getToday() == nil) {
+                if (vm.getToday() == nil) {
                     
                     Text("No workout has been recorded yet for today!")
                     
@@ -96,7 +96,7 @@ struct SummaryView: View {
                             
                             HStack {
                                 VStack(alignment: .leading) {
-                                    Text ("\(VM.getToday()!.formattedDistance())")
+                                    Text ("\(vm.getToday()!.formattedDistance())")
                                         .font(.headline)
                                     Text ("Distance")
                                         .font(.footnote)
@@ -105,7 +105,7 @@ struct SummaryView: View {
                                 Spacer()
                                 
                                 VStack {
-                                    Text ("\(VM.getToday()!.formattedDuration())")
+                                    Text ("\(vm.getToday()!.formattedDuration())")
                                         .font(.headline)
                                     Text ("Duration")
                                         .font(.footnote)
@@ -114,7 +114,7 @@ struct SummaryView: View {
                                 Spacer()
                                 
                                 VStack {
-                                    Text ("\(VM.getToday()!.formattedPace())")
+                                    Text ("\(vm.getToday()!.formattedPace())")
                                         .font(.headline)
                                     Text ("Pace")
                                         .font(.footnote)
@@ -301,7 +301,7 @@ struct SummaryView: View {
             }
         }
         .onAppear {
-            VM.loadWorkouts()
+            vm.loadWorkouts()
         }
         
     }
