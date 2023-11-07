@@ -149,7 +149,7 @@ struct AllowLocationRect: View {
                 }, label: {
                     Text("Allow")
                 })
-                .buttonStyle(ActiveBlackSheetButton())
+                .buttonStyle(ActiveBlackButton())
                 .padding()
             }
         }.padding()
