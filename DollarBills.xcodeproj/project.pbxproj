@@ -19,32 +19,6 @@
 		15D24CBF2ADD372400AFE89B /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D24CBE2ADD372400AFE89B /* ActivityView.swift */; };
 		15D24D152AE0FA9400AFE89B /* DuelModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D24D142AE0FA9400AFE89B /* DuelModeView.swift */; };
 		15D24D172AE0FAB600AFE89B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D24D162AE0FAB600AFE89B /* ProfileView.swift */; };
-		6A3C86212AEB6DB000D73FDF /* DollarBillsWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3C86202AEB6DB000D73FDF /* DollarBillsWatchApp.swift */; };
-		6A3C86252AEB6DB100D73FDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A3C86242AEB6DB100D73FDF /* Assets.xcassets */; };
-		6A3C86282AEB6DB100D73FDF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A3C86272AEB6DB100D73FDF /* Preview Assets.xcassets */; };
-		6A3C862B2AEB6DB100D73FDF /* DollarBillsWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6A3C861E2AEB6DB000D73FDF /* DollarBillsWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		6A8E798A2AEED65800A927C3 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E79892AEED65800A927C3 /* CountdownView.swift */; };
-		6A8E798C2AEED69800A927C3 /* RunViewTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E798B2AEED69800A927C3 /* RunViewTab.swift */; };
-		6A8E798E2AEED79F00A927C3 /* RunViewPage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E798D2AEED79F00A927C3 /* RunViewPage1.swift */; };
-		6A8E79902AEED7C400A927C3 /* RunViewPage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E798F2AEED7C400A927C3 /* RunViewPage2.swift */; };
-		6A8E79922AEED7CF00A927C3 /* RunViewPage3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E79912AEED7CF00A927C3 /* RunViewPage3.swift */; };
-		6A8E79942AEED7D800A927C3 /* RunViewPage4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E79932AEED7D800A927C3 /* RunViewPage4.swift */; };
-		6A8E79962AEEDEE600A927C3 /* RunViewPage2Directions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E79952AEEDEE600A927C3 /* RunViewPage2Directions.swift */; };
-		6A8E79982AEEDFCD00A927C3 /* RunViewPage2Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E79972AEEDFCD00A927C3 /* RunViewPage2Tab.swift */; };
-		6A8E799A2AEF4D4B00A927C3 /* FinishRunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E79992AEF4D4B00A927C3 /* FinishRunView.swift */; };
-		6A8E799C2AEF538E00A927C3 /* ItemProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E799B2AEF538E00A927C3 /* ItemProgress.swift */; };
-		6A8E799E2AEF562500A927C3 /* PopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E799D2AEF562500A927C3 /* PopUp.swift */; };
-		6A8E79A02AF203EC00A927C3 /* VerticalTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E799F2AF203EC00A927C3 /* VerticalTabView.swift */; };
-		6A95858A2AEE6FC0001AD5D8 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9585892AEE6FC0001AD5D8 /* LoadingView.swift */; };
-		6A95858C2AEE7003001AD5D8 /* LandingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A95858B2AEE7003001AD5D8 /* LandingPageView.swift */; };
-		6A95858D2AEE71E7001AD5D8 /* ExtensionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E167968F2AD8E27600340093 /* ExtensionColor.swift */; };
-		6A9585912AEE7390001AD5D8 /* GIFImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9585902AEE7390001AD5D8 /* GIFImage.swift */; };
-		6A9585932AEE7DC5001AD5D8 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9585922AEE7DC5001AD5D8 /* MapView.swift */; };
-		6A9585952AEEBFDE001AD5D8 /* RouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9585942AEEBFDE001AD5D8 /* RouteDetailView.swift */; };
-		6A9585972AEEBFF3001AD5D8 /* RouteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9585962AEEBFF3001AD5D8 /* RouteSheet.swift */; };
-		6A9585992AEEC263001AD5D8 /* ElevationGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9585982AEEC263001AD5D8 /* ElevationGraph.swift */; };
-		6A95859B2AEEC3F8001AD5D8 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A95859A2AEEC3F8001AD5D8 /* Button.swift */; };
-		6A95859D2AEECC48001AD5D8 /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A95859C2AEECC48001AD5D8 /* Countdown.swift */; };
 		9B08B0C12AE6257A00021F79 /* HKWorkout+Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B08B0C02AE6257A00021F79 /* HKWorkout+Statistics.swift */; };
 		9B08B0C32AE62C9F00021F79 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B08B0C22AE62C9F00021F79 /* WorkoutManager.swift */; };
 		9B08B0CB2AE76D2C00021F79 /* HeartRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B08B0CA2AE76D2C00021F79 /* HeartRate.swift */; };
@@ -90,30 +64,6 @@
 		E1FE623E2AECBF4300D1736C /* SummaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FE623D2AECBF4300D1736C /* SummaryDetailView.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		6A3C86292AEB6DB100D73FDF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E1347E342AC43557008224CF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6A3C861D2AEB6DB000D73FDF;
-			remoteInfo = "DollarBillsWatch Watch App";
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		6A3C862F2AEB6DB100D73FDF /* Embed Watch Content */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
-			dstSubfolderSpec = 16;
-			files = (
-				6A3C862B2AEB6DB100D73FDF /* DollarBillsWatch Watch App.app in Embed Watch Content */,
-			);
-			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		150CC29A2AEB747900527BED /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
 		153E11B32AE53C5600B173F5 /* Summary View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Summary View.swift"; sourceTree = "<group>"; };
@@ -127,31 +77,6 @@
 		15D24CBE2ADD372400AFE89B /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		15D24D142AE0FA9400AFE89B /* DuelModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelModeView.swift; sourceTree = "<group>"; };
 		15D24D162AE0FAB600AFE89B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		6A3C861E2AEB6DB000D73FDF /* DollarBillsWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DollarBillsWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6A3C86202AEB6DB000D73FDF /* DollarBillsWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DollarBillsWatchApp.swift; sourceTree = "<group>"; };
-		6A3C86242AEB6DB100D73FDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6A3C86272AEB6DB100D73FDF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		6A8E79892AEED65800A927C3 /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
-		6A8E798B2AEED69800A927C3 /* RunViewTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewTab.swift; sourceTree = "<group>"; };
-		6A8E798D2AEED79F00A927C3 /* RunViewPage1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewPage1.swift; sourceTree = "<group>"; };
-		6A8E798F2AEED7C400A927C3 /* RunViewPage2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewPage2.swift; sourceTree = "<group>"; };
-		6A8E79912AEED7CF00A927C3 /* RunViewPage3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewPage3.swift; sourceTree = "<group>"; };
-		6A8E79932AEED7D800A927C3 /* RunViewPage4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewPage4.swift; sourceTree = "<group>"; };
-		6A8E79952AEEDEE600A927C3 /* RunViewPage2Directions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewPage2Directions.swift; sourceTree = "<group>"; };
-		6A8E79972AEEDFCD00A927C3 /* RunViewPage2Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewPage2Tab.swift; sourceTree = "<group>"; };
-		6A8E79992AEF4D4B00A927C3 /* FinishRunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishRunView.swift; sourceTree = "<group>"; };
-		6A8E799B2AEF538E00A927C3 /* ItemProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemProgress.swift; sourceTree = "<group>"; };
-		6A8E799D2AEF562500A927C3 /* PopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUp.swift; sourceTree = "<group>"; };
-		6A8E799F2AF203EC00A927C3 /* VerticalTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalTabView.swift; sourceTree = "<group>"; };
-		6A9585892AEE6FC0001AD5D8 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		6A95858B2AEE7003001AD5D8 /* LandingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageView.swift; sourceTree = "<group>"; };
-		6A9585902AEE7390001AD5D8 /* GIFImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFImage.swift; sourceTree = "<group>"; };
-		6A9585922AEE7DC5001AD5D8 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		6A9585942AEEBFDE001AD5D8 /* RouteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailView.swift; sourceTree = "<group>"; };
-		6A9585962AEEBFF3001AD5D8 /* RouteSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteSheet.swift; sourceTree = "<group>"; };
-		6A9585982AEEC263001AD5D8 /* ElevationGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElevationGraph.swift; sourceTree = "<group>"; };
-		6A95859A2AEEC3F8001AD5D8 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
-		6A95859C2AEECC48001AD5D8 /* Countdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countdown.swift; sourceTree = "<group>"; };
 		9B08B0C02AE6257A00021F79 /* HKWorkout+Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKWorkout+Statistics.swift"; sourceTree = "<group>"; };
 		9B08B0C22AE62C9F00021F79 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
 		9B08B0CA2AE76D2C00021F79 /* HeartRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRate.swift; sourceTree = "<group>"; };
@@ -201,13 +126,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		6A3C861B2AEB6DB000D73FDF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E1347E392AC43557008224CF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -228,61 +146,6 @@
 				E15C45932AF3AA8D00D215AB /* Haptics.swift */,
 			);
 			path = "Logic and Framework";
-			sourceTree = "<group>";
-		};
-		6A3C861F2AEB6DB000D73FDF /* DollarBillsWatch Watch App */ = {
-			isa = PBXGroup;
-			children = (
-				6A3C86202AEB6DB000D73FDF /* DollarBillsWatchApp.swift */,
-				6A3C86312AEB6DBE00D73FDF /* View */,
-				6A3C86302AEB6DBA00D73FDF /* Components */,
-				6A3C86242AEB6DB100D73FDF /* Assets.xcassets */,
-				6A3C86262AEB6DB100D73FDF /* Preview Content */,
-			);
-			path = "DollarBillsWatch Watch App";
-			sourceTree = "<group>";
-		};
-		6A3C86262AEB6DB100D73FDF /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				6A3C86272AEB6DB100D73FDF /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		6A3C86302AEB6DBA00D73FDF /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				6A9585902AEE7390001AD5D8 /* GIFImage.swift */,
-				6A8E799D2AEF562500A927C3 /* PopUp.swift */,
-				6A8E799B2AEF538E00A927C3 /* ItemProgress.swift */,
-				6A95859C2AEECC48001AD5D8 /* Countdown.swift */,
-				6A9585922AEE7DC5001AD5D8 /* MapView.swift */,
-				6A9585962AEEBFF3001AD5D8 /* RouteSheet.swift */,
-				6A9585982AEEC263001AD5D8 /* ElevationGraph.swift */,
-				6A95859A2AEEC3F8001AD5D8 /* Button.swift */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		6A3C86312AEB6DBE00D73FDF /* View */ = {
-			isa = PBXGroup;
-			children = (
-				6A9585892AEE6FC0001AD5D8 /* LoadingView.swift */,
-				6A95858B2AEE7003001AD5D8 /* LandingPageView.swift */,
-				6A9585942AEEBFDE001AD5D8 /* RouteDetailView.swift */,
-				6A8E79892AEED65800A927C3 /* CountdownView.swift */,
-				6A8E798B2AEED69800A927C3 /* RunViewTab.swift */,
-				6A8E79992AEF4D4B00A927C3 /* FinishRunView.swift */,
-				6A8E798D2AEED79F00A927C3 /* RunViewPage1.swift */,
-				6A8E799F2AF203EC00A927C3 /* VerticalTabView.swift */,
-				6A8E798F2AEED7C400A927C3 /* RunViewPage2.swift */,
-				6A8E79972AEEDFCD00A927C3 /* RunViewPage2Tab.swift */,
-				6A8E79952AEEDEE600A927C3 /* RunViewPage2Directions.swift */,
-				6A8E79912AEED7CF00A927C3 /* RunViewPage3.swift */,
-				6A8E79932AEED7D800A927C3 /* RunViewPage4.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		9BD93E382ACEB17D004862F7 /* Models */ = {
@@ -346,7 +209,6 @@
 			isa = PBXGroup;
 			children = (
 				E1347E3E2AC43557008224CF /* DollarBills */,
-				6A3C861F2AEB6DB000D73FDF /* DollarBillsWatch Watch App */,
 				E1347E3D2AC43557008224CF /* Products */,
 				9BD93E512ACF2A81004862F7 /* Frameworks */,
 			);
@@ -356,7 +218,6 @@
 			isa = PBXGroup;
 			children = (
 				E1347E3C2AC43557008224CF /* DollarBills.app */,
-				6A3C861E2AEB6DB000D73FDF /* DollarBillsWatch Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -416,23 +277,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6A3C861D2AEB6DB000D73FDF /* DollarBillsWatch Watch App */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6A3C862C2AEB6DB100D73FDF /* Build configuration list for PBXNativeTarget "DollarBillsWatch Watch App" */;
-			buildPhases = (
-				6A3C861A2AEB6DB000D73FDF /* Sources */,
-				6A3C861B2AEB6DB000D73FDF /* Frameworks */,
-				6A3C861C2AEB6DB000D73FDF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "DollarBillsWatch Watch App";
-			productName = "DollarBillsWatch Watch App";
-			productReference = 6A3C861E2AEB6DB000D73FDF /* DollarBillsWatch Watch App.app */;
-			productType = "com.apple.product-type.application";
-		};
 		E1347E3B2AC43557008224CF /* DollarBills */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E1347E4A2AC43558008224CF /* Build configuration list for PBXNativeTarget "DollarBills" */;
@@ -440,12 +284,10 @@
 				E1347E382AC43557008224CF /* Sources */,
 				E1347E392AC43557008224CF /* Frameworks */,
 				E1347E3A2AC43557008224CF /* Resources */,
-				6A3C862F2AEB6DB100D73FDF /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				6A3C862A2AEB6DB100D73FDF /* PBXTargetDependency */,
 			);
 			name = DollarBills;
 			productName = DollarBills;
@@ -459,12 +301,9 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1500;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
-					6A3C861D2AEB6DB000D73FDF = {
-						CreatedOnToolsVersion = 15.0;
-					};
 					E1347E3B2AC43557008224CF = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
@@ -484,21 +323,11 @@
 			projectRoot = "";
 			targets = (
 				E1347E3B2AC43557008224CF /* DollarBills */,
-				6A3C861D2AEB6DB000D73FDF /* DollarBillsWatch Watch App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		6A3C861C2AEB6DB000D73FDF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6A3C86282AEB6DB100D73FDF /* Preview Assets.xcassets in Resources */,
-				6A3C86252AEB6DB100D73FDF /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E1347E3A2AC43557008224CF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -512,36 +341,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6A3C861A2AEB6DB000D73FDF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6A9585912AEE7390001AD5D8 /* GIFImage.swift in Sources */,
-				6A9585952AEEBFDE001AD5D8 /* RouteDetailView.swift in Sources */,
-				6A8E799E2AEF562500A927C3 /* PopUp.swift in Sources */,
-				6A8E798C2AEED69800A927C3 /* RunViewTab.swift in Sources */,
-				6A9585932AEE7DC5001AD5D8 /* MapView.swift in Sources */,
-				6A8E79A02AF203EC00A927C3 /* VerticalTabView.swift in Sources */,
-				6A9585972AEEBFF3001AD5D8 /* RouteSheet.swift in Sources */,
-				6A8E79942AEED7D800A927C3 /* RunViewPage4.swift in Sources */,
-				6A95858D2AEE71E7001AD5D8 /* ExtensionColor.swift in Sources */,
-				6A8E799A2AEF4D4B00A927C3 /* FinishRunView.swift in Sources */,
-				6A95859B2AEEC3F8001AD5D8 /* Button.swift in Sources */,
-				6A8E79982AEEDFCD00A927C3 /* RunViewPage2Tab.swift in Sources */,
-				6A8E798A2AEED65800A927C3 /* CountdownView.swift in Sources */,
-				6A8E799C2AEF538E00A927C3 /* ItemProgress.swift in Sources */,
-				6A9585992AEEC263001AD5D8 /* ElevationGraph.swift in Sources */,
-				6A8E79962AEEDEE600A927C3 /* RunViewPage2Directions.swift in Sources */,
-				6A95859D2AEECC48001AD5D8 /* Countdown.swift in Sources */,
-				6A8E79902AEED7C400A927C3 /* RunViewPage2.swift in Sources */,
-				6A3C86212AEB6DB000D73FDF /* DollarBillsWatchApp.swift in Sources */,
-				6A95858C2AEE7003001AD5D8 /* LandingPageView.swift in Sources */,
-				6A8E79922AEED7CF00A927C3 /* RunViewPage3.swift in Sources */,
-				6A95858A2AEE6FC0001AD5D8 /* LoadingView.swift in Sources */,
-				6A8E798E2AEED79F00A927C3 /* RunViewPage1.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E1347E382AC43557008224CF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -601,82 +400,7 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		6A3C862A2AEB6DB100D73FDF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6A3C861D2AEB6DB000D73FDF /* DollarBillsWatch Watch App */;
-			targetProxy = 6A3C86292AEB6DB100D73FDF /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		6A3C862D2AEB6DB100D73FDF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"DollarBillsWatch Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = BVKAMN7JUV;
-				ENABLE_PREVIEWS = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = DollarBillsWatch;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.DollarBills;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.DollarBills.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 10.0;
-			};
-			name = Debug;
-		};
-		6A3C862E2AEB6DB100D73FDF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"DollarBillsWatch Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = BVKAMN7JUV;
-				ENABLE_PREVIEWS = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = DollarBillsWatch;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.DollarBills;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.DollarBills.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 10.0;
-			};
-			name = Release;
-		};
 		E1347E482AC43558008224CF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -796,7 +520,6 @@
 		E1347E4B2AC43558008224CF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DollarBills/DollarBills.entitlements;
@@ -832,7 +555,6 @@
 		E1347E4C2AC43558008224CF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DollarBills/DollarBills.entitlements;
@@ -868,15 +590,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6A3C862C2AEB6DB100D73FDF /* Build configuration list for PBXNativeTarget "DollarBillsWatch Watch App" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6A3C862D2AEB6DB100D73FDF /* Debug */,
-				6A3C862E2AEB6DB100D73FDF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		E1347E372AC43557008224CF /* Build configuration list for PBXProject "DollarBills" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
