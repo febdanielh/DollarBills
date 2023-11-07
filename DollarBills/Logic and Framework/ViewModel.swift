@@ -9,10 +9,9 @@ import MapKit
 import HealthKit
 import Combine
 import SwiftUI
-//import CoreHaptics
-//import Supabase
+import CoreHaptics
 
-@MainActor
+@MainActor//location dan map
 class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     private var locationManager: CLLocationManager = CLLocationManager()
