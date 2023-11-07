@@ -9,7 +9,24 @@ import SwiftUI
 
 struct ChooseItemView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Spacer()
+            Text("Choose 3 items for duel")
+                .fontWeight(.bold)
+                .font(.title3)
+            
+            HStack (spacing: 5){
+                ChosenItemContainer()
+                ChosenItemContainer()
+                ChosenItemContainer()
+            }
+            
+            Spacer()
+            ItemsSheet()
+        }
+        .ignoresSafeArea()
+        
+            
     }
 }
 

@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct Room: Identifiable {
+    let id = UUID()
+    var code: String
+}

@@ -8,8 +8,26 @@
 import SwiftUI
 
 struct TimePickerView: View {
+    
+    @State private var selectedTime = Date()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("Selected Time: \(formattedTime(selectedTime))")
+            
+            DatePicker("Select a time", selection: $selectedTime, displayedComponents: .hourAndMinute)
+                .datePickerStyle(WheelDatePickerStyle())
+                .frame(width: 240, height: 86)
+                .cornerRadius(25)
+                .padding()
+            
+                
+        }
+    }
+    private func formattedTime(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .short
+        return dateFormatter.string(from: date)
     }
 }
 

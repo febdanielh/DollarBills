@@ -8,8 +8,28 @@
 import SwiftUI
 
 struct LoadingAnimation: View {
+    @State private var dotOpacity: Double = 1.0
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Circle()
+                .fill(Color.black)
+                .opacity(dotOpacity)
+                .frame(width: 10, height: 10)
+            Circle()
+                .fill(Color.black)
+                .opacity(dotOpacity)
+                .frame(width: 10, height: 10)
+            Circle()
+                .fill(Color.black)
+                .opacity(dotOpacity)
+                .frame(width: 10, height: 10)
+        }
+        .onAppear {
+            withAnimation(Animation.easeInOut(duration: 1.0).repeatForever(autoreverses: true)) {
+                dotOpacity = 0.2
+            }
+        }
     }
 }
 
