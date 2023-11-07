@@ -9,6 +9,7 @@ import Foundation
 import Supabase
 
 class Supabase {
+    
     static let shared = Supabase()
     
     private init(){}
@@ -34,11 +35,15 @@ class Supabase {
     }
     
     func createWorkoutItem(item: WorkoutPayload) async throws {
-        let response = client.database.from("Workout").insert(values: item)
-        
         Task {
-            try await response.execute()
+            let response = client.database.from("Workout").insert(values: item).single()
+            do {
+                try await response.execute()
+            } catch {
+                print(error)
+            }
         }
+        
     }
     
     func createDetailRoomItem(item: DetailRoomPayload) async throws {
