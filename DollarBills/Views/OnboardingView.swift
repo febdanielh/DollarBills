@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AuthenticationServices
 
 struct OnboardingSteps {
     let image: String
@@ -224,7 +225,30 @@ struct AnotherOnboardingView: View {
                     Text("Let's Go")
                         .fontWeight(.semibold)
                 }
-                .buttonStyle(ActiveBlackSheetButton())
+                .buttonStyle(ActiveBlackButton())
+                
+                //                SignInWithAppleButton { request in
+                //                    request.requestedScopes = [.email, .fullName]
+                //                } onCompletion: { result in
+                //                    Task {
+                //                        do {
+                //                            guard let credential = try result.get().credential as? ASAuthorizationAppleIDCredential else { return }
+                //
+                //                            guard let idToken = credential.identityToken
+                //                                .flatMap({ String(data: $0, encoding: .utf8) })
+                //                            else { return }
+                //
+                //                            try await Supabase.shared.client
+                //                                .auth.signInWithIdToken(credentials: .init(provider: .apple, idToken: idToken))
+                //
+                //                            vm.currentDisplayScreen = .viewMain
+                //                            shouldShowOnboarding = false
+                //                        } catch {
+                //                            dump(error)
+                //                        }
+                //                    }
+                //                }.frame(width: 300, height: 44)
+                
             }
         }
         .padding()

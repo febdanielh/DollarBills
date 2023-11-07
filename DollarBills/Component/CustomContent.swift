@@ -26,10 +26,10 @@ struct FillButton: ButtonStyle {
 struct ActiveBlackButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .frame(width: 336, height: 50)
+            .frame(width: 300, height: 44)
             .foregroundColor(.white)
             .background(Color.black)
-            .clipShape(RoundedRectangle(cornerRadius: 26))
+            .clipShape(RoundedRectangle(cornerRadius: 18))
     }
 }
 
@@ -56,10 +56,10 @@ struct ActiveBlackButtonProfile: ButtonStyle {
 struct ActiveBlackSheetButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .frame(width: 306, height: 60)
+            .frame(width: 306, height: 44)
             .foregroundColor(.white)
             .background(Color.black)
-            .clipShape(RoundedRectangle(cornerRadius: 25))
+            .clipShape(RoundedRectangle(cornerRadius: 18))
     }
 }
 
