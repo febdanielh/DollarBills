@@ -11,16 +11,12 @@ struct FinishRunView: View {
     var body: some View {
         VStack {
             HStack{
-//                Image("frame1")
-//                    .resizable()
-//                    .frame(width: 70, height: 70)
-                
                 Text("Are You Sure?")
             }
             
             
             NavigationLink {
-                RunViewTab()
+                InformationView()
                     .navigationBarBackButtonHidden(true)
             } label: {
                 ZStack {

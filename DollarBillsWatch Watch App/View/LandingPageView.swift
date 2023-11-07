@@ -21,12 +21,17 @@ struct LandingPageView: View {
                         NavigationLink {
                             RouteDetailView()
                         } label: {
-                            RoundedRectangle(cornerRadius: 25)
-                                .frame(width: 150, height: 50)
-                                .foregroundStyle(Color.yellow)
-                            Text("Mozia Loop")
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 25)
+                                    .frame(width: 150, height: 50)
+                                    .foregroundStyle(Color.yellow)
+                                Text("Mozia Loop")
+                                    .foregroundStyle(Color.black)
+                            }
                         }
+                        .frame(width: 150, height: 50)
                         .padding(.top,3)
+                        .padding(.horizontal)
                         .buttonStyle(PlainButtonStyle())
                         
                     }
@@ -39,10 +44,18 @@ struct LandingPageView: View {
                         NavigationLink {
                             RouteDetailView()
                         } label: {
-                            Text("Mozia Loop")
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 25)
+                                    .frame(width: 150, height: 50)
+                                    .foregroundStyle(Color.yellow)
+                                Text("Mozia Loop")
+                                    .foregroundStyle(Color.black)
+                            }
                         }
-                        .foregroundStyle(Color.yellow)
+                        .frame(width: 150, height: 50)
                         .padding(.top,3)
+                        .padding(.horizontal)
+                        .buttonStyle(PlainButtonStyle())
                     }
                 }
             }

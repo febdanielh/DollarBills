@@ -18,6 +18,7 @@
 		15D24CBF2ADD372400AFE89B /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D24CBE2ADD372400AFE89B /* ActivityView.swift */; };
 		15D24D152AE0FA9400AFE89B /* DuelModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D24D142AE0FA9400AFE89B /* DuelModeView.swift */; };
 		15D24D172AE0FAB600AFE89B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D24D162AE0FAB600AFE89B /* ProfileView.swift */; };
+		6A0DFC712AFA85A400E0F324 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0DFC702AFA85A400E0F324 /* InformationView.swift */; };
 		6A3C86212AEB6DB000D73FDF /* DollarBillsWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3C86202AEB6DB000D73FDF /* DollarBillsWatchApp.swift */; };
 		6A3C86252AEB6DB100D73FDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A3C86242AEB6DB100D73FDF /* Assets.xcassets */; };
 		6A3C86282AEB6DB100D73FDF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A3C86272AEB6DB100D73FDF /* Preview Assets.xcassets */; };
@@ -118,6 +119,7 @@
 		15D24CBE2ADD372400AFE89B /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		15D24D142AE0FA9400AFE89B /* DuelModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelModeView.swift; sourceTree = "<group>"; };
 		15D24D162AE0FAB600AFE89B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		6A0DFC702AFA85A400E0F324 /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
 		6A3C861E2AEB6DB000D73FDF /* DollarBillsWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DollarBillsWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A3C86202AEB6DB000D73FDF /* DollarBillsWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DollarBillsWatchApp.swift; sourceTree = "<group>"; };
 		6A3C86242AEB6DB100D73FDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				6A8E79892AEED65800A927C3 /* CountdownView.swift */,
 				6A8E798B2AEED69800A927C3 /* RunViewTab.swift */,
 				6A8E79992AEF4D4B00A927C3 /* FinishRunView.swift */,
+				6A0DFC702AFA85A400E0F324 /* InformationView.swift */,
 				6A8E798D2AEED79F00A927C3 /* RunViewPage1.swift */,
 				6A8E799F2AF203EC00A927C3 /* VerticalTabView.swift */,
 				6A8E798F2AEED7C400A927C3 /* RunViewPage2.swift */,
@@ -493,6 +496,7 @@
 			files = (
 				6A9585912AEE7390001AD5D8 /* GIFImage.swift in Sources */,
 				6A9585952AEEBFDE001AD5D8 /* RouteDetailView.swift in Sources */,
+				6A0DFC712AFA85A400E0F324 /* InformationView.swift in Sources */,
 				6A8E799E2AEF562500A927C3 /* PopUp.swift in Sources */,
 				6A8E798C2AEED69800A927C3 /* RunViewTab.swift in Sources */,
 				6A9585932AEE7DC5001AD5D8 /* MapView.swift in Sources */,
