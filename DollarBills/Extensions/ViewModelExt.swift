@@ -7,6 +7,8 @@
 
 import Foundation
 import Supabase
+import AuthenticationServices
+import GoTrue
 
 extension ViewModel {
     // MARK: Insert/Create
@@ -40,4 +42,9 @@ extension ViewModel {
     }
     // MARK: Delete
     // MARK: Update
+    
+    // MARK: Sign In
+    func signInApple(uid: String) async throws {
+        try await Supabase.shared.client.auth.signInWithIdToken(credentials: .init(provider: .apple, idToken: uid))
+    }
 }
