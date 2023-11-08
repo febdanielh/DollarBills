@@ -269,6 +269,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         do {
             try await workoutBuilder?.beginCollection(at: .now)
+            createWorkoutItems(distance: 0.0, pace: 0.0, duration: 0.0)
         } catch {
             self.showError(.startingWorkout)
             return
