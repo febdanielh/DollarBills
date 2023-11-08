@@ -20,9 +20,11 @@ extension ViewModel {
         try await Supabase.shared.createDuelRoomItem(item: duelRoom)
     }
     
-    func createWorkoutItems(distance: Double, pace: Double, duration: Double) async throws {
-        let workout = WorkoutPayload(distance: distance, pace: pace, duration: duration)
-        try await Supabase.shared.createWorkoutItem(item: workout)
+    func createWorkoutItems(distance: Double, pace: Double, duration: Double) {
+        let workout = WorkoutPayload(workoutID: nil, startDate: Date().description, endDate: Date().description, distance: distance, pace: pace, duration: duration)
+        Task {
+            try await Supabase.shared.createWorkoutItem(item: workout)
+        }
     }
     
     func createDetailRoomItems(roomID: String, itemsCarried: [String], itemsUsed: [String], distance: Double, duration: Double, pace: Double, calorieBurned: Double, heartRate: Int, elevation: Double, userID: String) async throws {
