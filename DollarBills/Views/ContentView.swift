@@ -47,13 +47,13 @@ struct ContentView: View {
                     }
             case .viewRun:
                 //                RunView(workout: vm.newWorkout, itemCollected: $vm.itemsCollected)
-                RunWatchView()
+                RunWatchView(workout: vm.newWorkout, itemCollected: $vm.itemsCollected)
             case .viewPause:
                 PauseRunView(workout: vm.newWorkout, directions: $directions)
             default:
                 Text("Default View")
             }
-        } else if shouldShowOnboarding {
+        } else if (!vm.isAuthenticated || shouldShowOnboarding) {
             OnboardingView(shouldShowOnboarding: $shouldShowOnboarding)
                 .onDisappear {
                     launchedBefore = true

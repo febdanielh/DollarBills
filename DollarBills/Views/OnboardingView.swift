@@ -71,7 +71,7 @@ struct OnboardingView: View {
             }
             .padding()
             
-            if currentStep == anotherOnboardSteps.count - 1 {
+            if currentStep == anotherOnboardSteps.count - 1 && isLast == false {
                 SignInWithAppleButton { request in
                     request.requestedScopes = [.email, .fullName]
                 } onCompletion: { result in
@@ -84,11 +84,12 @@ struct OnboardingView: View {
                             else { return }
                             
                             try await vm.signInApple(uid: idToken)
+                            await vm.isUserAuthenticated()
                         } catch {
                             dump(error)
                         }
+                        isLast = true
                     }
-                    isLast = true
                 }.frame(width: 300, height: 44).cornerRadius(18)
             } else if isLast == true {
                 Button(action: {

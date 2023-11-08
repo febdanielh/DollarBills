@@ -9,6 +9,7 @@ import Foundation
 import Supabase
 import AuthenticationServices
 import GoTrue
+import SwiftUI
 
 extension ViewModel {
     // MARK: Insert/Create
@@ -46,5 +47,14 @@ extension ViewModel {
     // MARK: Sign In
     func signInApple(uid: String) async throws {
         try await Supabase.shared.client.auth.signInWithIdToken(credentials: .init(provider: .apple, idToken: uid))
+    }
+    
+    func isUserAuthenticated() async {
+        do {
+            _ = try await Supabase.shared.client.auth.session.user
+            isAuthenticated = true
+        } catch {
+            isAuthenticated = false
+        }
     }
 }
