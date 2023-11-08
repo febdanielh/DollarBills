@@ -10,7 +10,7 @@ import Foundation
 struct InventoryPayload: Codable {
     let userID: String
     let itemID: String
-    let quantity: Int
+    let quantity: Int8
 }
 
 struct DuelRoomPayLoad: Codable {
@@ -28,7 +28,7 @@ struct DetailRoomPayload: Codable {
     let duration: Double
     let pace: Double
     let calorieBurned: Double
-    let heartRate: Int
+    let heartRate: Int8
     let elevation: Double
     let userID: String
 }
@@ -40,5 +40,12 @@ struct WorkoutPayload: Codable {
     let distance: Double
     let pace: Double
     let duration: Double
-    
+}
+
+struct UserPayload: Codable, Identifiable, Hashable {
+    var id: Int?
+    var userID: UUID?
+    var username: String
+    var email: String
+    var points: Int8
 }

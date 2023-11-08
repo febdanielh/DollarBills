@@ -10,7 +10,7 @@ import SwiftUI
 
 struct LeaderboardView: View {
     
-    @EnvironmentObject var VM : ViewModel
+    @EnvironmentObject var vm : ViewModel
     
     var body: some View {
         ScrollView {
@@ -57,9 +57,9 @@ struct LeaderboardView: View {
                     
                     VStack {
                         HStack {
-                            LeaderboardBar(points: 500, rank: 2, name: "Feb")
-                            LeaderboardBar(points: 800, rank: 1, name: "Pis")
-                            LeaderboardBar(points: 300, rank: 3, name: "Rez")
+                            ForEach(vm.users) { user in
+                                LeaderboardBar(points: Int(Double(user.points)), rank: 2, name: user.username)
+                            }
                         }.frame(width: 324)
                     }
                     .frame(width: 340, height: 410, alignment: .center)

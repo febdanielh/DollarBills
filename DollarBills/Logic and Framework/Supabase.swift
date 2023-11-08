@@ -7,6 +7,7 @@
 
 import Foundation
 import Supabase
+import SwiftUI
 
 class Supabase {
     
@@ -43,7 +44,6 @@ class Supabase {
                 print(error)
             }
         }
-        
     }
     
     func createDetailRoomItem(item: DetailRoomPayload) async throws {
@@ -65,6 +65,24 @@ class Supabase {
         print(response)
     }
     
+    func fetchUserPoints(for userID: String) async throws {
+        let response : [UserPayload] = try await client.database.from("User")
+            .select(columns:"""
+                            username,
+                            points
+                            """).order(column: "points", ascending: false).execute().value
+        print(response)
+    }
+    
     // MARK: Delete
     // MARK: Update
+    func updateUserPoints(points: Int) async throws {
+        let id = try await client.auth.session.user.id
+        
+        let response = client.database.from("User").update(values: points).eq(column: "userID", value: id)
+        
+        Task {
+            try await response.execute()
+        }
+    }
 }
