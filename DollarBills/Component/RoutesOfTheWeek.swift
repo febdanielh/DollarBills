@@ -57,7 +57,7 @@ struct RoutesOfTheWeek: View {
         .padding(.vertical, 4)
         .onTapGesture {
             vm.selectedAnnotation = routes.annotationModel
-            vm.currentDisplayScreen = .viewMap
+            vm.currentDisplayScreen = .viewROTWMap
             isRouteSelected = true
         }
     }

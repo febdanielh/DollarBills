@@ -14,7 +14,6 @@ struct RouteCards: View {
     @Binding var selectedAnnotation: AnnotationModel
     @Binding var tag: Int
     @Binding var isRouteSelected: Bool
-    @Binding var showSheet: Bool
     
     @Binding var selectedRoute: Routes
     @Binding var directions: [String]
@@ -134,7 +133,6 @@ struct RouteCards: View {
         selectedAnnotation: .constant(CustomAnnotationAndRoute.customAnnotation[0].annotationModel),
         tag: .constant(0),
         isRouteSelected: .constant(true),
-        showSheet: .constant(true),
         selectedRoute: .constant(Routes(tag: 10, routeName: "", routeNameDetail: "", routeImage: "", routeCount: 0, latitude: 0.0, longitude: 0.0)),
         directions: .constant([]),
         currentRouteIndex: .constant(0))
