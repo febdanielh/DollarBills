@@ -155,6 +155,24 @@ struct RunView: View {
 }
 
 #Preview {
-    ProgressView(value: 0.5, label: { Text("Your Progress") }, currentValueLabel: { Text("\(Int(0.5 * 100))%") })
-        .progressViewStyle(BarProgressStyle(height: 25.0))
+//    ProgressView(value: 0.5, label: { Text("Your Progress") }, currentValueLabel: { Text("\(Int(0.5 * 100))%") })
+//        .progressViewStyle(BarProgressStyle(height: 25.0))
+    RunWatchView()
+}
+
+struct RunWatchView: View {
+    var body: some View {
+        VStack {
+            Text("Switch to Apple watch for Running Mode")
+                .font(.body)
+                .foregroundColor(Color.TextDimGray)
+                .italic()
+            Spacer().frame(height: 61)
+            Image(systemName: "applewatch.radiowaves.left.and.right")
+                .resizable()
+                .frame(width: 65, height: 45)
+                .fontWeight(.black)
+                .foregroundColor(Color.TextDimGray)
+        }
+    }
 }
