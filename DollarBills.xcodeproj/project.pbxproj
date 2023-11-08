@@ -57,6 +57,7 @@
 		E1347E422AC43557008224CF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1347E412AC43557008224CF /* ContentView.swift */; };
 		E1347E442AC43558008224CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1347E432AC43558008224CF /* Assets.xcassets */; };
 		E1347E472AC43558008224CF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1347E462AC43558008224CF /* Preview Assets.xcassets */; };
+		E1563EB22AFB2DC100BDD638 /* ROTWSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1563EB12AFB2DC100BDD638 /* ROTWSheet.swift */; };
 		E15C45942AF3AA8D00D215AB /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15C45932AF3AA8D00D215AB /* Haptics.swift */; };
 		E15C45962AF4940200D215AB /* LeaderboardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15C45952AF4940200D215AB /* LeaderboardDetailView.swift */; };
 		E15C459A2AF7FE2700D215AB /* Duel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15C45992AF7FE2700D215AB /* Duel.swift */; };
@@ -72,6 +73,7 @@
 		E1806C612AF942EE007A122A /* ViewModelExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1806C602AF942EE007A122A /* ViewModelExt.swift */; };
 		E1806C632AF94884007A122A /* Supabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1806C622AF94884007A122A /* Supabase.swift */; };
 		E1806C652AF9E0D8007A122A /* SupaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1806C642AF9E0D8007A122A /* SupaModel.swift */; };
+		E1806C672AFA868A007A122A /* ROTWMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1806C662AFA868A007A122A /* ROTWMapView.swift */; };
 		E1941FFE2AE28F8500E29394 /* NearestToYouDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1941FFD2AE28F8500E29394 /* NearestToYouDetailView.swift */; };
 		E19420002AE38C7E00E29394 /* NearestRouteDetailCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1941FFF2AE38C7E00E29394 /* NearestRouteDetailCard.swift */; };
 		E19420042AE40DBE00E29394 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19420032AE40DBE00E29394 /* CountdownView.swift */; };
@@ -140,6 +142,7 @@
 		E1347E412AC43557008224CF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E1347E432AC43558008224CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "/Users/angelicapinonkuan/Desktop/Apple Developer Academy/Application/DollarBills Explaination/DollarBills Explaination/Assets.xcassets"; sourceTree = "<absolute>"; };
 		E1347E462AC43558008224CF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E1563EB12AFB2DC100BDD638 /* ROTWSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ROTWSheet.swift; sourceTree = "<group>"; };
 		E15C45932AF3AA8D00D215AB /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		E15C45952AF4940200D215AB /* LeaderboardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardDetailView.swift; sourceTree = "<group>"; };
 		E15C45992AF7FE2700D215AB /* Duel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Duel.swift; sourceTree = "<group>"; };
@@ -154,6 +157,7 @@
 		E1806C602AF942EE007A122A /* ViewModelExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelExt.swift; sourceTree = "<group>"; };
 		E1806C622AF94884007A122A /* Supabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Supabase.swift; sourceTree = "<group>"; };
 		E1806C642AF9E0D8007A122A /* SupaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupaModel.swift; sourceTree = "<group>"; };
+		E1806C662AFA868A007A122A /* ROTWMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ROTWMapView.swift; sourceTree = "<group>"; };
 		E1941FFD2AE28F8500E29394 /* NearestToYouDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestToYouDetailView.swift; sourceTree = "<group>"; };
 		E1941FFF2AE38C7E00E29394 /* NearestRouteDetailCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestRouteDetailCard.swift; sourceTree = "<group>"; };
 		E19420032AE40DBE00E29394 /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
@@ -272,6 +276,7 @@
 				E195B6712AE219DA00FB32C1 /* QokkaPickCard.swift */,
 				E1941FFF2AE38C7E00E29394 /* NearestRouteDetailCard.swift */,
 				E19420162AE668EA00E29394 /* RoutesOfTheWeek.swift */,
+				E1563EB12AFB2DC100BDD638 /* ROTWSheet.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -351,6 +356,7 @@
 				E1FE623D2AECBF4300D1736C /* SummaryDetailView.swift */,
 				150CC29A2AEB747900527BED /* ItemDetailView.swift */,
 				E15C45952AF4940200D215AB /* LeaderboardDetailView.swift */,
+				E1806C662AFA868A007A122A /* ROTWMapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -436,6 +442,7 @@
 				E1A093712AD7E8A000A8A4AC /* PauseRunView.swift in Sources */,
 				15D24CBD2ADD32E300AFE89B /* ExploreView.swift in Sources */,
 				E1FE623A2AEB5A6400D1736C /* GifImage.swift in Sources */,
+				E1806C672AFA868A007A122A /* ROTWMapView.swift in Sources */,
 				9BD93E492ACEC7CC004862F7 /* WorkoutMenuView.swift in Sources */,
 				E168B9992ACD4C2200CF56D9 /* createMap.swift in Sources */,
 				6A0DFC8A2AFA97EB00E0F324 /* ResultView.swift in Sources */,
@@ -483,6 +490,7 @@
 				15D24C432AD6942E00AFE89B /* ViewModel.swift in Sources */,
 				6A0DFC912AFA983000E0F324 /* ChosenItemContainer.swift in Sources */,
 				6A0DFC882AFA97D900E0F324 /* ChooseItemView.swift in Sources */,
+				E1563EB22AFB2DC100BDD638 /* ROTWSheet.swift in Sources */,
 				15D24CB92ADD325700AFE89B /* MainView.swift in Sources */,
 				E15C459A2AF7FE2700D215AB /* Duel.swift in Sources */,
 				6A0DFC932AFA984100E0F324 /* ItemDescriptionContainer.swift in Sources */,

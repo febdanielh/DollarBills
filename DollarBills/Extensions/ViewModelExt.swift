@@ -7,6 +7,9 @@
 
 import Foundation
 import Supabase
+import AuthenticationServices
+import GoTrue
+import SwiftUI
 
 extension ViewModel {
     // MARK: Insert/Create
@@ -20,9 +23,11 @@ extension ViewModel {
         try await Supabase.shared.createDuelRoomItem(item: duelRoom)
     }
     
-    func createWorkoutItems(distance: Double, pace: Double, duration: Double) async throws {
-        let workout = WorkoutPayload(distance: distance, pace: pace, duration: duration)
-        try await Supabase.shared.createWorkoutItem(item: workout)
+    func createWorkoutItems(distance: Double, pace: Double, duration: Double) {
+        let workout = WorkoutPayload(workoutID: nil, startDate: Date().description, endDate: Date().description, distance: distance, pace: pace, duration: duration)
+        Task {
+            try await Supabase.shared.createWorkoutItem(item: workout)
+        }
     }
     
     func createDetailRoomItems(roomID: String, itemsCarried: [String], itemsUsed: [String], distance: Double, duration: Double, pace: Double, calorieBurned: Double, heartRate: Int, elevation: Double, userID: String) async throws {
@@ -40,4 +45,18 @@ extension ViewModel {
     }
     // MARK: Delete
     // MARK: Update
+    
+    // MARK: Sign In
+    func signInApple(uid: String) async throws {
+        try await Supabase.shared.client.auth.signInWithIdToken(credentials: .init(provider: .apple, idToken: uid))
+    }
+    
+    func isUserAuthenticated() async {
+        do {
+            _ = try await Supabase.shared.client.auth.session.user
+            isAuthenticated = true
+        } catch {
+            isAuthenticated = false
+        }
+    }
 }

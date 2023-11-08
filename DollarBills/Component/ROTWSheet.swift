@@ -1,15 +1,14 @@
 //
-//  RouteSheet.swift
+//  ROTWSheet.swift
 //  DollarBills
 //
-//  Created by Elvis Susanto on 06/10/23.
+//  Created by Febrian Daniel on 08/11/23.
 //
 
 import SwiftUI
 import CoreLocation
 
-struct routeSheet: View {
-    
+struct ROTWSheet: View {
     @EnvironmentObject var vm: ViewModel
     @State var showStartConfirmation = false
     @State var showStopConfirmation = false
@@ -20,6 +19,7 @@ struct routeSheet: View {
     @Binding var isRouteSelected: Bool
     @State var isStarted: Bool = false
     @Binding var currentRouteIndex: Int
+    
     var distance: CLLocationDistance = 0
     
     var body: some View {
@@ -73,7 +73,7 @@ struct routeSheet: View {
                     .padding([.bottom])
                     
                     HStack {
-                        let distance = vm.getUserDistance(latitude: selectedAnnotation.waypoints[0].coordinate.latitude, longitude: selectedAnnotation.waypoints[0].coordinate.longitude)
+                        let distance = vm.getUserDistance(latitude: selectedAnnotation.waypoints[0].coordinate.latitude , longitude: selectedAnnotation.waypoints[0].coordinate.longitude)
                         
                         Text("This route is \(distance, specifier: "%.2f") km from you.")
                         
@@ -130,5 +130,6 @@ struct routeSheet: View {
         .presentationDetents([.fraction(0.47), .medium])
         .interactiveDismissDisabled(true)
         .presentationBackgroundInteraction(.enabled)
+        
     }
 }

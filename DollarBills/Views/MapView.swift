@@ -21,7 +21,6 @@ struct MapView: View {
     @State var welcome = false
     
     @State var currentRouteIndex: Int = 0
-    @State var showSheet: Bool = false
     @Binding var isRouteSelected: Bool
     @Binding var selectedRoute: Routes
     
@@ -83,11 +82,11 @@ struct MapView: View {
                     }
                 }
                 
-                RouteCards(selectedAnnotation: $selectedAnnotation, tag: $tag, isRouteSelected: $isRouteSelected, showSheet: $showSheet, selectedRoute: $selectedRoute, directions: $directions, currentRouteIndex: $currentRouteIndex)
+                RouteCards(selectedAnnotation: $selectedAnnotation, tag: $tag, isRouteSelected: $isRouteSelected, selectedRoute: $selectedRoute, directions: $directions, currentRouteIndex: $currentRouteIndex)
             }
         }
         .sheet(isPresented: $isRouteSelected, content: {
-            routeSheet(selectedAnnotation: $selectedAnnotation, directions: $directions, isRouteSelected: $isRouteSelected, showSheet: $showSheet, currentRouteIndex: $currentRouteIndex)
+            routeSheet(selectedAnnotation: $selectedAnnotation, directions: $directions, isRouteSelected: $isRouteSelected, currentRouteIndex: $currentRouteIndex)
         })
     }
 }

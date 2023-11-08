@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreData
 import MapKit
+import Supabase
 
 struct ExploreView: View {
     
@@ -79,7 +80,7 @@ struct ExploreView: View {
                                 .frame(width: 361)
                             
                             SnapCarouselView(trailingSpace: 10, index: $currentIndex, items: vm.annotations) { routes in
-                                    RoutesOfTheWeek(isRouteSelected: $isRouteSelected, routes: routes)
+                                RoutesOfTheWeek(isRouteSelected: $isRouteSelected, routes: routes)
                             }
                             .padding(.bottom, 210)
                             

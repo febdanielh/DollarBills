@@ -154,7 +154,41 @@ struct RunView: View {
     }
 }
 
-#Preview {
-    ProgressView(value: 0.5, label: { Text("Your Progress") }, currentValueLabel: { Text("\(Int(0.5 * 100))%") })
-        .progressViewStyle(BarProgressStyle(height: 25.0))
+//#Preview {
+//    ProgressView(value: 0.5, label: { Text("Your Progress") }, currentValueLabel: { Text("\(Int(0.5 * 100))%") })
+//        .progressViewStyle(BarProgressStyle(height: 25.0))
+//    RunWatchView(workout: Work, itemCollected: [])
+//}
+
+struct RunWatchView: View {
+    let workout: Workout
+    
+    @EnvironmentObject var vm: ViewModel
+    
+    @State var runImage: String = "spruto lari"
+    @State var runDescription: String = "Run and collect items"
+    
+    @Binding var itemCollected: [Items]
+    
+    @State var isGif: Bool = true
+    @State var isPaused: Bool = false
+    @State var showAlert: Bool = false
+    
+    var progressValue: Double {
+        return workout.distance / 500.0
+    }
+    
+    var body: some View {
+        VStack {
+            Text("Switch to Apple watch for Running Mode")
+                .font(.body)
+                .italic()
+            Spacer().frame(height: 61)
+            Image(systemName: "applewatch.radiowaves.left.and.right")
+                .resizable()
+                .frame(width: 65, height: 45)
+                .fontWeight(.black)
+        }
+        .foregroundColor(Color.TextDimGray)
+    }
 }

@@ -11,6 +11,7 @@ enum DisplayScreen {
     case viewOnboard
     case viewMain
     case viewMap
+    case viewROTWMap
     case viewRun
     case viewPause
 }
@@ -31,7 +32,6 @@ struct ContentView: View {
                 MainView(tag: $vm.tag, isRouteSelected: $vm.isRouteSelected)
                     .onAppear {
                         vm.removeAll()
-                        
                         vm.selectedRoute = Routes(tag: 0, routeName: "", routeNameDetail: "", routeImage: "", routeCount: 0, latitude: 0.0, longitude: 0.0)
                         directions.removeAll()
                     }
@@ -40,15 +40,21 @@ struct ContentView: View {
                     .onAppear {
                         vm.serviceAvailabilityCheck()
                     }
+            case .viewROTWMap:
+                ROTWMapView(selectedAnnotation: $vm.selectedAnnotation, directions: $directions, isRouteSelected: $vm.isRouteSelected, selectedRoute: $vm.selectedRoute)
+                    .onAppear {
+                        vm.serviceAvailabilityCheck()
+                    }
             case .viewRun:
-                RunView(workout: vm.newWorkout, itemCollected: $vm.itemsCollected)
+                //                RunView(workout: vm.newWorkout, itemCollected: $vm.itemsCollected)
+                RunWatchView(workout: vm.newWorkout, itemCollected: $vm.itemsCollected)
             case .viewPause:
                 PauseRunView(workout: vm.newWorkout, directions: $directions)
             default:
                 Text("Default View")
             }
-        } else if shouldShowOnboarding {
-            AnotherOnboardingView(shouldShowOnboarding: $shouldShowOnboarding)
+        } else if (!vm.isAuthenticated || shouldShowOnboarding) {
+            OnboardingView(shouldShowOnboarding: $shouldShowOnboarding)
                 .onDisappear {
                     launchedBefore = true
                     vm.currentDisplayScreen = .viewMain
