@@ -16,18 +16,18 @@ struct DuelAnimation: View {
             
             if showRedCircle {
                 Circle()
-                    .foregroundColor(Color.red)
+                    .foregroundColor(Color.YellowNormal2)
                     .frame(width: 230, height: 230)
             }
             
             if showOrangeCircle {
                 Circle()
-                    .foregroundColor(Color.orange)
+                    .foregroundColor(Color.YellowNormal)
                     .frame(width: 197, height: 197)
             }
             
             Circle()
-                .foregroundColor(Color.yellow)
+                .foregroundColor(Color.YellowLight1)
                 .frame(width: 170, height: 170)
             
         }

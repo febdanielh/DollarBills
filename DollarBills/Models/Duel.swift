@@ -22,20 +22,23 @@ class Duel: NSObject, ObservableObject { //ini masih cobacoba
         let roomData = DuelRoomPayLoad(roomID: roomCode, roomOwner: creatorUserID, inviteeID: inviteeID, duration: duration)
         
         return roomData
-    }
-
-    // Join an existing room using room code
+    } //perlu ga perlu nih soalnya udah ada query buat create duel room
+    
     func joinRoom(roomCode: String, userID: String) {
         let searchRoom = Supabase.shared.client.database.from("DuelRoom")
         let room = searchRoom.select().equals(column: "roomID", value: roomCode)
-        /*
-         let roomsRef = Database.database().reference().child("rooms")
-        roomsRef.observeSingleEvent(of: .value, with: { snapshot in
-            if snapshot.hasChild(roomCode) {
-            } else {
+        Task {
+            do {
+                let response = try await room.execute()
+                if response.underlyingResponse.statusCode == 200 {
+                    print("Room with code \(roomCode) exists. Entering room...")
+                } else {
+                    print("Room with code \(roomCode) does not exist.")
+                }
+            } catch {
+                print("Error retrieving room: \(error)")
             }
-        })
-         */
+        }
     }
     
     func generateRandomCode() -> String {
