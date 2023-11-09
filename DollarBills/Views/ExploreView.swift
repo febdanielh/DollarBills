@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreData
 import MapKit
+import Supabase
 
 struct ExploreView: View {
     

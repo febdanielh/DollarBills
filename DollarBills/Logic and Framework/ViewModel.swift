@@ -40,6 +40,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var selectedRoute: Routes = Routes(tag: 0, routeName: "", routeNameDetail: "", routeImage: "", routeCount: 0, latitude: 0.0, longitude: 0.0)
     @Published var locations: [CLLocation] = []
     @Published var itemsCollected: [Items] = []
+    @Published var isAuthenticated: Bool = false
     
     @Published var users = [UserPayload]()
     
