@@ -24,7 +24,9 @@ struct ChosenItemContainer: View {
               .shadow(
                 color: Color(red: 0, green: 0, blue: 0, opacity: 0.25), radius: 4, y: 4
               )
-            Image("itemRock")
+            Image("1Rock")
+                .resizable()
+                .frame(width: 107, height: 75)
         }
     }
 }

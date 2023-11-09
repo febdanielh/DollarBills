@@ -7,178 +7,10 @@
 
 import SwiftUI
 import AuthenticationServices
-
-struct OnboardingSteps {
-    let image: String
-    let title: String
-    let descriptions: String
-}
-
-private let onboardingSteps = [
-    OnboardingSteps(image: "map and route", title: "MAP AND ROUTE", descriptions: "In Qokka, you won't just run without direction. You'll have access to various routes  that will make your experience more engaging."),
-    OnboardingSteps(image: "scavenger hunt", title: "SCAVENGER HUNT", descriptions: "At Qokka, we merge sports and adventure into one. As you run, you'll discover valuable items, and these items will aid you in race features."),
-    OnboardingSteps(image: "running race", title: "RUNNING RACE", descriptions: "In the Race feature, you'll compete with others. Use Scavenger Hunt items to attack or boost your performance. Speed and strategy are key!")
-    
-]
-
-let newOnboardSteps = [
-    "Collect your items along your route",
-    "Challenge other runners, use item strategically",
-    "New Routes,\nNew Excitement"
-]
+import GoTrue
+import Supabase
 
 struct OnboardingView: View {
-    @State var currentStep = 0
-    @EnvironmentObject var vm: ViewModel
-    
-    var body: some View {
-        ZStack{
-            Color.YellowNormal
-                .ignoresSafeArea()
-            Image("puzzle piece 1")
-                .offset(x: -90, y: 315)
-            Image("puzzle piece 2")
-                .offset(x: 150, y: 30)
-            VStack(){
-                Text("Step \(currentStep + 1) of \(onboardingSteps.count)")
-                    .font(.system(size: 30))
-                    .bold()
-                    .foregroundColor(.black)
-                    .padding(.top)
-                HStack {
-                    ForEach(0..<onboardingSteps.count) { i in
-                        if i == currentStep {
-                            Rectangle()
-                                .frame(width: 44, height: 16)
-                                .cornerRadius(10)
-                                .foregroundColor(Color.YellowLight1)
-                        } else {
-                            Rectangle()
-                                .frame(width: 44, height: 16)
-                                .cornerRadius(10)
-                                .foregroundColor(Color.YellowDark4)
-                        }
-                    }
-                }
-                TabView(selection: $currentStep) {
-                    ForEach(0..<onboardingSteps.count) { i  in
-                        VStack {
-                            Spacer().frame(height: 50)
-                            Image(onboardingSteps[i].image)
-                                .resizable()
-                                .frame(width: 288, height: 191)
-                                .padding()
-                            ZStack{
-                                Text(onboardingSteps[i].title)
-                                    .font(.system(size: 32))
-                                    .bold()
-                                    .foregroundColor(.black)
-                                    .offset(x: -3, y: 1)
-                                Text(onboardingSteps[i].title)
-                                    .font(.system(size: 32))
-                                    .bold()
-                                    .foregroundColor(.YellowLight1)
-                            }
-                            Text(onboardingSteps[i].descriptions)
-                                .multilineTextAlignment(.center)
-                                .font(.system(size: 20))
-                                .frame(width: 308)
-                                .bold()
-                                .foregroundColor(.black)
-                                .padding()
-                            Spacer()
-                        }
-                        .tag(i)
-                    }
-                }
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                Button(action: {
-                    if self.currentStep < onboardingSteps.count - 1 {
-                        self.currentStep += 1
-                    } else {
-                        vm.currentDisplayScreen = .viewMain
-                        print("button pencet")
-                    }
-                }, label: {
-                    Text(currentStep < onboardingSteps.count - 1 ? "Next" : "Start Exploring")
-                })
-                .buttonStyle(ActiveBlackButton())
-                .bold()
-            }
-        }
-    }
-}
-
-#Preview {
-    AnotherOnboardingView(shouldShowOnboarding: .constant(true))
-}
-
-struct NewOnboardingView: View {
-    @State var currentStep = 0
-    @State private var rotationAngle: Double = 0
-    @EnvironmentObject var vm: ViewModel
-    
-    var body: some View {
-        VStack(){
-            HStack {
-                ForEach(0..<newOnboardSteps.count) { i in
-                    if i == currentStep {
-                        Rectangle()
-                            .frame(width: 100, height: 7)
-                            .cornerRadius(10)
-                            .foregroundColor(Color.black)
-                    } else {
-                        Rectangle()
-                            .frame(width: 100, height: 7)
-                            .cornerRadius(10)
-                            .foregroundColor(Color(red: 0.85, green: 0.85, blue: 0.85))
-                    }
-                }
-            }
-            
-            TabView(selection: $currentStep) {
-                ForEach(0..<newOnboardSteps.count) { i  in
-                    VStack {
-                        ZStack {
-                            Image("bg spruto")
-                                .rotationEffect(Angle(degrees: rotationAngle), anchor: .center)
-                                .transition(.slide)
-                            Image("spruto lari")
-                        }.padding(.bottom)
-                        
-                        Text(newOnboardSteps[i])
-                            .font(.system(size: 36))
-                            .bold()
-                            .foregroundColor(.black)
-                            .frame(width: 290, height: 140, alignment: .topLeading)
-                            .padding(.top)
-                    }
-                    .tag(i)
-                }
-            }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            .onChange(of: currentStep, perform: { _ in
-                withAnimation(.bouncy) {
-                    rotationAngle += 90
-                }
-            })
-            
-            Button(action: {
-                if self.currentStep < onboardingSteps.count - 1 {
-                    self.currentStep += 1
-                } else {
-                    vm.currentDisplayScreen = .viewMain
-                    print("button pencet")
-                }
-            }, label: {
-                Text(currentStep < onboardingSteps.count - 1 ? "Next" : "Get Started")
-            })
-            .buttonStyle(ActiveBlackButton()).bold()
-        }.padding()
-    }
-}
-
-struct AnotherOnboardingView: View {
     @State var currentStep = -1
     @State private var rotationAngle: Double = 0
     @EnvironmentObject var vm: ViewModel
@@ -197,18 +29,41 @@ struct AnotherOnboardingView: View {
     @State var visibleTexts: [String] = []
     @State var topLine: String = "Furthr"
     @State var fontSize: CGFloat = 20
+    @State var isLast: Bool = false
     
     var body: some View {
         VStack {
             VStack(alignment: .leading, spacing: 20) {
-                ForEach(visibleTexts, id: \.self) { text in
-                    Text(text)
-                        .font(.system(size: text == "Furthr" ? 28 : fontSize)).bold()
-                        .multilineTextAlignment(.leading)
-                        .opacity(text == topLine ? 1 : 0.5)
-                        .frame(width: 320, alignment: .topLeading)
+                if currentStep < anotherOnboardSteps.count - 1 {
+                    ForEach(visibleTexts, id: \.self) { text in
+                        Text(text)
+                            .font(.system(size: text == "Furthr" ? 28 : fontSize)).bold()
+                            .multilineTextAlignment(.leading)
+                            .opacity(text == topLine ? 1 : 0.5)
+                            .frame(width: 320, alignment: .topLeading)
+                            .padding(.horizontal).padding(.horizontal)
+                            .transition(AnyTransition.opacity.animation(.smooth(duration: 0.5)))
+                    }
+                } else if isLast == true  {
+                    Text("Your\nadventure\nbegins\nnow!")
+                        .font(.system(size: 36)).bold()
+                        .foregroundColor(.black)
+                        .lineSpacing(5)
+                        .frame(width: 290, alignment: .leading)
                         .padding(.horizontal).padding(.horizontal)
-                        .transition(AnyTransition.opacity.animation(.smooth(duration: 0.5)))
+                } else {
+                    Text("Before We Start!")
+                        .font(.system(size: 30)).bold()
+                        .foregroundColor(.black)
+                        .frame(width: 260, alignment: .leading)
+                        .padding(.horizontal).padding(.horizontal)
+                    Text("Help us provide the best experience by signing in with Apple")
+                        .font(.system(size: 18)).bold()
+                        .opacity(0.5)
+                        .multilineTextAlignment(.leading)
+                        .frame(width: 235, alignment: .topLeading)
+                        .lineSpacing(5)
+                        .padding(.horizontal).padding(.horizontal)
                 }
                 Spacer()
                 Image("spruto")
@@ -216,7 +71,27 @@ struct AnotherOnboardingView: View {
             }
             .padding()
             
-            if currentStep == anotherOnboardSteps.count - 1 {
+            if currentStep == anotherOnboardSteps.count - 1 && isLast == false {
+                SignInWithAppleButton { request in
+                    request.requestedScopes = [.email, .fullName]
+                } onCompletion: { result in
+                    Task {
+                        do {
+                            guard let credential = try result.get().credential as? ASAuthorizationAppleIDCredential else { return }
+                            
+                            guard let idToken = credential.identityToken
+                                .flatMap({ String(data: $0, encoding: .utf8) })
+                            else { return }
+                            
+                            try await vm.signInApple(uid: idToken)
+                            await vm.isUserAuthenticated()
+                        } catch {
+                            dump(error)
+                        }
+                        isLast = true
+                    }
+                }.frame(width: 300, height: 44).cornerRadius(18)
+            } else if isLast == true {
                 Button(action: {
                     vm.currentDisplayScreen = .viewMain
                     shouldShowOnboarding = false
@@ -226,29 +101,6 @@ struct AnotherOnboardingView: View {
                         .fontWeight(.semibold)
                 }
                 .buttonStyle(ActiveBlackButton())
-                
-                //                SignInWithAppleButton { request in
-                //                    request.requestedScopes = [.email, .fullName]
-                //                } onCompletion: { result in
-                //                    Task {
-                //                        do {
-                //                            guard let credential = try result.get().credential as? ASAuthorizationAppleIDCredential else { return }
-                //
-                //                            guard let idToken = credential.identityToken
-                //                                .flatMap({ String(data: $0, encoding: .utf8) })
-                //                            else { return }
-                //
-                //                            try await Supabase.shared.client
-                //                                .auth.signInWithIdToken(credentials: .init(provider: .apple, idToken: idToken))
-                //
-                //                            vm.currentDisplayScreen = .viewMain
-                //                            shouldShowOnboarding = false
-                //                        } catch {
-                //                            dump(error)
-                //                        }
-                //                    }
-                //                }.frame(width: 300, height: 44)
-                
             }
         }
         .padding()
@@ -256,13 +108,10 @@ struct AnotherOnboardingView: View {
         .onAppear {
             updateVisibleTexts()
             if currentStep == 0 {
-                Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { timer in
+                Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { timer in
                     updateVisibleTexts()
                     if currentStep == anotherOnboardSteps.count - 1 {
                         timer.invalidate()
-                        visibleTexts = ["Your adventure begins now!"]
-                        topLine = "Your adventure begins now!"
-                        fontSize = 50
                     }
                 }
             }
@@ -283,4 +132,8 @@ struct AnotherOnboardingView: View {
             }
         }
     }
+}
+
+#Preview {
+    OnboardingView(shouldShowOnboarding: .constant(true))
 }
