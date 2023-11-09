@@ -11,6 +11,8 @@ struct LobbyView: View {
     
     @State private var isJoined = true
     @State private var isLinkActive = true
+    @State var timeInterval : TimeInterval
+    @EnvironmentObject var vm : ViewModel
     var body: some View {
         VStack{
             Text("Duel Mode")
@@ -64,9 +66,15 @@ struct LobbyView: View {
                 }
             }
         }
+        .onAppear(perform: {
+            Task {
+                try await vm.createDuelRoom(duration: timeInterval)
+            }
+        })
     }
+    
 }
 
-#Preview {
-    LobbyView()
-}
+//#Preview {
+//    LobbyView(timeInterval: )
+//}

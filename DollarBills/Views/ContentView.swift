@@ -19,6 +19,7 @@ enum DisplayScreen {
 struct ContentView: View {
     
     @Environment(\.scenePhase) var scenePhase
+    @EnvironmentObject var networkMonitor: NetworkMonitor
     @EnvironmentObject var vm: ViewModel
     @AppStorage("launchedBefore") var launchedBefore = false
     @State var welcome = false
@@ -26,7 +27,7 @@ struct ContentView: View {
     @State var shouldShowOnboarding = true
     
     var body: some View {
-        if launchedBefore {
+        if launchedBefore && networkMonitor.isConnected {
             switch vm.currentDisplayScreen {
             case .viewMain:
                 MainView(tag: $vm.tag, isRouteSelected: $vm.isRouteSelected)
@@ -53,13 +54,17 @@ struct ContentView: View {
             default:
                 Text("Default View")
             }
-        } else if (!vm.isAuthenticated || shouldShowOnboarding) {
+        } else if (!vm.isAuthenticated || shouldShowOnboarding) && networkMonitor.isConnected {
             OnboardingView(shouldShowOnboarding: $shouldShowOnboarding)
                 .onDisappear {
                     launchedBefore = true
                     vm.currentDisplayScreen = .viewMain
                 }
         }
+        else if !networkMonitor.isConnected {
+            DisconnectedView()
+        }
+        
     }
 }
 

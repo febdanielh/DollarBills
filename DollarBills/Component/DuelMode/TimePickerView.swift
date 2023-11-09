@@ -9,25 +9,23 @@ import SwiftUI
 
 struct TimePickerView: View {
     
-    @State private var selectedTime = Date()
-    @State private var selectedValue = 0
-    
-    let values = [1, 5, 20, 30, 60]
+    @Binding var selectedTime : Double
     
     var body: some View {
         VStack {
             //            Text("Selected Time: \(convertValue(time: selectedValue))")
             
-            HStack {
-                Picker("", selection: $selectedValue) {
-                    ForEach(0 ..< values.count) {
-                        var choice = self.values[$0]
-                        Text("\(choice)")
+            VStack {
+                Picker("Items", selection: $selectedTime) {
+                    ForEach(timeIntervals, id:\.self) { i in
+                        Text(String(format: "%.0f minutes", i/60))
+                            .underline()
+                            .tag(i)
                     }
                 }
-                .pickerStyle(WheelPickerStyle())
-                .frame(width: 100)
-                .clipped()
+                .font(.title3)
+                .bold()
+                .tint(.black)
                 
                 Text("Minute").fontWeight(.semibold)
             }
@@ -52,5 +50,5 @@ struct TimePickerView: View {
 }
 
 #Preview {
-    TimePickerView()
+    TimePickerView(selectedTime: .constant(600.0))
 }

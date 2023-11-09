@@ -28,7 +28,6 @@ class Supabase {
     
     func createDuelRoomItem(item: DuelRoomPayLoad) async throws {
         let response = client.database.from("DuelRoom").insert(values: item)
-        
         Task {
             try await response.execute()
         }
@@ -65,6 +64,35 @@ class Supabase {
         print(response)
     }
     
+    func fetchJoinDuelRoom(for roomID: String, for userID: UUID?) async throws -> String {
+        
+        guard let uID = userID else {
+            print ("Can't update with wrong data")
+            return "Cant update"
+        }
+        
+        Task {
+            do {
+                try await client.database
+                    .from("DuelRoom")
+                    .update(values: ["inviteeID" : userID])
+                    .eq(column: "roomID", value: roomID)
+                    .execute()
+            } catch {
+                print(error)
+            }
+            print("Entered")
+            return "Entered room."
+        }
+        
+        return "Failed."
+        
+    }
+    
     // MARK: Delete
+    
     // MARK: Update
+    func updateJoinDuelRoom(for roomID: UUID) async throws {
+        
+    }
 }

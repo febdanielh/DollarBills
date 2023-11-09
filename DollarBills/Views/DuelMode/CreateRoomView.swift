@@ -7,58 +7,51 @@
 
 import SwiftUI
 
+let timeIntervals = [
+    600.0,
+    1200.0,
+    1800.0
+]
+
 struct CreateRoomView: View {
-    @State var duration: Time = Time(hour: 0, minute: 0, second: 0)
-    @EnvironmentObject var vm: ViewModel
+    
+    @State var timeInterval : TimeInterval = timeIntervals[0]
+    
+    @EnvironmentObject var vm : ViewModel
+    
     var body: some View {
         VStack {
             Text("Duel Mode")
                 .font(.headline).bold()
                 .padding()
+           
             
             Divider()
+            Text(Date.now.formatted(date: .complete, time: .omitted))
             ZStack {
-                Color.SheetGray
-                ScrollView {
-                    Spacer().frame(height: 59)
-                    VStack(spacing: 26) {
-                        Text("Monday, 15 October 2023")
-                            .padding(.top)
-                        
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 25)
-                                .frame(width: 160, height: 36)
-                                .foregroundColor(Color.yellow)
-                            Text("Choose Duration")
-                        }
-                        
-                        
-//                        TimePickerView()
-//                            .padding(.top, 50)
-                        
-                        DurationPickerView(time: $duration)
-                            .padding(.top, 50)
-                        
-                        let duration = duration
-                        
-                        NavigationLink {
-                            LobbyView()
-                        } label: {
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 18)
-                                    .frame(width: 326, height: 44)
-                                    .foregroundStyle(Color.black)
-                                Text("Create Room")
-                                    .foregroundStyle(Color.white)
-                                    .font(.title3)
-                            }
-                        }
-                        .onTapGesture {
-                        }
-                        .padding(.top, 80)
-                    }
+                RoundedRectangle(cornerRadius: 25)
+                    .frame(width: 160, height: 36)
+                    .foregroundColor(Color.yellow)
+                Text("Choose Duration")
+            }
+            .padding()
+            
+            
+            TimePickerView(selectedTime: $timeInterval)
+            
+            NavigationLink {
+                LobbyView(timeInterval: timeInterval)
+            } label: {
+                ZStack{
+                    RoundedRectangle(cornerRadius: 25)
+                        .frame(width: 326, height: 60)
+                        .foregroundStyle(Color.black)
+                    Text("Create Room")
+                        .foregroundStyle(Color.white)
+                        .font(.title3)
                 }
             }
+            .padding()
         }
     }
 }

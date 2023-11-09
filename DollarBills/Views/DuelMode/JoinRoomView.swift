@@ -9,7 +9,18 @@ import SwiftUI
 
 struct JoinRoomView: View {
     @Binding var isPopoverPresented: Bool
+    {
+        didSet {
+            if !isPopoverPresented {
+                Task {
+                    try await vm.fetchJoinDuelRoom(roomID: enteredCode)
+                }
+            }
+        }
+    }
     @Binding var enteredCode: String
+    var test: Bool = false
+    @EnvironmentObject var vm : ViewModel
     
     var body: some View {
         VStack {

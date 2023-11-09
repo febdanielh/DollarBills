@@ -15,10 +15,20 @@ struct InventoryPayload: Codable {
 
 struct DuelRoomPayLoad: Codable {
     let roomID: String
-    let roomOwner: String
-    let inviteeID: String
-    let duration: Double
+    let createdAt : Date
+    let roomOwner : UUID
+    var inviteeID : UUID?
+    let duration : TimeInterval
+    var startedAt : Date?
+    var ownerReady : Bool = false
+    var inviteeReady : Bool = false
 }
+
+//struct DuelRoomDTO: Codable {
+//    init(inviteeID: UUID) {
+//        self.inviteeID = inviteeID
+//    }
+//}
 
 struct DetailRoomPayload: Codable {
     let roomID: String

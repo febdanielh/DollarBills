@@ -83,7 +83,8 @@ struct OnboardingView: View {
                                 .flatMap({ String(data: $0, encoding: .utf8) })
                             else { return }
                             
-                            try await vm.signInApple(uid: idToken)
+//                            try await vm.signInApple(uid: idToken)
+                            try await Supabase.shared.client.auth.signInWithIdToken(credentials: .init(provider: .apple, idToken: idToken))
                             await vm.isUserAuthenticated()
                         } catch {
                             dump(error)

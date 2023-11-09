@@ -14,6 +14,7 @@ struct MainView: View {
     @ObservedObject var rm = RoomManager()
     @Binding var tag: Int
     @Binding var isRouteSelected: Bool
+    @ObservedObject var roomManager = RoomManager()
     
     var body: some View {
         VStack {
@@ -23,8 +24,7 @@ struct MainView: View {
             } else if (vm.selectedSegment == 1) {
                 ActivityView()
             } else if (vm.selectedSegment == 2) {
-//                DuelModeView()
-                LandingPageView(roomManager: rm)
+                LandingPageView(roomManager: roomManager)
             } else if (vm.selectedSegment == 3) {
                 ProfileView()
             }
