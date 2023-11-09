@@ -7,10 +7,13 @@
 
 import Foundation
 import SwiftUI
+import Supabase
+import GoTrue
 
 struct LeaderboardView: View {
     
     @EnvironmentObject var vm : ViewModel
+    @State var point: Int = 0
     
     var body: some View {
         ScrollView {
@@ -25,7 +28,7 @@ struct LeaderboardView: View {
                 )
                 VStack {
                     HStack{
-                        Text("October 2023")//ini bisa di ubah? atau menyesuaikan dengan bulan
+                        Text("\(getMonth()) \(getYear())")
                             .font(.title3).fontWeight(.semibold)
                         Spacer()
                         NavigationLink {
@@ -57,9 +60,9 @@ struct LeaderboardView: View {
                     
                     VStack {
                         HStack {
-                            ForEach(vm.users) { user in
-                                LeaderboardBar(points: Int(Double(user.points)), rank: 2, name: user.username)
-                            }
+                            //                            ForEach(vm.users) { user in
+                            //                                LeaderboardBar(points: Int(Double(user.points)), rank: 2, name: user.username)
+                            //                            }
                         }.frame(width: 324)
                     }
                     .frame(width: 340, height: 410, alignment: .center)
@@ -79,7 +82,7 @@ struct LeaderboardView: View {
                             Spacer()
                             HStack {
                                 Image("coin")
-                                Text("15000")
+                                Text("\(point)")
                                     .font(.headline)
                                     .foregroundColor(Color.YellowDark26)
                             }
@@ -93,7 +96,19 @@ struct LeaderboardView: View {
                             .cornerRadius(8)
                             .padding(.trailing, 30)
                         }
-                    }.padding(.top)
+                    }
+                    .padding(.top)
+                }
+            }
+            .onAppear {
+                Task {
+                    do {
+                        let userID = try await Supabase.shared.client.auth.session.user.id
+                        let points = try await Supabase.shared.fetchOwnPoint(for: userID)
+                        point = points.points
+                    } catch {
+                        print(error)
+                    }
                 }
             }
         }
@@ -102,4 +117,22 @@ struct LeaderboardView: View {
 
 #Preview {
     LeaderboardView()
+}
+
+func getMonth() -> String {
+    let now = Date()
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "LLLL"
+    let nameOfMonth = dateFormatter.string(from: now)
+    
+    return nameOfMonth
+}
+
+func getYear() -> String {
+    let now = Date()
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy"
+    let currentYear = dateFormatter.string(from: now)
+    
+    return currentYear
 }

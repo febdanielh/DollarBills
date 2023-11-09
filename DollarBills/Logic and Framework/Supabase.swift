@@ -54,24 +54,52 @@ class Supabase {
         }
     }
     
+    func createUserItems(item: UserPayload) async throws {
+        let response = client.database.from("User").insert(values: item)
+        
+        Task {
+            try await response.execute()
+        }
+    }
+    
     // MARK: Fetch/Read
-    func fetchInventoryItems(for userID: String) async throws {
-        let response : [InventoryPayload] = try await client.database.from("Inventory").execute().value
+    func fetchInventoryItems(for userID: UUID) async throws {
+        let response = try await client.database.from("Inventory").select().eq(column: "userID", value: userID).execute()
         print(response)
     }
     
-    func fetchWorkoutItems(for userID: String) async throws {
+    func fetchWorkoutItems(for userID: UUID) async throws {
         let response : [WorkoutPayload] = try await client.database.from("Workout").execute().value
         print(response)
     }
     
-    func fetchUserPoints(for userID: String) async throws {
+    func fetchUserPoints(for userID: UUID) async throws {
         let response : [UserPayload] = try await client.database.from("User")
             .select(columns:"""
                             username,
                             points
                             """).order(column: "points", ascending: false).execute().value
         print(response)
+    }
+    
+    func fetchOwnPoint(for userID: UUID) async throws -> User {
+        let response = try await client.database.from("User").select().eq(column: "userID", value: userID).execute()
+        let data = response.underlyingResponse.data
+        
+        let decoder = JSONDecoder()
+        let user = try decoder.decode(User.self, from: data)
+        
+        print(user.points)
+        return user
+    }
+    
+    func customDecodingStrat(keys: [CodingKey]) -> CodingKey {
+        for key in keys {
+            if key.stringValue == "userID" {
+                return UserPayload.CodingKeys.id
+            }
+        }
+        return keys.last ?? UserPayload.CodingKeys.username
     }
     
     // MARK: Delete

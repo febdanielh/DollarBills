@@ -11,6 +11,7 @@ import SwiftUI
 struct MainView: View {
     
     @EnvironmentObject var vm : ViewModel
+    @ObservedObject var rm = RoomManager()
     @Binding var tag: Int
     @Binding var isRouteSelected: Bool
     
@@ -22,7 +23,7 @@ struct MainView: View {
             } else if (vm.selectedSegment == 1) {
                 ActivityView()
             } else if (vm.selectedSegment == 2) {
-                DuelModeView()
+                LandingPageView(roomManager: rm)
             } else if (vm.selectedSegment == 3) {
                 ProfileView()
             }
