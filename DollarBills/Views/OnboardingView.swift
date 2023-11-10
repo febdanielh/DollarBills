@@ -96,6 +96,9 @@ struct OnboardingView: View {
                 Button(action: {
                     vm.currentDisplayScreen = .viewMain
                     shouldShowOnboarding = false
+                    Task {
+                        try await vm.createUser(username: "Feb", points: 1000)
+                    }
                     print("go to main")
                 }) {
                     Text("Let's Go")

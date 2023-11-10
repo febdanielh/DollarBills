@@ -50,16 +50,49 @@ extension ViewModel {
         try await Supabase.shared.createDetailRoomItem(item: detailRoom)
     }
     
-    // MARK: Fetch/Read
+    func createUser(username: String, points: Int) async throws {
+        let userID = try await Supabase.shared.client.auth.session.user.id.uuidString
+        let userEmail = try await Supabase.shared.client.auth.session.user.email
+        
+        let user = UserPayload(userID: userID, username: username, email: userEmail, points: points)
+        
+        try await Supabase.shared.createUserItems(item: user)
+    }
     
-    func fetchInventory(for userID: String) async throws {
+    // MARK: Fetch/Read
+    func fetchInventory(for userID: UUID) async throws {
         try await Supabase.shared.fetchInventoryItems(for: userID)
     }
     
-    func fetchWorkout(for userID: String) async throws {
+    func fetchWorkout(for userID: UUID) async throws {
         try await Supabase.shared.fetchWorkoutItems(for: userID)
     }
     
+    func fetchUserPoints(for userID: UUID) async throws{
+        //        try await Supabase.shared.fetchUserPoints(for: userID)
+        let user : [UserPayload] = try await Supabase.shared.client.database.from("User")
+            .select(columns:"""
+                            username,
+                            points
+                            """)
+            .order(column: "points", ascending: false)
+            .execute().value
+        
+        DispatchQueue.main.async {
+            self.users = user
+        }
+    }
+    
+    func fetchUserPoint(for userID: String) async throws {
+        try await Supabase.shared.fetchOwnPoint(for: userID)
+    }
+    
+    func getUserPoint(for userID: String) async throws -> UserPayload {
+        let userPoints: UserPayload = try await Supabase.shared.client.database.from("User").select().eq(column: "userID", value: userID).execute().value
+        
+        print(userPoints)
+        return userPoints
+    }
     func fetchJoinDuelRoom(roomID: String) async throws -> String {
         return try await Supabase.shared.fetchJoinDuelRoom(for: roomID, for: fetchUserID())
     }
@@ -75,7 +108,13 @@ extension ViewModel {
     
     
     // MARK: Delete
+    
+    
     // MARK: Update
+    func updateUserPoints(points: Int) async throws {
+        let userPoint = points
+        try await Supabase.shared.updateUserPoints(points: userPoint)
+    }
     
     // MARK: Sign In
     func signInApple(uid: String) async throws {

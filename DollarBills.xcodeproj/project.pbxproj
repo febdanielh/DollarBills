@@ -507,6 +507,8 @@
 				6A0DFC882AFA97D900E0F324 /* ChooseItemView.swift in Sources */,
 				E1563EB22AFB2DC100BDD638 /* ROTWSheet.swift in Sources */,
 				E1563EB62AFC0DBA00BDD638 /* TimePicker.swift in Sources */,
+				6A0DFC912AFA983000E0F324 /* ChosenItemContainer.swift in Sources */,
+				6A0DFC882AFA97D900E0F324 /* ChooseItemView.swift in Sources */,
 				15D24CB92ADD325700AFE89B /* MainView.swift in Sources */,
 				E15C459A2AF7FE2700D215AB /* Duel.swift in Sources */,
 				6A0DFC932AFA984100E0F324 /* ItemDescriptionContainer.swift in Sources */,

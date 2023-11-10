@@ -229,7 +229,7 @@ struct VerticalProgressBar: View {
 
 struct LeaderboardBar: View {
     
-    var points: Double
+    var points: Int
     var rank: Int
     var name: String
     var body: some View {

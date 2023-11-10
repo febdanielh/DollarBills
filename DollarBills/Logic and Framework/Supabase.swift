@@ -7,6 +7,7 @@
 
 import Foundation
 import Supabase
+import SwiftUI
 
 class Supabase {
     
@@ -42,7 +43,6 @@ class Supabase {
                 print(error)
             }
         }
-        
     }
     
     func createDetailRoomItem(item: DetailRoomPayload) async throws {
@@ -53,13 +53,21 @@ class Supabase {
         }
     }
     
+    func createUserItems(item: UserPayload) async throws {
+        let response = client.database.from("User").insert(values: item)
+        
+        Task {
+            try await response.execute()
+        }
+    }
+    
     // MARK: Fetch/Read
-    func fetchInventoryItems(for userID: String) async throws {
-        let response : [InventoryPayload] = try await client.database.from("Inventory").execute().value
+    func fetchInventoryItems(for userID: UUID) async throws {
+        let response = try await client.database.from("Inventory").select().eq(column: "userID", value: userID).execute()
         print(response)
     }
     
-    func fetchWorkoutItems(for userID: String) async throws {
+    func fetchWorkoutItems(for userID: UUID) async throws {
         let response : [WorkoutPayload] = try await client.database.from("Workout").execute().value
         print(response)
     }
@@ -98,11 +106,40 @@ class Supabase {
         return "Failed."
         
     }
+    func fetchUserPoints(for userID: UUID) async throws {
+        let response : [UserPayload] = try await client.database.from("User")
+            .select(columns:"""
+                            username,
+                            points
+                            """).order(column: "points", ascending: false).execute().value
+        print(response)
+    }
+    
+    func fetchOwnPoint(for userID: String) async throws {
+        let response : [User] = try await client.database.from("User").select().equals(column: "userID", value: userID).execute().value
+        
+        print(response)
+    }
+    
+//    func customDecodingStrat(keys: [CodingKey]) -> CodingKey {
+//        for key in keys {
+//            if key.stringValue == "userID" {
+//                return UserPayload.CodingKeys.id
+//            }
+//        }
+//        return keys.last ?? UserPayload.CodingKeys.username
+//    }
     
     // MARK: Delete
     
     // MARK: Update
-    func updateJoinDuelRoom(for roomID: UUID) async throws {
+    func updateUserPoints(points: Int) async throws {
+        let id = try await client.auth.session.user.id
         
+        let response = client.database.from("User").update(values: points).eq(column: "userID", value: id)
+        
+        Task {
+            try await response.execute()
+        }
     }
 }
