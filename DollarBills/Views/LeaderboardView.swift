@@ -103,9 +103,8 @@ struct LeaderboardView: View {
             .onAppear {
                 Task {
                     do {
-                        let userID = try await Supabase.shared.client.auth.session.user.id
-                        let points = try await Supabase.shared.fetchOwnPoint(for: userID)
-                        point = points.points
+                        let id = try await Supabase.shared.client.auth.session.user.id.uuidString
+                        try await vm.fetchUserPoint(for: id)
                     } catch {
                         print(error)
                     }

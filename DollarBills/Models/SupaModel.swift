@@ -42,22 +42,22 @@ struct WorkoutPayload: Codable {
     let duration: Double
 }
 
-struct UserPayload: Codable, Identifiable, Hashable {
-    var id: UUID?
+struct UserPayload: Codable,/* Identifiable,*/ Hashable {
+    var userID: String
     var username: String
     var email: String?
     var points: Int
     
-    enum CodingKeys: String, CodingKey {
-        case id = "userID"
-        case username
-        case email
-        case points
-    }
+//    enum CodingKeys: String, CodingKey {
+//        case id = "userID"
+//        case username
+//        case email
+//        case points
+//    }
 }
 
 struct User: Decodable {
-    var id: UUID?
+    var userID: String
     var username: String
     var email: String
     var points: Int
