@@ -30,10 +30,12 @@ extension ViewModel {
         try await Supabase.shared.createInventoryItem(item: inventory)
     }
     
-    func createDuelRoom(duration: TimeInterval) async throws {
+    func createDuelRoom(duration: TimeInterval) async throws -> String {
         let ownerID = try await fetchUserID()
-        let duelRoom = DuelRoomPayLoad(roomID: generateRandomCode(), createdAt: Date(), roomOwner: ownerID, duration: duration)
+        let roomID = generateRandomCode()
+        let duelRoom = DuelRoomPayLoad(roomID: roomID, createdAt: Date(), roomOwner: ownerID, duration: duration)
         try await Supabase.shared.createDuelRoomItem(item: duelRoom)
+        return roomID
     }
     
     func createWorkoutItems(distance: Double, pace: Double, duration: Double) {
@@ -64,6 +66,11 @@ extension ViewModel {
     
     func fetchUserID() async throws -> UUID {
         return try await Supabase.shared.client.auth.session.user.id
+    }
+    
+    func fetchUserName() async throws -> String {
+        let userID = try await fetchUserID()
+        return try await Supabase.shared.fetchUserName(for: userID)
     }
     
     

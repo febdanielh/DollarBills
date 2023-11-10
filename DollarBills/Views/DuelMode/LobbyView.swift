@@ -9,26 +9,47 @@ import SwiftUI
 
 struct LobbyView: View {
     
+    @State var isOwner : Bool = true
+    
+    @State var today : Date
+    
     @State private var isJoined = true
+    
     @State private var isLinkActive = true
+    
     @State var timeInterval : TimeInterval
+    
     @EnvironmentObject var vm : ViewModel
+    
+    @State var roomID: String = ""
+    
+    @State var roomOwnerName: String = ""
+    
     var body: some View {
-        VStack{
+        VStack {
+            
             Text("Duel Mode")
                 .font(.headline)
                 .padding()
+            
             Divider()
+            
             ScrollView {
-                VStack (spacing: 50){
-                    ShareLink()
+                
+                VStack (spacing: 50) {
+                    
+                    ShareLink(createdDate: today, roomID: roomID, isOwner: isOwner)
+                        .frame(height: 100)
                     
                     Spacer()
                     
                     ZStack {
+                        
                         DuelAnimation()
+                        
                         LobbyPlayerName()
-                        Text("Guest123")
+                        
+                        Text(roomOwnerName)
                             .font(.system(size: 14)).bold()
                             .offset(x: -110)
                         
@@ -40,6 +61,7 @@ struct LobbyView: View {
                             LoadingAnimation()
                                 .offset(x: 110)
                         }
+                        
                     }.frame(height: 240)
                     
                     Spacer()
@@ -64,17 +86,21 @@ struct LobbyView: View {
                         }
                     }.padding(.top)
                 }
+                
             }
+            
         }
         .onAppear(perform: {
             Task {
-                try await vm.createDuelRoom(duration: timeInterval)
+                roomID = try await vm.createDuelRoom(duration: timeInterval)
+                roomOwnerName = try await vm.fetchUserName()
             }
         })
     }
     
 }
 
-//#Preview {
-//    LobbyView(timeInterval: )
-//}
+#Preview {
+    LobbyView(today: Date(), timeInterval: 600.0)
+        .environmentObject(ViewModel())
+}

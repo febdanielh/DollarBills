@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct LandingPageView: View {
+    
     @ObservedObject var roomManager: RoomManager
+    
     @State private var isShowingPopup = false
+    
     @State private var enteredCode = ""
     
     var body: some View {
@@ -45,22 +48,6 @@ struct LandingPageView: View {
                         .padding(.vertical)
                         
                         Spacer()
-                        //
-                        //                            Text("Room Code: \(roomManager.rooms.last?.code ?? "N/A")")
-                        //                                .font(.title)
-                        //                                .padding()
-                        //
-                        VStack {
-                            if roomManager.isJoiningRoom {
-                                Text("Joining Room: \(roomManager.roomToJoin?.code ?? "N/A")")
-                                    .font(.title3)
-                                    .padding()
-                            } else {
-                                Text("Room Code: \(roomManager.rooms.last?.code ?? "N/A")")
-                                    .font(.title3)
-                                    .padding()
-                            }
-                        }.frame(maxWidth: .infinity)
                         
                         NavigationLink {
                             CreateRoomView()

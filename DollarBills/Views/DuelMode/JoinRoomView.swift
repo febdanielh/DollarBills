@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct JoinRoomView: View {
+    
     @Binding var isPopoverPresented: Bool
     {
         didSet {
@@ -18,8 +19,11 @@ struct JoinRoomView: View {
             }
         }
     }
+    
     @Binding var enteredCode: String
+    
     var test: Bool = false
+    
     @EnvironmentObject var vm : ViewModel
     
     var body: some View {

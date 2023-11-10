@@ -19,15 +19,19 @@ struct CreateRoomView: View {
     
     @EnvironmentObject var vm : ViewModel
     
+    @State var today = Date()
+    
     var body: some View {
         VStack {
             Text("Duel Mode")
                 .font(.headline).bold()
                 .padding()
-           
             
             Divider()
+                .padding(.bottom)
+            
             Text(Date.now.formatted(date: .complete, time: .omitted))
+            
             ZStack {
                 RoundedRectangle(cornerRadius: 25)
                     .frame(width: 160, height: 36)
@@ -40,7 +44,9 @@ struct CreateRoomView: View {
             TimePickerView(selectedTime: $timeInterval)
             
             NavigationLink {
-                LobbyView(timeInterval: timeInterval)
+                
+                LobbyView(today: today, timeInterval: timeInterval)
+                
             } label: {
                 ZStack{
                     RoundedRectangle(cornerRadius: 25)
@@ -52,6 +58,7 @@ struct CreateRoomView: View {
                 }
             }
             .padding()
+            
         }
     }
 }

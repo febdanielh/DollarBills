@@ -8,41 +8,61 @@
 import SwiftUI
 
 struct ShareLink: View {
+    
+    @State var createdDate : Date
+    
+    let roomID: String
+    
+    let isOwner: Bool
+    
     var body: some View {
+        
         VStack{
+            
             ZStack {
+                
                 Rectangle()
                     .foregroundColor(Color.orange)
+                
                 VStack(alignment: .leading) {
-                    Text("Monday, 16 October 2023")
+                
+                    Text(String(createdDate.formatted(date: .complete, time: .omitted)))
                         .font(.footnote)
-                    Spacer()
-                    HStack {
-                        Text("Room Code: 1234")
-                            .font(.title3)
-                        Button(action: {
-                            // Create a sharing activity
-                            let textToShare = "Room Code: 1234"
-                            let activityViewController = UIActivityViewController(activityItems: [textToShare], applicationActivities: nil)
+                    
+                    if isOwner {
+                        
+                        Spacer()
+                        
+                        HStack {
                             
-                            // Present the share sheet
-                            UIApplication.shared.windows.first?.rootViewController?.present(activityViewController, animated: true, completion: nil)
-                        }) {
-                            Image(systemName: "square.and.arrow.up.fill")
+                            Button(action: {
+                                // Create a sharing activity
+                                let textToShare = "Are you up for a duel?\nCome face me on Further!\nWith my room code: \(roomID)"
+                                let activityViewController = UIActivityViewController(activityItems: [textToShare], applicationActivities: nil)
+                                
+                                // Present the share sheet
+                                UIApplication.shared.windows.first?.rootViewController?.present(activityViewController, animated: true, completion: nil)
+                            }) {
+                                Text("Room Code \(roomID)")
+                                    .font(.title3)
+                                Image(systemName: "square.and.arrow.up.fill")
+                            }
                         }
+                        .fontWeight(.bold)
+                        Text("Share this room code with a friend and ask them to join!")
+                        
                     }
-                    .fontWeight(.bold)
-                    Text("Share this room code with a friend and ask them to join!")
+                    
                 }
                 .foregroundColor(Color.white)
                 .padding(.horizontal, 30)
                 .padding(.vertical)
             }
-            .frame(width: 413, height: 137)
+            .frame(minWidth: 413, maxHeight: 13)
         }
     }
 }
 
 #Preview {
-    ShareLink()
+    ShareLink(createdDate: Date(), roomID: "Test", isOwner: true)
 }

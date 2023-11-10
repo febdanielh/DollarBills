@@ -64,6 +64,16 @@ class Supabase {
         print(response)
     }
     
+    func fetchUserName(for userID: UUID) async throws -> String {
+        
+        let response : String = try await client.database.from("User").select().eq(column: "userID", value: userID).execute().value
+        if (response == "") {
+            return "Not Found"
+        }
+        return response
+        
+    }
+    
     func fetchJoinDuelRoom(for roomID: String, for userID: UUID?) async throws -> String {
         
         guard let uID = userID else {
@@ -75,7 +85,7 @@ class Supabase {
             do {
                 try await client.database
                     .from("DuelRoom")
-                    .update(values: ["inviteeID" : userID])
+                    .update(values: ["inviteeID" : uID])
                     .eq(column: "roomID", value: roomID)
                     .execute()
             } catch {
