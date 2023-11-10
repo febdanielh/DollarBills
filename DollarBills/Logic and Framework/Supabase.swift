@@ -73,29 +73,16 @@ class Supabase {
         print(response)
     }
     
-    func fetchUserPoints(for userID: UUID) async throws {
-        let response : [UserPayload] = try await client.database.from("User")
-            .select(columns:"""
-                            username,
-                            points
-                            """).order(column: "points", ascending: false).execute().value
-        print(response)
-    }
-    
-    func fetchOwnPoint(for userID: String) async throws {
-        let response : [User] = try await client.database.from("User").select().equals(column: "userID", value: userID).execute().value
+    func fetchOwnPoint(for userID: UUID) async throws -> [User] {
+        let response = try await client.database.from("User").select().eq(column: "userID", value: userID).execute()
+        let data = response.underlyingResponse.data
         
-        print(response)
+        let decoder = JSONDecoder()
+        let userData = try decoder.decode([User].self, from: data)
+        
+        print(userData)
+        return userData
     }
-    
-//    func customDecodingStrat(keys: [CodingKey]) -> CodingKey {
-//        for key in keys {
-//            if key.stringValue == "userID" {
-//                return UserPayload.CodingKeys.id
-//            }
-//        }
-//        return keys.last ?? UserPayload.CodingKeys.username
-//    }
     
     // MARK: Delete
     // MARK: Update

@@ -5,7 +5,6 @@
 //  Created by Elvis Susanto on 20/10/23.
 //
 
-import Foundation
 import SwiftUI
 import Supabase
 import GoTrue
@@ -28,7 +27,7 @@ struct LeaderboardView: View {
                 )
                 VStack {
                     HStack{
-                        Text("\(getMonth()) \(getYear())")
+                        Text("\(GetMonthYear().getMonth()) \(GetMonthYear().getYear())")
                             .font(.title3).fontWeight(.semibold)
                         Spacer()
                         NavigationLink {
@@ -59,16 +58,25 @@ struct LeaderboardView: View {
                     .padding(.horizontal)
                     
                     VStack {
-                        HStack {
-                            //                            ForEach(vm.users) { user in
-                            //                                LeaderboardBar(points: Int(Double(user.points)), rank: 2, name: user.username)
-                            //                            }
-                        }.frame(width: 324)
+                        ZStack{
+                            VStack {
+                                Spacer()
+                                Ellipse()
+                                    .frame(width: 340, height: 19)
+                                    .foregroundColor(Color(red: 0.76, green: 0.76, blue: 0.76).opacity(0.5))
+                            }
+                            HStack(alignment: .bottom) {
+                                ForEach(vm.users.prefix(3), id: \.self) { user in
+                                    LeaderboardBar(points: Double(user.points), rank: 1, name: user.username)
+                                }
+                            }.frame(width: 324).padding(.bottom, 10)
+                        }
                     }
-                    .frame(width: 340, height: 410, alignment: .center)
+                    .frame(width: 340, height: 330, alignment: .center)
+                    .frame(maxHeight: 350)
                     .padding()
                     
-                    Spacer().frame(height: 100)
+                    Spacer().frame(height: 20)
                     
                     ZStack {
                         Rectangle()
@@ -100,14 +108,18 @@ struct LeaderboardView: View {
                     .padding(.top)
                 }
             }
-            .onAppear {
-                Task {
-                    do {
-                        let id = try await Supabase.shared.client.auth.session.user.id.uuidString
-                        try await vm.fetchUserPoint(for: id)
-                    } catch {
-                        print(error)
-                    }
+        }
+        .onAppear {
+            Task {
+                do {
+                    let id = try await Supabase.shared.client.auth.session.user.id
+                    let userData = try await vm.fetchUserPoint(for: id)
+                    let userPoint = userData[0].points
+                    point = userPoint
+                    
+                    try await vm.fetchUserPoints()
+                } catch {
+                    print(error)
                 }
             }
         }
@@ -116,22 +128,4 @@ struct LeaderboardView: View {
 
 #Preview {
     LeaderboardView()
-}
-
-func getMonth() -> String {
-    let now = Date()
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "LLLL"
-    let nameOfMonth = dateFormatter.string(from: now)
-    
-    return nameOfMonth
-}
-
-func getYear() -> String {
-    let now = Date()
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy"
-    let currentYear = dateFormatter.string(from: now)
-    
-    return currentYear
 }

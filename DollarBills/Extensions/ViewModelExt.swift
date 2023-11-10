@@ -39,7 +39,7 @@ extension ViewModel {
         let userID = try await Supabase.shared.client.auth.session.user.id.uuidString
         let userEmail = try await Supabase.shared.client.auth.session.user.email
         
-        let user = UserPayload(userID: userID, username: username, email: userEmail, points: points)
+        let user = UserPayload(userID: userID, username: username, points: points)
         
         try await Supabase.shared.createUserItems(item: user)
     }
@@ -53,13 +53,9 @@ extension ViewModel {
         try await Supabase.shared.fetchWorkoutItems(for: userID)
     }
     
-    func fetchUserPoints(for userID: UUID) async throws{
-        //        try await Supabase.shared.fetchUserPoints(for: userID)
-        let user : [UserPayload] = try await Supabase.shared.client.database.from("User")
-            .select(columns:"""
-                            username,
-                            points
-                            """)
+    func fetchUserPoints() async throws {
+        let user : [User] = try await Supabase.shared.client.database.from("User")
+            .select()
             .order(column: "points", ascending: false)
             .execute().value
         
@@ -68,15 +64,8 @@ extension ViewModel {
         }
     }
     
-    func fetchUserPoint(for userID: String) async throws {
-        try await Supabase.shared.fetchOwnPoint(for: userID)
-    }
-    
-    func getUserPoint(for userID: String) async throws -> UserPayload {
-        let userPoints: UserPayload = try await Supabase.shared.client.database.from("User").select().eq(column: "userID", value: userID).execute().value
-        
-        print(userPoints)
-        return userPoints
+    func fetchUserPoint(for userID: UUID) async throws -> [User] {
+        return try await Supabase.shared.fetchOwnPoint(for: userID)
     }
     
     // MARK: Delete

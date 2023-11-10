@@ -42,7 +42,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var itemsCollected: [Items] = []
     @Published var isAuthenticated: Bool = false
     
-    @Published var users = [UserPayload]()
+    @Published var users = [User]()
     
     // MARK: - Properties
     func updateTrackingMode() {
