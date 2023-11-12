@@ -30,12 +30,20 @@ extension ViewModel {
         try await Supabase.shared.createInventoryItem(item: inventory)
     }
     
-    func createDuelRoom(duration: TimeInterval) async throws -> String {
+    func createDuelRoom(duration: TimeInterval) async throws {
         let ownerID = try await fetchUserID()
         let roomID = generateRandomCode()
+        currentRoomID = roomID
         let duelRoom = DuelRoomPayLoad(roomID: roomID, createdAt: Date(), roomOwner: ownerID, duration: duration)
         try await Supabase.shared.createDuelRoomItem(item: duelRoom)
-        return roomID
+    }
+    
+    func createDuelRoom(duration: TimeInterval, name: String) async throws {
+        let ownerID = try await fetchUserID()
+        let roomID = generateRandomCode()
+        currentRoomID = roomID
+        let duelRoom = DuelRoomPayLoad(roomID: roomID, createdAt: Date(), roomOwner: ownerID, duration: duration)
+        try await Supabase.shared.createDuelRoomItem(item: duelRoom)
     }
     
     func createWorkoutItems(distance: Double, pace: Double, duration: Double) {
@@ -89,22 +97,31 @@ extension ViewModel {
     
     func getUserPoint(for userID: String) async throws -> UserPayload {
         let userPoints: UserPayload = try await Supabase.shared.client.database.from("User").select().eq(column: "userID", value: userID).execute().value
-        
         print(userPoints)
         return userPoints
     }
+    
     func fetchJoinDuelRoom(roomID: String) async throws -> String {
         return try await Supabase.shared.fetchJoinDuelRoom(for: roomID, for: fetchUserID())
+    }
+    
+    func fetchOwnerName(roomID: String) async throws -> String {
+        return try await Supabase.shared.fetchOwnerName(for: roomID)
+    }
+    
+    func fetchUserName(userID: UUID) async throws -> String {
+        return try await Supabase.shared.fetchUserName(for: userID)
+    }
+    
+    func fetchCurrentUserName() async throws -> String {
+        let userID = try await fetchUserID()
+        return try await Supabase.shared.fetchCurrentUserName(for: userID)
     }
     
     func fetchUserID() async throws -> UUID {
         return try await Supabase.shared.client.auth.session.user.id
     }
     
-    func fetchUserName() async throws -> String {
-        let userID = try await fetchUserID()
-        return try await Supabase.shared.fetchUserName(for: userID)
-    }
     
     
     // MARK: Delete

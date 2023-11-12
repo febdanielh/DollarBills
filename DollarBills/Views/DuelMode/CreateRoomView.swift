@@ -19,6 +19,8 @@ struct CreateRoomView: View {
     
     @EnvironmentObject var vm : ViewModel
     
+    @State var roomID = ""
+    
     @State var today = Date()
     
     var body: some View {
@@ -45,17 +47,33 @@ struct CreateRoomView: View {
             
             NavigationLink {
                 
-                LobbyView(today: today, timeInterval: timeInterval)
+                LobbyView(today: today, timeInterval: timeInterval, roomID: roomID)
                 
             } label: {
-                ZStack{
-                    RoundedRectangle(cornerRadius: 25)
-                        .frame(width: 326, height: 60)
-                        .foregroundStyle(Color.black)
-                    Text("Create Room")
-                        .foregroundStyle(Color.white)
-                        .font(.title3)
-                }
+                
+                Button(action: {
+                    
+                    Task {
+                        do {
+                            try await vm.createDuelRoom(duration: timeInterval)
+                        } catch {
+                            print(error)
+                        }
+                    }
+                    
+                }, label: {
+                    ZStack{
+                        
+                        RoundedRectangle(cornerRadius: 25)
+                            .frame(width: 326, height: 60)
+                            .foregroundStyle(Color.black)
+                        Text("Create Room")
+                            .foregroundStyle(Color.white)
+                            .font(.title3)
+                        
+                    }
+                })
+                
             }
             .padding()
             

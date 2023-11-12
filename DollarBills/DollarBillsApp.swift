@@ -15,6 +15,7 @@ struct DollarBillsApp: App {
             ContentView()
                 .environmentObject(ViewModel())
                 .environmentObject(NetworkMonitor())
+                .environmentObject(RealTimeGame())
                 .preferredColorScheme(.light)
         }
     }

@@ -21,12 +21,14 @@ struct ContentView: View {
     @Environment(\.scenePhase) var scenePhase
     @EnvironmentObject var networkMonitor: NetworkMonitor
     @EnvironmentObject var vm: ViewModel
+    @EnvironmentObject private var game : RealTimeGame
     @AppStorage("launchedBefore") var launchedBefore = false
     @State var welcome = false
     @State var directions: [String] = []
     @State var shouldShowOnboarding = true
     
     var body: some View {
+        
         if launchedBefore && networkMonitor.isConnected {
             switch vm.currentDisplayScreen {
             case .viewMain:
@@ -54,18 +56,22 @@ struct ContentView: View {
             default:
                 Text("Default View")
             }
-        } else if (!vm.isAuthenticated || shouldShowOnboarding) && networkMonitor.isConnected {
+        }
+        else if (!vm.isAuthenticated || shouldShowOnboarding) && networkMonitor.isConnected {
             OnboardingView(shouldShowOnboarding: $shouldShowOnboarding)
                 .onDisappear {
                     launchedBefore = true
                     vm.currentDisplayScreen = .viewMain
+                    game.authenticatePlayer()
                 }
         }
         else if !networkMonitor.isConnected {
             DisconnectedView()
         }
         
+        
     }
+    
 }
 
 #Preview {

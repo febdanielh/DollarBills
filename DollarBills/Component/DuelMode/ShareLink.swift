@@ -11,7 +11,7 @@ struct ShareLink: View {
     
     @State var createdDate : Date
     
-    let roomID: String
+    @EnvironmentObject var vm : ViewModel
     
     let isOwner: Bool
     
@@ -37,13 +37,13 @@ struct ShareLink: View {
                             
                             Button(action: {
                                 // Create a sharing activity
-                                let textToShare = "Are you up for a duel?\nCome face me on Further!\nWith my room code: \(roomID)"
+                                let textToShare = "Are you up for a duel?\nCome face me on Further!\nWith my room code: \(vm.currentRoomID)"
                                 let activityViewController = UIActivityViewController(activityItems: [textToShare], applicationActivities: nil)
                                 
                                 // Present the share sheet
                                 UIApplication.shared.windows.first?.rootViewController?.present(activityViewController, animated: true, completion: nil)
                             }) {
-                                Text("Room Code \(roomID)")
+                                Text("Room Code \(vm.currentRoomID)")
                                     .font(.title3)
                                 Image(systemName: "square.and.arrow.up.fill")
                             }
@@ -63,6 +63,6 @@ struct ShareLink: View {
     }
 }
 
-#Preview {
-    ShareLink(createdDate: Date(), roomID: "Test", isOwner: true)
-}
+//#Preview {
+//    ShareLink(createdDate: Date(), roomID: "Test", isOwner: true)
+//}

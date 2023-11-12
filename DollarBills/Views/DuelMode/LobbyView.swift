@@ -21,7 +21,7 @@ struct LobbyView: View {
     
     @EnvironmentObject var vm : ViewModel
     
-    @State var roomID: String = ""
+    var roomID: String
     
     @State var roomOwnerName: String = ""
     
@@ -38,7 +38,7 @@ struct LobbyView: View {
                 
                 VStack (spacing: 50) {
                     
-                    ShareLink(createdDate: today, roomID: roomID, isOwner: isOwner)
+                    ShareLink(createdDate: today, isOwner: isOwner)
                         .frame(height: 100)
                     
                     Spacer()
@@ -92,15 +92,14 @@ struct LobbyView: View {
         }
         .onAppear(perform: {
             Task {
-                roomID = try await vm.createDuelRoom(duration: timeInterval)
-                roomOwnerName = try await vm.fetchUserName()
+                roomOwnerName = try await vm.fetchOwnerName(roomID: roomID)
             }
         })
     }
     
 }
 
-#Preview {
-    LobbyView(today: Date(), timeInterval: 600.0)
-        .environmentObject(ViewModel())
-}
+//#Preview {
+//    LobbyView(today: Date(), timeInterval: 600.0)
+//        .environmentObject(ViewModel())
+//}

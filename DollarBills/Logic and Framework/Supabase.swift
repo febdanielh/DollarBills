@@ -72,7 +72,21 @@ class Supabase {
         print(response)
     }
     
+    func fetchOwnerName(for roomID: String) async throws -> String {
+        let response: [UUID] = try await client.database.from("DuelRoom").select(columns: "roomOwner").eq(column: "roomID", value: roomID).execute().value
+        let response2: UUID = response.first!
+        let name: [String] = try await client.database.from("User").select(columns: "username").eq(column: "userID", value: response2).execute().value
+        let final: String = name.first!
+        return final
+    }
+    
     func fetchUserName(for userID: UUID) async throws -> String {
+        let response: [UserPayload] = try await client.database.from("User").select().eq(column: "userID", value: userID).execute().value
+        let name: String = response.first!.username
+        return name
+    }
+    
+    func fetchCurrentUserName(for userID: UUID) async throws -> String {
         
         let response : String = try await client.database.from("User").select().eq(column: "userID", value: userID).execute().value
         if (response == "") {
