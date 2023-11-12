@@ -16,6 +16,7 @@ import SwiftUI
 class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     private var locationManager: CLLocationManager = CLLocationManager()
+    @Published var currentRoomID: String = ""
     @Published var currentDisplayScreen: DisplayScreen = .viewMain
     @Published var selectedSegment = 0
     @Published var locationAccess : Bool = true

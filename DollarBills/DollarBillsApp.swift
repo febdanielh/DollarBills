@@ -14,6 +14,8 @@ struct DollarBillsApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(ViewModel())
+                .environmentObject(NetworkMonitor())
+                .environmentObject(RealTimeGame())
                 .preferredColorScheme(.light)
         }
     }

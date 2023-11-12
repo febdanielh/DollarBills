@@ -7,13 +7,32 @@
 
 import SwiftUI
 
+let timeIntervals = [
+    600.0,
+    1200.0,
+    1800.0
+]
+
 struct CreateRoomView: View {
     
+    @State var timeInterval : TimeInterval = timeIntervals[0]
     
+    @EnvironmentObject var vm : ViewModel
+    
+    @State var roomID = ""
+    
+    @State var today = Date()
     
     var body: some View {
         VStack {
-            Text("Monday, 15 October 2023")
+            Text("Duel Mode")
+                .font(.headline).bold()
+                .padding()
+            
+            Divider()
+                .padding(.bottom)
+            
+            Text(Date.now.formatted(date: .complete, time: .omitted))
             
             ZStack {
                 RoundedRectangle(cornerRadius: 25)
@@ -21,25 +40,43 @@ struct CreateRoomView: View {
                     .foregroundColor(Color.yellow)
                 Text("Choose Duration")
             }
-            .padding(.top, 20)
+            .padding()
             
             
-            TimePickerView()
-                .padding(.top, 150)
+            TimePickerView(selectedTime: $timeInterval)
             
             NavigationLink {
-                LobbyView()
+                
+                LobbyView(today: today, timeInterval: timeInterval, roomID: roomID)
+                
             } label: {
-                ZStack{
-                    RoundedRectangle(cornerRadius: 25)
-                        .frame(width: 326, height: 60)
-                        .foregroundStyle(Color.black)
-                    Text("Create Room")
-                        .foregroundStyle(Color.white)
-                        .font(.title3)
-                }
+                
+                Button(action: {
+                    
+                    Task {
+                        do {
+                            try await vm.createDuelRoom(duration: timeInterval)
+                        } catch {
+                            print(error)
+                        }
+                    }
+                    
+                }, label: {
+                    ZStack{
+                        
+                        RoundedRectangle(cornerRadius: 25)
+                            .frame(width: 326, height: 60)
+                            .foregroundStyle(Color.black)
+                        Text("Create Room")
+                            .foregroundStyle(Color.white)
+                            .font(.title3)
+                        
+                    }
+                })
+                
             }
-            .padding(.top, 80)
+            .padding()
+            
         }
     }
 }

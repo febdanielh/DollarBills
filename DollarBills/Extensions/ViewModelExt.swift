@@ -12,14 +12,37 @@ import GoTrue
 import SwiftUI
 
 extension ViewModel {
+    
+    func generateRandomCode() -> String {
+        let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        var randomCode = ""
+        for _ in 0..<4 {
+            let randomIndex = Int.random(in: 0..<characters.count)
+            let character = characters[characters.index(characters.startIndex, offsetBy: randomIndex)]
+            randomCode.append(character)
+        }
+        return randomCode
+    }
+    
     // MARK: Insert/Create
     func createInventoryItems(userID: String, itemID: String, qty: Int) async throws {
         let inventory = InventoryPayload(userID: userID, itemID: itemID, quantity: qty)
         try await Supabase.shared.createInventoryItem(item: inventory)
     }
     
-    func createDuelRoomItems(roomID: String, roomOwner: String, inviteeID: String, duration: Double) async throws {
-        let duelRoom = DuelRoomPayLoad(roomID: roomID, roomOwner: roomOwner, inviteeID: inviteeID, duration: duration)
+    func createDuelRoom(duration: TimeInterval) async throws {
+        let ownerID = try await fetchUserID()
+        let roomID = generateRandomCode()
+        currentRoomID = roomID
+        let duelRoom = DuelRoomPayLoad(roomID: roomID, createdAt: Date(), roomOwner: ownerID, duration: duration)
+        try await Supabase.shared.createDuelRoomItem(item: duelRoom)
+    }
+    
+    func createDuelRoom(duration: TimeInterval, name: String) async throws {
+        let ownerID = try await fetchUserID()
+        let roomID = generateRandomCode()
+        currentRoomID = roomID
+        let duelRoom = DuelRoomPayLoad(roomID: roomID, createdAt: Date(), roomOwner: ownerID, duration: duration)
         try await Supabase.shared.createDuelRoomItem(item: duelRoom)
     }
     
@@ -67,6 +90,29 @@ extension ViewModel {
     func fetchUserPoint(for userID: UUID) async throws -> [User] {
         return try await Supabase.shared.fetchOwnPoint(for: userID)
     }
+    
+    func fetchJoinDuelRoom(roomID: String) async throws -> String {
+        return try await Supabase.shared.fetchJoinDuelRoom(for: roomID, for: fetchUserID())
+    }
+    
+    func fetchOwnerName(roomID: String) async throws -> String {
+        return try await Supabase.shared.fetchOwnerName(for: roomID)
+    }
+    
+    func fetchUserName(userID: UUID) async throws -> String {
+        return try await Supabase.shared.fetchUserName(for: userID)
+    }
+    
+    func fetchCurrentUserName() async throws -> String {
+        let userID = try await fetchUserID()
+        return try await Supabase.shared.fetchCurrentUserName(for: userID)
+    }
+    
+    func fetchUserID() async throws -> UUID {
+        return try await Supabase.shared.client.auth.session.user.id
+    }
+    
+    
     
     // MARK: Delete
     
