@@ -83,15 +83,15 @@ struct WorkoutBar: View {
 
 
 
-struct WorkoutBar_Previews: PreviewProvider {
-     static var previews: some View {
-         ZStack {
-             Map(mapRect: .constant(MKMapRect()))
-             WorkoutBar(workout: .example, new: true)
-                 .environmentObject(ViewModel())
-         }
-     }
-}
+//struct WorkoutBar_Previews: PreviewProvider {
+//     static var previews: some View {
+//         ZStack {
+//             Map(mapRect: .constant(MKMapRect()))
+//             WorkoutBar(workout: .example, new: true)
+//                 .environmentObject(ViewModel())
+//         }
+//     }
+//}
 
 struct WorkoutStat: View {
      let name: String

@@ -20,12 +20,13 @@ struct MapView: View {
     @AppStorage("launchedBefore") var launchedBefore = false
     @State var welcome = false
     
+    @State var currentRouteIndex: Int = 0
     @Binding var isRouteSelected: Bool
+    @Binding var selectedRoute: Routes
     
     var body: some View {
         
         ZStack{
-            Color.SheetGray.ignoresSafeArea()
             VStack{
                 ZStack {
                     createMap(
@@ -34,9 +35,40 @@ struct MapView: View {
                         selectedAnnotation: $selectedAnnotation,
                         cachedDirections: $vm.cachedDirections
                     )
-                    .frame(height: 400)
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
-                    .padding(.horizontal)
+                    .ignoresSafeArea()
+                    .frame(height: 410)
+                    
+                    if isRouteSelected == true && selectedRoute.routeCount > 1 {
+                        HStack {
+                            if currentRouteIndex > 0 {
+                                Image("back button")
+                                    .onTapGesture {
+                                        //                                        currentRouteIndex -= 1
+                                    }
+                                Spacer()
+                                Image("next button")
+                                    .onTapGesture {
+                                        //                                        currentRouteIndex += 1
+                                    }
+                            }
+                            if currentRouteIndex == 0 {
+                                Spacer()
+                                Image("next button")
+                                    .onTapGesture {
+                                        //                                        currentRouteIndex += 1
+                                    }
+                            }
+                            if currentRouteIndex == selectedRoute.routeCount - 1 {
+                                Image("back button")
+                                    .onTapGesture {
+                                        //                                        currentRouteIndex -= 1
+                                    }
+                                Spacer()
+                            }
+                        }
+                        .padding(.horizontal)
+                        .offset(y: 20)
+                    }
                 }
                 .fullScreenCover(isPresented: $vm.healthUnavailable) {
                     ErrorView(systemName: "heart.slash", title: "Health Unavailable", message: "\(NAME) needs access to the Health App to store and load workouts. Unfortunately, this device does not have these capabilities so the app will not work.")
@@ -50,11 +82,11 @@ struct MapView: View {
                     }
                 }
                 
-                RouteCards(selectedAnnotation: $selectedAnnotation, tag: $tag, isRouteSelected: $isRouteSelected)
+                RouteCards(selectedAnnotation: $selectedAnnotation, tag: $tag, isRouteSelected: $isRouteSelected, selectedRoute: $selectedRoute, directions: $directions, currentRouteIndex: $currentRouteIndex)
             }
         }
         .sheet(isPresented: $isRouteSelected, content: {
-            routeSheet(selectedAnnotation: $selectedAnnotation, directions: $directions, isRouteSelected: $isRouteSelected)
+            routeSheet(selectedAnnotation: $selectedAnnotation, directions: $directions, isRouteSelected: $isRouteSelected, currentRouteIndex: $currentRouteIndex)
         })
     }
 }

@@ -26,10 +26,10 @@ struct FillButton: ButtonStyle {
 struct ActiveBlackButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .frame(width: 360, height: 53)
-            .foregroundColor(.primaryColor02)
+            .frame(width: 300, height: 44)
+            .foregroundColor(.white)
             .background(Color.black)
-            .clipShape(RoundedRectangle(cornerRadius: 26))
+            .clipShape(RoundedRectangle(cornerRadius: 18))
     }
 }
 
@@ -37,7 +37,7 @@ struct ActiveBlackButtonDuel: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(width: 326, height: 60)
-            .foregroundColor(.primaryColor02)
+            .foregroundColor(.YellowLight1)
             .background(Color.black)
             .clipShape(RoundedRectangle(cornerRadius: 25))
     }
@@ -56,10 +56,10 @@ struct ActiveBlackButtonProfile: ButtonStyle {
 struct ActiveBlackSheetButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .frame(width: 306, height: 60)
-            .foregroundColor(.primaryColor02)
+            .frame(width: 306, height: 44)
+            .foregroundColor(.white)
             .background(Color.black)
-            .clipShape(RoundedRectangle(cornerRadius: 25))
+            .clipShape(RoundedRectangle(cornerRadius: 18))
     }
 }
 
@@ -109,13 +109,13 @@ struct BarProgressStyle: ProgressViewStyle {
                     .font(labelFontStyle)
                 
                 RoundedRectangle(cornerRadius: 12.0)
-                    .fill(Color(red: 1, green: 0.96, blue: 0.75))
+                    .fill(Color.emptyProgressBar)
                     .frame(height: height)
                     .frame(width: geometry.size.width)
                     .overlay(alignment: .leading) {
                         
                         RoundedRectangle(cornerRadius: 12.0)
-                            .fill(Color(red: 1, green: 0.87, blue: 0.2))
+                            .fill(Color.YellowNormal2)
                             .frame(width: geometry.size.width * min(progress, 1.0))
                             .overlay {
                                 if let currentValueLabel = configuration.currentValueLabel {
@@ -226,3 +226,55 @@ struct VerticalProgressBar: View {
         
     }
 }
+
+struct LeaderboardBar: View {
+    
+    var points: Double
+    var rank: Int
+    var name: String
+    var body: some View {
+        
+        GeometryReader { geometry in
+            VStack(alignment: .center, spacing: 10) {
+                Spacer()
+                Text("\(rank)")
+                    .font(.system(size: 45)).fontWeight(.black)
+                    .italic()
+                ZStack(alignment: .bottom) {
+                    RoundedRectangle(cornerRadius: 7)
+                        .frame(width: 96, height: CGFloat(points * 0.5) / 2.5)
+                        .foregroundColor(Color.leaderboardOrange)
+                    RoundedRectangle(cornerRadius: 150)
+                        .frame(width: 100, height: 10)
+                        .foregroundColor(Color.leaderboardLightOrange)
+                    VStack{
+                        Text(name)
+                            .font(.footnote).bold()
+                            .foregroundColor(.white)
+                        HStack {
+                            Image("coin")
+                                .resizable()
+                                .frame(width: 14, height: 14)
+                            Text(String(format: "%.0f", points))
+                                .font(.system(size: 9))
+                                .foregroundColor(Color.YellowDark26)
+                        }
+                        .frame(width: 80, height: 18)
+                        .background(Color.YellowLight2)
+                        .clipShape(RoundedRectangle(cornerRadius: 4))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 4)
+                                .stroke(Color.YellowLight3)
+                        )
+                        .cornerRadius(4)
+                    }
+                    .offset(y: -CGFloat(points * 0.5 / 5))
+                }
+            }
+        }
+    }
+}
+
+#Preview(body: {
+    LeaderboardBar(points: 800, rank: 1, name: "Guest 7777")
+})

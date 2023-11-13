@@ -6,17 +6,20 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct QokkaPickCard: View {
     @EnvironmentObject var vm: ViewModel
     @Binding var tag: Int
     
+    let routes: [Routes]
+    @Binding var selectedRoute: Routes
+    
     var body: some View {
         HStack {
-            Text("Qokka's Pick")
+            Text("Furthr's Pick")
                 .foregroundStyle(.black)
-                .font(.title2)
-                .bold()
+                .font(.system(size: 20)).fontWeight(.semibold)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             Button(action: {
@@ -32,7 +35,7 @@ struct QokkaPickCard: View {
         ScrollView(.horizontal) {
             // All Image
             HStack {
-                ForEach(RouteData.routeData, id: \.self) { route in
+                ForEach(routes, id: \.self) { route in
                     VStack {
                         ZStack {
                             VStack (alignment: .leading) {
@@ -60,21 +63,27 @@ struct QokkaPickCard: View {
                                             .frame(width: 140, height: 25, alignment: .leading)
                                     }
                                     
-                                    HStack {
-                                        Text("50m away")
-                                            .font(.caption)
-                                            .padding(.leading)
+                                    Spacer()
+                                    
+                                    if (CLLocationManager.authorizationStatus() == .authorizedAlways || CLLocationManager.authorizationStatus() == .authorizedWhenInUse) {
+                                        HStack {
+                                            Text("\(String(format: "%.1f km", vm.getUserDistance(latitude: route.latitude, longitude: route.longitude))) away")
+                                                .font(.system(size: 15))
+                                                .fontWeight(.semibold)
+                                                .padding(.leading)
+                                                .foregroundColor(Color.TextDimGray)
+                                        }
                                     }
                                     
                                     // Location Tag
                                     VStack {
-                                        Text("4+ Routes")
+                                        Text("\(route.routeCount) Routes")
                                             .font(.system(size: 13))
                                             .fontWeight(.semibold)
                                             .foregroundStyle(Color.black)
                                             .frame(width: 90, height: 20, alignment: .center)
                                             .background(
-                                                Color.YellowNormal)
+                                                Color.YellowNormal2)
                                             .cornerRadius(9.8)
                                             .overlay (
                                                 RoundedRectangle(cornerRadius: 9.8)
@@ -88,22 +97,25 @@ struct QokkaPickCard: View {
                             }
                             .onTapGesture {
                                 vm.currentDisplayScreen = .viewMap
+                                selectedRoute = route
                                 tag = route.tag
                             }
                         }
                     }
                     .background(.white)
                     .cornerRadius(8)
-                    .shadow(color: .black.opacity(0.1), radius: 15, x: 0, y: 4)
+                    .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 2)
+                    .frame(height: 262)
                 }
             }
             .padding([.bottom, .leading,.trailing])
         }
-        .padding(.bottom)
-        .cornerRadius(8)
     }
 }
 
 #Preview {
-    QokkaPickCard(tag: .constant(0))
+    QokkaPickCard(
+        tag: .constant(0),
+        routes: RouteData.furthrPick,
+        selectedRoute: .constant(Routes(tag: 0, routeName: "", routeNameDetail: "", routeImage: "", routeCount: 0, latitude: 0.0, longitude: 0.0)))
 }

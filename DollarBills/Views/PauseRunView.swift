@@ -9,12 +9,12 @@ import SwiftUI
 
 struct PauseRunView: View {
     let workout: Workout
-
+    
     @EnvironmentObject var vm: ViewModel
     @Binding var directions: [String]
     @State private var isPaused = false
     @State private var showAlert = false
-
+    
     var body: some View {
         VStack(spacing: 40){
             createMap(
@@ -32,28 +32,28 @@ struct PauseRunView: View {
                 VStack(spacing: 20){
                     Text(String(workout.heartRate))
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.black)
                     Text("BPM")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.semibold)
                 }
                 Spacer()
                 VStack(spacing: 20){
                     Text(workout.formattedDuration())
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.black)
                     Text("Duration")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.semibold)
                 }
                 Spacer()
                 VStack(spacing: 20){
                     Text(workout.formattedPace())
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.black)
                     Text("Pace")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.semibold)
                 }
                 Spacer()
             }
@@ -62,78 +62,74 @@ struct PauseRunView: View {
                 VStack(spacing: 20){
                     Text(workout.formattedDistance())
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.black)
                     Text("Distance")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.semibold)
                 }
                 Spacer()
                 VStack(spacing: 20){
                     Text(workout.formattedElevation())
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.black)
                     Text("Elevation")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.semibold)
                 }
                 Spacer()
                 VStack(spacing: 20){
                     Text(String(workout.calorieBurned))
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.black)
                     Text("Calories")
                         .font(.system(size: 20))
-                        .bold()
+                        .fontWeight(.semibold)
                 }
                 Spacer()
             }
             Spacer()
-            HStack(spacing: 40){
-                Button(action: {
-                    print("stop pressed")
-                    showAlert = true
-                }, label: {
-                    Image(systemName: "stop.circle.fill")
-                        .resizable()
-                        .frame(width: 80.56, height: 80.56)
-                        .foregroundColor(.YellowNormal)
-                        .alert("Finish?", isPresented: $showAlert) {
-                            Button("Yes") {}
-                                .onTapGesture {
-                                    Task {
-                                        await vm.endWorkout()
-                                    }
-                                }
-                            Button("No", role: .cancel) {}
-                                .onTapGesture {
-                                    Task {
-                                        vm.discardWorkout()
-                                    }
-                                }
-                        } message: {
-                            Text("Are you sure you are finished? You cannot come back to this later")
+            
+            HStack(spacing: 30){
+                Image(systemName: "stop.circle.fill")
+                    .resizable()
+                    .frame(width: 80.56, height: 80.56)
+                    .foregroundColor(.redStopButton)
+                    .onTapGesture {
+                        print("stop pressed")
+                        showAlert = true
+                    }
+                    .alert("Finish?", isPresented: $showAlert) {
+                        Button("Yes") {
+                            Task {
+                                await vm.endWorkout()
+                            }
+                            vm.currentDisplayScreen = .viewMain
                         }
-                })
-
-                Button(action: {
-                    print("play pressed")
-                }, label: {
-                    Image(systemName: "play.circle.fill")
-                        .resizable()
-                        .frame(width: 80.56, height: 80.56)
-                        .foregroundColor(.YellowNormal)
-                        .onTapGesture {
-                            isPaused.toggle()
-                            if !isPaused {
-                                Task {
-                                    await vm.resumeWorkout()
-                                    vm.currentDisplayScreen = .viewRun
-                                }
+                        Button("No", role: .cancel) {
+                            Task {
+                                vm.discardWorkout()
+                            }
+                            vm.currentDisplayScreen = .viewMain
+                        }
+                    } message: {
+                        Text("Are you sure you are finished? You cannot come back to this later")
+                    }
+                
+                Image(systemName: "play.circle.fill")
+                    .resizable()
+                    .frame(width: 80.56, height: 80.56)
+                    .foregroundColor(.blueResumeButton)
+                    .onTapGesture {
+                        isPaused.toggle()
+                        if !isPaused {
+                            Task {
+                                await vm.resumeWorkout()
+                                vm.currentDisplayScreen = .viewRun
                             }
                         }
-                })
+                    }
             }
-            Spacer()
+            Spacer().frame(height: 45)
         }
     }
 }
