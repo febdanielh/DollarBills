@@ -53,7 +53,6 @@
 		6A3C86212AEB6DB000D73FDF /* DollarBillsWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3C86202AEB6DB000D73FDF /* DollarBillsWatchApp.swift */; };
 		6A3C86252AEB6DB100D73FDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A3C86242AEB6DB100D73FDF /* Assets.xcassets */; };
 		6A3C86282AEB6DB100D73FDF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A3C86272AEB6DB100D73FDF /* Preview Assets.xcassets */; };
-		6A3C862B2AEB6DB100D73FDF /* DollarBillsWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6A3C861E2AEB6DB000D73FDF /* DollarBillsWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6A8E798A2AEED65800A927C3 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E79892AEED65800A927C3 /* CountdownView.swift */; };
 		6A8E798C2AEED69800A927C3 /* RunViewTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E798B2AEED69800A927C3 /* RunViewTab.swift */; };
 		6A8E798E2AEED79F00A927C3 /* RunViewPage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E798D2AEED79F00A927C3 /* RunViewPage1.swift */; };
@@ -126,6 +125,7 @@
 		E195B66E2AE0EFEE00FB32C1 /* NearestRouteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195B66D2AE0EFEE00FB32C1 /* NearestRouteCard.swift */; };
 		E195B6722AE219DA00FB32C1 /* QokkaPickCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195B6712AE219DA00FB32C1 /* QokkaPickCard.swift */; };
 		E1A093712AD7E8A000A8A4AC /* PauseRunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A093702AD7E8A000A8A4AC /* PauseRunView.swift */; };
+		E1BBAD3B2B02938E00EA9140 /* DollarBillsWatch Watch App.app in Resources */ = {isa = PBXBuildFile; fileRef = 6A3C861E2AEB6DB000D73FDF /* DollarBillsWatch Watch App.app */; };
 		E1FE623A2AEB5A6400D1736C /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FE62392AEB5A6400D1736C /* GifImage.swift */; };
 		E1FE623C2AEB5C3C00D1736C /* spruto lari.gif in Resources */ = {isa = PBXBuildFile; fileRef = E1FE623B2AEB5C3C00D1736C /* spruto lari.gif */; };
 		E1FE623E2AECBF4300D1736C /* SummaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FE623D2AECBF4300D1736C /* SummaryDetailView.swift */; };
@@ -148,7 +148,6 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				6A3C862B2AEB6DB100D73FDF /* DollarBillsWatch Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -667,6 +666,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1BBAD3B2B02938E00EA9140 /* DollarBillsWatch Watch App.app in Resources */,
 				E1347E472AC43558008224CF /* Preview Assets.xcassets in Resources */,
 				E1347E442AC43558008224CF /* Assets.xcassets in Resources */,
 				E1FE623C2AEB5C3C00D1736C /* spruto lari.gif in Resources */,
@@ -826,7 +826,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DollarBillsWatch Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = KCXWQSNV6P;
+				DEVELOPMENT_TEAM = BVKAMN7JUV;
 				ENABLE_PREVIEWS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -837,14 +837,14 @@
 				INFOPLIST_KEY_NSLocationUsageDescription = "This app needs to access your location.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs to access your location.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.areez.DollarBills;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.DollarBills;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.areez.DollarBills.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DollarBills;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -866,7 +866,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DollarBillsWatch Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = KCXWQSNV6P;
+				DEVELOPMENT_TEAM = BVKAMN7JUV;
 				ENABLE_PREVIEWS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -877,14 +877,14 @@
 				INFOPLIST_KEY_NSLocationUsageDescription = "This app needs to access your location.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs to access your location.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.areez.DollarBills;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.DollarBills;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.areez.DollarBills.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DollarBills;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
