@@ -5,12 +5,14 @@
 //  Created by Elvis Susanto on 20/10/23.
 //
 
-import Foundation
 import SwiftUI
+import Supabase
+import GoTrue
 
 struct LeaderboardView: View {
     
-    @EnvironmentObject var VM : ViewModel
+    @EnvironmentObject var vm : ViewModel
+    @State var point: Int = 0
     
     var body: some View {
         ScrollView {
@@ -25,7 +27,7 @@ struct LeaderboardView: View {
                 )
                 VStack {
                     HStack{
-                        Text("October 2023")//ini bisa di ubah? atau menyesuaikan dengan bulan
+                        Text("\(GetMonthYear().getMonth()) \(GetMonthYear().getYear())")
                             .font(.title3).fontWeight(.semibold)
                         Spacer()
                         NavigationLink {
@@ -56,16 +58,25 @@ struct LeaderboardView: View {
                     .padding(.horizontal)
                     
                     VStack {
-                        HStack {
-                            LeaderboardBar(points: 500, rank: 2, name: "Feb")
-                            LeaderboardBar(points: 800, rank: 1, name: "Pis")
-                            LeaderboardBar(points: 300, rank: 3, name: "Rez")
-                        }.frame(width: 324)
+                        ZStack{
+                            VStack {
+                                Spacer()
+                                Ellipse()
+                                    .frame(width: 340, height: 19)
+                                    .foregroundColor(Color(red: 0.76, green: 0.76, blue: 0.76).opacity(0.5))
+                            }
+                            HStack(alignment: .bottom) {
+                                ForEach(vm.users.prefix(3), id: \.self) { user in
+                                    LeaderboardBar(points: Double(user.points), rank: 1, name: user.username)
+                                }
+                            }.frame(width: 324).padding(.bottom, 10)
+                        }
                     }
-                    .frame(width: 340, height: 410, alignment: .center)
+                    .frame(width: 340, height: 330, alignment: .center)
+                    .frame(maxHeight: 350)
                     .padding()
                     
-                    Spacer().frame(height: 100)
+                    Spacer().frame(height: 20)
                     
                     ZStack {
                         Rectangle()
@@ -79,7 +90,7 @@ struct LeaderboardView: View {
                             Spacer()
                             HStack {
                                 Image("coin")
-                                Text("15000")
+                                Text("\(point)")
                                     .font(.headline)
                                     .foregroundColor(Color.YellowDark26)
                             }
@@ -93,7 +104,22 @@ struct LeaderboardView: View {
                             .cornerRadius(8)
                             .padding(.trailing, 30)
                         }
-                    }.padding(.top)
+                    }
+                    .padding(.top)
+                }
+            }
+        }
+        .onAppear {
+            Task {
+                do {
+                    let id = try await Supabase.shared.client.auth.session.user.id
+                    let userData = try await vm.fetchUserPoint(for: id)
+                    let userPoint = userData[0].points
+                    point = userPoint
+                    
+                    try await vm.fetchUserPoints()
+                } catch {
+                    print(error)
                 }
             }
         }

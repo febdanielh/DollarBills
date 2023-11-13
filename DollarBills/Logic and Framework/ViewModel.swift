@@ -16,6 +16,7 @@ import SwiftUI
 class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     private var locationManager: CLLocationManager = CLLocationManager()
+    @Published var currentRoomID: String = ""
     @Published var currentDisplayScreen: DisplayScreen = .viewMain
     @Published var selectedSegment = 0
     @Published var locationAccess : Bool = true
@@ -41,6 +42,9 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var locations: [CLLocation] = []
     @Published var itemsCollected: [Items] = []
     @Published var isAuthenticated: Bool = false
+    
+    @Published var users = [User]()
+    @Published var detailRoom = [DetailRoomPayload]()
     
     // MARK: - Properties
     func updateTrackingMode() {
@@ -81,6 +85,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var lastDateObserved: Date?
     @Published var currentAccumulatedTime: TimeInterval = 0.0
     @Published var isPaused: Bool = false
+    @Published var points: Int = 0
     
     
     // Calculated property that returns an MKPolyline based on the locations array
@@ -361,6 +366,14 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         if workout.activityType == .running {
             workouts.append(workout)
             updatePolylines()
+        }
+        
+        points = Int(workout.distance)
+        
+        do {
+            try await updateUserPoints(points: points)
+        } catch {
+            print(error.localizedDescription)
         }
         
         heartRate = 0

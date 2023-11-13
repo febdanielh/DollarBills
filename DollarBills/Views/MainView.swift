@@ -11,8 +11,11 @@ import SwiftUI
 struct MainView: View {
     
     @EnvironmentObject var vm : ViewModel
+    @EnvironmentObject private var game: RealTimeGame
+    @ObservedObject var rm = RoomManager()
     @Binding var tag: Int
     @Binding var isRouteSelected: Bool
+    @ObservedObject var roomManager = RoomManager()
     
     var body: some View {
         VStack {
@@ -22,7 +25,11 @@ struct MainView: View {
             } else if (vm.selectedSegment == 1) {
                 ActivityView()
             } else if (vm.selectedSegment == 2) {
-                DuelModeView()
+                ContentView2()
+                    .onAppear(perform: {
+                        game.authenticatePlayer()
+                    })
+//                LandingPageView(roomManager: roomManager)
             } else if (vm.selectedSegment == 3) {
                 ProfileView()
             }

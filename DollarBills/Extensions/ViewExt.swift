@@ -55,3 +55,23 @@ extension View {
              .cornerRadius(15)
      }
 }
+
+struct GetMonthYear {
+    func getMonth() -> String {
+        let now = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "LLLL"
+        let nameOfMonth = dateFormatter.string(from: now)
+        
+        return nameOfMonth
+    }
+
+    func getYear() -> String {
+        let now = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy"
+        let currentYear = dateFormatter.string(from: now)
+        
+        return currentYear
+    }
+}

@@ -242,7 +242,7 @@ struct LeaderboardBar: View {
                     .italic()
                 ZStack(alignment: .bottom) {
                     RoundedRectangle(cornerRadius: 7)
-                        .frame(width: 96, height: CGFloat(points) / 2.5)
+                        .frame(width: 96, height: CGFloat(points * 0.5) / 2.5)
                         .foregroundColor(Color.leaderboardOrange)
                     RoundedRectangle(cornerRadius: 150)
                         .frame(width: 100, height: 10)
@@ -255,7 +255,7 @@ struct LeaderboardBar: View {
                             Image("coin")
                                 .resizable()
                                 .frame(width: 14, height: 14)
-                            Text("15000")
+                            Text(String(format: "%.0f", points))
                                 .font(.system(size: 9))
                                 .foregroundColor(Color.YellowDark26)
                         }
@@ -268,7 +268,7 @@ struct LeaderboardBar: View {
                         )
                         .cornerRadius(4)
                     }
-                    .offset(y: -CGFloat(points / 5))
+                    .offset(y: -CGFloat(points * 0.5 / 5))
                 }
             }
         }

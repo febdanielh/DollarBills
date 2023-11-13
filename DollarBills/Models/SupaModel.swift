@@ -8,17 +8,37 @@
 import Foundation
 
 struct InventoryPayload: Codable {
-    let userID: String
-    let itemID: String
-    let quantity: Int
+    var userID: String
+    var itemID: String
+    var quantity: Int
 }
 
 struct DuelRoomPayLoad: Codable {
-    let roomID: String
-    let roomOwner: String
-    let inviteeID: String
-    let duration: Double
+    var roomID: String
+    var createdAt : Date
+    var roomOwner : UUID
+    var inviteeID : UUID?
+    var duration : TimeInterval
+    var startedAt : Date?
+    var ownerReady : Bool = false
+    var inviteeReady : Bool = false
 }
+
+struct DuelRoom: Decodable {
+    var roomID: String
+    var createdAt : Date
+    var duration : TimeInterval
+    var roomOwner : UUID
+    var inviteeID : UUID?
+    var startedAt : Date?
+    var inviteeReady : Bool
+}
+
+//struct DuelRoomDTO: Codable {
+//    init(inviteeID: UUID) {
+//        self.inviteeID = inviteeID
+//    }
+//}
 
 struct DetailRoomPayload: Codable {
     let roomID: String
@@ -40,5 +60,16 @@ struct WorkoutPayload: Codable {
     let distance: Double
     let pace: Double
     let duration: Double
-    
+}
+
+struct UserPayload: Codable {
+    var userID: String
+    var username: String
+    var points: Int
+}
+
+struct User: Decodable, Hashable {
+    var userID: String
+    var username: String
+    var points: Int
 }
