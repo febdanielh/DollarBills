@@ -66,7 +66,7 @@ struct GameView: View {
                     }
                 }
                 Section("Rules") {
-                    Text("CAN A LOC COME UP IN YO CRIB, MAN FUCK YOU I'LL SEE YOU AT WORK. NIGGA DONT HATE ME CAUSE IM BEAUTIFUL NIGGA")
+                    Text("Get as far as possible in the specified time span! Use items to affect your and you opponent's run!")
                 }
             }
         }
