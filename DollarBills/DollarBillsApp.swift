@@ -7,11 +7,16 @@
 
 import SwiftUI
 
+let NAME = "Furthr"
 @main
 struct DollarBillsApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(ViewModel())
+                .environmentObject(NetworkMonitor())
+                .environmentObject(RealTimeGame())
+                .preferredColorScheme(.light)
         }
     }
 }
