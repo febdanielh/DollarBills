@@ -112,7 +112,13 @@ extension ViewModel {
         return try await Supabase.shared.client.auth.session.user.id
     }
     
-    
+    func fetchDetailRoom(for roomID: String) async throws {
+        let detailRoom = try await Supabase.shared.fetchDetailDuel(for: roomID)
+        
+        DispatchQueue.main.async {
+            self.detailRoom = detailRoom
+        }
+    }
     
     // MARK: Delete
     

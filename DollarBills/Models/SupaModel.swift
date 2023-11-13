@@ -8,20 +8,30 @@
 import Foundation
 
 struct InventoryPayload: Codable {
-    let userID: String
-    let itemID: String
-    let quantity: Int
+    var userID: String
+    var itemID: String
+    var quantity: Int
 }
 
 struct DuelRoomPayLoad: Codable {
-    let roomID: String
-    let createdAt : Date
-    let roomOwner : UUID
+    var roomID: String
+    var createdAt : Date
+    var roomOwner : UUID
     var inviteeID : UUID?
-    let duration : TimeInterval
+    var duration : TimeInterval
     var startedAt : Date?
     var ownerReady : Bool = false
     var inviteeReady : Bool = false
+}
+
+struct DuelRoom: Decodable {
+    var roomID: String
+    var createdAt : Date
+    var duration : TimeInterval
+    var roomOwner : UUID
+    var inviteeID : UUID?
+    var startedAt : Date?
+    var inviteeReady : Bool
 }
 
 //struct DuelRoomDTO: Codable {

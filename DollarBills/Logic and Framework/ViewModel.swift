@@ -44,6 +44,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var isAuthenticated: Bool = false
     
     @Published var users = [User]()
+    @Published var detailRoom = [DetailRoomPayload]()
     
     // MARK: - Properties
     func updateTrackingMode() {

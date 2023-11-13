@@ -146,6 +146,12 @@ class Supabase {
         return userData
     }
     
+    func fetchDetailDuel(for roomID: String) async throws -> [DetailRoomPayload]{
+        let response: [DetailRoomPayload] = try await client.database.from("DetailDuel").select().equals(column: "roomID", value: roomID).execute().value
+        
+        return response
+    }
+    
     // MARK: Delete
     
     // MARK: Update
