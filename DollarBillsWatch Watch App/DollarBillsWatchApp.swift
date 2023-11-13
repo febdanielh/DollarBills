@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct DollarBillsWatch_Watch_AppApp: App {
+    @ObservedObject var watchToPhone = WatchToPhone()
     var body: some Scene {
         WindowGroup {
-            LandingPageView()
+            ContentView()
+                .environmentObject(WorkoutManager(watchSession: watchToPhone.session))
         }
     }
 }

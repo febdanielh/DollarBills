@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RouteDetailView: View {
+    @StateObject private var locationManager = LocationManager()
     var body: some View {
         
         ScrollView {
@@ -16,8 +17,6 @@ struct RouteDetailView: View {
                     .frame(height: 170)
                 RouteSheet()
             }
-            
-                
         }
         .ignoresSafeArea()
     }

@@ -7,7 +7,26 @@
 
 import SwiftUI
 
+enum DisplayScreen {
+    case viewHome
+    case viewRun
+}
+
+struct ContentView: View {
+    @EnvironmentObject var wm: WorkoutManager
+    @StateObject var locationManager = LocationManager()
+    var body: some View {
+        switch  wm.currentDisplayScreen {
+        case .viewRun:
+            RunViewTab()
+        default:
+            LandingPageView()
+        }
+    }
+}
+
 struct LandingPageView: View {
+    
     var body: some View {
         
         NavigationView {

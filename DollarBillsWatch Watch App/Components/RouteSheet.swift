@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct RouteSheet: View {
+    @EnvironmentObject var workoutManager: WorkoutManager
+    var watchToPhone = WatchToPhone()
+    
     var body: some View {
-        
         ScrollView {
             VStack (alignment: .leading, spacing: 8) {
                 Text("Foresta Lumino Run")
@@ -46,6 +48,11 @@ struct RouteSheet: View {
 //                Countdown()
                 RunViewTab()
                     .navigationBarBackButtonHidden(true)
+                    .onAppear {
+                        if workoutManager.session?.state != .running {
+                            workoutManager.startWorkout(workoutType: .running)
+                        }
+                    }
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 25)
@@ -58,13 +65,14 @@ struct RouteSheet: View {
             }
             .padding(.top, 8)
             .buttonStyle(PlainButtonStyle())
-
-            
             Spacer()
+        }
+        .onAppear {
+            workoutManager.requestAuthorization()
         }
     }
 }
 
-#Preview {
-    RouteSheet()
-}
+//#Preview {
+//    RouteSheet()
+//}

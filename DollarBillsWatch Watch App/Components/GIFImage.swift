@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct GIFImage: View {
-    @State private var frameIndex: Int = 1
-    private let totalFrames = 10 
+    @State private var frameIndex: Int = 0
+    private let totalFrames = 9
     
     var body: some View {
         Image("frame\(frameIndex)")
