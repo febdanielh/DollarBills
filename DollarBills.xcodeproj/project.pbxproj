@@ -125,7 +125,6 @@
 		E195B66E2AE0EFEE00FB32C1 /* NearestRouteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195B66D2AE0EFEE00FB32C1 /* NearestRouteCard.swift */; };
 		E195B6722AE219DA00FB32C1 /* QokkaPickCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195B6712AE219DA00FB32C1 /* QokkaPickCard.swift */; };
 		E1A093712AD7E8A000A8A4AC /* PauseRunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A093702AD7E8A000A8A4AC /* PauseRunView.swift */; };
-		E1BBAD3B2B02938E00EA9140 /* DollarBillsWatch Watch App.app in Resources */ = {isa = PBXBuildFile; fileRef = 6A3C861E2AEB6DB000D73FDF /* DollarBillsWatch Watch App.app */; };
 		E1FE623A2AEB5A6400D1736C /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FE62392AEB5A6400D1736C /* GifImage.swift */; };
 		E1FE623C2AEB5C3C00D1736C /* spruto lari.gif in Resources */ = {isa = PBXBuildFile; fileRef = E1FE623B2AEB5C3C00D1736C /* spruto lari.gif */; };
 		E1FE623E2AECBF4300D1736C /* SummaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FE623D2AECBF4300D1736C /* SummaryDetailView.swift */; };
@@ -666,7 +665,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1BBAD3B2B02938E00EA9140 /* DollarBillsWatch Watch App.app in Resources */,
 				E1347E472AC43558008224CF /* Preview Assets.xcassets in Resources */,
 				E1347E442AC43558008224CF /* Assets.xcassets in Resources */,
 				E1FE623C2AEB5C3C00D1736C /* spruto lari.gif in Resources */,
