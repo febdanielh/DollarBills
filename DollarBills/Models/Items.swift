@@ -11,21 +11,35 @@ import SwiftUI
 struct Items: Identifiable {
     var id = UUID()
     var namaItem: String
-    var points: Int
     var image: String
+    var desc: String
 }
 
 struct ItemsData {
     //item dummy
     static let item = [
-        Items(namaItem: "Kayu",
-              points: 1000,
-              image: ""),
-        Items(namaItem: "Diamond",
-              points: 3000,
-              image: ""),
-        Items(namaItem: "Daun",
-              points: 500,
-              image: "")
+        Items(namaItem: "Blue Poison",
+              image: "0Potion", 
+              desc: "Blue Poison can reduce opponent’s distance by 5 m"),
+        
+        Items(namaItem: "Rock",
+              image: "1Rock", 
+              desc: "Rock can freeze opponent for 5s and reduce the amount of distance gain within 5s"),
+        
+        Items(namaItem: "Red Poison",
+              image: "2Potion", 
+              desc: "Red Poison can reduce opponent’s distance by 10 m"),
+        
+        Items(namaItem: "Three Rocks",
+              image: "3Rock", 
+              desc: "3 Rocks can freeze opponent for 10 s and reduce the amount of distance gain within 10 s"),
+        
+        Items(namaItem: "Rocket",
+              image: "rocket",
+              desc: ""),
+        
+        Items(namaItem: "Bomb",
+              image: "bomb",
+              desc: "")
     ]
 }

@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Potion2.png",
+      "filename" : "A6 4 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "A6 4 1@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "A6 4 1@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

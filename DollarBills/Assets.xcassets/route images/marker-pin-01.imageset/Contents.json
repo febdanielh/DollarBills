@@ -6,10 +6,12 @@
       "scale" : "1x"
     },
     {
+      "filename" : "marker-pin-01@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "marker-pin-01@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
