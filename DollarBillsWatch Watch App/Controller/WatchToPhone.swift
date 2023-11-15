@@ -18,18 +18,6 @@ class WatchToPhone: NSObject, ObservableObject {
         self.session.delegate = self
         session.activate()
     }
-//    
-//    func sendDataToPhone(message: Dictionary<String, String>) {
-//        if (WCSession.default.isReachable) {
-//            WCSession.default.sendMessage(message as [String :Any] , replyHandler: nil) { error in
-//                print("Error when sending the message with error: \(error.localizedDescription)")
-//            }
-//        }
-//    }
-//    
-//    func sendStatistics() {
-//        sendDataToPhone(message: statisticsData)
-//    }
 }
 
 extension WatchToPhone: WCSessionDelegate {

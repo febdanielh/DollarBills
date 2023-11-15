@@ -1,5 +1,5 @@
 //
-//  RunViewPage1.swift
+//  ControlView.swift
 //  DollarBillsWatch Watch App
 //
 //  Created by Angelica Pinonkuan on 30/10/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RunViewPage1: View {
+struct ControlView: View {
     
     @State private var isPaused = false
     
@@ -34,7 +34,7 @@ struct RunViewPage1: View {
 }
 
 #Preview {
-    RunViewPage1()
+    ControlView()
 }
 
 
@@ -92,7 +92,6 @@ struct ResumeButton: View {
 
 struct FinishButton: View {
     
-    @EnvironmentObject var workoutManager: WorkoutManager
     var body: some View {
         NavigationLink {
             FinishRunView()

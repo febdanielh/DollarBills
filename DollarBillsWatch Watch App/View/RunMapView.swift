@@ -1,5 +1,5 @@
 //
-//  RunViewPage4.swift
+//  RunMapView.swift
 //  DollarBillsWatch Watch App
 //
 //  Created by Angelica Pinonkuan on 30/10/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RunViewPage4: View {
+struct RunMapView: View {
     var body: some View {
         MapView()
             .ignoresSafeArea()
@@ -16,5 +16,5 @@ struct RunViewPage4: View {
 }
 
 #Preview {
-    RunViewPage4()
+    RunMapView()
 }

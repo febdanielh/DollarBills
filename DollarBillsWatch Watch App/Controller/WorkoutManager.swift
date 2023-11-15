@@ -24,6 +24,9 @@ class WorkoutManager: NSObject, ObservableObject {
     var session: HKWorkoutSession?
     var builder: HKLiveWorkoutBuilder?
     var watchSession: WCSession?
+    var routeBuilder: HKWorkoutRouteBuilder?
+    
+    var locationManager = LocationManager()
     
     init(watchSession: WCSession) {
         self.watchSession = watchSession
@@ -53,6 +56,8 @@ class WorkoutManager: NSObject, ObservableObject {
         session?.startActivity(with: startDate)
         builder?.beginCollection(withStart: startDate) { (success, error) in
         }
+        
+//        locationManager.setupLocationManager()
     }
 
     func requestAuthorization() {
@@ -72,6 +77,14 @@ class WorkoutManager: NSObject, ObservableObject {
 
         healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { (success, error) in
         }
+    }
+    
+    func addRoute(to workout: HKWorkout) {
+        routeBuilder?.finishRoute(with: workout, metadata: nil, completion: { workoutRoute, error in
+            if workoutRoute == nil {
+                fatalError("Error saving workout route")
+            }
+        })
     }
 
     // MARK: - Session State Control

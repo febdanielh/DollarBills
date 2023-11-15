@@ -12,13 +12,13 @@ struct RunViewTab: View {
 
         var body: some View {
             TabView(selection: $currentPage) {
-                RunViewPage1()
+                ControlView()
                     .tag(0)
                 VerticalTabView()
                     .tag(1)
-                RunViewPage3()
+                RunMetricsView()
                     .tag(2)
-                RunViewPage4()
+                RunMapView()
                     .tag(3)
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
