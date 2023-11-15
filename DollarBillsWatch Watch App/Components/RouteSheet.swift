@@ -10,11 +10,11 @@ import SwiftUI
 struct RouteSheet: View {
     @EnvironmentObject var workoutManager: WorkoutManager
     var watchToPhone = WatchToPhone()
-    
+    var routes: Routes
     var body: some View {
         ScrollView {
             VStack (alignment: .leading, spacing: 8) {
-                Text("Foresta Lumino Run")
+                Text(routes.routeName)
                     .font(.title2)
                 HStack {
                     Image(systemName: "flag.checkered")

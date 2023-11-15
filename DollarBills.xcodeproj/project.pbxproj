@@ -78,8 +78,10 @@
 		9B5133162AFB31880002A5C0 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5133152AFB31880002A5C0 /* WorkoutManager.swift */; };
 		9B5133192AFB3FB10002A5C0 /* ElapsedTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5133182AFB3FB10002A5C0 /* ElapsedTimeView.swift */; };
 		9B5272A82B0366EB00E70AA7 /* DollarBillsWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6A3C861E2AEB6DB000D73FDF /* DollarBillsWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		9B5272AA2B03E58C00E70AA7 /* RouteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5272A92B03E58C00E70AA7 /* RouteCard.swift */; };
+		9B5272AA2B03E58C00E70AA7 /* NearestRouteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5272A92B03E58C00E70AA7 /* NearestRouteCard.swift */; };
 		9B5272AB2B0479E500E70AA7 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195B66B2AE0D32E00FB32C1 /* Routes.swift */; };
+		9B5272AD2B04BFF100E70AA7 /* RecentRouteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5272AC2B04BFF100E70AA7 /* RecentRouteCard.swift */; };
+		9B5272AE2B04C4B500E70AA7 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168B99A2ACD4C5400CF56D9 /* Utilities.swift */; };
 		9B81019D2AFC84B300FA4E1A /* WatchToPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B81019C2AFC84B300FA4E1A /* WatchToPhone.swift */; };
 		9B81019F2AFC98EB00FA4E1A /* PhoneToWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B81019E2AFC98EB00FA4E1A /* PhoneToWatch.swift */; };
 		9B8101AA2B00A2BD00FA4E1A /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8101A92B00A2BD00FA4E1A /* LocationManager.swift */; };
@@ -230,7 +232,8 @@
 		9B5133182AFB3FB10002A5C0 /* ElapsedTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElapsedTimeView.swift; sourceTree = "<group>"; };
 		9B51331A2AFB50C20002A5C0 /* DollarBillsWatch-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "DollarBillsWatch-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		9B51331B2AFB50CB0002A5C0 /* DollarBillsWatch Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "DollarBillsWatch Watch App.entitlements"; sourceTree = "<group>"; };
-		9B5272A92B03E58C00E70AA7 /* RouteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCard.swift; sourceTree = "<group>"; };
+		9B5272A92B03E58C00E70AA7 /* NearestRouteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestRouteCard.swift; sourceTree = "<group>"; };
+		9B5272AC2B04BFF100E70AA7 /* RecentRouteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentRouteCard.swift; sourceTree = "<group>"; };
 		9B81019C2AFC84B300FA4E1A /* WatchToPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchToPhone.swift; sourceTree = "<group>"; };
 		9B81019E2AFC98EB00FA4E1A /* PhoneToWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneToWatch.swift; sourceTree = "<group>"; };
 		9B8101A92B00A2BD00FA4E1A /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -395,9 +398,10 @@
 			isa = PBXGroup;
 			children = (
 				6A9585902AEE7390001AD5D8 /* GIFImage.swift */,
-				9B5272A92B03E58C00E70AA7 /* RouteCard.swift */,
+				9B5272A92B03E58C00E70AA7 /* NearestRouteCard.swift */,
 				6A8E799D2AEF562500A927C3 /* PopUp.swift */,
 				6A8E799B2AEF538E00A927C3 /* ItemProgress.swift */,
+				9B5272AC2B04BFF100E70AA7 /* RecentRouteCard.swift */,
 				6A95859C2AEECC48001AD5D8 /* Countdown.swift */,
 				6A9585922AEE7DC5001AD5D8 /* MapView.swift */,
 				6A9585962AEEBFF3001AD5D8 /* RouteSheet.swift */,
@@ -688,11 +692,12 @@
 				9B5272AB2B0479E500E70AA7 /* Routes.swift in Sources */,
 				6A9585952AEEBFDE001AD5D8 /* RouteDetailView.swift in Sources */,
 				9B5133192AFB3FB10002A5C0 /* ElapsedTimeView.swift in Sources */,
+				9B5272AE2B04C4B500E70AA7 /* Utilities.swift in Sources */,
 				6A0DFC712AFA85A400E0F324 /* InformationView.swift in Sources */,
 				6A8E799E2AEF562500A927C3 /* PopUp.swift in Sources */,
 				9B81019D2AFC84B300FA4E1A /* WatchToPhone.swift in Sources */,
 				6A8E798C2AEED69800A927C3 /* RunViewTab.swift in Sources */,
-				9B5272AA2B03E58C00E70AA7 /* RouteCard.swift in Sources */,
+				9B5272AA2B03E58C00E70AA7 /* NearestRouteCard.swift in Sources */,
 				156FE4C92B028EAF00B67615 /* LandingPageView.swift in Sources */,
 				9B5133162AFB31880002A5C0 /* WorkoutManager.swift in Sources */,
 				6A9585932AEE7DC5001AD5D8 /* MapView.swift in Sources */,
@@ -710,6 +715,7 @@
 				6A8E79902AEED7C400A927C3 /* RunMainView.swift in Sources */,
 				6A3C86212AEB6DB000D73FDF /* DollarBillsWatchApp.swift in Sources */,
 				6A8E79922AEED7CF00A927C3 /* RunMetricsView.swift in Sources */,
+				9B5272AD2B04BFF100E70AA7 /* RecentRouteCard.swift in Sources */,
 				6A95858A2AEE6FC0001AD5D8 /* LoadingView.swift in Sources */,
 				6A8E798E2AEED79F00A927C3 /* ControlView.swift in Sources */,
 				9B8101AA2B00A2BD00FA4E1A /* LocationManager.swift in Sources */,

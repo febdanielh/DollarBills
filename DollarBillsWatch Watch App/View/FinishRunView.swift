@@ -35,7 +35,7 @@ struct FinishRunView: View {
             }
             
             NavigationLink {
-                LandingPageView()
+                LandingPageView(routes: RouteData.routeData)
                     .navigationBarBackButtonHidden(true)
             } label: {
                 ZStack {

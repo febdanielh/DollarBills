@@ -20,37 +20,27 @@ struct ContentView: View {
         case .viewRun:
             RunViewTab()
         default:
-            LandingPageView()
+            LandingPageView(routes: RouteData.routeData)
         }
     }
 }
 
 struct LandingPageView: View {
-    
+    var routes: [Routes]
     var body: some View {
         
         NavigationView {
             ScrollView {
-                VStack (alignment: .leading) {
+                LazyVStack (alignment: .leading) {
                     
                     Text("Near You")
                         .font(.headline)
                     
-                    ForEach(0..<2, id: \.self) { _ in
-                        NavigationLink {
-                            RouteDetailView()
-                        } label: {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 25)
-                                    .frame(width: 150, height: 50)
-                                    .foregroundStyle(Color.yellow)
-                                Text("Mozia Loop")
-                                    .foregroundStyle(Color.black)
-                            }
+                    ForEach(routes.prefix(2)) { route in
+                        NavigationLink(destination: RouteDetailView(route: route)) {
+                            NearestRouteCard(routes: route)
                         }
-                        .frame(width: 150, height: 50)
                         .padding(.top,3)
-                        .padding(.horizontal)
                         .buttonStyle(PlainButtonStyle())
                         
                     }
@@ -59,23 +49,11 @@ struct LandingPageView: View {
                         .font(.headline)
                         .padding(.top, 10)
                     
-                    ForEach(0..<2, id: \.self) { _ in
-                        NavigationLink {
-                            RouteDetailView()
-                        } label: {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 25)
-                                    .frame(width: 150, height: 50)
-                                    .foregroundStyle(Color.yellow)
-                                Text("Mozia Loop")
-                                    .foregroundStyle(Color.black)
-                            }
+                    NavigationLink(destination: RouteDetailView(route: routes[3])) {
+                            RecentRouteCard(routes: routes[3])
                         }
-                        .frame(width: 150, height: 50)
                         .padding(.top,3)
-                        .padding(.horizontal)
                         .buttonStyle(PlainButtonStyle())
-                    }
                 }
             }
             .padding(.horizontal, 8)
@@ -84,5 +62,5 @@ struct LandingPageView: View {
 }
 
 #Preview {
-    LandingPageView()
+    LandingPageView(routes: RouteData.routeData)
 }
