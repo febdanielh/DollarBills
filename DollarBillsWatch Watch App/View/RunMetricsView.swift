@@ -1,5 +1,5 @@
 //
-//  RunViewPage3.swift
+//  RunMetricsView.swift
 //  DollarBillsWatch Watch App
 //
 //  Created by Angelica Pinonkuan on 30/10/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RunViewPage3: View {
+struct RunMetricsView: View {
     @EnvironmentObject var workoutManager: WorkoutManager
 
     var body: some View {
@@ -72,5 +72,5 @@ private struct MetricsTimelineSchedule: TimelineSchedule {
     }
 }
 //#Preview {
-//    RunViewPage3()
+//    RunMetricsView()
 //}

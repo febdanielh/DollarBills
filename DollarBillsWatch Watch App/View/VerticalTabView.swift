@@ -12,8 +12,8 @@ struct VerticalTabView: View {
     var body: some View {
         GeometryReader { proxy in
             TabView{
-                RunViewPage2()
-                RunViewPage2Directions()
+                RunMainView()
+                RunDirectionView()
             }.tabViewStyle(.carousel)
         }
     }

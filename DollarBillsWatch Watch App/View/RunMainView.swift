@@ -1,5 +1,5 @@
 //
-//  RunViewPage2.swift
+//  RunMainView.swift
 //  DollarBillsWatch Watch App
 //
 //  Created by Angelica Pinonkuan on 30/10/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RunViewPage2: View {
+struct RunMainView: View {
     
     @State private var ItemReceived = true
     
@@ -25,5 +25,5 @@ struct RunViewPage2: View {
 }
 
 #Preview {
-    RunViewPage2()
+    RunMainView()
 }

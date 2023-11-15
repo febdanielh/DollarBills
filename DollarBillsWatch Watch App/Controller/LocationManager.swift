@@ -21,13 +21,25 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     )
 
+    let healthStore = HKHealthStore()
     var routeBuilder: HKWorkoutRouteBuilder?
     
+    func setupLocationManager() {
+        checkServiceAvailability()
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.distanceFilter = 10
+        locationManager?.activityType = .fitness
+
+        routeBuilder = HKWorkoutRouteBuilder(healthStore: healthStore, device: .local())
+        
+        locationManager?.startUpdatingLocation()
+        locationManager?.allowsBackgroundLocationUpdates = true
+    }
+
     func checkServiceAvailability() {
             if CLLocationManager.locationServicesEnabled() {
                 self.locationManager = CLLocationManager()
                 self.locationManager?.delegate = self
-//                self.locationManager?.startUpdatingLocation()
             } else {
                 print("Location Services not Enabled.")
             }
