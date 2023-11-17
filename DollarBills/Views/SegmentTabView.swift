@@ -20,17 +20,21 @@ struct SegmentTabView: View {
 
     var body: some View {
         
-        TabView(selection: $vm.selectedSegment) {
-            ForEach(0 ..< segments.count, id: \.self) { index in
-                Text("")
-                    .tag(index)
-                    .tabItem {
-                        Image("\(segments[index].page)")
-                        Text(segments[index].page)
-                    }
+        VStack {
+            
+            TabView(selection: $vm.selectedSegment) {
+                ForEach(0 ..< segments.count, id: \.self) { index in
+                    Text("")
+                        .tag(index)
+                        .tabItem {
+                            Image("\(segments[index].page)")
+                            Text(segments[index].page)
+                        }
+                }
             }
+            .tint(Color.YellowDark4)
         }
-        .tint(Color.YellowDark4)
+        
     }
 }
 

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct RunViewPage1: View {
     
     @State private var isPaused = false
@@ -39,27 +38,26 @@ struct RunViewPage1: View {
 }
 
 
-
 struct PauseButton: View {
     
+    @EnvironmentObject var workoutManager: WorkoutManager
     @Binding var isPaused : Bool
-
+    
     var body: some View {
-
-        NavigationLink(destination: FinishRunView()) {
-            VStack {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 16)
-                        .foregroundColor(Color.green)
-                        .frame(width: 70, height: 60)
-                    Image(systemName: "pause.circle")
-                        .font(.title)
-                }
-                Text("Pause")
+        
+        VStack {
+            ZStack {
+                RoundedRectangle(cornerRadius: 16)
+                    .foregroundColor(Color.green)
+                    .frame(width: 70, height: 60)
+                Image(systemName: "pause.circle")
+                    .font(.title)
             }
+            Text("Pause")
         }
         .onTapGesture {
             isPaused.toggle()
+            workoutManager.pause()
         }
         .frame(width: 70, height: 60)
         .buttonStyle(PlainButtonStyle())
@@ -67,23 +65,25 @@ struct PauseButton: View {
 }
 
 struct ResumeButton: View {
+    
+    @EnvironmentObject var workoutManager: WorkoutManager
     @Binding var isPaused : Bool
-
+    
     var body: some View {
-        NavigationLink(destination: FinishRunView()) {
-            VStack {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 16)
-                        .foregroundColor(Color.purple)
-                        .frame(width: 70, height: 60)
-                    Image(systemName: "play.circle")
-                        .font(.title)
-                }
-                Text("Resume")
+        
+        VStack {
+            ZStack {
+                RoundedRectangle(cornerRadius: 16)
+                    .foregroundColor(Color.purple)
+                    .frame(width: 70, height: 60)
+                Image(systemName: "play.circle")
+                    .font(.title)
             }
+            Text("Resume")
         }
         .onTapGesture {
             isPaused.toggle()
+            workoutManager.resume()
         }
         .frame(width: 70, height: 60)
         .buttonStyle(PlainButtonStyle())
@@ -91,6 +91,8 @@ struct ResumeButton: View {
 }
 
 struct FinishButton: View {
+    
+    @EnvironmentObject var workoutManager: WorkoutManager
     var body: some View {
         NavigationLink {
             FinishRunView()
@@ -114,23 +116,20 @@ struct FinishButton: View {
 struct LockButton: View {
     var body: some View {
         
-        NavigationLink {
-            FinishRunView()
-            //activate the watch water lock
-        } label: {
-            VStack {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 16)
-                        .foregroundColor(Color.blue)
-                        .frame(width: 70, height: 60)
-                    Image(systemName: "drop.fill")
-                        .font(.title)
-                }
-                Text("Lock")
+        VStack {
+            ZStack {
+                RoundedRectangle(cornerRadius: 16)
+                    .foregroundColor(Color.blue)
+                    .frame(width: 70, height: 60)
+                Image(systemName: "drop.fill")
+                    .font(.title)
             }
+            Text("Lock")
+        }
+        .onTapGesture {
+            WKInterfaceDevice.current().enableWaterLock()
         }
         .frame(width: 70, height: 60)
         .buttonStyle(PlainButtonStyle())
     }
 }
-

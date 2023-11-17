@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Frame 135.png",
+      "filename" : "new1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "new2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "new3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

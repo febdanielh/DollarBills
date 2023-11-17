@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FinishRunView: View {
+    @EnvironmentObject var workoutManager: WorkoutManager
     var body: some View {
         VStack {
             HStack{
@@ -29,6 +30,9 @@ struct FinishRunView: View {
                 }
             }
             .padding(.top, 8)
+            .onTapGesture {
+                workoutManager.endWorkout()
+            }
             
             NavigationLink {
                 LandingPageView()
@@ -42,6 +46,9 @@ struct FinishRunView: View {
                         .foregroundStyle(Color.black)
                         .font(.headline)
                 }
+            }
+            .onTapGesture {
+                workoutManager.endWorkout()
             }
             .padding(.top, 8)
         }

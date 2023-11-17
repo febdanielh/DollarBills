@@ -89,3 +89,6 @@ fastlane/test_output
 
 iOSInjectionProject/
 .DS_Store
+DollarBills/.DS_Store
+DollarBills/Models/.DS_Store
+.DS_Store
