@@ -10,6 +10,7 @@
 		150CC29B2AEB747900527BED /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150CC29A2AEB747900527BED /* ItemDetailView.swift */; };
 		153E11B42AE53C5600B173F5 /* Summary View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E11B32AE53C5600B173F5 /* Summary View.swift */; };
 		153E11B82AE53F9200B173F5 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E11B72AE53F9200B173F5 /* LeaderboardView.swift */; };
+		156FE4C92B028EAF00B67615 /* LandingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156FE4C82B028EAF00B67615 /* LandingPageView.swift */; };
 		15A71DF52B0114A3000517EF /* RealTimeGame+GKMatchmakerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A71DE92B0114A2000517EF /* RealTimeGame+GKMatchmakerViewControllerDelegate.swift */; };
 		15A71DF62B0114A3000517EF /* RealTimeGame+GKMatchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A71DEA2B0114A2000517EF /* RealTimeGame+GKMatchDelegate.swift */; };
 		15A71DF72B0114A3000517EF /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A71DEB2B0114A2000517EF /* FriendsView.swift */; };
@@ -51,6 +52,15 @@
 		9B08B0C12AE6257A00021F79 /* HKWorkout+Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B08B0C02AE6257A00021F79 /* HKWorkout+Statistics.swift */; };
 		9B08B0C32AE62C9F00021F79 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B08B0C22AE62C9F00021F79 /* WorkoutManager.swift */; };
 		6A0DFC712AFA85A400E0F324 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0DFC702AFA85A400E0F324 /* InformationView.swift */; };
+		6A1000112B07A8B300B15BCD /* DuelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1000102B07A8B300B15BCD /* DuelItem.swift */; };
+		6A1000132B07A8DE00B15BCD /* ItemStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1000122B07A8DE00B15BCD /* ItemStatus.swift */; };
+		6A1000152B07A8F900B15BCD /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1000142B07A8F900B15BCD /* Player.swift */; };
+		6A1000172B07A91B00B15BCD /* ScrollViewDuel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1000162B07A91B00B15BCD /* ScrollViewDuel.swift */; };
+		6A1000192B07A92F00B15BCD /* TimeLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1000182B07A92F00B15BCD /* TimeLeft.swift */; };
+		6A10001B2B07A94D00B15BCD /* AttackedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A10001A2B07A94D00B15BCD /* AttackedView.swift */; };
+		6A10001D2B07A95F00B15BCD /* BoostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A10001C2B07A95F00B15BCD /* BoostView.swift */; };
+		6A10001F2B07A96F00B15BCD /* DuelModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A10001E2B07A96F00B15BCD /* DuelModeView.swift */; };
+		6A1000212B07A98C00B15BCD /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1000202B07A98C00B15BCD /* ResultView.swift */; };
 		6A3C86212AEB6DB000D73FDF /* DollarBillsWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3C86202AEB6DB000D73FDF /* DollarBillsWatchApp.swift */; };
 		6A3C86252AEB6DB100D73FDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A3C86242AEB6DB100D73FDF /* Assets.xcassets */; };
 		6A3C86282AEB6DB100D73FDF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A3C86272AEB6DB100D73FDF /* Preview Assets.xcassets */; };
@@ -67,7 +77,6 @@
 		6A8E799E2AEF562500A927C3 /* PopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E799D2AEF562500A927C3 /* PopUp.swift */; };
 		6A8E79A02AF203EC00A927C3 /* VerticalTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E799F2AF203EC00A927C3 /* VerticalTabView.swift */; };
 		6A95858A2AEE6FC0001AD5D8 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9585892AEE6FC0001AD5D8 /* LoadingView.swift */; };
-		6A95858C2AEE7003001AD5D8 /* LandingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A95858B2AEE7003001AD5D8 /* LandingPageView.swift */; };
 		6A95858D2AEE71E7001AD5D8 /* ExtensionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E167968F2AD8E27600340093 /* ExtensionColor.swift */; };
 		6A9585912AEE7390001AD5D8 /* GIFImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9585902AEE7390001AD5D8 /* GIFImage.swift */; };
 		6A9585932AEE7DC5001AD5D8 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9585922AEE7DC5001AD5D8 /* MapView.swift */; };
@@ -161,6 +170,7 @@
 		150CC29A2AEB747900527BED /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
 		153E11B32AE53C5600B173F5 /* Summary View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Summary View.swift"; sourceTree = "<group>"; };
 		153E11B72AE53F9200B173F5 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
+		156FE4C82B028EAF00B67615 /* LandingPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingPageView.swift; sourceTree = "<group>"; };
 		15A71DE92B0114A2000517EF /* RealTimeGame+GKMatchmakerViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealTimeGame+GKMatchmakerViewControllerDelegate.swift"; sourceTree = "<group>"; };
 		15A71DEA2B0114A2000517EF /* RealTimeGame+GKMatchDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealTimeGame+GKMatchDelegate.swift"; sourceTree = "<group>"; };
 		15A71DEB2B0114A2000517EF /* FriendsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
@@ -202,6 +212,15 @@
 		9B08B0C02AE6257A00021F79 /* HKWorkout+Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKWorkout+Statistics.swift"; sourceTree = "<group>"; };
 		9B08B0C22AE62C9F00021F79 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
 		6A0DFC702AFA85A400E0F324 /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
+		6A1000102B07A8B300B15BCD /* DuelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DuelItem.swift; path = "DollarBillsWatch Watch App/Components/DuelMode/DuelItem.swift"; sourceTree = SOURCE_ROOT; };
+		6A1000122B07A8DE00B15BCD /* ItemStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStatus.swift; sourceTree = "<group>"; };
+		6A1000142B07A8F900B15BCD /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		6A1000162B07A91B00B15BCD /* ScrollViewDuel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewDuel.swift; sourceTree = "<group>"; };
+		6A1000182B07A92F00B15BCD /* TimeLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLeft.swift; sourceTree = "<group>"; };
+		6A10001A2B07A94D00B15BCD /* AttackedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttackedView.swift; sourceTree = "<group>"; };
+		6A10001C2B07A95F00B15BCD /* BoostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoostView.swift; sourceTree = "<group>"; };
+		6A10001E2B07A96F00B15BCD /* DuelModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelModeView.swift; sourceTree = "<group>"; };
+		6A1000202B07A98C00B15BCD /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		6A3C861E2AEB6DB000D73FDF /* DollarBillsWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DollarBillsWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A3C86202AEB6DB000D73FDF /* DollarBillsWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DollarBillsWatchApp.swift; sourceTree = "<group>"; };
 		6A3C86242AEB6DB100D73FDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -218,7 +237,6 @@
 		6A8E799D2AEF562500A927C3 /* PopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUp.swift; sourceTree = "<group>"; };
 		6A8E799F2AF203EC00A927C3 /* VerticalTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalTabView.swift; sourceTree = "<group>"; };
 		6A9585892AEE6FC0001AD5D8 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		6A95858B2AEE7003001AD5D8 /* LandingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageView.swift; sourceTree = "<group>"; };
 		6A9585902AEE7390001AD5D8 /* GIFImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFImage.swift; sourceTree = "<group>"; };
 		6A9585922AEE7DC5001AD5D8 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		6A9585942AEEBFDE001AD5D8 /* RouteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailView.swift; sourceTree = "<group>"; };
@@ -368,6 +386,31 @@
 				E1563EB52AFC0DBA00BDD638 /* TimePicker.swift */,
 			);
 			path = DuelMode;
+			sourceTree = "<group>";
+		};
+		6A10000F2B07A87500B15BCD /* DuelMode */ = {
+			isa = PBXGroup;
+			children = (
+				6A10001A2B07A94D00B15BCD /* AttackedView.swift */,
+				6A10001C2B07A95F00B15BCD /* BoostView.swift */,
+				6A10001E2B07A96F00B15BCD /* DuelModeView.swift */,
+				6A1000202B07A98C00B15BCD /* ResultView.swift */,
+			);
+			path = DuelMode;
+			sourceTree = "<group>";
+		};
+		6A1000222B07A99400B15BCD /* DuelMode */ = {
+			isa = PBXGroup;
+			children = (
+				6A1000102B07A8B300B15BCD /* DuelItem.swift */,
+				6A1000142B07A8F900B15BCD /* Player.swift */,
+				6A1000162B07A91B00B15BCD /* ScrollViewDuel.swift */,
+				6A1000182B07A92F00B15BCD /* TimeLeft.swift */,
+				6A1000122B07A8DE00B15BCD /* ItemStatus.swift */,
+			);
+			path = DuelMode;
+			sourceTree = "<group>";
+		};
 		6A3C861F2AEB6DB000D73FDF /* DollarBillsWatch Watch App */ = {
 			isa = PBXGroup;
 			children = (
@@ -394,6 +437,7 @@
 		6A3C86302AEB6DBA00D73FDF /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				6A1000222B07A99400B15BCD /* DuelMode */,
 				6A9585902AEE7390001AD5D8 /* GIFImage.swift */,
 				6A8E799D2AEF562500A927C3 /* PopUp.swift */,
 				6A8E799B2AEF538E00A927C3 /* ItemProgress.swift */,
@@ -410,10 +454,11 @@
 		6A3C86312AEB6DBE00D73FDF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6A10000F2B07A87500B15BCD /* DuelMode */,
 				6A9585892AEE6FC0001AD5D8 /* LoadingView.swift */,
-				6A95858B2AEE7003001AD5D8 /* LandingPageView.swift */,
 				6A9585942AEEBFDE001AD5D8 /* RouteDetailView.swift */,
 				6A8E79892AEED65800A927C3 /* CountdownView.swift */,
+				156FE4C82B028EAF00B67615 /* LandingPageView.swift */,
 				6A8E798B2AEED69800A927C3 /* RunViewTab.swift */,
 				6A8E79992AEF4D4B00A927C3 /* FinishRunView.swift */,
 				6A0DFC702AFA85A400E0F324 /* InformationView.swift */,
@@ -685,14 +730,20 @@
 			files = (
 				6A9585912AEE7390001AD5D8 /* GIFImage.swift in Sources */,
 				6A9585952AEEBFDE001AD5D8 /* RouteDetailView.swift in Sources */,
+				6A1000112B07A8B300B15BCD /* DuelItem.swift in Sources */,
+				6A1000192B07A92F00B15BCD /* TimeLeft.swift in Sources */,
 				9B5133192AFB3FB10002A5C0 /* ElapsedTimeView.swift in Sources */,
+				6A1000132B07A8DE00B15BCD /* ItemStatus.swift in Sources */,
 				6A0DFC712AFA85A400E0F324 /* InformationView.swift in Sources */,
 				6A8E799E2AEF562500A927C3 /* PopUp.swift in Sources */,
+				6A1000172B07A91B00B15BCD /* ScrollViewDuel.swift in Sources */,
 				9B81019D2AFC84B300FA4E1A /* WatchToPhone.swift in Sources */,
 				6A8E798C2AEED69800A927C3 /* RunViewTab.swift in Sources */,
+				156FE4C92B028EAF00B67615 /* LandingPageView.swift in Sources */,
 				9B5133162AFB31880002A5C0 /* WorkoutManager.swift in Sources */,
 				6A9585932AEE7DC5001AD5D8 /* MapView.swift in Sources */,
 				6A8E79A02AF203EC00A927C3 /* VerticalTabView.swift in Sources */,
+				6A10001F2B07A96F00B15BCD /* DuelModeView.swift in Sources */,
 				6A9585972AEEBFF3001AD5D8 /* RouteSheet.swift in Sources */,
 				6A8E79942AEED7D800A927C3 /* RunViewPage4.swift in Sources */,
 				6A95858D2AEE71E7001AD5D8 /* ExtensionColor.swift in Sources */,
@@ -704,11 +755,14 @@
 				6A8E79962AEEDEE600A927C3 /* RunViewPage2Directions.swift in Sources */,
 				6A95859D2AEECC48001AD5D8 /* Countdown.swift in Sources */,
 				6A8E79902AEED7C400A927C3 /* RunViewPage2.swift in Sources */,
+				6A10001D2B07A95F00B15BCD /* BoostView.swift in Sources */,
+				6A10001B2B07A94D00B15BCD /* AttackedView.swift in Sources */,
+				6A1000212B07A98C00B15BCD /* ResultView.swift in Sources */,
 				6A3C86212AEB6DB000D73FDF /* DollarBillsWatchApp.swift in Sources */,
-				6A95858C2AEE7003001AD5D8 /* LandingPageView.swift in Sources */,
 				6A8E79922AEED7CF00A927C3 /* RunViewPage3.swift in Sources */,
 				6A95858A2AEE6FC0001AD5D8 /* LoadingView.swift in Sources */,
 				6A8E798E2AEED79F00A927C3 /* RunViewPage1.swift in Sources */,
+				6A1000152B07A8F900B15BCD /* Player.swift in Sources */,
 				9B8101AA2B00A2BD00FA4E1A /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

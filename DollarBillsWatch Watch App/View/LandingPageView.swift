@@ -30,16 +30,15 @@ struct LandingPageView: View {
     var body: some View {
         
         NavigationView {
-            ScrollView {
+            ScrollView{
                 VStack (alignment: .leading) {
                     
                     Text("Near You")
                         .font(.headline)
                     
                     ForEach(0..<2, id: \.self) { _ in
-                        NavigationLink {
-                            RouteDetailView()
-                        } label: {
+                        
+                        NavigationLink(destination: RouteDetailView()) {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 25)
                                     .frame(width: 150, height: 50)
@@ -48,6 +47,17 @@ struct LandingPageView: View {
                                     .foregroundStyle(Color.black)
                             }
                         }
+//                        NavigationLink {
+//                            RouteDetailView()
+//                        } label: {
+//                            ZStack {
+//                                RoundedRectangle(cornerRadius: 25)
+//                                    .frame(width: 150, height: 50)
+//                                    .foregroundStyle(Color.yellow)
+//                                Text("Mozia Loop")
+//                                    .foregroundStyle(Color.black)
+//                            }
+//                        }
                         .frame(width: 150, height: 50)
                         .padding(.top,3)
                         .padding(.horizontal)

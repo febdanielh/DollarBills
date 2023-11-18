@@ -102,12 +102,6 @@ struct routeSheet: View {
                         Text("START RUNNING")
                             .bold()
                     })
-                    .onTapGesture {
-                        Task {
-                            await vm.startWorkout(type: .running)
-                        }
-                    }
-                    .frame(maxWidth: .infinity)
                     .buttonStyle(ActiveBlackSheetButton())
                     .padding(.bottom)
                     .fullScreenCover(isPresented: $isStarted, content: {
