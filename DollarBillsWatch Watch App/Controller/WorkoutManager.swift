@@ -36,6 +36,7 @@ class WorkoutManager: NSObject, ObservableObject {
 
     func startWorkout(workoutType: HKWorkoutActivityType) {
         let configuration = HKWorkoutConfiguration()
+        let startDate = Date()
         configuration.activityType = workoutType
         configuration.locationType = .outdoor
 
@@ -52,7 +53,6 @@ class WorkoutManager: NSObject, ObservableObject {
         builder?.dataSource = HKLiveWorkoutDataSource(healthStore: healthStore,
                                                      workoutConfiguration: configuration)
 
-        let startDate = Date()
         session?.startActivity(with: startDate)
         builder?.beginCollection(withStart: startDate) { (success, error) in
         }
@@ -60,7 +60,7 @@ class WorkoutManager: NSObject, ObservableObject {
 //        locationManager.setupLocationManager()
     }
 
-    func requestAuthorization() {
+    func requestAuthorization() {   
         let typesToShare: Set = [
             HKQuantityType.workoutType(),
             HKSeriesType.workoutRoute()

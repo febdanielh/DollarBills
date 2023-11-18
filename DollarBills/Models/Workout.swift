@@ -117,6 +117,17 @@ extension Workout {
         return String(format: "%d'%02d\"", paceMinutes, paceSeconds)
     }
     
+    func supaFormatPace() -> Double {
+        
+        guard distance > 0, duration > 0 else {
+            return 0.0
+        }
+        
+        let paceValue = duration / 60 / distance * 1000
+        return paceValue
+        
+    }
+    
     func formattedElevation() -> String {
         let formatter = Measurement(value: elevation, unit: UnitLength.meters).formatted()
         return formatter

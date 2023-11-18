@@ -89,10 +89,6 @@ struct routeSheet: View {
                     .frame(width: 356, alignment: .leading)
                     .padding(.bottom)
                     
-                    Text("Elevation")
-                        .font(.system(size: 14)).fontWeight(.medium)
-                        .padding(.vertical)
-                    
                     Divider().padding(.vertical)
                     
                     Button(action: {

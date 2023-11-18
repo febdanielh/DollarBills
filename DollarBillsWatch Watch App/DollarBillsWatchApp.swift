@@ -14,6 +14,7 @@ struct DollarBillsWatch_Watch_AppApp: App {
         WindowGroup {
             LoadingView()
                 .environmentObject(WorkoutManager(watchSession: watchToPhone.session))
+                .environmentObject(watchToPhone)
         }
     }
 }

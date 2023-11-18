@@ -36,7 +36,7 @@ class Supabase {
     
     func createWorkoutItem(item: WorkoutPayload) async throws {
         Task {
-            let response = client.database.from("Workout").insert(values: item).single()
+            let response = client.database.from("Workout").insert(values: item)
             do {
                 try await response.execute()
             } catch {
@@ -155,6 +155,18 @@ class Supabase {
     // MARK: Delete
     
     // MARK: Update
+    func updateWorkoutItems(item: WorkoutUpdatePayload, uid: UUID) async throws {
+        let query = client.database
+            .from("Workout")
+            .update(values: item)
+            .eq(column: "userID", value: uid)
+            .order(column: "startDate", ascending: false)
+            .limit(count: 1)
+        Task {
+            try await query.execute()
+        }
+    }
+    
     func updateUserPoints(points: Int) async throws {
         let id = try await client.auth.session.user.id
         

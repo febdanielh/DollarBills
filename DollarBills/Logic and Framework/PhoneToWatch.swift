@@ -10,6 +10,8 @@ import WatchConnectivity
 
 class PhoneToWatch: NSObject, ObservableObject {
     
+    @Published var isRunning: Bool = true
+    
 //    @Published var watchDuration = "--"
 //    @Published var watchDistance = "--"
 //    @Published var watchPace = "--"
@@ -48,6 +50,7 @@ class PhoneToWatch: NSObject, ObservableObject {
     }
     
     func sendMessageToWatch() {
+        isRunning = true
         let message = ["Message": "Start Workout"]
         if (WCSession.default.isReachable) {
             WCSession.default.sendMessage(message, replyHandler: nil) { error in
@@ -80,6 +83,13 @@ extension PhoneToWatch: WCSessionDelegate {
             print("Reachable on Phone")
         } else {
             print("Not Reachable on Phone")
+        }
+    }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        if (message.first?.key == "ended") {
+            print("workout ended on phone aswell")
+            isRunning = false
         }
     }
     

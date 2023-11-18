@@ -11,8 +11,8 @@
 		153E11B42AE53C5600B173F5 /* Summary View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E11B32AE53C5600B173F5 /* Summary View.swift */; };
 		153E11B82AE53F9200B173F5 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E11B72AE53F9200B173F5 /* LeaderboardView.swift */; };
 		156FE4C92B028EAF00B67615 /* LandingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156FE4C82B028EAF00B67615 /* LandingPageView.swift */; };
-		156FE4CA2B03CEAD00B67615 /* DollarBillsWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6A3C861E2AEB6DB000D73FDF /* DollarBillsWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		156FE4CC2B03DFEC00B67615 /* SearchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156FE4CB2B03DFEC00B67615 /* SearchingView.swift */; };
+		156FE4CF2B064D9C00B67615 /* NeededType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156FE4CE2B064D9C00B67615 /* NeededType.swift */; };
 		15A71DF52B0114A3000517EF /* RealTimeGame+GKMatchmakerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A71DE92B0114A2000517EF /* RealTimeGame+GKMatchmakerViewControllerDelegate.swift */; };
 		15A71DF62B0114A3000517EF /* RealTimeGame+GKMatchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A71DEA2B0114A2000517EF /* RealTimeGame+GKMatchDelegate.swift */; };
 		15A71DF72B0114A3000517EF /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A71DEB2B0114A2000517EF /* FriendsView.swift */; };
@@ -167,6 +167,7 @@
 		153E11B72AE53F9200B173F5 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		156FE4C82B028EAF00B67615 /* LandingPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingPageView.swift; sourceTree = "<group>"; };
 		156FE4CB2B03DFEC00B67615 /* SearchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingView.swift; sourceTree = "<group>"; };
+		156FE4CE2B064D9C00B67615 /* NeededType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeededType.swift; sourceTree = "<group>"; };
 		15A71DE92B0114A2000517EF /* RealTimeGame+GKMatchmakerViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealTimeGame+GKMatchmakerViewControllerDelegate.swift"; sourceTree = "<group>"; };
 		15A71DEA2B0114A2000517EF /* RealTimeGame+GKMatchDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealTimeGame+GKMatchDelegate.swift"; sourceTree = "<group>"; };
 		15A71DEB2B0114A2000517EF /* FriendsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
@@ -411,6 +412,7 @@
 				6A9585982AEEC263001AD5D8 /* ElevationGraph.swift */,
 				6A95859A2AEEC3F8001AD5D8 /* Button.swift */,
 				9B5133182AFB3FB10002A5C0 /* ElapsedTimeView.swift */,
+				156FE4CE2B064D9C00B67615 /* NeededType.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -710,6 +712,7 @@
 				6A8E79942AEED7D800A927C3 /* RunMapView.swift in Sources */,
 				6A95858D2AEE71E7001AD5D8 /* ExtensionColor.swift in Sources */,
 				6A8E799A2AEF4D4B00A927C3 /* FinishRunView.swift in Sources */,
+				156FE4CF2B064D9C00B67615 /* NeededType.swift in Sources */,
 				6A95859B2AEEC3F8001AD5D8 /* Button.swift in Sources */,
 				6A8E798A2AEED65800A927C3 /* CountdownView.swift in Sources */,
 				6A8E799C2AEF538E00A927C3 /* ItemProgress.swift in Sources */,
@@ -844,7 +847,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DollarBillsWatch Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = KCXWQSNV6P;
+				DEVELOPMENT_TEAM = 35V95TRX69;
 				ENABLE_PREVIEWS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -855,14 +858,14 @@
 				INFOPLIST_KEY_NSLocationUsageDescription = "This app needs to access your location.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs to access your location.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.DollarBills.Furthr.areez;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.furthr.elvis.test;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.DollarBills.furthr.elvis.test.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.furthr.elvis.test.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -886,7 +889,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DollarBillsWatch Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = KCXWQSNV6P;
+				DEVELOPMENT_TEAM = 35V95TRX69;
 				ENABLE_PREVIEWS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -897,14 +900,14 @@
 				INFOPLIST_KEY_NSLocationUsageDescription = "This app needs to access your location.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs to access your location.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.DollarBills.Furthr.areez;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.furthr.elvis.test;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.DollarBills.Furthr.areez.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.furthr.elvis.test.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -1041,7 +1044,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DollarBills/Preview Content\"";
-				DEVELOPMENT_TEAM = KCXWQSNV6P;
+				DEVELOPMENT_TEAM = 35V95TRX69;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DollarBills/Info.plist;
@@ -1060,7 +1063,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.DollarBills.Furthr.areez;
+				PRODUCT_BUNDLE_IDENTIFIER = com.furthr.elvis.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1080,7 +1083,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DollarBills/Preview Content\"";
-				DEVELOPMENT_TEAM = KCXWQSNV6P;
+				DEVELOPMENT_TEAM = 35V95TRX69;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DollarBills/Info.plist;
@@ -1099,7 +1102,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.DollarBills.Furthr.areez;
+				PRODUCT_BUNDLE_IDENTIFIER = com.furthr.elvis.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

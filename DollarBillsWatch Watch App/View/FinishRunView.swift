@@ -9,15 +9,19 @@ import SwiftUI
 
 struct FinishRunView: View {
     @EnvironmentObject var workoutManager: WorkoutManager
+    @EnvironmentObject var watchToPhone : WatchToPhone
     var body: some View {
         VStack {
             HStack{
                 Text("Are You Sure?")
             }
             
-            
             NavigationLink {
                 InformationView()
+                    .onAppear(perform: {
+                        watchToPhone.sendFinishWorkoutMessageToWatch()
+                        workoutManager.endWorkout()
+                    })
                     .navigationBarBackButtonHidden(true)
             } label: {
                 ZStack {
@@ -30,9 +34,7 @@ struct FinishRunView: View {
                 }
             }
             .padding(.top, 8)
-            .onTapGesture {
-                workoutManager.endWorkout()
-            }
+            
             
             NavigationLink {
                 LandingPageView(routes: RouteData.routeData)

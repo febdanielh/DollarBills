@@ -46,8 +46,10 @@ extension ViewModel {
         try await Supabase.shared.createDuelRoomItem(item: duelRoom)
     }
     
-    func createWorkoutItems(distance: Double, pace: Double, duration: Double) {
-        let workout = WorkoutPayload(workoutID: nil, startDate: Date().description, endDate: Date().description, distance: distance, pace: pace, duration: duration)
+    func createWorkoutItems() async throws {
+        let userIDNow = try await self.fetchUserID()
+        
+        let workout = WorkoutPayload(workoutID: nil, userID: userIDNow, startDate: .now, endDate: .now, distance: 0.0, pace: 0.0, duration: 0.0)
         Task {
             try await Supabase.shared.createWorkoutItem(item: workout)
         }
@@ -127,6 +129,12 @@ extension ViewModel {
     func updateUserPoints(points: Int) async throws {
         let userPoint = points
         try await Supabase.shared.updateUserPoints(points: userPoint)
+    }
+    
+    func updateWorkoutItems(distance: Double, pace: Double, duration: Double) async throws {
+        let userIDNow = try await fetchUserID()
+        let item = WorkoutUpdatePayload(workoutID: nil, userID: nil, startDate: nil, endDate: .now, distance: distance, pace: pace, duration: duration)
+        try await Supabase.shared.updateWorkoutItems(item: item, uid: userIDNow)
     }
     
     // MARK: Sign In

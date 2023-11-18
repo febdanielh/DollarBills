@@ -122,14 +122,6 @@ struct SummaryView: View {
                             }
                             .padding(.trailing)
                             
-                            VStack (alignment: .leading) {
-                                Text ("Elevation")
-                                    .font(.footnote)
-                                    .fontWeight(.semibold)
-                                Image ("Elevation")
-                            }
-                            .padding([.trailing, .top])
-                            
                             HStack {
                                 VStack {
                                     Text ("103-168 bpm")
@@ -299,6 +291,7 @@ struct SummaryView: View {
                 }
                 .frame(width: 354, height: 344)
             }
+            
         }
         .onAppear {
             vm.loadWorkouts()

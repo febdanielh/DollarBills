@@ -33,6 +33,7 @@ struct ROTWSheet: View {
                         Spacer()
                         Button {
                             isRouteSelected = false
+                            vm.currentDisplayScreen = .viewMain
                         } label: {
                             Image("close black")
                         }
@@ -102,11 +103,6 @@ struct ROTWSheet: View {
                         Text("START RUNNING")
                             .bold()
                     })
-                    .onTapGesture {
-                        Task {
-                            await vm.startWorkout(type: .running)
-                        }
-                    }
                     .frame(maxWidth: .infinity)
                     .buttonStyle(ActiveBlackSheetButton())
                     .padding(.bottom)

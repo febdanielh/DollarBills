@@ -78,7 +78,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var activityType = HKWorkoutActivityType.running
     @Published var startDate = Date()
     @Published var meters = 0.0
-    @Published var heartRate = 40
+    @Published var heartRate = 0
     @Published var calorieBurned: Double = 0.0
     @Published var totalElapsedTime: TimeInterval = 0.0
     @Published var timer: Timer?
@@ -272,13 +272,22 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         routeBuilder = HKWorkoutRouteBuilder(healthStore: healthStore, device: .local())
         workoutBuilder = HKWorkoutBuilder(healthStore: healthStore, configuration: config, device: .local())
+        locationManager.allowsBackgroundLocationUpdates = true
+        updateTrackingMode(.followWithHeading)
+        lastDateObserved = Date()
+        totalElapsedTime = 0
         
         do {
             try await workoutBuilder?.beginCollection(at: .now)
-            createWorkoutItems(distance: 0.0, pace: 0.0, duration: 0.0)
         } catch {
             self.showError(.startingWorkout)
             return
+        }
+        
+        do {
+            try await createWorkoutItems()
+        } catch {
+            print(error)
         }
         
         do {
@@ -304,12 +313,6 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         } catch {
             print("Error retrieving heart rate: \(error.localizedDescription)")
         }
-        
-        locationManager.allowsBackgroundLocationUpdates = true
-        updateTrackingMode(.followWithHeading)
-        
-        lastDateObserved = Date()
-        totalElapsedTime = 0
         
         startTotalElapsedTimeTimer()
         
@@ -355,7 +358,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         
     }
     
-    func endWorkout() async {
+    func endWorkout() async throws {
         locationManager.allowsBackgroundLocationUpdates = false
         
         timer?.invalidate()
@@ -372,6 +375,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         do {
             try await updateUserPoints(points: points)
+            try await updateWorkoutItems(distance: workout.distance, pace: workout.supaFormatPace(), duration: workout.duration)
         } catch {
             print(error.localizedDescription)
         }
@@ -389,6 +393,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         } catch {
             showError(.endingWorkout)
         }
+        
     }
     
     // MARK: - Map

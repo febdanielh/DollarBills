@@ -55,8 +55,19 @@ struct DetailRoomPayload: Codable {
 
 struct WorkoutPayload: Codable {
     let workoutID: UUID?
-    let startDate: String
-    let endDate: String
+    let userID: UUID?
+    let startDate: Date
+    let endDate: Date
+    let distance: Double
+    let pace: Double
+    let duration: Double
+}
+
+struct WorkoutUpdatePayload: Codable {
+    let workoutID: UUID?
+    let userID: UUID?
+    let startDate: Date?
+    let endDate: Date
     let distance: Double
     let pace: Double
     let duration: Double

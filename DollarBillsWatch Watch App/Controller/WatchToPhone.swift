@@ -18,6 +18,18 @@ class WatchToPhone: NSObject, ObservableObject {
         self.session.delegate = self
         session.activate()
     }
+    
+    func sendFinishWorkoutMessageToWatch () {
+//        woPayload: WorkoutPayload
+//        let message = ["ended" : woPayload]
+        let message = ["ended" : "ended"]
+        if (WCSession.default.isReachable) {
+            WCSession.default.sendMessage(message, replyHandler: nil) { error in
+                print("Error when sending the message with error: \(error.localizedDescription)")
+            }
+            print("finished workout from watch")
+        }
+    }
 }
 
 extension WatchToPhone: WCSessionDelegate {

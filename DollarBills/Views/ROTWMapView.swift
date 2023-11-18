@@ -43,9 +43,7 @@ struct ROTWMapView: View {
             }
             Spacer()
         }
-        .sheet(isPresented: $isRouteSelected, onDismiss: {
-            vm.currentDisplayScreen = .viewMain
-        }, content: {
+        .sheet(isPresented: $isRouteSelected, content: {
             ROTWSheet(selectedAnnotation: $selectedAnnotation, directions: $directions, isRouteSelected: $isRouteSelected, currentRouteIndex: $currentRouteIndex)
         })
     }

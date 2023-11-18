@@ -9,6 +9,7 @@ import SwiftUI
 
 struct InformationView: View {
     @EnvironmentObject var wm: WorkoutManager
+    @EnvironmentObject var watchToPhone: WatchToPhone
     var body: some View {
         
             ZStack {
