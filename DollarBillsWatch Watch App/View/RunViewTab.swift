@@ -7,33 +7,44 @@
 
 import SwiftUI
 
-struct RunViewTab: View {
-    @State private var currentPage = 1
+enum RunTab {
+    case controlView
+    case mainView
+    case metricsView
+    case runMapView
+}
 
+struct RunViewTab: View {
+    @State var selection: RunTab = .mainView
+    @StateObject var locationManager = LocationManager()
         var body: some View {
-            TabView(selection: $currentPage) {
-                ControlView()
-                    .tag(0)
-                VerticalTabView()
-                    .tag(1)
+            TabView(selection: $selection) {
+                ControlView(tab: $selection)
+                    .tag(RunTab.controlView)
+//                VerticalTabView()
+                RunMainView()
+                    .tag(RunTab.mainView)
                 RunMetricsView()
-                    .tag(2)
+                    .tag(RunTab.metricsView)
                 RunMapView()
-                    .tag(3)
+                    .tag(RunTab.runMapView)
+            }
+            .onAppear {
+                locationManager.checkServiceAvailability()
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-            .gesture(
-                DragGesture()
-                    .onEnded { value in
-                        if value.translation.width < 0 {
-                            // Swipe left
-                            currentPage = min(currentPage + 1, 3)
-                        } else if value.translation.width > 0 {
-                            // Swipe right
-                            currentPage = max(currentPage - 1, 0)
-                        }
-                    }
-            )
+//            .gesture(
+//                DragGesture()
+//                    .onEnded { value in
+//                        if value.translation.width < 0 {
+//                            // Swipe left
+//                            currentPage = min(currentPage + 1, 3)
+//                        } else if value.translation.width > 0 {
+//                            // Swipe right
+//                            currentPage = max(currentPage - 1, 0)
+//                        }
+//                    }
+//            )
         }
 }
 

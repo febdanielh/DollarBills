@@ -11,20 +11,21 @@ struct NearestRouteCard: View {
     var routes: Routes
     
     var body: some View {
-        ZStack(alignment: .leading) {
+        ZStack {
             RoundedRectangle(cornerRadius: 10)
-                .frame(width: 170, height: 44)
-                .foregroundStyle(Color(red: 1, green: 0.95, blue: 0.7))
+                .frame(width: 175, height: 44)
+                .foregroundStyle(Color("Yellow: Light 2.3"))
             HStack {
                 Text(routes.routeName)
+                    .font(.body)
                     .foregroundStyle(Color.black)
-                    .padding(.leading, 15)
+                    .padding(.horizontal, 15)
                 Spacer()
                 Image(systemName: "chevron.right")
                     .foregroundStyle(Color.black)
                     .font(.system(size: 24))
                     .fontWeight(.medium)
-                    .padding(.trailing, 30)
+                    .padding(.horizontal, 15)
             }
         }
     }

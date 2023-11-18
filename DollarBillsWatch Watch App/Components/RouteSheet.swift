@@ -9,7 +9,6 @@ import SwiftUI
 
 struct RouteSheet: View {
     @EnvironmentObject var workoutManager: WorkoutManager
-    var watchToPhone = WatchToPhone()
     var routes: Routes
     var body: some View {
         ScrollView {
@@ -17,14 +16,16 @@ struct RouteSheet: View {
                 Text(routes.routeName)
                     .font(.title2)
                 HStack {
-                    Image(systemName: "flag.checkered")
-                    Text("5 km")
+                    HStack {
+                        Image(systemName: "flag.checkered")
+                        Text("5 km")
+                    }
+                    HStack {
+                        Image(systemName: "clock.fill")
+                        Text("40 min - 1h")
+                    }
                 }
                 
-                HStack {
-                    Image(systemName: "clock.fill")
-                    Text("40 min - 1h")
-                }
                 
                 HStack {
                     Image(systemName: "shoeprints.fill")
@@ -49,15 +50,14 @@ struct RouteSheet: View {
                 RunViewTab()
                     .navigationBarBackButtonHidden(true)
                     .onAppear {
-                        if workoutManager.session?.state != .running {
-                            workoutManager.startWorkout(workoutType: .running)
-                        }
+                        workoutManager.currentDisplayScreen = .viewRun
+                        workoutManager.startWorkout(workoutType: .running)
                     }
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 25)
                         .frame(width: 155, height: 50)
-                        .foregroundStyle(Color.yellow)
+                        .foregroundStyle(Color("Yellow: Light 2.3"))
                     Text("Start Running")
                         .foregroundStyle(Color.black)
                         .font(.headline)
@@ -73,6 +73,6 @@ struct RouteSheet: View {
     }
 }
 
-//#Preview {
-//    RouteSheet()
-//}
+#Preview {
+    RouteSheet(routes: Routes(tag: 2, routeName: "Nava Park", routeNameDetail: "BSD, Tangerang", routeImage: "naturale", routeCount: 1, latitude: -6.292648, longitude: 106.652119))
+}

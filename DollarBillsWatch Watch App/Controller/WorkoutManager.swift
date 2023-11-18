@@ -12,14 +12,6 @@ import WatchConnectivity
 class WorkoutManager: NSObject, ObservableObject {
     let workoutType: HKWorkoutActivityType = .running
     
-    @Published var showingSummaryView: Bool = false {
-        didSet {
-            if showingSummaryView == false {
-                resetWorkout()
-            }
-        }
-    }
-
     let healthStore = HKHealthStore()
     var session: HKWorkoutSession?
     var builder: HKLiveWorkoutBuilder?
@@ -79,13 +71,21 @@ class WorkoutManager: NSObject, ObservableObject {
         }
     }
     
-    func addRoute(to workout: HKWorkout) {
-        routeBuilder?.finishRoute(with: workout, metadata: nil, completion: { workoutRoute, error in
-            if workoutRoute == nil {
-                fatalError("Error saving workout route")
+    func finishRoute(to workout: HKWorkout?) {
+        guard let workout = workout else {
+            print("No workout to associate with the route.")
+            return
+        }
+
+        routeBuilder?.finishRoute(with: workout, metadata: nil, completion: { (route, error) in
+            if let error = error {
+                print("Error finishing route: \(error.localizedDescription)")
+            } else {
+                print("Route finished successfully.")
             }
         })
     }
+
 
     // MARK: - Session State Control
 
@@ -109,7 +109,15 @@ class WorkoutManager: NSObject, ObservableObject {
 
     func endWorkout() {
         session?.end()
-        showingSummaryView = true
+        
+//        builder?.endCollection(withEnd: Date()) { [weak self] (success, error) in
+//            self?.builder?.finishWorkout { (workout, error) in
+//                DispatchQueue.main.async {
+//                    self?.workout = workout
+//                    self?.finishRoute(to: workout)
+//                }
+//            }
+//        }
     }
 
     // MARK: - Workout Metrics
@@ -172,10 +180,11 @@ extension WorkoutManager: HKWorkoutSessionDelegate {
         }
 
         if toState == .ended {
-            builder?.endCollection(withEnd: date) { (success, error) in
-                self.builder?.finishWorkout { (workout, error) in
+            builder?.endCollection(withEnd: date) { [weak self] (success, error) in
+                self?.builder?.finishWorkout { (workout, error) in
                     DispatchQueue.main.async {
-                        self.workout = workout
+                        self?.workout = workout
+                        self?.finishRoute(to: workout)
                     }
                 }
             }

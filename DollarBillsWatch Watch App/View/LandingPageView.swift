@@ -27,6 +27,7 @@ struct ContentView: View {
 
 struct LandingPageView: View {
     var routes: [Routes]
+    @StateObject var locationManager = LocationManager()
     var body: some View {
         
         NavigationView {
@@ -42,7 +43,6 @@ struct LandingPageView: View {
                         }
                         .padding(.top,3)
                         .buttonStyle(PlainButtonStyle())
-                        
                     }
                     
                     Text("Recent")
@@ -50,13 +50,16 @@ struct LandingPageView: View {
                         .padding(.top, 10)
                     
                     NavigationLink(destination: RouteDetailView(route: routes[3])) {
-                            RecentRouteCard(routes: routes[3])
-                        }
-                        .padding(.top,3)
-                        .buttonStyle(PlainButtonStyle())
+                        RecentRouteCard(routes: routes[3])
+                    }
+                    .padding(.top,3)
+                    .buttonStyle(PlainButtonStyle())
                 }
             }
-            .padding(.horizontal, 8)
+        }
+        .onAppear {
+            locationManager.checkServiceAvailability()
+
         }
     }
 }

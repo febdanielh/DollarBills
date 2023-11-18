@@ -11,25 +11,26 @@ struct RecentRouteCard: View {
     var routes: Routes
 
     var body: some View {
-        ZStack(alignment: .leading) {
+        ZStack {
             RoundedRectangle(cornerRadius: 10)
-                .frame(width: 170, height: 44)
-                .foregroundStyle(Color(red: 1, green: 0.95, blue: 0.7))
+                .frame(width: 175, height: 44)
+                .foregroundStyle(Color("Yellow: Light 2.3"))
             HStack {
                 Text(routes.routeName)
+                    .font(.body)
                     .foregroundStyle(Color.black)
-                    .padding(.leading, 15)
+                    .padding(.horizontal, 15)
                 Spacer()
                 Image(systemName: "chevron.right")
                     .foregroundStyle(Color.black)
                     .font(.system(size: 24))
                     .fontWeight(.medium)
-                    .padding(.trailing, 30)
+                    .padding(.horizontal, 15)
             }
         }
     }
 }
 
 #Preview {
-    RecentRouteCard(routes: Routes(tag: 3, routeName: "Green Office Park", routeNameDetail: "BSD, Tangerang", routeImage: "green office park", routeCount: 3, latitude: -6.301616, longitude: 106.651096))
+    RecentRouteCard(routes: Routes(tag: 2, routeName: "Nava Park", routeNameDetail: "BSD, Tangerang", routeImage: "naturale", routeCount: 1, latitude: -6.292648, longitude: 106.652119))
 }

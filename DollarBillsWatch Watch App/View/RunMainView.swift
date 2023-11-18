@@ -16,7 +16,7 @@ struct RunMainView: View {
                 if ItemReceived  {
                     ItemProgress()
                         .frame(width: 10, height: 10, alignment: .topLeading)
-                        .padding(.leading, -70)
+                        .padding(.leading, 70)
                         .padding(.top, -20)
                 }
                 GIFImage()
