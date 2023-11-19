@@ -1,5 +1,5 @@
 //
-//  RunViewPage2.swift
+//  RunMainView.swift
 //  DollarBillsWatch Watch App
 //
 //  Created by Angelica Pinonkuan on 30/10/23.
@@ -16,7 +16,7 @@ struct RunMainView: View {
                 if ItemReceived  {
                     ItemProgress()
                         .frame(width: 10, height: 10, alignment: .topLeading)
-                        .padding(.leading, -70)
+                        .padding(.leading, 70)
                         .padding(.top, -20)
                 }
                 GIFImage()

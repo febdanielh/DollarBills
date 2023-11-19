@@ -12,18 +12,13 @@ import WatchConnectivity
 class WorkoutManager: NSObject, ObservableObject {
     let workoutType: HKWorkoutActivityType = .running
     
-    @Published var showingSummaryView: Bool = false {
-        didSet {
-            if showingSummaryView == false {
-                resetWorkout()
-            }
-        }
-    }
-
     let healthStore = HKHealthStore()
     var session: HKWorkoutSession?
     var builder: HKLiveWorkoutBuilder?
     var watchSession: WCSession?
+    var routeBuilder: HKWorkoutRouteBuilder?
+    
+    var locationManager = LocationManager()
     
     init(watchSession: WCSession) {
         self.watchSession = watchSession
@@ -53,23 +48,44 @@ class WorkoutManager: NSObject, ObservableObject {
         session?.startActivity(with: startDate)
         builder?.beginCollection(withStart: startDate) { (success, error) in
         }
+        
+//        locationManager.setupLocationManager()
     }
 
     func requestAuthorization() {
         let typesToShare: Set = [
-            HKQuantityType.workoutType()
+            HKQuantityType.workoutType(),
+            HKSeriesType.workoutRoute()
         ]
 
         let typesToRead: Set = [
             HKQuantityType.quantityType(forIdentifier: .heartRate)!,
             HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!,
             HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!,
+            HKQuantityType.workoutType(),
+            HKSeriesType.workoutRoute(),
             HKObjectType.activitySummaryType()
         ]
 
         healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { (success, error) in
         }
     }
+    
+    func finishRoute(to workout: HKWorkout?) {
+        guard let workout = workout else {
+            print("No workout to associate with the route.")
+            return
+        }
+
+        routeBuilder?.finishRoute(with: workout, metadata: nil, completion: { (route, error) in
+            if let error = error {
+                print("Error finishing route: \(error.localizedDescription)")
+            } else {
+                print("Route finished successfully.")
+            }
+        })
+    }
+
 
     // MARK: - Session State Control
 
@@ -93,7 +109,15 @@ class WorkoutManager: NSObject, ObservableObject {
 
     func endWorkout() {
         session?.end()
-        showingSummaryView = true
+        
+//        builder?.endCollection(withEnd: Date()) { [weak self] (success, error) in
+//            self?.builder?.finishWorkout { (workout, error) in
+//                DispatchQueue.main.async {
+//                    self?.workout = workout
+//                    self?.finishRoute(to: workout)
+//                }
+//            }
+//        }
     }
 
     // MARK: - Workout Metrics
@@ -156,10 +180,11 @@ extension WorkoutManager: HKWorkoutSessionDelegate {
         }
 
         if toState == .ended {
-            builder?.endCollection(withEnd: date) { (success, error) in
-                self.builder?.finishWorkout { (workout, error) in
+            builder?.endCollection(withEnd: date) { [weak self] (success, error) in
+                self?.builder?.finishWorkout { (workout, error) in
                     DispatchQueue.main.async {
-                        self.workout = workout
+                        self?.workout = workout
+                        self?.finishRoute(to: workout)
                     }
                 }
             }

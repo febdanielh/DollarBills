@@ -1,5 +1,5 @@
 //
-//  RunViewPage3.swift
+//  RunMetricsView.swift
 //  DollarBillsWatch Watch App
 //
 //  Created by Angelica Pinonkuan on 30/10/23.

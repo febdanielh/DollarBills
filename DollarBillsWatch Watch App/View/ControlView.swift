@@ -1,5 +1,5 @@
 //
-//  RunViewPage1.swift
+//  ControlView.swift
 //  DollarBillsWatch Watch App
 //
 //  Created by Angelica Pinonkuan on 30/10/23.
@@ -8,23 +8,27 @@
 import SwiftUI
 
 struct ControlView: View {
-    
     @State private var isPaused = false
+    @Binding var tab: RunTab
     
     var body: some View {
         VStack {
             HStack {
-                FinishButton()
+                NavigationLink(destination: FinishRunView()) {
+                    FinishButton()
+                }
+                .frame(width: 70, height: 60)
+                .buttonStyle(PlainButtonStyle())
                 Spacer()
                 if isPaused {
-                    ResumeButton(isPaused: $isPaused)
+                    ResumeButton(isPaused: $isPaused, tab: $tab)
                 } else {
-                    PauseButton(isPaused: $isPaused)
+                    PauseButton(isPaused: $isPaused, tab: $tab)
                 }
             }
             Spacer()
             HStack {
-                LockButton()
+                LockButton(tab: $tab)
                 //if lock button is pressed, water lock is activated
                 Spacer()
             }
@@ -34,7 +38,7 @@ struct ControlView: View {
 }
 
 #Preview {
-    ControlView()
+    ControlView(tab: .constant(.controlView))
 }
 
 
@@ -42,22 +46,26 @@ struct PauseButton: View {
     
     @EnvironmentObject var workoutManager: WorkoutManager
     @Binding var isPaused : Bool
+    @Binding var tab: RunTab
     
     var body: some View {
         
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 16)
-                    .foregroundColor(Color.green)
+                    .foregroundColor(Color("Purple: Pause Button"))
                     .frame(width: 70, height: 60)
                 Image(systemName: "pause.circle")
-                    .font(.title)
+                    .font(.largeTitle)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(Color("Purple: Pause Icon"))
             }
             Text("Pause")
         }
         .onTapGesture {
             isPaused.toggle()
             workoutManager.pause()
+            tab = .mainView
         }
         .frame(width: 70, height: 60)
         .buttonStyle(PlainButtonStyle())
@@ -68,22 +76,26 @@ struct ResumeButton: View {
     
     @EnvironmentObject var workoutManager: WorkoutManager
     @Binding var isPaused : Bool
+    @Binding var tab: RunTab
     
     var body: some View {
         
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 16)
-                    .foregroundColor(Color.purple)
+                    .foregroundColor(Color("Green: Resume Button"))
                     .frame(width: 70, height: 60)
                 Image(systemName: "play.circle")
-                    .font(.title)
+                    .font(.largeTitle)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(Color("Green: Resume Icon"))
             }
             Text("Resume")
         }
         .onTapGesture {
             isPaused.toggle()
             workoutManager.resume()
+            tab = .mainView
         }
         .frame(width: 70, height: 60)
         .buttonStyle(PlainButtonStyle())
@@ -92,18 +104,17 @@ struct ResumeButton: View {
 
 struct FinishButton: View {
     
-    @EnvironmentObject var workoutManager: WorkoutManager
     var body: some View {
-        NavigationLink {
-            FinishRunView()
-        } label: {
+        NavigationLink(destination: FinishRunView()) {
             VStack {
                 ZStack {
                     RoundedRectangle(cornerRadius: 16)
-                        .foregroundColor(Color.red)
+                        .foregroundStyle(Color("Red: Finish Button"))
                         .frame(width: 70, height: 60)
                     Image(systemName: "flag.checkered")
-                        .font(.title)
+                        .font(.largeTitle)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(Color("Red: Finish Icon"))
                 }
                 Text("Finish")
             }
@@ -114,20 +125,24 @@ struct FinishButton: View {
 }
 
 struct LockButton: View {
+    @Binding var tab: RunTab
+    
     var body: some View {
-        
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 16)
-                    .foregroundColor(Color.blue)
+                    .foregroundColor(Color("Blue: Lock Button"))
                     .frame(width: 70, height: 60)
-                Image(systemName: "drop.fill")
-                    .font(.title)
+                Image(systemName: "lock")
+                    .font(.largeTitle)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(Color("Blue: Lock Icon"))
             }
             Text("Lock")
         }
         .onTapGesture {
             WKInterfaceDevice.current().enableWaterLock()
+            tab = .mainView
         }
         .frame(width: 70, height: 60)
         .buttonStyle(PlainButtonStyle())

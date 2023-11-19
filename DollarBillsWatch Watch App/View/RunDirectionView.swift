@@ -1,5 +1,5 @@
 //
-//  RunViewPage2Directions.swift
+//  RunDirectionView.swift
 //  DollarBillsWatch Watch App
 //
 //  Created by Angelica Pinonkuan on 30/10/23.
@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RunDirectionView: View {
     var body: some View {
-        Text("Hello, direction")
+        Text("No direction available")
     }
 }
 

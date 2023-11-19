@@ -18,6 +18,9 @@ struct FinishRunView: View {
             
             NavigationLink {
                 InformationView()
+                    .onAppear {
+                        workoutManager.endWorkout()
+                    }
                     .navigationBarBackButtonHidden(true)
             } label: {
                 ZStack {
@@ -29,14 +32,15 @@ struct FinishRunView: View {
                         .font(.headline)
                 }
             }
+            .frame(width: 175, height: 50)
             .padding(.top, 8)
-            .onTapGesture {
-                workoutManager.endWorkout()
-            }
             
             NavigationLink {
-                LandingPageView()
+                LandingPageView(routes: RouteData.routeData)
                     .navigationBarBackButtonHidden(true)
+                    .onAppear {
+                        workoutManager.endWorkout()
+                    }
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 25)
@@ -47,9 +51,7 @@ struct FinishRunView: View {
                         .font(.headline)
                 }
             }
-            .onTapGesture {
-                workoutManager.endWorkout()
-            }
+            .frame(width: 175, height: 50)
             .padding(.top, 8)
         }
     }

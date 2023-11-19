@@ -20,79 +20,50 @@ struct ContentView: View {
         case .viewRun:
             RunViewTab()
         default:
-            LandingPageView()
+            LandingPageView(routes: RouteData.routeData)
         }
     }
 }
 
 struct LandingPageView: View {
-    
+    var routes: [Routes]
+    @StateObject var locationManager = LocationManager()
     var body: some View {
         
         NavigationView {
-            ScrollView{
-                VStack (alignment: .leading) {
+            ScrollView {
+                LazyVStack (alignment: .leading) {
                     
                     Text("Near You")
                         .font(.headline)
                     
-                    ForEach(0..<2, id: \.self) { _ in
-                        
-                        NavigationLink(destination: RouteDetailView()) {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 25)
-                                    .frame(width: 150, height: 50)
-                                    .foregroundStyle(Color.yellow)
-                                Text("Mozia Loop")
-                                    .foregroundStyle(Color.black)
-                            }
+                    ForEach(routes.prefix(2)) { route in
+                        NavigationLink(destination: RouteDetailView(route: route)) {
+                            NearestRouteCard(routes: route)
                         }
-//                        NavigationLink {
-//                            RouteDetailView()
-//                        } label: {
-//                            ZStack {
-//                                RoundedRectangle(cornerRadius: 25)
-//                                    .frame(width: 150, height: 50)
-//                                    .foregroundStyle(Color.yellow)
-//                                Text("Mozia Loop")
-//                                    .foregroundStyle(Color.black)
-//                            }
-//                        }
-                        .frame(width: 150, height: 50)
                         .padding(.top,3)
-                        .padding(.horizontal)
                         .buttonStyle(PlainButtonStyle())
-                        
                     }
                     
                     Text("Recent")
                         .font(.headline)
                         .padding(.top, 10)
                     
-                    ForEach(0..<2, id: \.self) { _ in
-                        NavigationLink {
-                            RouteDetailView()
-                        } label: {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 25)
-                                    .frame(width: 150, height: 50)
-                                    .foregroundStyle(Color.yellow)
-                                Text("Mozia Loop")
-                                    .foregroundStyle(Color.black)
-                            }
-                        }
-                        .frame(width: 150, height: 50)
-                        .padding(.top,3)
-                        .padding(.horizontal)
-                        .buttonStyle(PlainButtonStyle())
+                    NavigationLink(destination: RouteDetailView(route: routes[3])) {
+                        RecentRouteCard(routes: routes[3])
                     }
+                    .padding(.top,3)
+                    .buttonStyle(PlainButtonStyle())
                 }
             }
-            .padding(.horizontal, 8)
+        }
+        .onAppear {
+            locationManager.checkServiceAvailability()
+
         }
     }
 }
 
 #Preview {
-    LandingPageView()
+    LandingPageView(routes: RouteData.routeData)
 }
