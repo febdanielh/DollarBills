@@ -438,17 +438,8 @@
 			isa = PBXGroup;
 			children = (
 				6A1000222B07A99400B15BCD /* DuelMode */,
-				6A9585902AEE7390001AD5D8 /* GIFImage.swift */,
-				9B5272A92B03E58C00E70AA7 /* NearestRouteCard.swift */,
-				6A8E799D2AEF562500A927C3 /* PopUp.swift */,
-				6A8E799B2AEF538E00A927C3 /* ItemProgress.swift */,
-				9B5272AC2B04BFF100E70AA7 /* RecentRouteCard.swift */,
-				6A95859C2AEECC48001AD5D8 /* Countdown.swift */,
-				6A9585922AEE7DC5001AD5D8 /* MapView.swift */,
-				6A9585962AEEBFF3001AD5D8 /* RouteSheet.swift */,
-				6A9585982AEEC263001AD5D8 /* ElevationGraph.swift */,
-				6A95859A2AEEC3F8001AD5D8 /* Button.swift */,
-				9B5133182AFB3FB10002A5C0 /* ElapsedTimeView.swift */,
+				9BBD12812B09FD8A00C6AEF3 /* SoloRun */,
+				9BBD12822B09FDE800C6AEF3 /* Route */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -459,17 +450,8 @@
 				6A10000F2B07A87500B15BCD /* DuelMode */,
 				6A9585892AEE6FC0001AD5D8 /* LoadingView.swift */,
 				6A9585942AEEBFDE001AD5D8 /* RouteDetailView.swift */,
-				6A8E79892AEED65800A927C3 /* CountdownView.swift */,
 				156FE4C82B028EAF00B67615 /* LandingPageView.swift */,
-				6A8E798B2AEED69800A927C3 /* RunViewTab.swift */,
-				6A8E79992AEF4D4B00A927C3 /* FinishRunView.swift */,
-				6A0DFC702AFA85A400E0F324 /* InformationView.swift */,
-				6A8E798D2AEED79F00A927C3 /* ControlView.swift */,
-				6A8E799F2AF203EC00A927C3 /* VerticalTabView.swift */,
-				6A8E798F2AEED7C400A927C3 /* RunMainView.swift */,
-				6A8E79952AEEDEE600A927C3 /* RunDirectionView.swift */,
-				6A8E79912AEED7CF00A927C3 /* RunMetricsView.swift */,
-				6A8E79932AEED7D800A927C3 /* RunMapView.swift */,
+				9BBD12802B09FD5600C6AEF3 /* SoloRun */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -482,6 +464,48 @@
 				9B8101A92B00A2BD00FA4E1A /* LocationManager.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		9BBD12802B09FD5600C6AEF3 /* SoloRun */ = {
+			isa = PBXGroup;
+			children = (
+				6A8E79892AEED65800A927C3 /* CountdownView.swift */,
+				6A8E798B2AEED69800A927C3 /* RunViewTab.swift */,
+				6A8E79992AEF4D4B00A927C3 /* FinishRunView.swift */,
+				6A0DFC702AFA85A400E0F324 /* InformationView.swift */,
+				6A8E798D2AEED79F00A927C3 /* ControlView.swift */,
+				6A8E799F2AF203EC00A927C3 /* VerticalTabView.swift */,
+				6A8E798F2AEED7C400A927C3 /* RunMainView.swift */,
+				6A8E79952AEEDEE600A927C3 /* RunDirectionView.swift */,
+				6A8E79912AEED7CF00A927C3 /* RunMetricsView.swift */,
+				6A8E79932AEED7D800A927C3 /* RunMapView.swift */,
+			);
+			path = SoloRun;
+			sourceTree = "<group>";
+		};
+		9BBD12812B09FD8A00C6AEF3 /* SoloRun */ = {
+			isa = PBXGroup;
+			children = (
+				9B5133182AFB3FB10002A5C0 /* ElapsedTimeView.swift */,
+				6A9585902AEE7390001AD5D8 /* GIFImage.swift */,
+				6A8E799B2AEF538E00A927C3 /* ItemProgress.swift */,
+				6A95859C2AEECC48001AD5D8 /* Countdown.swift */,
+			);
+			path = SoloRun;
+			sourceTree = "<group>";
+		};
+		9BBD12822B09FDE800C6AEF3 /* Route */ = {
+			isa = PBXGroup;
+			children = (
+				9B5272A92B03E58C00E70AA7 /* NearestRouteCard.swift */,
+				6A8E799D2AEF562500A927C3 /* PopUp.swift */,
+				9B5272AC2B04BFF100E70AA7 /* RecentRouteCard.swift */,
+				6A9585922AEE7DC5001AD5D8 /* MapView.swift */,
+				6A9585962AEEBFF3001AD5D8 /* RouteSheet.swift */,
+				6A9585982AEEC263001AD5D8 /* ElevationGraph.swift */,
+				6A95859A2AEEC3F8001AD5D8 /* Button.swift */,
+			);
+			path = Route;
 			sourceTree = "<group>";
 		};
 		9BD93E382ACEB17D004862F7 /* Models */ = {
