@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RunViewPage1: View {
+struct ControlView: View {
     
     @State private var isPaused = false
     
@@ -34,7 +34,7 @@ struct RunViewPage1: View {
 }
 
 #Preview {
-    RunViewPage1()
+    ControlView()
 }
 
 

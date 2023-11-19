@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RunViewPage4: View {
+struct RunMapView: View {
     var body: some View {
         MapView()
             .ignoresSafeArea()
@@ -16,5 +16,5 @@ struct RunViewPage4: View {
 }
 
 #Preview {
-    RunViewPage4()
+    RunMapView()
 }

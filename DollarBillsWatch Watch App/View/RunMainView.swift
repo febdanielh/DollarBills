@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RunViewPage2: View {
+struct RunMainView: View {
     
     @State private var ItemReceived = true
     
@@ -25,5 +25,5 @@ struct RunViewPage2: View {
 }
 
 #Preview {
-    RunViewPage2()
+    RunMainView()
 }

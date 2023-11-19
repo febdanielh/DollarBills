@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct RunViewPage2Directions: View {
+struct RunDirectionView: View {
     var body: some View {
         Text("Hello, direction")
     }
 }
 
 #Preview {
-    RunViewPage2Directions()
+    RunDirectionView()
 }
