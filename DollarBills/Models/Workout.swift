@@ -45,7 +45,7 @@ class Workout: NSObject {
         let polyline = MKPolyline(coordinates: coords, count: coords.count)
         let date = hkWorkout.startDate
         let duration = hkWorkout.duration
-        let calorieBurned = hkWorkout.totalCalorieBurned //ini kan
+        let calorieBurned = 0.0
         var heartRate = 0
         var itemsCollected : [Items] = []
         

@@ -64,7 +64,6 @@
 		6A3C86212AEB6DB000D73FDF /* DollarBillsWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3C86202AEB6DB000D73FDF /* DollarBillsWatchApp.swift */; };
 		6A3C86252AEB6DB100D73FDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A3C86242AEB6DB100D73FDF /* Assets.xcassets */; };
 		6A3C86282AEB6DB100D73FDF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A3C86272AEB6DB100D73FDF /* Preview Assets.xcassets */; };
-		6A3C862B2AEB6DB100D73FDF /* DollarBillsWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6A3C861E2AEB6DB000D73FDF /* DollarBillsWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6A8E798A2AEED65800A927C3 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E79892AEED65800A927C3 /* CountdownView.swift */; };
 		6A8E798C2AEED69800A927C3 /* RunViewTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E798B2AEED69800A927C3 /* RunViewTab.swift */; };
 		6A8E798E2AEED79F00A927C3 /* RunViewPage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E798D2AEED79F00A927C3 /* RunViewPage1.swift */; };
@@ -89,6 +88,7 @@
 		9B29AA1F2AD7B362007DBEA5 /* RunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29AA1E2AD7B362007DBEA5 /* RunView.swift */; };
 		9B5133162AFB31880002A5C0 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5133152AFB31880002A5C0 /* WorkoutManager.swift */; };
 		9B5133192AFB3FB10002A5C0 /* ElapsedTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5133182AFB3FB10002A5C0 /* ElapsedTimeView.swift */; };
+		9B5272A82B0366EB00E70AA7 /* DollarBillsWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6A3C861E2AEB6DB000D73FDF /* DollarBillsWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9B81019D2AFC84B300FA4E1A /* WatchToPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B81019C2AFC84B300FA4E1A /* WatchToPhone.swift */; };
 		9B81019F2AFC98EB00FA4E1A /* PhoneToWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B81019E2AFC98EB00FA4E1A /* PhoneToWatch.swift */; };
 		9B8101AA2B00A2BD00FA4E1A /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8101A92B00A2BD00FA4E1A /* LocationManager.swift */; };
@@ -159,7 +159,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				6A3C862B2AEB6DB100D73FDF /* DollarBillsWatch Watch App.app in Embed Watch Content */,
+				9B5272A82B0366EB00E70AA7 /* DollarBillsWatch Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -271,7 +271,7 @@
 		E1347E3C2AC43557008224CF /* DollarBills.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DollarBills.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1347E3F2AC43557008224CF /* DollarBillsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DollarBillsApp.swift; sourceTree = "<group>"; };
 		E1347E412AC43557008224CF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		E1347E432AC43558008224CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = /Users/febriandaniel/Desktop/Daniel/Macros/DollarBills/DollarBills/Assets.xcassets; sourceTree = "<absolute>"; };
+		E1347E432AC43558008224CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1347E462AC43558008224CF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E1563EB12AFB2DC100BDD638 /* ROTWSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ROTWSheet.swift; sourceTree = "<group>"; };
 		E1563EB32AFB9B1E00BDD638 /* LobbyPlayerName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyPlayerName.swift; sourceTree = "<group>"; };
@@ -888,20 +888,20 @@
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "DollarBillsWatch-Watch-App-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = DollarBillsWatch;
+				INFOPLIST_KEY_CFBundleDisplayName = Furthr;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Furthr needs permission to read to your Health Data to display the workouts you record and heart rate health.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Furthr needs permission to write to your Health Data to save the workouts you record and heart rate health.";
 				INFOPLIST_KEY_NSLocationUsageDescription = "This app needs to access your location.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs to access your location.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.areez.DollarBills;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.DollarBills.Furthr.areez;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.areez.DollarBills.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DollarBills.Furthr.areez.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -928,20 +928,20 @@
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "DollarBillsWatch-Watch-App-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = DollarBillsWatch;
+				INFOPLIST_KEY_CFBundleDisplayName = Furthr;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Furthr needs permission to read to your Health Data to display the workouts you record and heart rate health.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Furthr needs permission to write to your Health Data to save the workouts you record and heart rate health.";
 				INFOPLIST_KEY_NSLocationUsageDescription = "This app needs to access your location.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs to access your location.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.areez.DollarBills;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.DollarBills.Furthr.areez;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.areez.DollarBills.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DollarBills.Furthr.areez.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1003,7 +1003,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1058,7 +1057,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1083,6 +1081,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DollarBills/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Furthr;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Furthr needs permission to write to your Health Data to save the workouts you record and heart rate health.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Furthr needs permission to read to your Health Data to display the workouts you record.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs to access your location.";
@@ -1097,12 +1096,12 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.areez.DollarBills;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DollarBills.Furthr.areez;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1121,6 +1120,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DollarBills/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Furthr;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Furthr needs permission to write to your Health Data to save the workouts you record and heart rate health.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Furthr needs permission to read to your Health Data to display the workouts you record.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs to access your location.";
@@ -1135,12 +1135,12 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.areez.DollarBills;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DollarBills.Furthr.areez;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

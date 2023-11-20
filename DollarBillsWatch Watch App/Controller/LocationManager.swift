@@ -24,7 +24,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     var routeBuilder: HKWorkoutRouteBuilder?
     
     func checkServiceAvailability() {
-//        DispatchQueue.main.async {
             if CLLocationManager.locationServicesEnabled() {
                 self.locationManager = CLLocationManager()
                 self.locationManager?.delegate = self
@@ -32,7 +31,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             } else {
                 print("Location Services not Enabled.")
             }
-//        }
     }
     
     private func checkLocationAuthorization() {
