@@ -59,4 +59,4 @@ struct ResultView: View {
 
 #Preview {
     ResultView()
-} 
+}

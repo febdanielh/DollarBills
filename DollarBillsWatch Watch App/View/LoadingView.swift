@@ -25,7 +25,7 @@ struct LoadingView: View {
                 }
                 
                 if !showGIF {
-                    LandingPageView()
+                    ContentView()
                 }
             }
         }
