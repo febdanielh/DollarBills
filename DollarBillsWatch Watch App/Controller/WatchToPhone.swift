@@ -9,7 +9,7 @@ import SwiftUI
 import WatchConnectivity
 
 class WatchToPhone: NSObject, ObservableObject {
-    
+    @Published var selectedItems: [Items] = []
     var session: WCSession
     
     init(session: WCSession = .default) {
@@ -17,6 +17,16 @@ class WatchToPhone: NSObject, ObservableObject {
         super.init()
         self.session.delegate = self
         session.activate()
+    }
+    
+    func sendMessageToPhone(itemName: String) {
+        let message = ["Message": itemName]
+        if (WCSession.default.isReachable) {
+            WCSession.default.sendMessage(message, replyHandler: nil) { error in
+                print("Error when sending the message with error: \(error.localizedDescription)")
+            }
+            print("execute \(itemName) send message")
+        }
     }
 }
 
@@ -32,6 +42,15 @@ extension WatchToPhone: WCSessionDelegate {
             print("Reachable on Watch")
         } else {
             print("Not Reachable on Watch")
+        }
+    }
+    
+    func session(_ session: WCSession, didReceiveMessageData messageData: Data) {
+        DispatchQueue.main.async {
+            guard let message = try? JSONDecoder().decode([Items].self, from: messageData) else {
+                return
+            }
+            self.selectedItems = message
         }
     }
 }

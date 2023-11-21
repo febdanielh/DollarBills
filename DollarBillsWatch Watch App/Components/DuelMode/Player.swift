@@ -16,63 +16,49 @@ struct Player: View {
         
         if p1Win {
             HStack (alignment: .center) {
-                
                 ZStack {
                     Circle()
-                        .size(width: 62, height: 62)
+                        .frame(height: 62)
                         .foregroundColor(.blue)
-                    Text("E")
+                    Text("Elvis")
                         .fontWeight(.semibold)
-                        .offset(x: -4, y: -5)
                     Image("crown")
-                        .offset(x: -20, y: -35)
-                }
-                
+                        .offset(x: -17, y: -36)
+                }.padding(.trailing)
                 ZStack{
                     Circle()
-                        .size(width: 33, height: 33)
+                        .frame(height: 40)
                         .foregroundColor(.red)
                     Text("You")
+                        .font(.system(size: 14))
                         .fontWeight(.semibold)
-                        .offset(x:-18, y:-17)
-                }
-                .offset(y: 12)
-                
+                }.padding(.leading)
             }
-            .padding(.leading, 25)
         } else if p2Win {
             HStack (alignment: .center) {
-                
                 ZStack{
                     Circle()
-                        .size(width: 33, height: 33)
+                        .frame(height: 40)
                         .foregroundColor(.blue)
-                    Text("E")
+                    Text("Elvis")
+                        .font(.system(size: 14))
                         .fontWeight(.semibold)
-                        .offset(x:-18, y:-17)
-                }
-                .offset(x: 12, y: 12)
-                
+                }.padding(.trailing)
                 
                 ZStack {
                     Circle()
-                        .size(width: 62, height: 62)
+                        .frame(height: 62)
                         .foregroundColor(.red)
                     Text("You")
                         .fontWeight(.semibold)
-                        .offset(x: -4, y: -5)
                     Image("crown")
-                        .offset(x: -20, y: -35)
-                }
-                .offset(x: -10)
-                
+                        .offset(x: -17, y: -36)
+                }.padding(.leading)
             }
-            .padding(.leading, 25)
         }
-        
     }
 }
 
-//#Preview {
-//    Player()
-//}
+#Preview {
+    Player(p1Win: .constant(false), p2Win: .constant(true))
+}

@@ -15,6 +15,7 @@ struct TimeLeft: View {
             Spacer()
             Text("00:20,04")
                 .font(.title3)
+                .fontWeight(.semibold)
             
         }
         .padding(.horizontal)

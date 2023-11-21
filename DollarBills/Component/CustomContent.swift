@@ -36,10 +36,10 @@ struct ActiveBlackButton: ButtonStyle {
 struct ActiveBlackButtonDuel: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .frame(width: 326, height: 60)
-            .foregroundColor(.YellowLight1)
+            .frame(width: 326, height: 44)
+            .foregroundColor(.white)
             .background(Color.black)
-            .clipShape(RoundedRectangle(cornerRadius: 25))
+            .clipShape(RoundedRectangle(cornerRadius: 18))
     }
 }
 

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct Items: Identifiable {
+struct Items: Identifiable, Codable, Hashable {
     var id = UUID()
     var namaItem: String
     var image: String
@@ -18,28 +18,24 @@ struct Items: Identifiable {
 struct ItemsData {
     //item dummy
     static let item = [
-        Items(namaItem: "Blue Poison",
-              image: "0Potion", 
-              desc: "Blue Poison can reduce opponent’s distance by 5 m"),
+        Items(namaItem: "Blue Potion",
+              image: "0Potion",
+              desc: "Double up your distance for 10 seconds"),
         
         Items(namaItem: "Rock",
-              image: "1Rock", 
-              desc: "Rock can freeze opponent for 5s and reduce the amount of distance gain within 5s"),
+              image: "3Rock",
+              desc: "Freeze opponent's distance by 10 seconds"),
         
-        Items(namaItem: "Red Poison",
-              image: "2Potion", 
-              desc: "Red Poison can reduce opponent’s distance by 10 m"),
+        Items(namaItem: "Red Potion",
+              image: "2Potion",
+              desc: "Divide opponent's distance by half for 10 seconds"),
         
-        Items(namaItem: "Three Rocks",
-              image: "3Rock", 
-              desc: "3 Rocks can freeze opponent for 10 s and reduce the amount of distance gain within 10 s"),
-        
-        Items(namaItem: "Rocket",
-              image: "rocket",
-              desc: ""),
+        Items(namaItem: "White Flag",
+              image: "whiteFlag",
+              desc: "Add 200 m to your distance"),
         
         Items(namaItem: "Bomb",
               image: "bomb",
-              desc: "")
+              desc: "Reduce opponent's distance by 200 m")
     ]
 }

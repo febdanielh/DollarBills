@@ -10,7 +10,6 @@ import SwiftUI
 struct InformationView: View {
     @EnvironmentObject var wm: WorkoutManager
     var body: some View {
-        
         ZStack {
             RoundedRectangle(cornerRadius: 25)
                 .foregroundColor(Color(red: 1, green: 0.98, blue: 0.85))

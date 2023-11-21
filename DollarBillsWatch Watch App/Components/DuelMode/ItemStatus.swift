@@ -8,16 +8,20 @@
 import SwiftUI
 
 struct ItemStatus: View {
+    @Binding var isSent: Bool
     var body: some View {
         ZStack {
-            ExecuteView()
-            
+            if isSent {
+                SentView()
+            } else {
+                ExecuteView()
+            }
         }
     }
 }
 
 #Preview {
-    ItemStatus()
+    ItemStatus(isSent: .constant(true))
 }
 
 struct UsedView: View {
@@ -41,7 +45,8 @@ struct SentView: View {
             .background(Color(red: 0.07, green: 0.85, blue: 0.38))
             .cornerRadius(10)
         Text("Sent")
-            .font(.caption2)
+            .font(.footnote)
+            .fontWeight(.semibold)
             .foregroundStyle(.black)
     }
 }
@@ -54,7 +59,8 @@ struct ExecuteView: View {
             .background(Color(red: 1, green: 0.31, blue: 0.31))
             .cornerRadius(10)
         Text("Execute")
-            .font(.caption2)
+            .font(.footnote)
+            .fontWeight(.semibold)
             .foregroundStyle(.black)
     }
 }

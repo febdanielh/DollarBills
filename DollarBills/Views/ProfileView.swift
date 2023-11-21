@@ -35,7 +35,13 @@ struct ProfileView: View {
         NavigationView(content: {
             
             VStack {
-                
+                HStack{
+                    Text("Profile")
+                        .font(.system(size: 30))
+                        .bold()
+                        .padding([.top, .horizontal])
+                    Spacer()
+                }
                 Divider()
                 ScrollView {
                     
@@ -368,7 +374,7 @@ struct ProfileView: View {
                 .scrollIndicators(.hidden)
                 
             }
-            .navigationTitle("Profile")
+//            .navigationTitle("Profile")
             
         })
         .ignoresSafeArea()

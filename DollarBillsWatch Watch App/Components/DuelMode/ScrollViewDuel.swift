@@ -9,11 +9,11 @@ import SwiftUI
 
 struct ScrollViewDuel: View {
     var body: some View {
-        ScrollView(.horizontal){
-            HStack (spacing: -10){
-                ActiveItem()
-                ActiveItem()
-                ActiveItem()
+        ScrollView(.horizontal, showsIndicators: false){
+            HStack(spacing: 5){
+                ForEach(0..<3) { _ in
+                    DuelItem()
+                }
             }
             
         }

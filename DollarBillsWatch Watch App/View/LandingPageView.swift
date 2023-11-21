@@ -10,6 +10,7 @@ import SwiftUI
 enum DisplayScreen {
     case viewHome
     case viewRun
+    case viewDuel
 }
 
 struct ContentView: View {
@@ -19,6 +20,8 @@ struct ContentView: View {
         switch  wm.currentDisplayScreen {
         case .viewRun:
             RunViewTab()
+        case .viewDuel:
+            DuelModeView()
         default:
             LandingPageView(routes: RouteData.routeData)
         }

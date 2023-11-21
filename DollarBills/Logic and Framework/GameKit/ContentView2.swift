@@ -16,7 +16,7 @@ struct ContentView2: View {
     var body: some View {
         VStack {
             // Display the game title.
-            Text("Real-Time Game")
+            Text("Duel")
                 .font(.title)
                 .padding()
             Form {
@@ -27,35 +27,7 @@ struct ContentView2: View {
                             GKMatchmaker.shared().cancel()
                             game.automatch = false
                         }
-                        game.choosePlayer()
-                    }
-                    
-                    Toggle("Automatch", isOn: $game.automatch)
-                    .foregroundColor(.blue)
-                    .toggleStyle(SwitchToggleStyle(tint: .blue))
-                    .onChange(of: game.automatch) { state in
-                        if game.automatch {
-                            // Turn automatch on.
-                            Task {
-                                await game.findPlayer(time: timeChosen)
-                            }
-                        } else {
-                            // Turn automatch off.
-                            GKMatchmaker.shared().cancel()
-                        }
-                    }
-                }
-                Section("Friends") {
-                    Button("Add Friends") {
-                        game.addFriends()
-                    }
-                    
-                    Button("Access Friends") {
-                        Task {
-                            await game.accessFriends()
-                            showFriends = true
-                            GKAccessPoint.shared.isActive = false
-                        }
+//                        game.choosePlayer(time: timeChosen)
                     }
                 }
             }

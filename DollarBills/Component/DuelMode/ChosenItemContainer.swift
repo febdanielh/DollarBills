@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ChosenItemContainer: View {
+    let imageName: String
     var body: some View {
-        
         ZStack {
             Rectangle()
               .foregroundColor(.clear)
@@ -24,7 +24,7 @@ struct ChosenItemContainer: View {
               .shadow(
                 color: Color(red: 0, green: 0, blue: 0, opacity: 0.25), radius: 4, y: 4
               )
-            Image("1Rock")
+            Image(imageName)
                 .resizable()
                 .frame(width: 107, height: 75)
         }
@@ -32,5 +32,5 @@ struct ChosenItemContainer: View {
 }
 
 #Preview {
-    ChosenItemContainer()
+    ChosenItemContainer(imageName: ItemsData.item[0].image)
 }

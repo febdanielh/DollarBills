@@ -8,42 +8,55 @@
 import SwiftUI
 
 struct ItemsSheet: View {
+    
+    @EnvironmentObject var vm: ViewModel
+    @EnvironmentObject var game: RealTimeGame
+    @ObservedObject var ptw = PhoneToWatch()
+    @Binding var selectedItems: [Items]
+    @Binding var timeInterval: TimeInterval
+    @State var isItemFull: Bool = false
+    
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 16)
-                .frame(width: 390, height: 463)
-                .foregroundColor(.gray)
-                .opacity(0.1)
+        ZStack() {
+            UnevenRoundedRectangle(topLeadingRadius: 16, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 16)
+                .foregroundStyle(.white)
+                .frame(height: 330)
             
-            VStack (spacing: 0){
+            VStack(alignment: .leading, spacing: 8) {
                 Text("Your Items")
                     .font(.headline)
-                    .multilineTextAlignment(.leading)
+                    .padding(.bottom)
                 
                 ScrollView (.horizontal, showsIndicators: false){
                     HStack {
-                        ItemDescriptionContainer()
-                        ItemDescriptionContainer()
-                        ItemDescriptionContainer()
-                        ItemDescriptionContainer()
-                    }
-                    .frame(height: 300)
-                }
-                
-               
-                
-                NavigationLink {
-                    DuelView()
-                } label: {
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 25)
-                            .frame(width: 326, height: 45)
-                            .foregroundColor(Color.black)
-                        Text("Start Duel")
-                            .foregroundColor(Color.white)
-                            .font(.title3)
+                        ForEach(ItemsData.item) { item in
+                            ItemDescriptionContainer(item: item)
+                                .onTapGesture {
+                                    if selectedItems.count < 3 {
+                                        selectedItems.append(item)
+                                    }
+                                }
+                        }
                     }
                 }
+                
+                Button(action: {
+//                    Task {
+//                        do {
+//                            try await vm.createDuelRoom(duration: timeInterval)
+//                        } catch {
+//                            print(error)
+//                        }
+//                    }
+                    game.choosePlayer(time: timeInterval, items: selectedItems)
+                }, label: {
+                    Text("Create Room")
+                        .foregroundStyle(Color.white)
+                        .font(.title3)
+                })
+                .buttonStyle(ActiveBlackButtonDuel())
+                .disabled(!game.matchAvailable)
+                .padding()
             }
             .padding()
         }
@@ -51,6 +64,18 @@ struct ItemsSheet: View {
 }
 
 #Preview {
-    ItemsSheet()
+    ItemsSheet(selectedItems: .constant([]), timeInterval: .constant(1200))
 }
 
+//NavigationLink {
+//    DuelView()
+//} label: {
+//    ZStack{
+//        RoundedRectangle(cornerRadius: 25)
+//            .frame(width: 326, height: 45)
+//            .foregroundColor(Color.black)
+//        Text("Start Duel")
+//            .foregroundColor(Color.white)
+//            .font(.title3)
+//    }
+//}

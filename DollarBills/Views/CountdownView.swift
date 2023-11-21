@@ -11,7 +11,7 @@ struct CountdownView: View {
     
     @State private var countdown = 3
     @EnvironmentObject var vm: ViewModel
-    @StateObject var phoneToWatch = PhoneToWatch()
+    @ObservedObject var phoneToWatch = PhoneToWatch()
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     

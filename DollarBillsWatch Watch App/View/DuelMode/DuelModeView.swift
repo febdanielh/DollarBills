@@ -14,11 +14,11 @@ struct DuelModeView: View {
     
     
     var body: some View {
-        VStack{
+        VStack(){
             TimeLeft()
                 .padding(.top, -40)
             Player(p1Win: $p1Win, p2Win: $p2Win)
-                .padding(.top, -10)
+                .padding(.vertical)
             ScrollViewDuel()
                 .padding(.bottom, -20)
         }
