@@ -9,35 +9,6 @@ import SwiftUI
 import WatchConnectivity
 
 class PhoneToWatch: NSObject, ObservableObject {
-    
-//    @Published var watchDuration = "--"
-//    @Published var watchDistance = "--"
-//    @Published var watchPace = "--"
-//    @Published var heartRate = "--"
-//    @Published var avgHeartRate = "--"
-//    @Published var watchActiveEnergy = "--"
-//    @Published var watchElevation = "--"
-//
-//    var wDuration = "--"
-//    var wDistance = "--"
-//    var wPace = "--"
-//    var wHeartRate = "--"
-//    var wAvgHR = "--"
-//    var wActiveEnergy = "--"
-//    var wElevation = "--"
-//    
-//    func updateUI() {
-//        print("update UI Called")
-//        watchDuration = wDuration
-//        watchDistance = wDistance
-//        watchPace = wPace
-//        heartRate = wHeartRate
-//        avgHeartRate = wAvgHR
-//        watchActiveEnergy = wActiveEnergy
-//        watchElevation = wElevation
-//        
-//    }
-    
     var session: WCSession
     
     init(session: WCSession = .default) {
@@ -56,16 +27,23 @@ class PhoneToWatch: NSObject, ObservableObject {
             print("startWatchWorkout send message")
         }
     }
-
+    
+    func sendStartMatchMessageToWatch() {
+        let message = ["Message": "Start Match"]
+        if (WCSession.default.isReachable) {
+            WCSession.default.sendMessage(message, replyHandler: nil) { error in
+                print("Error when sending the message with error: \(error.localizedDescription)")
+            }
+            print("start duel send message")
+        }
+    }
 }
 
 extension PhoneToWatch: WCSessionDelegate {
     func sessionDidBecomeInactive(_ session: WCSession) {
-        
     }
     
     func sessionDidDeactivate(_ session: WCSession) {
-        
     }
     
     
@@ -82,19 +60,4 @@ extension PhoneToWatch: WCSessionDelegate {
             print("Not Reachable on Phone")
         }
     }
-    
-    
-//    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-//        print("Received message from Watch")
-//        wDistance = message["distance"]! as! String
-//        wHeartRate = message["heartRate"]! as! String
-//        wAvgHR = message["averageHeartRate"]! as! String
-//        wActiveEnergy = message["activeEnergy"]! as! String
-//        wElevation = message["elevation"]! as! String
-//        
-//        print(wDistance)
-//        print(wHeartRate)
-//        print(wAvgHR)
-//        print(wActiveEnergy)
-//    }
 }

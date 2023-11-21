@@ -98,7 +98,7 @@ struct OnboardingView: View {
                     shouldShowOnboarding = false
                     vm.isAuthenticated = true
                     Task {
-                        try await vm.createUser(username: "Feb", points: 1000)
+                        try await vm.createUser(username: "", points: 0)
                     }
                     print("go to main")
                 }) {

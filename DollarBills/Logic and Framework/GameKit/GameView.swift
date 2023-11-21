@@ -17,10 +17,13 @@ struct GameView: View {
     var body: some View {
         VStack {
             // Display the game title.
-            Text("Real-Time Game")
+            Text("Duel")
                 .font(.title)
             
-            Text("\(game.timeRemaining)")
+            let minute = Int(game.timeRemaining) / 60
+            let second = Int(game.timeRemaining) % 60
+            
+            Text("\(minute):\(second)")
             
             Form {
                 Section("Game Data") {
@@ -63,6 +66,15 @@ struct GameView: View {
                 Section("Game Controls") {
                     Button("Take Action") {
                         game.takeAction()
+                    }
+                    
+                    ForEach(game.myItems) { item in
+                        Button {
+                            game.takeActions(item: item.namaItem)
+                        } label: {
+                            Text("Execute \(item.namaItem)")
+                        }
+
                     }
                 }
                 Section("Rules") {

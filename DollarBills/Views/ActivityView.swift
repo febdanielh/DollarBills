@@ -20,7 +20,7 @@ struct ActivityView: View {
             VStack {
                 HStack{
                     Text("Insights")
-                        .font(.title2)
+                        .font(.system(size: 30))
                         .bold()
                         .padding()
                     Spacer()

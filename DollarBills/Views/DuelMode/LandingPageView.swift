@@ -10,10 +10,9 @@ import SwiftUI
 struct LandingPageView: View {
     
     @ObservedObject var roomManager: RoomManager
-    
+    @EnvironmentObject var game: RealTimeGame
     @State private var isShowingPopup = false
-    
-    @State private var enteredCode = ""
+    @State private var timeChosen : TimeInterval = 1200
     
     var body: some View {
         
@@ -21,12 +20,12 @@ struct LandingPageView: View {
             VStack(alignment: .leading) {
                 Text("Duel Mode")
                     .font(.system(size: 30)).bold()
-                    .padding()
-                
+                    .padding([.top, .horizontal])
                 Divider()
                 
                 ScrollView {
                     VStack {
+                        Spacer()
                         ZStack{
                             HStack {
                                 Spacer()
@@ -47,43 +46,15 @@ struct LandingPageView: View {
                         }
                         .padding(.vertical)
                         
-                        Spacer()
+                        Spacer().frame(height: 80)
                         
                         NavigationLink {
                             CreateRoomView()
                         } label: {
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 18)
-                                    .frame(width: 326, height: 44)
-                                    .foregroundColor(Color.black)
-                                Text("Create Room")
-                                    .foregroundColor(Color.white)
-                                    .font(.title3)
-                            }
-                        }
-                        .frame(maxWidth: .infinity)
-                        .onSubmit {
-                            roomManager.createRoom()
-                            print("Room Code: \(roomManager.rooms.last?.code ?? "N/A")")
-                        }
-                        
-                        Button(action: {
-                            isShowingPopup.toggle()
-                        }, label: {
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 18)
-                                    .frame(width: 326, height: 44)
-                                    .foregroundStyle(Color.black)
-                                Text("Join Room")
-                                    .foregroundStyle(Color.white)
-                                    .font(.title3)
-                            }
-                        })
-                        .frame(maxWidth: .infinity)
-                        .padding(.top)
-                        .sheet(isPresented: $isShowingPopup) {
-                            JoinRoomView(isPopoverPresented: $isShowingPopup, enteredCode: $enteredCode)
-                        }
+                            Text("Create Room")
+                                .foregroundColor(Color.white)
+                                .font(.title3)
+                        }.buttonStyle(ActiveBlackButtonDuel())
                     }
                 }
             }
