@@ -12,8 +12,9 @@ struct DollarBillsWatch_Watch_AppApp: App {
     @ObservedObject var watchToPhone = WatchToPhone()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LoadingView()
                 .environmentObject(WorkoutManager(watchSession: watchToPhone.session))
+                .environmentObject(WatchToPhone())
         }
     }
 }

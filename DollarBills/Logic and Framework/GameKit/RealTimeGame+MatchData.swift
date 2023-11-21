@@ -18,6 +18,7 @@ struct GameData: Codable {
     var score: Int?
     var message: String?
     var outcome: String?
+    var distance: Double?
 }
 
 extension RealTimeGame {
@@ -32,12 +33,11 @@ extension RealTimeGame {
         return encode(gameData: gameData)
     }
     
-    /// Creates a data representation of a text message for sending to other players.
+    /// Creates a data representation of the local player's score for sending to other players.
     ///
-    /// - Parameter message: The message that the local player enters.
-    /// - Returns: A representation of game data that contains only a message.
-    func encode(message: String?) -> Data? {
-        let gameData = GameData(matchName: matchName, playerName: GKLocalPlayer.local.displayName, score: nil, message: message, outcome: nil)
+    /// - Returns: A representation of game data that contains only the distance
+    func encode(distance: Double) -> Data? {
+        let gameData = GameData(matchName: matchName, playerName: GKLocalPlayer.local.displayName, message: nil, outcome: nil, distance: distance)
         return encode(gameData: gameData)
     }
     

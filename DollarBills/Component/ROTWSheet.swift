@@ -20,7 +20,7 @@ struct ROTWSheet: View {
     @State var isStarted: Bool = false
     @Binding var currentRouteIndex: Int
     
-    var distance: CLLocationDistance = 0
+    @State var distance: CLLocationDistance = 0
     
     var body: some View {
         VStack {
@@ -32,6 +32,7 @@ struct ROTWSheet: View {
                             .bold()
                         Spacer()
                         Button {
+                            vm.currentDisplayScreen = .viewMain
                             isRouteSelected = false
                         } label: {
                             Image("close black")
@@ -73,7 +74,6 @@ struct ROTWSheet: View {
                     .padding([.bottom])
                     
                     HStack {
-                        let distance = vm.getUserDistance(latitude: selectedAnnotation.waypoints[0].coordinate.latitude , longitude: selectedAnnotation.waypoints[0].coordinate.longitude)
                         
                         Text("This route is \(distance, specifier: "%.2f") km from you.")
                         
@@ -126,6 +126,9 @@ struct ROTWSheet: View {
                     .padding([.bottom, .leading, .trailing])
                 }.padding(.vertical).padding(.horizontal, 24)
             }
+        }
+        .onAppear{
+            distance = vm.getUserDistance(latitude: selectedAnnotation.waypoints[0].coordinate.latitude , longitude: selectedAnnotation.waypoints[0].coordinate.longitude)
         }
         .presentationDetents([.fraction(0.47), .medium])
         .interactiveDismissDisabled(true)

@@ -24,6 +24,7 @@ struct LobbyView: View {
     var roomID: String
     
     @State var roomOwnerName: String = ""
+    @EnvironmentObject var game: RealTimeGame
     
     var body: some View {
         VStack {
@@ -69,7 +70,7 @@ struct LobbyView: View {
                     VStack{
                         if isJoined {
                             NavigationLink {
-                                ChooseItemView()
+                                GameView(game: game)
                             } label: {
                                 ZStack{
                                     RoundedRectangle(cornerRadius: 25)
@@ -79,6 +80,8 @@ struct LobbyView: View {
                                         .foregroundColor(Color.white)
                                         .font(.title3)
                                 }
+                            }.onTapGesture {
+                                game.startMyMatchWith(match: game.myMatch!, time: timeInterval)
                             }
                         }
                         else if !isJoined {
@@ -90,11 +93,11 @@ struct LobbyView: View {
             }
             
         }
-        .onAppear(perform: {
-            Task {
-                roomOwnerName = try await vm.fetchOwnerName(roomID: roomID)
-            }
-        })
+//        .onAppear(perform: {
+//            Task {
+//                roomOwnerName = try await vm.fetchOwnerName(roomID: roomID)
+//            }
+//        })
     }
     
 }

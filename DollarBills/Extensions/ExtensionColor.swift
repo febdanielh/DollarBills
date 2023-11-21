@@ -29,6 +29,9 @@ extension Color {
     static var YellowDark4 = Color("Yellow: Dark 4")
     static var YellowDark5 = Color("Yellow: Dark 5")
     
+    //Black
+    static var black2 = Color("Black 2")
+    
     static var TextDimGray = Color("Text Dim Gray")
     static var WPBG = Color("WeeklyPerformanceBackground")
     static var PBBG = Color("ProgressBarBackground")

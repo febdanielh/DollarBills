@@ -7,74 +7,93 @@
 
 import Foundation
 import HealthKit
+import SwiftUI
 import WatchConnectivity
 
 class WorkoutManager: NSObject, ObservableObject {
     let workoutType: HKWorkoutActivityType = .running
     
-    @Published var showingSummaryView: Bool = false {
-        didSet {
-            if showingSummaryView == false {
-                resetWorkout()
-            }
-        }
-    }
-
     let healthStore = HKHealthStore()
     var session: HKWorkoutSession?
     var builder: HKLiveWorkoutBuilder?
     var watchSession: WCSession?
+    var routeBuilder: HKWorkoutRouteBuilder?
+    
+    var locationManager = LocationManager()
+    
+    @Published var currentDisplayScreen: DisplayScreen = .viewHome
     
     init(watchSession: WCSession) {
         self.watchSession = watchSession
         super.init()
         self.watchSession?.delegate = self
     }
-
+    
     func startWorkout(workoutType: HKWorkoutActivityType) {
         let configuration = HKWorkoutConfiguration()
         configuration.activityType = workoutType
         configuration.locationType = .outdoor
-
+        
         do {
             session = try HKWorkoutSession(healthStore: healthStore, configuration: configuration)
             builder = session?.associatedWorkoutBuilder()
         } catch {
             return
         }
-
+        
         session?.delegate = self
         builder?.delegate = self
-
+        
         builder?.dataSource = HKLiveWorkoutDataSource(healthStore: healthStore,
-                                                     workoutConfiguration: configuration)
-
+                                                      workoutConfiguration: configuration)
+        
         let startDate = Date()
         session?.startActivity(with: startDate)
         builder?.beginCollection(withStart: startDate) { (success, error) in
         }
+        
+        //        locationManager.setupLocationManager()
     }
-
+    
     func requestAuthorization() {
         let typesToShare: Set = [
-            HKQuantityType.workoutType()
+            HKQuantityType.workoutType(),
+            HKSeriesType.workoutRoute()
         ]
-
+        
         let typesToRead: Set = [
             HKQuantityType.quantityType(forIdentifier: .heartRate)!,
             HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!,
             HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!,
+            HKQuantityType.workoutType(),
+            HKSeriesType.workoutRoute(),
             HKObjectType.activitySummaryType()
         ]
-
+        
         healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { (success, error) in
         }
     }
-
+    
+    func finishRoute(to workout: HKWorkout?) {
+        guard let workout = workout else {
+            print("No workout to associate with the route.")
+            return
+        }
+        
+        routeBuilder?.finishRoute(with: workout, metadata: nil, completion: { (route, error) in
+            if let error = error {
+                print("Error finishing route: \(error.localizedDescription)")
+            } else {
+                print("Route finished successfully.")
+            }
+        })
+    }
+    
+    
     // MARK: - Session State Control
-
+    
     @Published var running = false
-
+    
     func togglePause() {
         if running == true {
             self.pause()
@@ -82,20 +101,28 @@ class WorkoutManager: NSObject, ObservableObject {
             resume()
         }
     }
-
+    
     func pause() {
         session?.pause()
     }
-
+    
     func resume() {
         session?.resume()
     }
-
+    
     func endWorkout() {
         session?.end()
-        showingSummaryView = true
+        
+        //        builder?.endCollection(withEnd: Date()) { [weak self] (success, error) in
+        //            self?.builder?.finishWorkout { (workout, error) in
+        //                DispatchQueue.main.async {
+        //                    self?.workout = workout
+        //                    self?.finishRoute(to: workout)
+        //                }
+        //            }
+        //        }
     }
-
+    
     // MARK: - Workout Metrics
     @Published var averageHeartRate: Double = 0
     @Published var heartRate: Double = 0
@@ -105,11 +132,10 @@ class WorkoutManager: NSObject, ObservableObject {
     @Published var elevation: Double = 0
     @Published var workout: HKWorkout?
     
-    @Published var currentDisplayScreen: DisplayScreen = .viewHome
     
     func updateForStatistics(_ statistics: HKStatistics?) {
         guard let statistics = statistics else { return }
-
+        
         DispatchQueue.main.async {
             switch statistics.quantityType {
             case HKQuantityType.quantityType(forIdentifier: .heartRate):
@@ -133,7 +159,7 @@ class WorkoutManager: NSObject, ObservableObject {
             }
         }
     }
-
+    
     func resetWorkout() {
         builder = nil
         workout = nil
@@ -154,37 +180,38 @@ extension WorkoutManager: HKWorkoutSessionDelegate {
         DispatchQueue.main.async {
             self.running = toState == .running
         }
-
+        
         if toState == .ended {
-            builder?.endCollection(withEnd: date) { (success, error) in
-                self.builder?.finishWorkout { (workout, error) in
+            builder?.endCollection(withEnd: date) { [weak self] (success, error) in
+                self?.builder?.finishWorkout { (workout, error) in
                     DispatchQueue.main.async {
-                        self.workout = workout
+                        self?.workout = workout
+                        self?.finishRoute(to: workout)
                     }
                 }
             }
         }
     }
-
+    
     func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {
-
+        
     }
 }
 
 // MARK: - HKLiveWorkoutBuilderDelegate
 extension WorkoutManager: HKLiveWorkoutBuilderDelegate {
     func workoutBuilderDidCollectEvent(_ workoutBuilder: HKLiveWorkoutBuilder) {
-
+        
     }
-
+    
     func workoutBuilder(_ workoutBuilder: HKLiveWorkoutBuilder, didCollectDataOf collectedTypes: Set<HKSampleType>) {
         for type in collectedTypes {
             guard let quantityType = type as? HKQuantityType else {
                 return
             }
-
+            
             let statistics = workoutBuilder.statistics(for: quantityType)
-
+            
             updateForStatistics(statistics)
         }
     }
@@ -200,14 +227,15 @@ extension WorkoutManager: WCSessionDelegate {
         }
     }
     
-    
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         if let value = message["Message"] as? String {
             print("message received")
             if (value == "Start Workout") {
                 startWorkout(workoutType: .running)
                 currentDisplayScreen = .viewRun
+            } else if (value == "Start Match") {
+                currentDisplayScreen = .viewDuel
             }
-          }
+        }
     }
 }

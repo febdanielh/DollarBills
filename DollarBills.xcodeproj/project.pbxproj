@@ -50,22 +50,30 @@
 		6A0DFC952AFA985100E0F324 /* ShareLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0DFC942AFA985100E0F324 /* ShareLink.swift */; };
 		6A0DFC972AFA986200E0F324 /* DuelAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0DFC962AFA986200E0F324 /* DuelAnimation.swift */; };
 		6A0DFC992AFA987500E0F324 /* LoadingAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0DFC982AFA987500E0F324 /* LoadingAnimation.swift */; };
+		6A1000112B07A8B300B15BCD /* DuelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1000102B07A8B300B15BCD /* DuelItem.swift */; };
+		6A1000132B07A8DE00B15BCD /* ItemStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1000122B07A8DE00B15BCD /* ItemStatus.swift */; };
+		6A1000152B07A8F900B15BCD /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1000142B07A8F900B15BCD /* Player.swift */; };
+		6A1000172B07A91B00B15BCD /* ScrollViewDuel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1000162B07A91B00B15BCD /* ScrollViewDuel.swift */; };
+		6A1000192B07A92F00B15BCD /* TimeLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1000182B07A92F00B15BCD /* TimeLeft.swift */; };
+		6A10001B2B07A94D00B15BCD /* AttackedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A10001A2B07A94D00B15BCD /* AttackedView.swift */; };
+		6A10001D2B07A95F00B15BCD /* BoostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A10001C2B07A95F00B15BCD /* BoostView.swift */; };
+		6A10001F2B07A96F00B15BCD /* DuelModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A10001E2B07A96F00B15BCD /* DuelModeView.swift */; };
+		6A1000212B07A98C00B15BCD /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1000202B07A98C00B15BCD /* ResultView.swift */; };
 		6A3C86212AEB6DB000D73FDF /* DollarBillsWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3C86202AEB6DB000D73FDF /* DollarBillsWatchApp.swift */; };
 		6A3C86252AEB6DB100D73FDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A3C86242AEB6DB100D73FDF /* Assets.xcassets */; };
 		6A3C86282AEB6DB100D73FDF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A3C86272AEB6DB100D73FDF /* Preview Assets.xcassets */; };
 		6A8E798A2AEED65800A927C3 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E79892AEED65800A927C3 /* CountdownView.swift */; };
 		6A8E798C2AEED69800A927C3 /* RunViewTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E798B2AEED69800A927C3 /* RunViewTab.swift */; };
-		6A8E798E2AEED79F00A927C3 /* RunViewPage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E798D2AEED79F00A927C3 /* RunViewPage1.swift */; };
-		6A8E79902AEED7C400A927C3 /* RunViewPage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E798F2AEED7C400A927C3 /* RunViewPage2.swift */; };
-		6A8E79922AEED7CF00A927C3 /* RunViewPage3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E79912AEED7CF00A927C3 /* RunViewPage3.swift */; };
-		6A8E79942AEED7D800A927C3 /* RunViewPage4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E79932AEED7D800A927C3 /* RunViewPage4.swift */; };
-		6A8E79962AEEDEE600A927C3 /* RunViewPage2Directions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E79952AEEDEE600A927C3 /* RunViewPage2Directions.swift */; };
+		6A8E798E2AEED79F00A927C3 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E798D2AEED79F00A927C3 /* ControlView.swift */; };
+		6A8E79902AEED7C400A927C3 /* RunMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E798F2AEED7C400A927C3 /* RunMainView.swift */; };
+		6A8E79922AEED7CF00A927C3 /* RunMetricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E79912AEED7CF00A927C3 /* RunMetricsView.swift */; };
+		6A8E79942AEED7D800A927C3 /* RunMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E79932AEED7D800A927C3 /* RunMapView.swift */; };
+		6A8E79962AEEDEE600A927C3 /* RunDirectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E79952AEEDEE600A927C3 /* RunDirectionView.swift */; };
 		6A8E799A2AEF4D4B00A927C3 /* FinishRunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E79992AEF4D4B00A927C3 /* FinishRunView.swift */; };
 		6A8E799C2AEF538E00A927C3 /* ItemProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E799B2AEF538E00A927C3 /* ItemProgress.swift */; };
 		6A8E799E2AEF562500A927C3 /* PopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E799D2AEF562500A927C3 /* PopUp.swift */; };
 		6A8E79A02AF203EC00A927C3 /* VerticalTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E799F2AF203EC00A927C3 /* VerticalTabView.swift */; };
 		6A95858A2AEE6FC0001AD5D8 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9585892AEE6FC0001AD5D8 /* LoadingView.swift */; };
-		6A95858D2AEE71E7001AD5D8 /* ExtensionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E167968F2AD8E27600340093 /* ExtensionColor.swift */; };
 		6A9585912AEE7390001AD5D8 /* GIFImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9585902AEE7390001AD5D8 /* GIFImage.swift */; };
 		6A9585932AEE7DC5001AD5D8 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9585922AEE7DC5001AD5D8 /* MapView.swift */; };
 		6A9585952AEEBFDE001AD5D8 /* RouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9585942AEEBFDE001AD5D8 /* RouteDetailView.swift */; };
@@ -77,9 +85,14 @@
 		9B29AA1F2AD7B362007DBEA5 /* RunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29AA1E2AD7B362007DBEA5 /* RunView.swift */; };
 		9B5133162AFB31880002A5C0 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5133152AFB31880002A5C0 /* WorkoutManager.swift */; };
 		9B5133192AFB3FB10002A5C0 /* ElapsedTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5133182AFB3FB10002A5C0 /* ElapsedTimeView.swift */; };
+		9B5272A82B0366EB00E70AA7 /* DollarBillsWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6A3C861E2AEB6DB000D73FDF /* DollarBillsWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9B5272AA2B03E58C00E70AA7 /* NearestRouteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5272A92B03E58C00E70AA7 /* NearestRouteCard.swift */; };
+		9B5272AB2B0479E500E70AA7 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195B66B2AE0D32E00FB32C1 /* Routes.swift */; };
+		9B5272AE2B04C4B500E70AA7 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168B99A2ACD4C5400CF56D9 /* Utilities.swift */; };
 		9B81019D2AFC84B300FA4E1A /* WatchToPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B81019C2AFC84B300FA4E1A /* WatchToPhone.swift */; };
 		9B81019F2AFC98EB00FA4E1A /* PhoneToWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B81019E2AFC98EB00FA4E1A /* PhoneToWatch.swift */; };
 		9B8101AA2B00A2BD00FA4E1A /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8101A92B00A2BD00FA4E1A /* LocationManager.swift */; };
+		9BBD127F2B09FC1200C6AEF3 /* RecentRouteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5272AC2B04BFF100E70AA7 /* RecentRouteCard.swift */; };
 		9BD93E372ACEB177004862F7 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD93E362ACEB177004862F7 /* Workout.swift */; };
 		9BD93E3A2ACEB1CC004862F7 /* CLLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD93E392ACEB1CC004862F7 /* CLLocation.swift */; };
 		9BD93E3D2ACEB1EE004862F7 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD93E3C2ACEB1EE004862F7 /* Date.swift */; };
@@ -125,6 +138,14 @@
 		E195B66E2AE0EFEE00FB32C1 /* NearestRouteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195B66D2AE0EFEE00FB32C1 /* NearestRouteCard.swift */; };
 		E195B6722AE219DA00FB32C1 /* QokkaPickCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195B6712AE219DA00FB32C1 /* QokkaPickCard.swift */; };
 		E1A093712AD7E8A000A8A4AC /* PauseRunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A093702AD7E8A000A8A4AC /* PauseRunView.swift */; };
+		E1B78C352B0B1E570015C3B1 /* GameFromWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B78C342B0B1E570015C3B1 /* GameFromWatch.swift */; };
+		E1B78C362B0B412A0015C3B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1347E432AC43558008224CF /* Assets.xcassets */; };
+		E1B78C382B0B435C0015C3B1 /* GameFromWatch+MatchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B78C372B0B435C0015C3B1 /* GameFromWatch+MatchData.swift */; };
+		E1B78C3A2B0B50420015C3B1 /* RealTimeGame+Watch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B78C392B0B50420015C3B1 /* RealTimeGame+Watch.swift */; };
+		E1BBAD412B036E0800EA9140 /* JWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BBAD402B036E0800EA9140 /* JWT.swift */; };
+		E1BBAD452B06593000EA9140 /* RequestURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BBAD442B06593000EA9140 /* RequestURL.swift */; };
+		E1BBAD472B0724A600EA9140 /* SwiftJWT in Frameworks */ = {isa = PBXBuildFile; productRef = E1BBAD462B0724A600EA9140 /* SwiftJWT */; };
+		E1F12D2C2B0C54DF00F6ED9D /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = E168B99E2ACEAAE400CF56D9 /* Items.swift */; };
 		E1FE623A2AEB5A6400D1736C /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FE62392AEB5A6400D1736C /* GifImage.swift */; };
 		E1FE623C2AEB5C3C00D1736C /* spruto lari.gif in Resources */ = {isa = PBXBuildFile; fileRef = E1FE623B2AEB5C3C00D1736C /* spruto lari.gif */; };
 		E1FE623E2AECBF4300D1736C /* SummaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FE623D2AECBF4300D1736C /* SummaryDetailView.swift */; };
@@ -147,6 +168,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
+				9B5272A82B0366EB00E70AA7 /* DollarBillsWatch Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,17 +219,26 @@
 		6A0DFC942AFA985100E0F324 /* ShareLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLink.swift; sourceTree = "<group>"; };
 		6A0DFC962AFA986200E0F324 /* DuelAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelAnimation.swift; sourceTree = "<group>"; };
 		6A0DFC982AFA987500E0F324 /* LoadingAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAnimation.swift; sourceTree = "<group>"; };
+		6A1000102B07A8B300B15BCD /* DuelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DuelItem.swift; path = "DollarBillsWatch Watch App/Components/DuelMode/DuelItem.swift"; sourceTree = SOURCE_ROOT; };
+		6A1000122B07A8DE00B15BCD /* ItemStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStatus.swift; sourceTree = "<group>"; };
+		6A1000142B07A8F900B15BCD /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		6A1000162B07A91B00B15BCD /* ScrollViewDuel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewDuel.swift; sourceTree = "<group>"; };
+		6A1000182B07A92F00B15BCD /* TimeLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLeft.swift; sourceTree = "<group>"; };
+		6A10001A2B07A94D00B15BCD /* AttackedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttackedView.swift; sourceTree = "<group>"; };
+		6A10001C2B07A95F00B15BCD /* BoostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoostView.swift; sourceTree = "<group>"; };
+		6A10001E2B07A96F00B15BCD /* DuelModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelModeView.swift; sourceTree = "<group>"; };
+		6A1000202B07A98C00B15BCD /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		6A3C861E2AEB6DB000D73FDF /* DollarBillsWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DollarBillsWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A3C86202AEB6DB000D73FDF /* DollarBillsWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DollarBillsWatchApp.swift; sourceTree = "<group>"; };
 		6A3C86242AEB6DB100D73FDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6A3C86272AEB6DB100D73FDF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6A8E79892AEED65800A927C3 /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
 		6A8E798B2AEED69800A927C3 /* RunViewTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewTab.swift; sourceTree = "<group>"; };
-		6A8E798D2AEED79F00A927C3 /* RunViewPage1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewPage1.swift; sourceTree = "<group>"; };
-		6A8E798F2AEED7C400A927C3 /* RunViewPage2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewPage2.swift; sourceTree = "<group>"; };
-		6A8E79912AEED7CF00A927C3 /* RunViewPage3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewPage3.swift; sourceTree = "<group>"; };
-		6A8E79932AEED7D800A927C3 /* RunViewPage4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewPage4.swift; sourceTree = "<group>"; };
-		6A8E79952AEEDEE600A927C3 /* RunViewPage2Directions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewPage2Directions.swift; sourceTree = "<group>"; };
+		6A8E798D2AEED79F00A927C3 /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
+		6A8E798F2AEED7C400A927C3 /* RunMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunMainView.swift; sourceTree = "<group>"; };
+		6A8E79912AEED7CF00A927C3 /* RunMetricsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunMetricsView.swift; sourceTree = "<group>"; };
+		6A8E79932AEED7D800A927C3 /* RunMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunMapView.swift; sourceTree = "<group>"; };
+		6A8E79952AEEDEE600A927C3 /* RunDirectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDirectionView.swift; sourceTree = "<group>"; };
 		6A8E79992AEF4D4B00A927C3 /* FinishRunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishRunView.swift; sourceTree = "<group>"; };
 		6A8E799B2AEF538E00A927C3 /* ItemProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemProgress.swift; sourceTree = "<group>"; };
 		6A8E799D2AEF562500A927C3 /* PopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUp.swift; sourceTree = "<group>"; };
@@ -226,6 +257,8 @@
 		9B5133182AFB3FB10002A5C0 /* ElapsedTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElapsedTimeView.swift; sourceTree = "<group>"; };
 		9B51331A2AFB50C20002A5C0 /* DollarBillsWatch-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "DollarBillsWatch-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		9B51331B2AFB50CB0002A5C0 /* DollarBillsWatch Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "DollarBillsWatch Watch App.entitlements"; sourceTree = "<group>"; };
+		9B5272A92B03E58C00E70AA7 /* NearestRouteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestRouteCard.swift; sourceTree = "<group>"; };
+		9B5272AC2B04BFF100E70AA7 /* RecentRouteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentRouteCard.swift; sourceTree = "<group>"; };
 		9B81019C2AFC84B300FA4E1A /* WatchToPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchToPhone.swift; sourceTree = "<group>"; };
 		9B81019E2AFC98EB00FA4E1A /* PhoneToWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneToWatch.swift; sourceTree = "<group>"; };
 		9B8101A92B00A2BD00FA4E1A /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -276,6 +309,11 @@
 		E195B66D2AE0EFEE00FB32C1 /* NearestRouteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestRouteCard.swift; sourceTree = "<group>"; };
 		E195B6712AE219DA00FB32C1 /* QokkaPickCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QokkaPickCard.swift; sourceTree = "<group>"; };
 		E1A093702AD7E8A000A8A4AC /* PauseRunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseRunView.swift; sourceTree = "<group>"; };
+		E1B78C342B0B1E570015C3B1 /* GameFromWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFromWatch.swift; sourceTree = "<group>"; };
+		E1B78C372B0B435C0015C3B1 /* GameFromWatch+MatchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameFromWatch+MatchData.swift"; sourceTree = "<group>"; };
+		E1B78C392B0B50420015C3B1 /* RealTimeGame+Watch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RealTimeGame+Watch.swift"; sourceTree = "<group>"; };
+		E1BBAD402B036E0800EA9140 /* JWT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWT.swift; sourceTree = "<group>"; };
+		E1BBAD442B06593000EA9140 /* RequestURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestURL.swift; sourceTree = "<group>"; };
 		E1FE62392AEB5A6400D1736C /* GifImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImage.swift; sourceTree = "<group>"; };
 		E1FE623B2AEB5C3C00D1736C /* spruto lari.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "spruto lari.gif"; sourceTree = "<group>"; };
 		E1FE623D2AECBF4300D1736C /* SummaryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDetailView.swift; sourceTree = "<group>"; };
@@ -295,6 +333,7 @@
 			files = (
 				9BD93E552ACF2A87004862F7 /* MapKit.framework in Frameworks */,
 				9BD93E532ACF2A81004862F7 /* HealthKit.framework in Frameworks */,
+				E1BBAD472B0724A600EA9140 /* SwiftJWT in Frameworks */,
 				E1806C5B2AF8EE88007A122A /* Supabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,6 +354,7 @@
 				15A71DEA2B0114A2000517EF /* RealTimeGame+GKMatchDelegate.swift */,
 				15A71DE92B0114A2000517EF /* RealTimeGame+GKMatchmakerViewControllerDelegate.swift */,
 				15A71DF42B0114A3000517EF /* RealTimeGame+MatchData.swift */,
+				E1B78C392B0B50420015C3B1 /* RealTimeGame+Watch.swift */,
 			);
 			path = GameKit;
 			sourceTree = "<group>";
@@ -363,6 +403,29 @@
 			path = DuelMode;
 			sourceTree = "<group>";
 		};
+		6A10000F2B07A87500B15BCD /* DuelMode */ = {
+			isa = PBXGroup;
+			children = (
+				6A10001A2B07A94D00B15BCD /* AttackedView.swift */,
+				6A10001C2B07A95F00B15BCD /* BoostView.swift */,
+				6A10001E2B07A96F00B15BCD /* DuelModeView.swift */,
+				6A1000202B07A98C00B15BCD /* ResultView.swift */,
+			);
+			path = DuelMode;
+			sourceTree = "<group>";
+		};
+		6A1000222B07A99400B15BCD /* DuelMode */ = {
+			isa = PBXGroup;
+			children = (
+				6A1000102B07A8B300B15BCD /* DuelItem.swift */,
+				6A1000142B07A8F900B15BCD /* Player.swift */,
+				6A1000162B07A91B00B15BCD /* ScrollViewDuel.swift */,
+				6A1000182B07A92F00B15BCD /* TimeLeft.swift */,
+				6A1000122B07A8DE00B15BCD /* ItemStatus.swift */,
+			);
+			path = DuelMode;
+			sourceTree = "<group>";
+		};
 		6A3C861F2AEB6DB000D73FDF /* DollarBillsWatch Watch App */ = {
 			isa = PBXGroup;
 			children = (
@@ -389,15 +452,9 @@
 		6A3C86302AEB6DBA00D73FDF /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				6A9585902AEE7390001AD5D8 /* GIFImage.swift */,
-				6A8E799D2AEF562500A927C3 /* PopUp.swift */,
-				6A8E799B2AEF538E00A927C3 /* ItemProgress.swift */,
-				6A95859C2AEECC48001AD5D8 /* Countdown.swift */,
-				6A9585922AEE7DC5001AD5D8 /* MapView.swift */,
-				6A9585962AEEBFF3001AD5D8 /* RouteSheet.swift */,
-				6A9585982AEEC263001AD5D8 /* ElevationGraph.swift */,
-				6A95859A2AEEC3F8001AD5D8 /* Button.swift */,
-				9B5133182AFB3FB10002A5C0 /* ElapsedTimeView.swift */,
+				6A1000222B07A99400B15BCD /* DuelMode */,
+				9BBD12812B09FD8A00C6AEF3 /* SoloRun */,
+				9BBD12822B09FDE800C6AEF3 /* Route */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -405,19 +462,11 @@
 		6A3C86312AEB6DBE00D73FDF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6A10000F2B07A87500B15BCD /* DuelMode */,
 				6A9585892AEE6FC0001AD5D8 /* LoadingView.swift */,
 				6A9585942AEEBFDE001AD5D8 /* RouteDetailView.swift */,
-				6A8E79892AEED65800A927C3 /* CountdownView.swift */,
 				156FE4C82B028EAF00B67615 /* LandingPageView.swift */,
-				6A8E798B2AEED69800A927C3 /* RunViewTab.swift */,
-				6A8E79992AEF4D4B00A927C3 /* FinishRunView.swift */,
-				6A0DFC702AFA85A400E0F324 /* InformationView.swift */,
-				6A8E798D2AEED79F00A927C3 /* RunViewPage1.swift */,
-				6A8E799F2AF203EC00A927C3 /* VerticalTabView.swift */,
-				6A8E798F2AEED7C400A927C3 /* RunViewPage2.swift */,
-				6A8E79952AEEDEE600A927C3 /* RunViewPage2Directions.swift */,
-				6A8E79912AEED7CF00A927C3 /* RunViewPage3.swift */,
-				6A8E79932AEED7D800A927C3 /* RunViewPage4.swift */,
+				9BBD12802B09FD5600C6AEF3 /* SoloRun */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -428,8 +477,52 @@
 				9B5133152AFB31880002A5C0 /* WorkoutManager.swift */,
 				9B81019C2AFC84B300FA4E1A /* WatchToPhone.swift */,
 				9B8101A92B00A2BD00FA4E1A /* LocationManager.swift */,
+				E1B78C342B0B1E570015C3B1 /* GameFromWatch.swift */,
+				E1B78C372B0B435C0015C3B1 /* GameFromWatch+MatchData.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		9BBD12802B09FD5600C6AEF3 /* SoloRun */ = {
+			isa = PBXGroup;
+			children = (
+				6A8E79892AEED65800A927C3 /* CountdownView.swift */,
+				6A8E798B2AEED69800A927C3 /* RunViewTab.swift */,
+				6A8E79992AEF4D4B00A927C3 /* FinishRunView.swift */,
+				6A0DFC702AFA85A400E0F324 /* InformationView.swift */,
+				6A8E798D2AEED79F00A927C3 /* ControlView.swift */,
+				6A8E799F2AF203EC00A927C3 /* VerticalTabView.swift */,
+				6A8E798F2AEED7C400A927C3 /* RunMainView.swift */,
+				6A8E79952AEEDEE600A927C3 /* RunDirectionView.swift */,
+				6A8E79912AEED7CF00A927C3 /* RunMetricsView.swift */,
+				6A8E79932AEED7D800A927C3 /* RunMapView.swift */,
+			);
+			path = SoloRun;
+			sourceTree = "<group>";
+		};
+		9BBD12812B09FD8A00C6AEF3 /* SoloRun */ = {
+			isa = PBXGroup;
+			children = (
+				9B5133182AFB3FB10002A5C0 /* ElapsedTimeView.swift */,
+				6A9585902AEE7390001AD5D8 /* GIFImage.swift */,
+				6A8E799B2AEF538E00A927C3 /* ItemProgress.swift */,
+				6A95859C2AEECC48001AD5D8 /* Countdown.swift */,
+			);
+			path = SoloRun;
+			sourceTree = "<group>";
+		};
+		9BBD12822B09FDE800C6AEF3 /* Route */ = {
+			isa = PBXGroup;
+			children = (
+				9B5272A92B03E58C00E70AA7 /* NearestRouteCard.swift */,
+				6A8E799D2AEF562500A927C3 /* PopUp.swift */,
+				9B5272AC2B04BFF100E70AA7 /* RecentRouteCard.swift */,
+				6A9585922AEE7DC5001AD5D8 /* MapView.swift */,
+				6A9585962AEEBFF3001AD5D8 /* RouteSheet.swift */,
+				6A9585982AEEC263001AD5D8 /* ElevationGraph.swift */,
+				6A95859A2AEEC3F8001AD5D8 /* Button.swift */,
+			);
+			path = Route;
 			sourceTree = "<group>";
 		};
 		9BD93E382ACEB17D004862F7 /* Models */ = {
@@ -463,6 +556,8 @@
 				E1FE62392AEB5A6400D1736C /* GifImage.swift */,
 				E1806C5E2AF93C0C007A122A /* SupaExt.swift */,
 				E1806C602AF942EE007A122A /* ViewModelExt.swift */,
+				E1BBAD402B036E0800EA9140 /* JWT.swift */,
+				E1BBAD442B06593000EA9140 /* RequestURL.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -606,6 +701,7 @@
 			name = DollarBills;
 			packageProductDependencies = (
 				E1806C5A2AF8EE88007A122A /* Supabase */,
+				E1BBAD462B0724A600EA9140 /* SwiftJWT */,
 			);
 			productName = DollarBills;
 			productReference = E1347E3C2AC43557008224CF /* DollarBills.app */;
@@ -640,6 +736,7 @@
 			mainGroup = E1347E332AC43557008224CF;
 			packageReferences = (
 				E1806C592AF8EE88007A122A /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				E1BBAD432B06533D00EA9140 /* XCRemoteSwiftPackageReference "Swift-JWT" */,
 			);
 			productRefGroup = E1347E3D2AC43557008224CF /* Products */;
 			projectDirPath = "";
@@ -657,6 +754,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A3C86282AEB6DB100D73FDF /* Preview Assets.xcassets in Resources */,
+				E1B78C362B0B412A0015C3B1 /* Assets.xcassets in Resources */,
 				6A3C86252AEB6DB100D73FDF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -679,31 +777,46 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A9585912AEE7390001AD5D8 /* GIFImage.swift in Sources */,
+				9B5272AB2B0479E500E70AA7 /* Routes.swift in Sources */,
 				6A9585952AEEBFDE001AD5D8 /* RouteDetailView.swift in Sources */,
+				6A1000112B07A8B300B15BCD /* DuelItem.swift in Sources */,
+				E1F12D2C2B0C54DF00F6ED9D /* Items.swift in Sources */,
+				6A1000192B07A92F00B15BCD /* TimeLeft.swift in Sources */,
 				9B5133192AFB3FB10002A5C0 /* ElapsedTimeView.swift in Sources */,
+				6A1000132B07A8DE00B15BCD /* ItemStatus.swift in Sources */,
+				9B5272AE2B04C4B500E70AA7 /* Utilities.swift in Sources */,
 				6A0DFC712AFA85A400E0F324 /* InformationView.swift in Sources */,
 				6A8E799E2AEF562500A927C3 /* PopUp.swift in Sources */,
+				6A1000172B07A91B00B15BCD /* ScrollViewDuel.swift in Sources */,
+				E1B78C352B0B1E570015C3B1 /* GameFromWatch.swift in Sources */,
 				9B81019D2AFC84B300FA4E1A /* WatchToPhone.swift in Sources */,
 				6A8E798C2AEED69800A927C3 /* RunViewTab.swift in Sources */,
+				9B5272AA2B03E58C00E70AA7 /* NearestRouteCard.swift in Sources */,
 				156FE4C92B028EAF00B67615 /* LandingPageView.swift in Sources */,
 				9B5133162AFB31880002A5C0 /* WorkoutManager.swift in Sources */,
 				6A9585932AEE7DC5001AD5D8 /* MapView.swift in Sources */,
 				6A8E79A02AF203EC00A927C3 /* VerticalTabView.swift in Sources */,
+				6A10001F2B07A96F00B15BCD /* DuelModeView.swift in Sources */,
 				6A9585972AEEBFF3001AD5D8 /* RouteSheet.swift in Sources */,
-				6A8E79942AEED7D800A927C3 /* RunViewPage4.swift in Sources */,
-				6A95858D2AEE71E7001AD5D8 /* ExtensionColor.swift in Sources */,
+				6A8E79942AEED7D800A927C3 /* RunMapView.swift in Sources */,
 				6A8E799A2AEF4D4B00A927C3 /* FinishRunView.swift in Sources */,
 				6A95859B2AEEC3F8001AD5D8 /* Button.swift in Sources */,
 				6A8E798A2AEED65800A927C3 /* CountdownView.swift in Sources */,
 				6A8E799C2AEF538E00A927C3 /* ItemProgress.swift in Sources */,
 				6A9585992AEEC263001AD5D8 /* ElevationGraph.swift in Sources */,
-				6A8E79962AEEDEE600A927C3 /* RunViewPage2Directions.swift in Sources */,
+				6A8E79962AEEDEE600A927C3 /* RunDirectionView.swift in Sources */,
 				6A95859D2AEECC48001AD5D8 /* Countdown.swift in Sources */,
-				6A8E79902AEED7C400A927C3 /* RunViewPage2.swift in Sources */,
+				E1B78C382B0B435C0015C3B1 /* GameFromWatch+MatchData.swift in Sources */,
+				6A8E79902AEED7C400A927C3 /* RunMainView.swift in Sources */,
+				6A10001D2B07A95F00B15BCD /* BoostView.swift in Sources */,
+				6A10001B2B07A94D00B15BCD /* AttackedView.swift in Sources */,
+				6A1000212B07A98C00B15BCD /* ResultView.swift in Sources */,
 				6A3C86212AEB6DB000D73FDF /* DollarBillsWatchApp.swift in Sources */,
-				6A8E79922AEED7CF00A927C3 /* RunViewPage3.swift in Sources */,
+				6A8E79922AEED7CF00A927C3 /* RunMetricsView.swift in Sources */,
 				6A95858A2AEE6FC0001AD5D8 /* LoadingView.swift in Sources */,
-				6A8E798E2AEED79F00A927C3 /* RunViewPage1.swift in Sources */,
+				9BBD127F2B09FC1200C6AEF3 /* RecentRouteCard.swift in Sources */,
+				6A8E798E2AEED79F00A927C3 /* ControlView.swift in Sources */,
+				6A1000152B07A8F900B15BCD /* Player.swift in Sources */,
 				9B8101AA2B00A2BD00FA4E1A /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -753,6 +866,8 @@
 				E1806C5F2AF93C0C007A122A /* SupaExt.swift in Sources */,
 				15D24C412AD5D23C00AFE89B /* CustomContent.swift in Sources */,
 				E195B6722AE219DA00FB32C1 /* QokkaPickCard.swift in Sources */,
+				E1BBAD452B06593000EA9140 /* RequestURL.swift in Sources */,
+				E1BBAD412B036E0800EA9140 /* JWT.swift in Sources */,
 				9BD93E472ACEC20F004862F7 /* PermissionView.swift in Sources */,
 				E16796932AD94B8E00340093 /* OnboardingView.swift in Sources */,
 				15A71DF92B0114A3000517EF /* ContentView2.swift in Sources */,
@@ -776,10 +891,8 @@
 				6A0DFC882AFA97D900E0F324 /* ChooseItemView.swift in Sources */,
 				E1563EB22AFB2DC100BDD638 /* ROTWSheet.swift in Sources */,
 				E1563EB62AFC0DBA00BDD638 /* TimePicker.swift in Sources */,
-				6A0DFC912AFA983000E0F324 /* ChosenItemContainer.swift in Sources */,
 				15A71DF52B0114A3000517EF /* RealTimeGame+GKMatchmakerViewControllerDelegate.swift in Sources */,
 				15A71DFE2B0114A3000517EF /* RealTimeGame+GKLocalPlayerListener.swift in Sources */,
-				6A0DFC882AFA97D900E0F324 /* ChooseItemView.swift in Sources */,
 				15D24CB92ADD325700AFE89B /* MainView.swift in Sources */,
 				E15C459A2AF7FE2700D215AB /* Duel.swift in Sources */,
 				6A0DFC932AFA984100E0F324 /* ItemDescriptionContainer.swift in Sources */,
@@ -789,6 +902,7 @@
 				15A71DF62B0114A3000517EF /* RealTimeGame+GKMatchDelegate.swift in Sources */,
 				6A0DFC992AFA987500E0F324 /* LoadingAnimation.swift in Sources */,
 				E1347E402AC43557008224CF /* DollarBillsApp.swift in Sources */,
+				E1B78C3A2B0B50420015C3B1 /* RealTimeGame+Watch.swift in Sources */,
 				15D24CBF2ADD372400AFE89B /* ActivityView.swift in Sources */,
 				E168B99F2ACEAAE400CF56D9 /* Items.swift in Sources */,
 				E168B99B2ACD4C5400CF56D9 /* Utilities.swift in Sources */,
@@ -829,7 +943,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "DollarBillsWatch-Watch-App-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = DollarBillsWatch;
+				INFOPLIST_KEY_CFBundleDisplayName = Furthr;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Furthr needs permission to read to your Health Data to display the workouts you record and heart rate health.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Furthr needs permission to write to your Health Data to save the workouts you record and heart rate health.";
 				INFOPLIST_KEY_NSLocationUsageDescription = "This app needs to access your location.";
@@ -869,7 +983,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "DollarBillsWatch-Watch-App-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = DollarBillsWatch;
+				INFOPLIST_KEY_CFBundleDisplayName = Furthr;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Furthr needs permission to read to your Health Data to display the workouts you record and heart rate health.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Furthr needs permission to write to your Health Data to save the workouts you record and heart rate health.";
 				INFOPLIST_KEY_NSLocationUsageDescription = "This app needs to access your location.";
@@ -1022,6 +1136,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DollarBills/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Furthr;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Furthr needs permission to write to your Health Data to save the workouts you record and heart rate health.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Furthr needs permission to read to your Health Data to display the workouts you record.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs to access your location.";
@@ -1060,6 +1175,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DollarBills/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Furthr;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Furthr needs permission to write to your Health Data to save the workouts you record and heart rate health.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Furthr needs permission to read to your Health Data to display the workouts you record.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs to access your location.";
@@ -1124,6 +1240,14 @@
 				minimumVersion = 0.3.0;
 			};
 		};
+		E1BBAD432B06533D00EA9140 /* XCRemoteSwiftPackageReference "Swift-JWT" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kitura/Swift-JWT";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1131,6 +1255,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E1806C592AF8EE88007A122A /* XCRemoteSwiftPackageReference "supabase-swift" */;
 			productName = Supabase;
+		};
+		E1BBAD462B0724A600EA9140 /* SwiftJWT */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E1BBAD432B06533D00EA9140 /* XCRemoteSwiftPackageReference "Swift-JWT" */;
+			productName = SwiftJWT;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

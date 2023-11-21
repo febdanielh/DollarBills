@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ItemDescriptionContainer: View {
+    let item: Items
     var body: some View {
         VStack {
             ZStack {
@@ -18,9 +19,9 @@ struct ItemDescriptionContainer: View {
                             .frame(width: 97, height: 94)
                             .background(Color(red: 0.98, green: 0.97, blue: 0.97))
                             .cornerRadius(8)
-                        Image("0Potion")
+                        Image(item.image)
                             .resizable()
-                            .frame(width: 97, height: 80)
+                            .frame(width: 97, height: 70)
                         VStack{
                             Spacer()
                             HStack {
@@ -41,10 +42,10 @@ struct ItemDescriptionContainer: View {
                         }
                     }.frame(width: 97, height: 94)
                     VStack (spacing: 8){
-                        Text("Blue Potion")
+                        Text(item.namaItem)
                             .font(.footnote)
                             .fontWeight(.bold)
-                        Text("Double up distance obtained in 20 seconds")
+                        Text(item.desc)
                             .font(Font.custom("SF Pro", size: 11))
                     }
                     .frame(width: 89)
@@ -52,17 +53,15 @@ struct ItemDescriptionContainer: View {
                 }
             }
         }
-        .padding(0)
-        .frame(width: 97, height: 172, alignment: .top)
+        .frame(width: 97, height: 182, alignment: .top)
         .cornerRadius(8)
         .overlay(
             RoundedRectangle(cornerRadius: 8)
-                .inset(by: -0.25)
                 .stroke(Color(red: 0.9, green: 0.9, blue: 0.9), lineWidth: 0.5)
         )
     }
 }
 
 #Preview {
-    ItemDescriptionContainer()
+    ItemDescriptionContainer(item: ItemsData.item[0])
 }
