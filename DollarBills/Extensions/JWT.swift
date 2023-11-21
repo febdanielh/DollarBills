@@ -15,14 +15,7 @@ struct JWT {
     let exp = ((NSDate() as Date) + 20 * 60).timeIntervalSince1970
     let aud = "appstoreconnect-v1"
     
-    let authToken = """
------BEGIN PRIVATE KEY-----
-MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgg2ot+zK3pz1NIZNp
-0XtaXzb+eCR2FEL9f5q07x6M1kKgCgYIKoZIzj0DAQehRANCAAQICVMjYeF6Y3m/
-TGbCriCcVJsqh7JSl3vgD2tdLUZSNZ56v18FFt01xerYfRhvj5+8xPQD0Hcc32KT
-g3J0fkgK
------END PRIVATE KEY-----
-"""
+    let authToken = "asd"
     
     func generateToken() {
         let myHeader = Header(kid: kid)
