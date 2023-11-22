@@ -61,6 +61,19 @@ struct WorkoutPayload: Codable {
     let distance: Double
     let pace: Double
     let duration: Double
+    let routeName: String
+}
+
+struct WorkoutReadPayload: Codable, Hashable {
+    let workoutID: UUID
+    let userID: UUID
+    let startDate: Date
+    let endDate: Date
+    let distance: Double
+    let pace: Double
+    let duration: Double
+    let routeName: String
+    let itemName: [String]
 }
 
 struct WorkoutUpdatePayload: Codable {
@@ -71,6 +84,7 @@ struct WorkoutUpdatePayload: Codable {
     let distance: Double
     let pace: Double
     let duration: Double
+    let itemName: [String]
 }
 
 struct UserPayload: Codable {

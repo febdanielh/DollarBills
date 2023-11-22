@@ -18,16 +18,10 @@ struct FinishRunView: View {
             
             NavigationLink {
                 InformationView()
-<<<<<<< HEAD:DollarBillsWatch Watch App/View/FinishRunView.swift
                     .onAppear(perform: {
                         watchToPhone.sendFinishWorkoutMessageToWatch()
                         workoutManager.endWorkout()
                     })
-=======
-                    .onAppear {
-                        workoutManager.endWorkout()
-                    }
->>>>>>> dev:DollarBillsWatch Watch App/View/SoloRun/FinishRunView.swift
                     .navigationBarBackButtonHidden(true)
             } label: {
                 ZStack {
@@ -41,10 +35,7 @@ struct FinishRunView: View {
             }
             .frame(width: 175, height: 50)
             .padding(.top, 8)
-<<<<<<< HEAD:DollarBillsWatch Watch App/View/FinishRunView.swift
             
-=======
->>>>>>> dev:DollarBillsWatch Watch App/View/SoloRun/FinishRunView.swift
             
             NavigationLink {
                 LandingPageView(routes: RouteData.routeData)

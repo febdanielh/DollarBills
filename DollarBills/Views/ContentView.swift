@@ -66,6 +66,7 @@ struct ContentView: View {
             OnboardingView(shouldShowOnboarding: $shouldShowOnboarding)
                 .onDisappear {
                     launchedBefore = true
+                    vm.getThatDay(pickedDate: Date())
                     vm.currentDisplayScreen = .viewMain
                     game.authenticatePlayer()
                 }

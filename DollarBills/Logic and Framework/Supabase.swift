@@ -15,7 +15,7 @@ class Supabase {
     
     private init(){}
     
-    lazy var client = SupabaseClient(supabaseURL: SupaExt.supabaseURL, supabaseKey: SupaExt.supabaseKey)
+    var client = SupabaseClient(supabaseURL: SupaExt.supabaseURL, supabaseKey: SupaExt.supabaseKey)
     
     
     // MARK: Inserts
@@ -93,6 +93,30 @@ class Supabase {
             return "Not Found"
         }
         return response
+        
+    }
+    
+    func fetchCurrentUserWorkouts(for userID: UUID) async throws -> [WorkoutReadPayload] {
+        
+        print("haloooo0")
+        
+        var workoutsFetched: [WorkoutReadPayload]
+        
+        do {
+            
+            workoutsFetched = try await client.database.from("Workout").select().execute().value
+            
+            print("workoutsFetched: \(workoutsFetched)")
+            
+            return workoutsFetched
+            
+        } catch {
+            
+            print(error)
+            
+        }
+        
+        return []
         
     }
     

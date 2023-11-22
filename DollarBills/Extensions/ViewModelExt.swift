@@ -49,7 +49,7 @@ extension ViewModel {
     func createWorkoutItems() async throws {
         let userIDNow = try await self.fetchUserID()
         
-        let workout = WorkoutPayload(workoutID: nil, userID: userIDNow, startDate: .now, endDate: .now, distance: 0.0, pace: 0.0, duration: 0.0)
+        let workout = WorkoutPayload(workoutID: nil, userID: userIDNow, startDate: .now, endDate: .now, distance: 0.0, pace: 0.0, duration: 0.0, routeName: selectedAnnotation.routeName)
         Task {
             try await Supabase.shared.createWorkoutItem(item: workout)
         }
@@ -122,6 +122,14 @@ extension ViewModel {
         }
     }
     
+    func fetchWorkouts() async throws -> [WorkoutReadPayload] {
+        
+        let userID = try await fetchUserID()
+        let returningWorkouts = try await Supabase.shared.fetchCurrentUserWorkouts(for: userID)
+        return returningWorkouts
+        
+    }
+    
     // MARK: Delete
     
     
@@ -133,7 +141,8 @@ extension ViewModel {
     
     func updateWorkoutItems(distance: Double, pace: Double, duration: Double) async throws {
         let userIDNow = try await fetchUserID()
-        let item = WorkoutUpdatePayload(workoutID: nil, userID: nil, startDate: nil, endDate: .now, distance: distance, pace: pace, duration: duration)
+        let itemNames: [String] = getItemNames()
+        let item = WorkoutUpdatePayload(workoutID: nil, userID: nil, startDate: nil, endDate: .now, distance: distance, pace: pace, duration: duration, itemName: itemNames)
         try await Supabase.shared.updateWorkoutItems(item: item, uid: userIDNow)
     }
     

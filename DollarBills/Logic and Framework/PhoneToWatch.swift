@@ -49,6 +49,7 @@ class PhoneToWatch: NSObject, ObservableObject {
     }
     
     func sendMessageToWatch() {
+        print("haloo")
         isRunning = true
         let message = ["Message": "Start Workout"]
         if (WCSession.default.isReachable) {

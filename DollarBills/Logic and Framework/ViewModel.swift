@@ -16,6 +16,56 @@ import SwiftUI
 class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     private var locationManager: CLLocationManager = CLLocationManager()
+    
+    // Workouts
+    @Published var workouts = [Workout]()
+    
+    @Published var loadingWorkouts = true
+    
+    @Published var workoutsExactDay : [Workout] = []
+    
+    @Published var supaWorkoutsExactDay : [WorkoutReadPayload] = []
+    
+    @Published var supaWorkouts: [WorkoutReadPayload] = []
+    
+    func getThatDay(pickedDate: Date) {
+        
+        loadWorkouts()
+        
+        var workoutsToday: [Workout] = []
+        
+        for i in workouts {
+            print(i.date.formatted(date:.complete, time: .omitted))
+            if (i.date.formatted(date: .complete, time: .omitted) ==
+                pickedDate.formatted(date: .complete, time: .omitted)) {
+                workoutsToday.append(i)
+            }
+        }
+        
+        workoutsExactDay = workoutsToday
+        
+        Task {
+            do {
+                supaWorkouts = try await fetchWorkouts()
+            } catch {
+                print(error)
+            }
+            
+        }
+        
+        var supaWorkoutsToday: [WorkoutReadPayload] = []
+        
+        for i in supaWorkouts {
+            if (i.startDate.formatted(date: .complete, time: .omitted) ==
+                pickedDate.formatted(date: .complete, time: .omitted)) {
+                supaWorkoutsToday.append(i)
+            }
+        }
+        
+        supaWorkoutsExactDay = supaWorkoutsToday
+        
+    }
+    
     @Published var currentRoomID: String = ""
     @Published var currentDisplayScreen: DisplayScreen = .viewMain
     @Published var selectedSegment = 0
@@ -98,6 +148,14 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         return Workout(activityType: activityType, polyline: polyline, locations: locations, date: startDate, duration: totalElapsedTime, heartRate: heartRate, calorieBurned: calorieBurned, itemsCollected: itemsCollected)
     }
     
+    func getItemNames() -> [String] {
+        var itemNames: [String] = []
+        for item in itemsCollected {
+            itemNames.append(item.namaItem)
+        }
+        return itemNames
+    }
+    
     @Published var showPermissionsView = false
     @Published var healthUnavailable = !HKHelper.available
     @Published var healthStatus = HKAuthorizationStatus.notDetermined
@@ -127,10 +185,6 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     var locationAuth: Bool {locationStatus == .authorizedWhenInUse}
     var mapView: MKMapView = MKMapView()
-    
-    // Workouts
-    @Published var workouts = [Workout]()
-    @Published var loadingWorkouts = true
     
     @Published var selectedWorkout: Workout? { didSet {
         updatePolylines()
@@ -217,30 +271,8 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
                 }
             }
         }
+        print ("workouts:\(workouts)")
     }
-    
-    func getToday() -> Workout? {
-        for i in workouts {
-            print(i.date.formatted(date:.complete, time: .omitted))
-            if (i.date.formatted(date: .complete, time: .omitted) ==
-                "Wednesday, 11 October 2023") {
-                return i
-            }
-        }
-        return nil
-    }
-    
-    func getThatDay(pickedDate: Date) -> Workout? {
-        for i in workouts {
-            print(pickedDate.formatted(date:.complete, time: .omitted))
-            if (i.date.formatted(date: .complete, time: .omitted) ==
-                pickedDate.formatted(date: .complete, time: .omitted)) {
-                return i
-            }
-        }
-        return nil
-    }
-    
     
     // MARK: - Workout Tracking // add the heart data recovery part
     

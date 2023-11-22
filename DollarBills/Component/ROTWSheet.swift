@@ -123,9 +123,9 @@ struct ROTWSheet: View {
                 }.padding(.vertical).padding(.horizontal, 24)
             }
         }
-        .onAppear{
-            distance = vm.getUserDistance(latitude: selectedAnnotation.waypoints[0].coordinate.latitude , longitude: selectedAnnotation.waypoints[0].coordinate.longitude)
-        }
+        .onAppear(perform: {
+            distance = vm.getUserDistance(latitude: selectedAnnotation.waypoints[0].coordinate.latitude, longitude: selectedAnnotation.waypoints[0].coordinate.longitude)
+        })
         .presentationDetents([.fraction(0.47), .medium])
         .interactiveDismissDisabled(true)
         .presentationBackgroundInteraction(.enabled)

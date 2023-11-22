@@ -46,7 +46,6 @@ class WorkoutManager: NSObject, ObservableObject {
         
         builder?.dataSource = HKLiveWorkoutDataSource(healthStore: healthStore,
                                                       workoutConfiguration: configuration)
-        let startDate = Date()
         session?.startActivity(with: startDate)
         builder?.beginCollection(withStart: startDate) { (success, error) in
         }

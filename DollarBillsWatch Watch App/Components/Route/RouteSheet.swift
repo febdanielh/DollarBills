@@ -9,10 +9,6 @@ import SwiftUI
 
 struct RouteSheet: View {
     @EnvironmentObject var workoutManager: WorkoutManager
-<<<<<<< HEAD:DollarBillsWatch Watch App/Components/RouteSheet.swift
-    var watchToPhone = WatchToPhone()
-=======
->>>>>>> dev:DollarBillsWatch Watch App/Components/Route/RouteSheet.swift
     var routes: Routes
     var body: some View {
         ScrollView {
