@@ -25,11 +25,14 @@ struct MainView: View {
             } else if (vm.selectedSegment == 1) {
                 ActivityView()
             } else if (vm.selectedSegment == 2) {
-                ContentView2()
-                    .onAppear(perform: {
+                //                ContentView2()
+                //                    .onAppear {
+                //                        game.authenticatePlayer()
+                //                    }
+                LandingPageView(roomManager: roomManager)
+                    .onAppear{
                         game.authenticatePlayer()
-                    })
-//                LandingPageView(roomManager: roomManager)
+                    }
             } else if (vm.selectedSegment == 3) {
                 ProfileView()
             }

@@ -39,7 +39,6 @@ class PhoneToWatch: NSObject, ObservableObject {
 //        watchElevation = wElevation
 //        
 //    }
-    
     var session: WCSession
     
     init(session: WCSession = .default) {
@@ -59,16 +58,23 @@ class PhoneToWatch: NSObject, ObservableObject {
             print("startWatchWorkout send message")
         }
     }
-
+    
+    func sendStartMatchMessageToWatch() {
+        let message = ["Message": "Start Match"]
+        if (WCSession.default.isReachable) {
+            WCSession.default.sendMessage(message, replyHandler: nil) { error in
+                print("Error when sending the message with error: \(error.localizedDescription)")
+            }
+            print("start duel send message")
+        }
+    }
 }
 
 extension PhoneToWatch: WCSessionDelegate {
     func sessionDidBecomeInactive(_ session: WCSession) {
-        
     }
     
     func sessionDidDeactivate(_ session: WCSession) {
-        
     }
     
     
@@ -92,7 +98,6 @@ extension PhoneToWatch: WCSessionDelegate {
             isRunning = false
         }
     }
-    
     
 //    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
 //        print("Received message from Watch")

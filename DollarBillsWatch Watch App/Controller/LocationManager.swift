@@ -11,7 +11,7 @@ import HealthKit
 
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private var locationManager: CLLocationManager?
-    
+
     @Published var locationAccess: Bool = true
     
     @Published var userLocation: CLLocationCoordinate2D?
@@ -25,6 +25,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     var routeBuilder: HKWorkoutRouteBuilder?
     
     func setupLocationManager() {
+        locationManager = CLLocationManager()
         checkServiceAvailability()
         locationManager?.desiredAccuracy = kCLLocationAccuracyBest
         locationManager?.distanceFilter = 10
@@ -37,18 +38,20 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
 
     func checkServiceAvailability() {
+        DispatchQueue.main.async {
             if CLLocationManager.locationServicesEnabled() {
                 self.locationManager = CLLocationManager()
                 self.locationManager?.delegate = self
             } else {
                 print("Location Services not Enabled.")
             }
+        }
     }
     
     private func checkLocationAuthorization() {
         
         guard let locationManager = locationManager else { return }
-        
+
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
 
         switch locationManager.authorizationStatus {
@@ -90,6 +93,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error.localizedDescription)
+        print("Location Manager failed with error: \(error.localizedDescription)")
     }
 }

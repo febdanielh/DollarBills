@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct ResultView: View {
-    
+    @EnvironmentObject var game: RealTimeGame
     var body: some View {
         VStack {
             Text("Duel Mode").font(.headline)
                 .padding()
             Divider()
             ScrollView (showsIndicators: false){
-                Spacer().frame(height: 41)
-                VStack (spacing:20){
+                Spacer().frame(height: 28)
+                VStack (spacing: 20){
                     Text("Congratulations!")
                         .font(.title3)
                     Text("You Win")
@@ -24,20 +24,25 @@ struct ResultView: View {
                     
                     ZStack {
                         DuelAnimation()
-                            .frame(height: 300)
-                        LobbyPlayerName()
-                        Text("Guest123")
-                            .offset(x:110)
-                            .foregroundColor(.black)
-                            .fontWeight(.bold)
-                        Text("Guest123")
-                            .offset(x:-110)
-                            .foregroundColor(.black)
-                            .fontWeight(.bold)
-                        
+                            .frame(height: 250)
+                        Image("resultFlag")
+                            .offset(y: 18)
+                            .shadow(radius: 2)
+                        HStack {
+                            Text(game.myName)
+                                .foregroundColor(.white)
+                                .fontWeight(.bold)
+                            Spacer()
+                            Text(game.opponentName)
+                                .foregroundColor(.white)
+                                .fontWeight(.bold)
+                        }
+                        .padding(.horizontal, 10)
+                        .frame(width: 340)
                     }
                     
                     Text("Monday, 16 October 2023")
+                        .font(.subheadline).fontWeight(.medium)
                     
                     
                     ZStack{
@@ -73,28 +78,37 @@ struct ResultView: View {
                     VStack (spacing: 5){
                         SubtitleView(textSub: "DISTANCE")
                         HStack{
-                            
                             ZStack {
                                 Rectangle()
                                     .foregroundColor(.clear)
                                     .frame(width: 170, height: 44)
-                                    .background(Color(red: 0.09, green: 0.56, blue: 1))
                                     .cornerRadius(8)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .inset(by: 1)
+                                            .stroke(Color(red: 0.85, green: 0.85, blue: 0.85), lineWidth: 2)
+                                        
+                                    )
                                 
                                 Text("5.00 km")
                                     .font(.headline)
-                                    .foregroundColor(Color(red: 1, green: 1, blue: 1))
+                                    .foregroundStyle(Color.black2)
                             }
                             
                             ZStack {
                                 Rectangle()
                                     .foregroundColor(.clear)
                                     .frame(width: 170, height: 44)
-                                    .background(Color(red: 0.76, green: 0.03, blue: 0.03))
                                     .cornerRadius(8)
-                                Text("5.00 km")
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .inset(by: 1)
+                                            .stroke(Color(red: 0.85, green: 0.85, blue: 0.85), lineWidth: 2)
+                                        
+                                    )
+                                Text("3.75 km")
                                     .font(.headline)
-                                    .foregroundColor(Color(red: 1, green: 1, blue: 1))
+                                    .foregroundColor(Color.black2)
                                 
                             }
                         }
@@ -105,9 +119,14 @@ struct ResultView: View {
                                 Rectangle()
                                     .foregroundColor(.clear)
                                     .frame(width: 170, height: 131)
-                                    .background(Color(red: 0.71, green: 0.85, blue: 0.98))
-                                    .cornerRadius(8.33)
+                                    .cornerRadius(8)
                                     .opacity(0.80)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .inset(by: 1)
+                                            .stroke(Color(red: 0.85, green: 0.85, blue: 0.85), lineWidth: 2)
+                                        
+                                    )
                                 
                                 VStack (spacing: 3){
                                     ItemDeductPointView()
@@ -120,8 +139,13 @@ struct ResultView: View {
                                 Rectangle()
                                     .foregroundColor(.clear)
                                     .frame(width: 170, height: 131)
-                                    .background(Color(red: 1, green: 0.69, blue: 0.69))
                                     .cornerRadius(8)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .inset(by: 1)
+                                            .stroke(Color(red: 0.85, green: 0.85, blue: 0.85), lineWidth: 2)
+                                        
+                                    )
                                 
                                 VStack (spacing: 3){
                                     ItemDeductPointView()
@@ -150,8 +174,13 @@ struct ResultView: View {
                                 Rectangle()
                                     .foregroundColor(.clear)
                                     .frame(width: 170, height: 69)
-                                    .background(Color(red: 1, green: 0.69, blue: 0.69))
-                                    .cornerRadius(8.33)
+                                    .cornerRadius(8)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .inset(by: 1)
+                                            .stroke(Color(red: 0.85, green: 0.85, blue: 0.85), lineWidth: 2)
+                                        
+                                    )
                                 
                                 HStack(spacing: 3){
                                     ItemView()
@@ -168,8 +197,8 @@ struct ResultView: View {
                                     .frame(width: 170, height: 69)
                                     .background(Color(red: 0.09, green: 0.56, blue: 1))
                                     .cornerRadius(8.33)
-                                Text("3.70 km")
-                                    .font(.title2)
+                                Text("4.72 km")
+                                    .font(.system(size: 25))
                                     .foregroundStyle(.white)
                                     .fontWeight(.bold)
                             }
@@ -180,8 +209,8 @@ struct ResultView: View {
                                     .frame(width: 170, height: 69)
                                     .background(Color(red: 0.76, green: 0.03, blue: 0.03))
                                     .cornerRadius(8.33)
-                                Text("2.70 km")
-                                    .font(.title2)
+                                Text("3.57 km")
+                                    .font(.system(size: 25))
                                     .foregroundStyle(.white)
                                     .fontWeight(.bold)
                             }
@@ -192,12 +221,12 @@ struct ResultView: View {
                 }
             }
         }
-//        .padding(.top, 30)
     }
 }
 
 #Preview {
     ResultView()
+        .environmentObject(RealTimeGame())
 }
 
 struct SubtitleView: View {
@@ -207,7 +236,7 @@ struct SubtitleView: View {
             Rectangle()
                 .foregroundColor(.clear)
                 .frame(width: 345, height: 36)
-                .background(Color(red: 0.32, green: 0.32, blue: 0.32))
+                .background(Color.black2)
                 .cornerRadius(8.33)
                 .overlay(
                     RoundedRectangle(cornerRadius: 8.33)
@@ -215,7 +244,7 @@ struct SubtitleView: View {
                         .stroke(Color(red: 0.66, green: 0.66, blue: 0.66), lineWidth: 0.52)
                 )
             Text(textSub)
-                .font(.headline)
+                .font(.footnote).fontWeight(.semibold)
                 .lineSpacing(18)
                 .foregroundColor(.white)
             
@@ -239,13 +268,27 @@ struct ItemView: View {
 }
 
 struct ItemDeductPointView: View {
+    
+//    let itemsUsed: [String] --> buat nanti klo udah bisa di coba
+    
     var body: some View {
+//        VStack {
+//            ForEach(itemsUsed.indices, id: \.self) { item in
+//                HStack {
+//                    Image("\(item)")
+//                        .resizable()
+//                        .frame(width: 40, height: 30)
+//                    Text("-5 m")
+//                }
+//            }
+//        }
         HStack{
             Image("2Potion")
                 .resizable()
                 .frame(width: 40, height: 30)
             Text("-5 m")
-                .font(.headline)
+                .font(.subheadline)
+                .fontWeight(.semibold)
         }
     }
 }

@@ -16,9 +16,9 @@ struct MapView: View {
         Map(coordinateRegion: $locationManager.region, showsUserLocation: true, userTrackingMode: .constant(.follow))
             .ignoresSafeArea()
             .accentColor(.blue)
-            .onAppear {
-                locationManager.checkServiceAvailability()
-            }
+//            .onAppear {
+//                locationManager.checkServiceAvailability()
+//            }
     }
 }
 

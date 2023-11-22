@@ -1,16 +1,16 @@
 /*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-The main class that implements the logic for a simple real-time game.
-*/
+ See LICENSE folder for this sample’s licensing information.
+ 
+ Abstract:
+ The main class that implements the logic for a simple real-time game.
+ */
 
 import Foundation
 import GameKit
 import SwiftUI
 
 /// - Tag:RealTimeGame
-@MainActor
+//@MainActor
 class RealTimeGame: NSObject, GKGameCenterControllerDelegate, ObservableObject {
     
     // The local player's friends, if they grant access.
@@ -21,6 +21,7 @@ class RealTimeGame: NSObject, GKGameCenterControllerDelegate, ObservableObject {
     @Published var playingGame = false
     @Published var myMatch: GKMatch? = nil
     @Published var automatch = false
+    @Published var isConnected = false
     
     // Outcomes of the game for notifing players.
     @Published var youForfeit = false
@@ -37,6 +38,8 @@ class RealTimeGame: NSObject, GKGameCenterControllerDelegate, ObservableObject {
     @Published var timeRemaining: TimeInterval = 0
     @Published var opponentScore: Int = 0
     @Published var globalTimer : Timer?
+    @Published var distance: Double = 0.0
+    @Published var myItems: [Items] = []
     
     // The voice chat properties.
     @Published var voiceChat: GKVoiceChat? = nil
@@ -62,7 +65,7 @@ class RealTimeGame: NSObject, GKGameCenterControllerDelegate, ObservableObject {
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         return windowScene?.windows.first?.rootViewController
     }
-
+    
     /// Authenticates the local player, initiates a multiplayer game, and adds the access point.
     /// - Tag:authenticatePlayer
     func authenticatePlayer() {
@@ -93,7 +96,7 @@ class RealTimeGame: NSObject, GKGameCenterControllerDelegate, ObservableObject {
                     print("Error: \(error.localizedDescription).")
                 }
             }
-
+            
             // Register for real-time invitations from other players.
             GKLocalPlayer.local.register(self)
             
@@ -139,7 +142,9 @@ class RealTimeGame: NSObject, GKGameCenterControllerDelegate, ObservableObject {
     
     /// Presents the matchmaker interface where the local player selects and sends an invitation to another player.
     /// - Tag:choosePlayer
-    func choosePlayer() {
+    func choosePlayer(time: TimeInterval, items: [Items]) {
+        timeRemaining = time
+        myItems = items
         // Create a match request.
         let request = GKMatchRequest()
         request.minPlayers = 2
@@ -151,7 +156,7 @@ class RealTimeGame: NSObject, GKGameCenterControllerDelegate, ObservableObject {
         // Present the interface where the player selects opponents and starts the game.
         if let viewController = GKMatchmakerViewController(matchRequest: request) {
             viewController.matchmakerDelegate = self
-            rootViewController?.present(viewController, animated: true) { }
+            rootViewController?.present(viewController, animated: true) {}
         }
     }
     
@@ -165,6 +170,7 @@ class RealTimeGame: NSObject, GKGameCenterControllerDelegate, ObservableObject {
         playingGame = true
         myMatch = match
         myMatch?.delegate = self
+        
         globalTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             self.decreaseTimer()
         }
@@ -176,8 +182,9 @@ class RealTimeGame: NSObject, GKGameCenterControllerDelegate, ObservableObject {
     }
     
     func decreaseTimer() {
-        timeRemaining = timeRemaining - 0.5
+        timeRemaining = timeRemaining - 1
         if (timeRemaining <= 0) {
+            globalTimer?.invalidate()
             endMatch()
         }
     }
@@ -197,8 +204,159 @@ class RealTimeGame: NSObject, GKGameCenterControllerDelegate, ObservableObject {
         }
     }
     
-    /// Quits a match and saves the game data.
-    /// - Tag:endMatch
+    func takeActions(item: String) {
+        switch item {
+        case "Blue Potion":
+            takeActionBluePotion()
+        case "Red Potion":
+            takeActionRedPotion()
+        case "Rock":
+            takeActionRock()
+        case "Bomb":
+            takeActionBomb()
+        case "White Flag":
+            takeActionWhiteFlag()
+        default:
+            takeAction()
+        }
+    }
+    
+    func takeActionRock() {
+        //freeze distance for 10 seconds -> basically ngurangin timer selama 10 detik
+        timeRemaining -= 10
+        
+        do {
+            let data = encode(timeRemaining: timeRemaining)
+            try myMatch?.sendData(toAllPlayers: data!, with: GKMatch.SendDataMode.unreliable)
+        } catch {
+            print("Error: \(error.localizedDescription).")
+        }
+    }
+    
+    var tempTimer: Timer?
+    
+    func takeActionBluePotion() {
+        //double up distance obtained for 10 seconds
+        var tempDistance = 0.0
+        var tempDuration = 10.0
+        
+        tempTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            guard let self = self else {
+                self?.tempTimer?.invalidate()
+                return
+            }
+            
+            tempDuration -= 1.0
+            tempDistance += self.distance
+            
+            // Check if the power-up time has elapsed
+            if tempDuration <= 0 {
+                tempTimer?.invalidate()
+                tempDuration = 0
+                self.distance += tempDistance
+            } else {
+                // Send updated distance data
+                do {
+                    let data = self.encode(distance: self.distance)
+                    try self.myMatch?.sendData(toAllPlayers: data!, with: .unreliable)
+                } catch {
+                    print("Error: \(error.localizedDescription).")
+                }
+            }
+        }
+    }
+    
+    func takeActionRedPotion() {
+        //half the distance obtained in 10 second
+        var tempDistance = 0.0
+        var tempDuration = 10.0
+        
+        tempTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            guard let self = self else {
+                self?.tempTimer?.invalidate()
+                return
+            }
+            
+            tempDuration -= 1.0
+            tempDistance += self.distance
+            
+            // Check if the power-up time has elapsed
+            if tempDuration <= 0 {
+                tempTimer?.invalidate()
+                tempDuration = 0
+                var newTempDistance = tempDistance / 2
+                self.distance = self.distance - tempDistance + newTempDistance
+            } else {
+                // Send updated distance data
+                do {
+                    let data = self.encode(distance: self.distance)
+                    try self.myMatch?.sendData(toAllPlayers: data!, with: .unreliable)
+                } catch {
+                    print("Error: \(error.localizedDescription).")
+                }
+            }
+        }
+    }
+    
+    func takeAction3Rocks() {
+        //3 Rocks can freeze opponent for 10 s and reduce the amount of distance gain within 10 s
+        var tempDistance = 0.0
+        var tempDuration = 10.0
+        
+        tempTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            guard let self = self else {
+                self?.tempTimer?.invalidate()
+                return
+            }
+            
+            tempDuration -= 1.0
+            tempDistance += self.distance
+            
+            // Check if the power-up time has elapsed
+            if tempDuration <= 0 {
+                tempTimer?.invalidate()
+                tempDuration = 0
+                self.distance -= tempDistance
+            } else {
+                // Send updated distance data
+                do {
+                    let data = self.encode(distance: self.distance)
+                    try self.myMatch?.sendData(toAllPlayers: data!, with: .unreliable)
+                } catch {
+                    print("Error: \(error.localizedDescription).")
+                }
+            }
+        }
+    }
+    
+    func takeActionBomb() {
+        //reduce distance by 200m
+        let tempDistance = 200.0
+        
+        self.distance -= tempDistance
+        
+        do {
+            let data = encode(distance: distance)
+            try myMatch?.sendData(toAllPlayers: data!, with: GKMatch.SendDataMode.unreliable)
+        } catch {
+            print("Error: \(error.localizedDescription).")
+        }
+    }
+    
+    func takeActionWhiteFlag() {
+        //add 200 m
+        let tempDistance = 200.0
+        
+        self.distance += tempDistance
+        
+        do {
+            let data = encode(distance: distance)
+            try myMatch?.sendData(toAllPlayers: data!, with: GKMatch.SendDataMode.unreliable)
+        } catch {
+            print("Error: \(error.localizedDescription).")
+        }
+    }
+    
     func endMatch() {
         let myOutcome = myScore >= opponentScore ? "won" : "lost"
         let opponentOutcome = opponentScore > myScore ? "won" : "lost"
@@ -211,7 +369,7 @@ class RealTimeGame: NSObject, GKGameCenterControllerDelegate, ObservableObject {
             print("Error: \(error.localizedDescription).")
         }
         
-        // Notify the local player that they won or lost.
+        // Notify won or lost.
         if myOutcome == "won" {
             youWon = true
         } else {
@@ -219,33 +377,23 @@ class RealTimeGame: NSObject, GKGameCenterControllerDelegate, ObservableObject {
         }
     }
     
-    /// Saves the local player's score.
-    /// - Tag:saveScore
-//    func saveScore() {
-//        GKLeaderboard.submitScore(myScore, context: 0, player: GKLocalPlayer.local,
-//            leaderboardIDs: ["123"]) { error in
-//            if let error {
-//                print("Error: \(error.localizedDescription).")
-//            }
-//        }
-//    }
-    
-    /// Resets a match after players reach an outcome or cancel the game.
     func resetMatch() {
         // Reset the game data.
         playingGame = false
+        isConnected = false
         myMatch?.disconnect()
         myMatch?.delegate = nil
         myMatch = nil
         opponent = nil
         opponentAvatar = Image(systemName: "person.crop.circle")
-        GKAccessPoint.shared.isActive = true
+        GKAccessPoint.shared.isActive = false
         youWon = false
         opponentWon = false
-        // Reset the score.
+        
         timeRemaining = 0
         myScore = 0
         opponentScore = 0
+        myItems.removeAll()
     }
     
 }

@@ -1,9 +1,9 @@
 /*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-An extension for real-time games that handles matchmaker view controller delegate callbacks.
-*/
+ See LICENSE folder for this sample’s licensing information.
+ 
+ Abstract:
+ An extension for real-time games that handles matchmaker view controller delegate callbacks.
+ */
 
 import Foundation
 import GameKit
@@ -16,9 +16,15 @@ extension RealTimeGame: GKMatchmakerViewControllerDelegate {
         // Dismiss the view controller.
         viewController.dismiss(animated: true) { }
         
+//        isConnected = true
+//        myMatch = match
+        
         // Start the game with the player.
         if !playingGame && match.expectedPlayerCount == 0 {
             startMyMatchWith(match: match, time: timeRemaining)
+            sendItemDataToWatch(item: myItems)
+            print(myItems)
+            print("started")
         }
     }
     

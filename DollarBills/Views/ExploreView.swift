@@ -28,7 +28,7 @@ struct ExploreView: View {
                 // GM & Race
                 HStack {
                     Text("Explore")
-                        .font(.title)
+                        .font(.system(size: 30))
                         .bold()
                     
                     Spacer()

@@ -98,6 +98,7 @@ struct routeSheet: View {
                         Text("START RUNNING")
                             .bold()
                     })
+                    .frame(maxWidth: .infinity)
                     .buttonStyle(ActiveBlackSheetButton())
                     .padding(.bottom)
                     .fullScreenCover(isPresented: $isStarted, content: {
