@@ -11,7 +11,7 @@ struct CountdownView: View {
     
     @State private var countdown = 3
     @EnvironmentObject var vm: ViewModel
-    @ObservedObject var phoneToWatch = PhoneToWatch()
+    @EnvironmentObject var phoneToWatch : PhoneToWatch
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -42,10 +42,7 @@ struct CountdownView: View {
             else {
                 Text("")
                     .onAppear(perform: {
-                        phoneToWatch.sendMessageToWatch()
-                        Task {
-                            await vm.startWorkout(type: .running)
-                        }
+                        phoneToWatch.isRunning = true
                         vm.currentDisplayScreen = .viewRun
                     })
             }

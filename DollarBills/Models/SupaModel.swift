@@ -62,6 +62,7 @@ struct WorkoutPayload: Codable {
     let pace: Double
     let duration: Double
     let routeName: String
+    var itemName: [String] = []
 }
 
 struct WorkoutReadPayload: Codable, Hashable {

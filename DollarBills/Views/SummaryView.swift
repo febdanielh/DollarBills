@@ -317,6 +317,7 @@ struct SummaryView: View {
             ScrollView {
                 
                 VStack {
+                    
                     // Today and See All
                     VStack (alignment: .leading) {
                         
@@ -347,7 +348,6 @@ struct SummaryView: View {
                     }
                     .frame(width: 354)
                     .padding(.horizontal)
-                    
                     
                     ScrollView {
                         

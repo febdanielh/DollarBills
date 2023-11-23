@@ -20,7 +20,7 @@ struct routeSheet: View {
     @Binding var isRouteSelected: Bool
     @State var isStarted: Bool = false
     @Binding var currentRouteIndex: Int
-    var distance: CLLocationDistance = 0
+    @State var distance: CLLocationDistance = 0
     
     var body: some View {
         VStack {
@@ -73,8 +73,6 @@ struct routeSheet: View {
                     .padding([.bottom])
                     
                     HStack {
-                        let distance = vm.getUserDistance(latitude: selectedAnnotation.waypoints[0].coordinate.latitude, longitude: selectedAnnotation.waypoints[0].coordinate.longitude)
-                        
                         Text("This route is \(distance, specifier: "%.2f") km from you.")
                         
                         if (vm.distance > 0.2) {
@@ -118,6 +116,9 @@ struct routeSheet: View {
                 }.padding(.vertical).padding(.horizontal, 24)
             }
         }
+        .onAppear(perform: {
+            distance = vm.getUserDistance(latitude: selectedAnnotation.waypoints[0].coordinate.latitude, longitude: selectedAnnotation.waypoints[0].coordinate.longitude)
+        })
         .presentationDetents([.fraction(0.47), .medium])
         .interactiveDismissDisabled(true)
         .presentationBackgroundInteraction(.enabled)

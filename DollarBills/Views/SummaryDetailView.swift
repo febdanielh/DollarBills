@@ -167,18 +167,12 @@ struct SummaryDetailView: View {
                                 .foregroundColor(Color.TextDimGray)
                                 .frame(height: 350)
                             VStack(alignment: .leading){
-                                Text("HARUSNYA NAMA RUTE")
+                                
+                                Text("\(vm.supaWorkoutsExactDay[index].routeName)")
                                     .font(.title2)
                                     .bold()
                                     .padding(.leading)
                                 
-                                HStack {
-                                    Image("Pinpoint")
-                                    Text("HARUSNYA NAMA DAERAH")
-                                        .font(.subheadline)
-                                        .fontWeight(.semibold)
-                                        .foregroundStyle(Color.YellowDark4)
-                                }.padding(.leading).padding(.bottom, 10)
                             }.padding(.bottom)
                         }
                         .background(.white)
@@ -190,7 +184,7 @@ struct SummaryDetailView: View {
                                 RoundedRectangle(cornerRadius: 8)
                                     .foregroundColor(.white)
                                 VStack{
-                                    Text((vm.workoutsExactDay[index].formattedDistance()))
+                                    Text("\(vm.supaWorkoutsExactDay[index].distance)")
                                         .font(.headline).padding(.bottom, 10)
                                     Text("Distance")
                                         .font(.footnote)
@@ -200,7 +194,7 @@ struct SummaryDetailView: View {
                                 RoundedRectangle(cornerRadius: 8)
                                     .foregroundColor(.white)
                                 VStack{
-                                    Text((vm.workoutsExactDay[index].formattedDuration()))
+                                    Text("\(vm.supaWorkoutsExactDay[index].duration)")
                                         .font(.headline).padding(.bottom, 10)
                                     Text("Duration")
                                         .font(.footnote)
@@ -211,7 +205,7 @@ struct SummaryDetailView: View {
                                     .foregroundColor(.white)
                                     .frame(height: 115)
                                 VStack{
-                                    Text((vm.workoutsExactDay[index].formattedPace()))
+                                    Text("\(vm.supaWorkoutsExactDay[index].pace)")
                                         .font(.headline).padding(.bottom, 10)
                                     Text("Pace")
                                         .font(.footnote)

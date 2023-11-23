@@ -51,11 +51,7 @@ struct ContentView: View {
                         vm.serviceAvailabilityCheck()
                     }
             case .viewRun:
-                //                RunView(workout: vm.newWorkout, itemCollected: $vm.itemsCollected)
-                RunWatchView(workout: vm.newWorkout, itemCollected: $vm.itemsCollected)
-                    .onAppear(perform: {
-                        phoneToWatch.isRunning = true
-                    })
+                RunWatchView()
             case .viewPause:
                 PauseRunView(workout: vm.newWorkout, directions: $directions)
             default:

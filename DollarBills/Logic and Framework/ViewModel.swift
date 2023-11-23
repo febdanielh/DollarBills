@@ -145,7 +145,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     var newWorkout: Workout {
-        return Workout(activityType: activityType, polyline: polyline, locations: locations, date: startDate, duration: totalElapsedTime, heartRate: heartRate, calorieBurned: calorieBurned, itemsCollected: itemsCollected)
+        return Workout(activityType: activityType, polyline: polyline, locations: locations, date: startDate, duration: totalElapsedTime, heartRate: heartRate, calorieBurned: calorieBurned)
     }
     
     func getItemNames() -> [String] {
@@ -391,6 +391,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func endWorkout() async throws {
+        
         locationManager.allowsBackgroundLocationUpdates = false
         
         timer?.invalidate()

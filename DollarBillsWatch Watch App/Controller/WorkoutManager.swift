@@ -235,4 +235,5 @@ extension WorkoutManager: WCSessionDelegate {
             }
         }
     }
+    
 }

@@ -162,19 +162,8 @@ struct RunView: View {
 
 struct RunWatchView: View {
     
-    let workout: Workout
-    
     @EnvironmentObject var vm: ViewModel
     @EnvironmentObject var phoneToWatch: PhoneToWatch
-    
-    @State var runImage: String = "spruto lari"
-    @State var runDescription: String = "Run and collect items"
-    
-    @Binding var itemCollected: [Items]
-    
-    var progressValue: Double {
-        return workout.distance / 500.0
-    }
     
     var body: some View {
         
@@ -190,12 +179,19 @@ struct RunWatchView: View {
                     .fontWeight(.black)
             }
             .foregroundColor(Color.TextDimGray)
-            .onDisappear(perform: {
-                vm.currentDisplayScreen = .viewMain
+            .onAppear {
+                Task {
+                    await vm.startWorkout(type: .running)
+                }
+                phoneToWatch.sendMessageToWatch()
+            }
+            .onDisappear {
                 Task {
                     try await vm.endWorkout()
                 }
-            })
+                vm.currentDisplayScreen = .viewMain
+                
+            }
         }
         
     }

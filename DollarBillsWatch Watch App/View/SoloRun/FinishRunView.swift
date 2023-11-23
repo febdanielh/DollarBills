@@ -19,8 +19,8 @@ struct FinishRunView: View {
             NavigationLink {
                 InformationView()
                     .onAppear(perform: {
-                        watchToPhone.sendFinishWorkoutMessageToWatch()
                         workoutManager.endWorkout()
+                        watchToPhone.sendFinishWorkoutMessageToWatch()
                     })
                     .navigationBarBackButtonHidden(true)
             } label: {
