@@ -13,8 +13,6 @@ struct SummaryDetailView: View {
     
     @State var picking : Bool = false
     
-    @State var pickedDate = Date()
-    
     var index: Int
     
     var body: some View {

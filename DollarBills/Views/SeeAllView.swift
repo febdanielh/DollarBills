@@ -228,6 +228,9 @@ struct SeeAllView: View {
             
         })
         .navigationTitle("See All")
+        .onChange(of: pickedDate) { oldValue, newValue in
+            vm.getThatDay(pickedDate: pickedDate)
+        }
         
     }
     
