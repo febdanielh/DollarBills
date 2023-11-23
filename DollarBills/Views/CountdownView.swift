@@ -42,11 +42,7 @@ struct CountdownView: View {
             else {
                 Text("")
                     .onAppear(perform: {
-                        phoneToWatch.sendMessageToWatch()
                         vm.currentDisplayScreen = .viewRun
-//                        Task {
-//                            await vm.startWorkout(type: .running)
-//                        }
                     })
             }
         }

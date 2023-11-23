@@ -42,7 +42,7 @@ struct ContentView2: View {
             
         // Display the game interface if a match is ongoing.
         .fullScreenCover(isPresented: $game.playingGame) {
-            GameView(game: game)
+            GameView()
         }
         
         // Display the local player's friends.

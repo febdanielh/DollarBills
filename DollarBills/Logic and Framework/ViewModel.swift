@@ -46,6 +46,8 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var users = [User]()
     @Published var detailRoom = [DetailRoomPayload]()
     
+    var rtg = RealTimeGame()
+    
     // MARK: - Properties
     func updateTrackingMode() {
         

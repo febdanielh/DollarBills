@@ -70,7 +70,7 @@ struct LobbyView: View {
                     VStack{
                         if isJoined {
                             NavigationLink {
-                                GameView(game: game)
+                                GameView()
                             } label: {
                                 ZStack{
                                     RoundedRectangle(cornerRadius: 25)

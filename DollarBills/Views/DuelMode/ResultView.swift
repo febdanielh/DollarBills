@@ -226,7 +226,6 @@ struct ResultView: View {
 
 #Preview {
     ResultView()
-        .environmentObject(RealTimeGame())
 }
 
 struct SubtitleView: View {

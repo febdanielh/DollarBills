@@ -234,6 +234,7 @@ extension WorkoutManager: WCSessionDelegate {
                 startWorkout(workoutType: .running)
                 currentDisplayScreen = .viewRun
             } else if (value == "Start Match") {
+                startWorkout(workoutType: .running)
                 currentDisplayScreen = .viewDuel
             }
         }

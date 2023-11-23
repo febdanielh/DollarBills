@@ -8,23 +8,23 @@
 import SwiftUI
 
 struct AttackedView: View {
+//    let items: Items
     var body: some View {
         VStack{
-            Text("10:00 sec")
-                .font(.title2)
+            Text("10 sec") //items.timeEffect
+                .font(.title3).fontWeight(.semibold)
+                .padding(.top, -15)
             ZStack{
-                
-                Image("itemRock")
+                Image("3Rock") //items.image
                     .resizable()
                     .frame(width: 200, height: 150)
-                    .padding(.top, -25)
+                    .padding(.vertical, -5)
                 Image("exclamation")
                     .offset(x: 60, y: -45)
             }
-            
-            Text("Distance Doubled")
-                .font(.title3)
-                .padding(.top, -20)
+            Text("Distance Doubled") //items.descSummary
+                .font(.title3).fontWeight(.semibold)
+                .padding(.top, -15)
         }
     }
 }

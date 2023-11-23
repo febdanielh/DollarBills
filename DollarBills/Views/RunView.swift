@@ -164,6 +164,7 @@ struct RunWatchView: View {
     let workout: Workout
     
     @EnvironmentObject var vm: ViewModel
+    @EnvironmentObject var phoneToWatch: PhoneToWatch
     
     @State var runImage: String = "spruto lari"
     @State var runDescription: String = "Run and collect items"
@@ -190,5 +191,8 @@ struct RunWatchView: View {
                 .fontWeight(.black)
         }
         .foregroundColor(Color.TextDimGray)
+        .onAppear {
+            phoneToWatch.sendMessageToWatch()
+        }
     }
 }

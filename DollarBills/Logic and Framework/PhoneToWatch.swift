@@ -18,6 +18,20 @@ class PhoneToWatch: NSObject, ObservableObject {
         session.activate()
     }
     
+    func activateSession() {
+        if (WCSession.isSupported()) {
+            let session = WCSession.default
+            session.delegate = self
+            if session.isReachable {
+                print("WC session not yet reachable")
+            }
+            session.activate()
+            print("Watch session activated")
+        } else {
+            print("WC Session not supported")
+        }
+    }
+    
     func sendMessageToWatch() {
         let message = ["Message": "Start Workout"]
         if (WCSession.default.isReachable) {

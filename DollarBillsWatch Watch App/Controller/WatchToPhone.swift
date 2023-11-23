@@ -9,7 +9,11 @@ import SwiftUI
 import WatchConnectivity
 
 class WatchToPhone: NSObject, ObservableObject {
+    
     @Published var selectedItems: [Items] = []
+    @Published var opponentName: String = ""
+    @Published var timeRemaining: TimeInterval = 0.0
+    
     var session: WCSession
     
     init(session: WCSession = .default) {
@@ -19,7 +23,21 @@ class WatchToPhone: NSObject, ObservableObject {
         session.activate()
     }
     
-    func sendMessageToPhone(itemName: String) {
+    func activateSession() {
+        if (WCSession.isSupported()) {
+            let session = WCSession.default
+            session.delegate = self
+            if session.isReachable {
+                print("WC session not yet reachable")
+            }
+            session.activate()
+            print("Watch session activated")
+        } else {
+            print("WC Session not supported")
+        }
+    }
+    
+    func sendItemMessageToPhone(itemName: String) {
         let message = ["Message": itemName]
         if (WCSession.default.isReachable) {
             WCSession.default.sendMessage(message, replyHandler: nil) { error in
@@ -51,6 +69,16 @@ extension WatchToPhone: WCSessionDelegate {
                 return
             }
             self.selectedItems = message
+            
+            print(self.selectedItems)
+        }
+    }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        if let timeValue = message["timeRemaining"] as? Double {
+            timeRemaining = timeValue
+        } else if let opNameValue = message["opponentName"] as? String {
+            opponentName = opNameValue
         }
     }
 }

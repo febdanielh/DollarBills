@@ -10,6 +10,7 @@ import Supabase
 import AuthenticationServices
 import GoTrue
 import SwiftUI
+import HealthKit
 
 extension ViewModel {
     

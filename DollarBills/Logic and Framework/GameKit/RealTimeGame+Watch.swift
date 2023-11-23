@@ -25,6 +25,15 @@ extension RealTimeGame: WCSessionDelegate {
         }
     }
     
+    func sendMatchDataToWatch(matchData: [String: Any]) {
+        if (WCSession.default.isReachable) {
+            WCSession.default.sendMessage(matchData, replyHandler: nil) { error in
+                print("Error when sending the message with error: \(error.localizedDescription)")
+            }
+            print("match data sent")
+        }
+    }
+    
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if let error = error {
             print("The session activation is failed with error: \(error.localizedDescription)")

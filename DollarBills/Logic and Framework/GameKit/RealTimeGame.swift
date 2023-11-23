@@ -8,11 +8,14 @@
 import Foundation
 import GameKit
 import SwiftUI
+import WatchConnectivity
 
 /// - Tag:RealTimeGame
 //@MainActor
+
+var matchData: [String: Any] = [:]
+
 class RealTimeGame: NSObject, GKGameCenterControllerDelegate, ObservableObject {
-    
     // The local player's friends, if they grant access.
     @Published var friends: [Friend] = []
     
@@ -38,7 +41,8 @@ class RealTimeGame: NSObject, GKGameCenterControllerDelegate, ObservableObject {
     @Published var timeRemaining: TimeInterval = 0
     @Published var opponentScore: Int = 0
     @Published var globalTimer : Timer?
-    @Published var distance: Double = 0.0
+    @Published var myDistance: Double = 0.0
+    @Published var opponentDistance: Double = 0.0
     @Published var myItems: [Items] = []
     
     // The voice chat properties.
@@ -247,27 +251,27 @@ class RealTimeGame: NSObject, GKGameCenterControllerDelegate, ObservableObject {
             }
             
             tempDuration -= 1.0
-            tempDistance += self.distance
+            tempDistance += self.myDistance
             
             // Check if the power-up time has elapsed
             if tempDuration <= 0 {
                 tempTimer?.invalidate()
                 tempDuration = 0
-                self.distance += tempDistance
-            } else {
-                // Send updated distance data
+                self.myDistance += tempDistance
                 do {
-                    let data = self.encode(distance: self.distance)
+                    let data = self.encode(distance: self.myDistance)
                     try self.myMatch?.sendData(toAllPlayers: data!, with: .unreliable)
                 } catch {
                     print("Error: \(error.localizedDescription).")
                 }
+            } else {
+                // Send updated distance data
             }
         }
     }
     
     func takeActionRedPotion() {
-        //half the distance obtained in 10 second
+        //half the opponent's distance obtained in 10 second
         var tempDistance = 0.0
         var tempDuration = 10.0
         
@@ -278,18 +282,18 @@ class RealTimeGame: NSObject, GKGameCenterControllerDelegate, ObservableObject {
             }
             
             tempDuration -= 1.0
-            tempDistance += self.distance
+            tempDistance += self.myDistance
             
             // Check if the power-up time has elapsed
             if tempDuration <= 0 {
                 tempTimer?.invalidate()
                 tempDuration = 0
-                var newTempDistance = tempDistance / 2
-                self.distance = self.distance - tempDistance + newTempDistance
+                let newTempDistance = tempDistance / 2
+                self.opponentDistance = self.opponentDistance - tempDistance + newTempDistance
             } else {
                 // Send updated distance data
                 do {
-                    let data = self.encode(distance: self.distance)
+                    let data = self.encode(distance: self.myDistance)
                     try self.myMatch?.sendData(toAllPlayers: data!, with: .unreliable)
                 } catch {
                     print("Error: \(error.localizedDescription).")
@@ -310,17 +314,17 @@ class RealTimeGame: NSObject, GKGameCenterControllerDelegate, ObservableObject {
             }
             
             tempDuration -= 1.0
-            tempDistance += self.distance
+            tempDistance += self.opponentDistance
             
             // Check if the power-up time has elapsed
             if tempDuration <= 0 {
                 tempTimer?.invalidate()
                 tempDuration = 0
-                self.distance -= tempDistance
+                self.opponentDistance -= tempDistance
             } else {
                 // Send updated distance data
                 do {
-                    let data = self.encode(distance: self.distance)
+                    let data = self.encode(distance: self.myDistance)
                     try self.myMatch?.sendData(toAllPlayers: data!, with: .unreliable)
                 } catch {
                     print("Error: \(error.localizedDescription).")
@@ -333,10 +337,10 @@ class RealTimeGame: NSObject, GKGameCenterControllerDelegate, ObservableObject {
         //reduce distance by 200m
         let tempDistance = 200.0
         
-        self.distance -= tempDistance
+        self.opponentDistance -= tempDistance
         
         do {
-            let data = encode(distance: distance)
+            let data = encode(distance: opponentDistance)
             try myMatch?.sendData(toAllPlayers: data!, with: GKMatch.SendDataMode.unreliable)
         } catch {
             print("Error: \(error.localizedDescription).")
@@ -347,10 +351,10 @@ class RealTimeGame: NSObject, GKGameCenterControllerDelegate, ObservableObject {
         //add 200 m
         let tempDistance = 200.0
         
-        self.distance += tempDistance
+        self.myDistance += tempDistance
         
         do {
-            let data = encode(distance: distance)
+            let data = encode(distance: myDistance)
             try myMatch?.sendData(toAllPlayers: data!, with: GKMatch.SendDataMode.unreliable)
         } catch {
             print("Error: \(error.localizedDescription).")

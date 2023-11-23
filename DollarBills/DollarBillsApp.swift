@@ -10,6 +10,7 @@ import SwiftUI
 let NAME = "Furthr"
 @main
 struct DollarBillsApp: App {
+    var phoneToWatch = PhoneToWatch()
     var body: some Scene {
         WindowGroup {
             ContentView()

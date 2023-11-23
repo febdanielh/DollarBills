@@ -48,7 +48,7 @@ struct CreateRoomView: View {
             Spacer()
         }
         .fullScreenCover(isPresented: $game.playingGame) {
-            GameView(game: game)
+            GameView()
         }
         .navigationBarTitle(Text("Duel Mode"))
         .navigationBarTitleDisplayMode(.inline)
