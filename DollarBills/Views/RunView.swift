@@ -161,25 +161,8 @@ struct RunView: View {
 //}
 
 struct RunWatchView: View {
-    
     @EnvironmentObject var vm: ViewModel
     @EnvironmentObject var phoneToWatch: PhoneToWatch
-    
-    @State var runImage: String = "spruto lari"
-    @State var runDescription: String = "Run and collect items"
-    
-    @Binding var itemCollected: [Items]
-    
-    @State var isGif: Bool = true
-    @State var isPaused: Bool = false
-    @State var showAlert: Bool = false
-    
-    var progressValue: Double {
-        return workout.distance / 500.0
-    }
-    
-    @State var timer: Timer? = nil
-
     var body: some View {
         
         if phoneToWatch.isRunning {
@@ -198,17 +181,18 @@ struct RunWatchView: View {
                 Task {
                     await vm.startWorkout(type: .running)
                 }
-                phoneToWatch.sendMessageToWatch()
-                self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (Timer) in
+                vm.sendDataTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (Timer) in
                     phoneToWatch.sendStatisticsData()
                 })
+                phoneToWatch.sendMessageToWatch()
             }
             .onDisappear {
                 Task {
                     try await vm.endWorkout()
                 }
+                vm.sendDataTimer?.invalidate()
+                vm.sendDataTimer = nil
                 vm.currentDisplayScreen = .viewMain
-                
             }
         }
         

@@ -17,6 +17,7 @@ enum RunTab {
 struct RunViewTab: View {
     @State var selection: RunTab = .mainView
     @StateObject var locationManager = LocationManager()
+    @EnvironmentObject var wtp: WatchToPhone
         var body: some View {
             TabView(selection: $selection) {
                 ControlView(tab: $selection)

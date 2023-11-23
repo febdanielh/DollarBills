@@ -44,9 +44,9 @@ struct CountdownView: View {
                     .onAppear(perform: {
                         phoneToWatch.isRunning = true
                         vm.currentDisplayScreen = .viewRun
-                        Task {
-                            await vm.startWorkout(type: .running)
-                        }
+//                        Task {
+//                            await vm.startWorkout(type: .running)
+//                        }
                     })
             }
         }

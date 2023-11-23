@@ -13,6 +13,7 @@ class WatchToPhone: NSObject, ObservableObject {
     @Published var selectedItems: [Items] = []
     @Published var opponentName: String = ""
     @Published var timeRemaining: TimeInterval = 0.0
+    @Published var receivedItem: [Items] = []
     
     var session: WCSession
     
@@ -23,6 +24,20 @@ class WatchToPhone: NSObject, ObservableObject {
         session.activate()
     }
     
+    func activateSession() {
+        if (WCSession.isSupported()) {
+            let session = WCSession.default
+            session.delegate = self
+            if session.isReachable {
+                print("WC session not yet reachable")
+            }
+            session.activate()
+            print("Watch session activated")
+        } else {
+            print("WC Session not supported")
+        }
+    }
+    
     func sendFinishWorkoutMessageToWatch () {
         //        woPayload: WorkoutPayload
         //        let message = ["ended" : woPayload]
@@ -31,13 +46,8 @@ class WatchToPhone: NSObject, ObservableObject {
             WCSession.default.sendMessage(message, replyHandler: nil) { error in
                 print("Error when sending the message with error: \(error.localizedDescription)")
             }
-            session.activate()
-            print("Watch session activated")
-        } else {
-            print("WC Session not supported")
+            print("finished workout from watch")
         }
-        
-        print("finished workout from watch")
     }
     
     func sendItemMessageToPhone(itemName: String) {
@@ -124,31 +134,33 @@ extension WatchToPhone: WCSessionDelegate {
     
     func session(_ session: WCSession, didReceiveMessageData messageData: Data) {
         DispatchQueue.main.async {
-            guard let message = try? JSONDecoder().decode([Items].self, from: messageData) else {
-                return
+            do {
+                if let ArrayItemMessage = try? JSONDecoder().decode([Items].self, from: messageData) {
+                    self.selectedItems = ArrayItemMessage
+                    print(self.selectedItems)
+                } else if let RandomItemMessage = try? JSONDecoder().decode(Items.self, from: messageData) {
+                    self.receivedItem.append(RandomItemMessage)
+                    print(self.receivedItem)
+                }
             }
-            self.selectedItems = message
-            
-            print(self.selectedItems)
-        }
-    }
-    
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        if let timeValue = message["timeRemaining"] as? Double {
-            timeRemaining = timeValue
-        } else if let opNameValue = message["opponentName"] as? String {
-            opponentName = opNameValue
         }
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         print("Message coming through")
-                
-                wDuration = message["duration"]! as? Double ?? 0.0
-                wDistance = message["distance"]! as? Double ?? 0.0
-//                wPace = message["pace"]! as? Double ?? 0.0
+        
+        wDuration = message["duration"] as? Double ?? 0.0
+        wDistance = message["distance"] as? Double ?? 0.0
+        
+        //        wPace = message["pace"]! as? Double ?? 0.0
         //        wHeartRate = message["heartRate"]! as? String ?? "--"
-                
-                print("Watch received: \(wDuration), \(wDistance), \(wPace), \(wHeartRate)")
+        
+        print("Watch received: \(wDuration), \(wDistance), \(wPace), \(wHeartRate)")
+        
+        if let timeValue = message["timeRemaining"] as? Double {
+            timeRemaining = timeValue
+        } else if let opNameValue = message["opponentName"] as? String {
+            opponentName = opNameValue
+        }
     }
 }

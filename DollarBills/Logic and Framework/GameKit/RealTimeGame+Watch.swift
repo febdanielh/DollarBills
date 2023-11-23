@@ -11,9 +11,11 @@ import WatchConnectivity
 
 extension RealTimeGame: WCSessionDelegate {
     func sessionDidBecomeInactive(_ session: WCSession) {
+        session.activate()
     }
     
     func sessionDidDeactivate(_ session: WCSession) {
+        session.activate()
     }
     
     func sendItemDataToWatch(item: [Items]) {
@@ -31,6 +33,16 @@ extension RealTimeGame: WCSessionDelegate {
                 print("Error when sending the message with error: \(error.localizedDescription)")
             }
             print("match data sent")
+        }
+    }
+    
+    func sendStartMatchMessageToWatch() {
+        let message = ["Message": "Start Match"]
+        if (WCSession.default.isReachable) {
+            WCSession.default.sendMessage(message, replyHandler: nil) { error in
+                print("Error when sending the message with error: \(error.localizedDescription)")
+            }
+            print("start duel send message")
         }
     }
     

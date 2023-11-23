@@ -51,7 +51,7 @@ class WorkoutManager: NSObject, ObservableObject {
         }
         
     }
-
+    
     
     func requestAuthorization() {
         let typesToShare: Set = [
@@ -228,13 +228,10 @@ extension WorkoutManager: WCSessionDelegate {
         if let value = message["Message"] as? String {
             print("message received")
             if (value == "Start Workout") {
-//                startWorkout(workoutType: .running)
                 currentDisplayScreen = .viewRun
             } else if (value == "Start Match") {
-                startWorkout(workoutType: .running)
                 currentDisplayScreen = .viewDuel
             }
         }
     }
-    
 }

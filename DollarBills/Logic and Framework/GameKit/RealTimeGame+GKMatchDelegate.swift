@@ -54,6 +54,7 @@ extension RealTimeGame: GKMatchDelegate {
         // Decode the data representation of the game data.
         let gameData = decode(matchData: data)
         
+        
         // Update timeRemaining for both players
         if gameData?.timeRemaining != nil {
             timeRemaining = (gameData?.timeRemaining)!

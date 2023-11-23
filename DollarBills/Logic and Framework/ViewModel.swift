@@ -158,6 +158,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var isPaused: Bool = false
     @Published var points: Int = 0
     
+    @Published var sendDataTimer: Timer?
     
     // Calculated property that returns an MKPolyline based on the locations array
     var polyline: MKPolyline {
@@ -298,9 +299,9 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     // MARK: - Workout Tracking // add the heart data recovery part
     
     func startTotalElapsedTimeTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (Timer) in
             Task {
-                await self?.updateTotalElapsedTime()
+                await self.updateTotalElapsedTime()
             }
         }
     }
@@ -311,6 +312,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
             let currentAccumulatedTime = Date().timeIntervalSince(currentDate)
             totalElapsedTime += currentAccumulatedTime
             lastDateObserved = Date()
+            statisticsData["duration"] = totalElapsedTime
         }
     }
     
@@ -416,6 +418,12 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         locationManager.allowsBackgroundLocationUpdates = false
         
         timer?.invalidate()
+        
+//        timer = nil
+//        timer = nil
+//        statisticsData["duration"] = 0.0
+//        statisticsData["distance"] = 0.0
+        
         recording = false
         
         let workout = newWorkout
@@ -447,7 +455,6 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         } catch {
             showError(.endingWorkout)
         }
-        
     }
     
     // MARK: - Map
@@ -516,7 +523,6 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         distance = locations.last!.distance(from: startPoint)
         distance = distance/1000
         
-        statisticsData["duration"] = totalElapsedTime
         statisticsData["distance"] = meters
         
         //        if selectedAnnotation != AnnotationModel(routeName: "", waypoints: []) {
@@ -617,6 +623,8 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
         itemsCollected.append(randomItem)
         print("Added random item: \(randomItem.namaItem)")
+        
+        sendGetItemData(item: randomItem)
     }
     
     func removeAll() {

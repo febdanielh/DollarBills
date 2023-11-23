@@ -11,6 +11,7 @@ import AuthenticationServices
 import GoTrue
 import SwiftUI
 import HealthKit
+import WatchConnectivity
 
 extension ViewModel {
     
@@ -158,6 +159,38 @@ extension ViewModel {
             isAuthenticated = true
         } catch {
             isAuthenticated = false
+        }
+    }
+}
+
+
+extension ViewModel: WCSessionDelegate {
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        if let error = error {
+            print("The session activation is failed with error: \(error.localizedDescription)")
+        } else {
+            print("The session has completed activation.")
+        }
+        
+        if WCSession.default.isReachable {
+            print("Reachable on Phone")
+        } else {
+            print("Not Reachable on Phone")
+        }
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+    }
+    
+    func sendGetItemData(item: Items) {
+        guard let data = try? JSONEncoder().encode(item) else {
+            return
+        }
+        WCSession.default.sendMessageData(data, replyHandler: nil) { error in
+            print(error.localizedDescription)
         }
     }
 }

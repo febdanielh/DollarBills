@@ -22,6 +22,7 @@ extension RealTimeGame: GKMatchmakerViewControllerDelegate {
         // Start the game with the player.
         if !playingGame && match.expectedPlayerCount == 0 {
             startMyMatchWith(match: match, time: timeRemaining)
+            sendStartMatchMessageToWatch()
             sendItemDataToWatch(item: myItems)
             sendMatchDataToWatch(matchData: matchData)
             print(myItems)

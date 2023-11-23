@@ -213,9 +213,6 @@ struct SummaryDetailView: View {
                 }
                 
             }
-            .onChange(of: pickedDate) { oldValue, newValue in
-                vm.getThatDay(pickedDate: pickedDate)
-            }
         }
         .scrollIndicators(.hidden)
         

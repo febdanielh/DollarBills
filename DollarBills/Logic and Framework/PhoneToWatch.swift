@@ -10,8 +10,6 @@ import WatchConnectivity
 
 var statisticsData: [String:Double] = [:]
 class PhoneToWatch: NSObject, ObservableObject {
-    @EnvironmentObject var vm: ViewModel
-    
     @Published var isRunning: Bool = false
     
     var session: WCSession
@@ -73,9 +71,11 @@ class PhoneToWatch: NSObject, ObservableObject {
 
 extension PhoneToWatch: WCSessionDelegate {
     func sessionDidBecomeInactive(_ session: WCSession) {
+        session.activate()
     }
     
     func sessionDidDeactivate(_ session: WCSession) {
+        session.activate()
     }
     
     
@@ -94,26 +94,13 @@ extension PhoneToWatch: WCSessionDelegate {
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        if (message.first?.key == "ended") {
-            print("workout ended on phone aswellll")
-            isRunning = false
-            Task {
-                try await vm.endWorkout()
+        if let value = message["ended"] as? String {
+            if (value == "ended") {
+                print("workout ended on phone aswellll")
+                isRunning = false
             }
         }
+        //        if (message.first?.key == "ended") {
+        //        }
     }
-    
-//    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-//        print("Received message from Watch")
-//        wDistance = message["distance"]! as! String
-//        wHeartRate = message["heartRate"]! as! String
-//        wAvgHR = message["averageHeartRate"]! as! String
-//        wActiveEnergy = message["activeEnergy"]! as! String
-//        wElevation = message["elevation"]! as! String
-//        
-//        print(wDistance)
-//        print(wHeartRate)
-//        print(wAvgHR)
-//        print(wActiveEnergy)
-//    }
 }

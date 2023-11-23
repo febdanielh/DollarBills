@@ -70,10 +70,7 @@ struct ContentView: View {
         else if !networkMonitor.isConnected {
             DisconnectedView()
         }
-        
-        
     }
-    
 }
 
 #Preview {
