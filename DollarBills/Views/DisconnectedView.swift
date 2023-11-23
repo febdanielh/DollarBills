@@ -16,7 +16,7 @@ struct DisconnectedView: View {
                 .padding()
             Text("No internet connection available.")
                 .fontWeight(.semibold)
-            Text("Please connect your phone to the internet.")
+            Text("Please connect your phone to the internet and relaunch the application.")
         }
     }
 }

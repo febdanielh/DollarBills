@@ -333,9 +333,9 @@ struct SummaryView: View {
                                 .font(.title)
                                 .bold()
                             Spacer()
-                            Button {
-                                
-                            } label: {
+                            NavigationLink(destination:
+                                SeeAllView()
+                            ) {
                                 Text("See All >")
                                     .font(.callout)
                                     .fontWeight(.semibold)
