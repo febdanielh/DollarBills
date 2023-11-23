@@ -9,13 +9,14 @@ import SwiftUI
 
 struct RunMetricsView: View {
     @EnvironmentObject var workoutManager: WorkoutManager
-
+    @ObservedObject var watchToPhone = WatchToPhone()
     var body: some View {
-        TimelineView(MetricsTimelineSchedule(from: workoutManager.builder?.startDate ?? Date(),
-                                             isPaused: workoutManager.session?.state == .paused)) { context in
+//        TimelineView(MetricsTimelineSchedule(from: workoutManager.builder?.startDate ?? Date(),
+//                                             isPaused: workoutManager.session?.state == .paused)) { context in
             VStack (spacing: 20) {
-                Text(Measurement(value: workoutManager.distance, unit: UnitLength.meters)
-                    .formatted(.measurement(width: .abbreviated, usage: .road)))
+//                Text(Measurement(value: workoutManager.distance, unit: UnitLength.meters)
+//                    .formatted(.measurement(width: .abbreviated, usage: .road)))
+                Text(watchToPhone.watchDistance)
                     .font(.title)
                     .fontWeight(.semibold)
                 
@@ -27,13 +28,14 @@ struct RunMetricsView: View {
                     
                     Spacer()
                     
-                    ElapsedTimeView(elapsedTime: workoutManager.builder?.elapsedTime(at: context.date) ?? 0)
+                    Text(watchToPhone.watchDuration)
+//                    ElapsedTimeView(elapsedTime: workoutManager.builder?.elapsedTime(at: context.date) ?? 0)
                 }
                 .fontWeight(.semibold)
                 
                 HStack {
                     VStack (spacing: 5) {
-                        Text("00'00\"")
+                        Text(watchToPhone.watchPace)
                             .fontWeight(.semibold)
                         Text("Pace")
                     }
@@ -45,9 +47,14 @@ struct RunMetricsView: View {
                     }
                 }
             }
+            .onAppear(perform: {
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (Timer) in
+                    self.watchToPhone.updateUI()
+                }
+            })
             .padding(.horizontal)
             .font(.title3)
-        }
+//        }
     }
 }
 

@@ -495,6 +495,9 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         distance = locations.last!.distance(from: startPoint)
         distance = distance/1000
         
+        statisticsData["duration"] = totalElapsedTime
+        statisticsData["distance"] = meters
+        
         //        if selectedAnnotation != AnnotationModel(routeName: "", waypoints: []) {
         //            if locationManager.monitoredRegions.isEmpty == true {
         //                print("semua item sudah di collect")

@@ -41,6 +41,62 @@ class WatchToPhone: NSObject, ObservableObject {
             print("execute \(itemName) send message")
         }
     }
+    
+    @Published var watchDuration = "--"
+    @Published var watchDistance = "--"
+    @Published var watchPace = "--"
+    @Published var heartRate = "--"
+    @Published var avgHeartRate = "--"
+    @Published var watchActiveEnergy = "--"
+    @Published var watchElevation = "--"
+    
+    var wDuration = 0.0
+    var wDistance = 0.0
+    var wPace = 0.0
+    var wHeartRate = "--"
+    var wAvgHR = "--"
+    var wActiveEnergy = "--"
+    var wElevation = "--"
+    
+    func formattedDuration() -> String {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.unitsStyle = .positional
+        formatter.zeroFormattingBehavior = .pad
+        
+        return formatter.string(from: wDuration) ?? "00:00"
+    }
+    
+    func formattedDistance() -> String {
+        let distanceInKilometers = Measurement(value: wDistance, unit: UnitLength.meters).converted(to: .kilometers).value
+        let formattedDistance = String(format: "%.2f km", distanceInKilometers)
+        return formattedDistance
+    }
+    
+    func formattedPace() -> String {
+        guard wDistance > 0, wDuration > 0 else {
+            return "N/A"
+        }
+        
+        let paceValue = wDuration / 60 / wDistance * 1000 // Convert distance to kilometers
+        let paceMinutes = Int(paceValue)
+        let paceSeconds = Int((paceValue - Double(paceMinutes)) * 60)
+        
+        return String(format: "%d'%02d\"", paceMinutes, paceSeconds)
+    }
+    
+    
+    func updateUI() {
+        print("update UI Called")
+        watchDuration = formattedDuration()
+        watchDistance = formattedDistance()
+        watchPace = formattedPace()
+        heartRate = wHeartRate
+        avgHeartRate = wAvgHR
+        watchActiveEnergy = wActiveEnergy
+        watchElevation = wElevation
+        
+    }
 }
 
 extension WatchToPhone: WCSessionDelegate {
@@ -65,5 +121,16 @@ extension WatchToPhone: WCSessionDelegate {
             }
             self.selectedItems = message
         }
+    }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        print("Message coming through")
+                
+                wDuration = message["duration"]! as? Double ?? 0.0
+                wDistance = message["distance"]! as? Double ?? 0.0
+//                wPace = message["pace"]! as? Double ?? 0.0
+        //        wHeartRate = message["heartRate"]! as? String ?? "--"
+                
+                print("Watch received: \(wDuration), \(wDistance), \(wPace), \(wHeartRate)")
     }
 }

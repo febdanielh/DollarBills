@@ -8,37 +8,12 @@
 import SwiftUI
 import WatchConnectivity
 
+var statisticsData: [String:Double] = [:]
 class PhoneToWatch: NSObject, ObservableObject {
+    @EnvironmentObject var vm: ViewModel
     
     @Published var isRunning: Bool = false
     
-//    @Published var watchDuration = "--"
-//    @Published var watchDistance = "--"
-//    @Published var watchPace = "--"
-//    @Published var heartRate = "--"
-//    @Published var avgHeartRate = "--"
-//    @Published var watchActiveEnergy = "--"
-//    @Published var watchElevation = "--"
-//
-//    var wDuration = "--"
-//    var wDistance = "--"
-//    var wPace = "--"
-//    var wHeartRate = "--"
-//    var wAvgHR = "--"
-//    var wActiveEnergy = "--"
-//    var wElevation = "--"
-//    
-//    func updateUI() {
-//        print("update UI Called")
-//        watchDuration = wDuration
-//        watchDistance = wDistance
-//        watchPace = wPace
-//        heartRate = wHeartRate
-//        avgHeartRate = wAvgHR
-//        watchActiveEnergy = wActiveEnergy
-//        watchElevation = wElevation
-//        
-//    }
     var session: WCSession
     
     init(session: WCSession = .default) {
@@ -47,6 +22,7 @@ class PhoneToWatch: NSObject, ObservableObject {
         self.session.delegate = self
         session.activate()
     }
+    
     
     func sendMessageToWatch() {
         print("halo")
@@ -67,6 +43,18 @@ class PhoneToWatch: NSObject, ObservableObject {
             }
             print("start duel send message")
         }
+    }
+    
+    func sendMessageToWatch(message: Dictionary<String, Double>) {
+        if (WCSession.default.isReachable) {
+            WCSession.default.sendMessage(message as [String : Any], replyHandler: nil) { error in
+                print("Error when sending the message with error: \(error.localizedDescription)")}
+        }
+        print("sendMessageToWatch called")
+    }
+    
+    func sendStatisticsData() {
+        sendMessageToWatch(message: statisticsData)
     }
 }
 
@@ -96,6 +84,9 @@ extension PhoneToWatch: WCSessionDelegate {
         if (message.first?.key == "ended") {
             print("workout ended on phone aswellll")
             isRunning = false
+            Task {
+                try await vm.endWorkout()
+            }
         }
     }
     

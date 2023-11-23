@@ -165,6 +165,8 @@ struct RunWatchView: View {
     @EnvironmentObject var vm: ViewModel
     @EnvironmentObject var phoneToWatch: PhoneToWatch
     
+    @State var timer: Timer? = nil
+
     var body: some View {
         
         if phoneToWatch.isRunning {
@@ -184,6 +186,9 @@ struct RunWatchView: View {
                     await vm.startWorkout(type: .running)
                 }
                 phoneToWatch.sendMessageToWatch()
+                self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (Timer) in
+                    phoneToWatch.sendStatisticsData()
+                })
             }
             .onDisappear {
                 Task {
