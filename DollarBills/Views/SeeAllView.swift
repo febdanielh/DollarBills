@@ -18,211 +18,215 @@ struct SeeAllView: View {
     
     var body: some View {
         
-        VStack {
+        NavigationView(content: {
             
-            HStack (spacing: 12) {
+            VStack {
                 
-                Button(action: {
-                    pickedDate = pickedDate.addingTimeInterval(-86400)
-                }, label: {
-                    Image(systemName: "chevron.left") ///ini diganti atau perubahan tanggalnya per minggu
-                })
-                .foregroundStyle(.black)
-                
-                
-                Text(pickedDate.formatted(date: .complete, time: .omitted))
-                    .bold()
-                
-                Button(action: {
-                    pickedDate = pickedDate.addingTimeInterval(86400)
+                HStack (spacing: 12) {
                     
-                }, label: {
-                    Image(systemName: "chevron.right") ///sama ni per minggu, maju mundur
-                })
-                .foregroundStyle(.black)
-                
-                //                Spacer()
-                
-                Button(action: {
-                    picking.toggle()
-                }, label: {
-                    Image(systemName: "calendar")
-                }) ///buka kalender
-                .foregroundStyle(.black)
-                
-                
-            }.padding().frame(maxWidth: .infinity)
-
-            if picking {
-                DatePicker(
-                    "Start Date",
-                    selection: $pickedDate,
-                    displayedComponents: [.date]
-                )
-                .datePickerStyle(.graphical)
-                .tint(.black)
-                .padding()
-            }
-
-            Divider()
-            
-            ZStack {
-                Color.SheetGray
-                VStack(alignment: .leading) {
+                    Button(action: {
+                        pickedDate = pickedDate.addingTimeInterval(-86400)
+                    }, label: {
+                        Image(systemName: "chevron.left") ///ini diganti atau perubahan tanggalnya per minggu
+                    })
+                    .foregroundStyle(.black)
                     
-                    HStack(spacing: 40) {
+                    
+                    Text(pickedDate.formatted(date: .complete, time: .omitted))
+                        .bold()
+                    
+                    Button(action: {
+                        pickedDate = pickedDate.addingTimeInterval(86400)
                         
-                        
-                        ZStack {
-                            
-                            if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Mon") {
-                                Circle()
-                                    .frame(height: 24)
-                                    .foregroundColor(Color.YellowNormal2)
-                            }
-                            
-                            Text("M")
-                        }
-                        
-                        ZStack {
-                            
-                            if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Tue") {
-                                Circle()
-                                    .frame(height: 24)
-                                    .foregroundColor(Color.YellowNormal2)
-                            }
-                            
-                            Text("T")
-                        }
-                        
-                        ZStack {
-                            
-                            if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Wed") {
-                                Circle()
-                                    .frame(height: 24)
-                                    .foregroundColor(Color.YellowNormal2)
-                            }
-                            
-                            Text("W")
-                        }
-                        
-                        ZStack {
-                            
-                            if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Thu") {
-                                Circle()
-                                    .frame(height: 24)
-                                    .foregroundColor(Color.YellowNormal2)
-                            }
-                            
-                            Text("T")
-                        }
-                        
-                        ZStack {
-                            
-                            if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Fri") {
-                                Circle()
-                                    .frame(height: 24)
-                                    .foregroundColor(Color.YellowNormal2)
-                            }
-                            
-                            Text("F")
-                        }
-                        
-                        ZStack {
-                            
-                            if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Sat") {
-                                Circle()
-                                    .frame(height: 24)
-                                    .foregroundColor(Color.YellowNormal2)
-                            }
-                            
-                            Text("S")
-                        }
-                        
-                        ZStack {
-                            
-                            if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Sun") {
-                                Circle()
-                                    .frame(height: 24)
-                                    .foregroundColor(Color.YellowNormal2)
-                            }
-                            
-                            Text("S")
-                        }
-                        
-                    }
-                    .frame(maxWidth: .infinity)
-                    .font(.caption).fontWeight(.semibold)
+                    }, label: {
+                        Image(systemName: "chevron.right") ///sama ni per minggu, maju mundur
+                    })
+                    .foregroundStyle(.black)
+                    
+                    //                Spacer()
+                    
+                    Button(action: {
+                        picking.toggle()
+                    }, label: {
+                        Image(systemName: "calendar")
+                    }) ///buka kalender
+                    .foregroundStyle(.black)
+                    
+                    
+                }.padding().frame(maxWidth: .infinity)
+
+                if picking {
+                    DatePicker(
+                        "Start Date",
+                        selection: $pickedDate,
+                        displayedComponents: [.date]
+                    )
+                    .datePickerStyle(.graphical)
+                    .tint(.black)
                     .padding()
-                    
-                    ScrollView {
+                }
+
+                Divider()
+                
+                ZStack {
+                    Color.SheetGray
+                    VStack(alignment: .leading) {
                         
-                        VStack {
+                        HStack(spacing: 40) {
                             
-                            if vm.supaWorkoutsExactDay.isEmpty {
+                            
+                            ZStack {
                                 
-                                Text("No workouts recorded for today!")
-                                    .font(.title3)
-                                    .bold()
-                                    .padding()
+                                if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Mon") {
+                                    Circle()
+                                        .frame(height: 24)
+                                        .foregroundColor(Color.YellowNormal2)
+                                }
                                 
-                            } else {
+                                Text("M")
+                            }
+                            
+                            ZStack {
                                 
-                                VStack {
+                                if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Tue") {
+                                    Circle()
+                                        .frame(height: 24)
+                                        .foregroundColor(Color.YellowNormal2)
+                                }
+                                
+                                Text("T")
+                            }
+                            
+                            ZStack {
+                                
+                                if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Wed") {
+                                    Circle()
+                                        .frame(height: 24)
+                                        .foregroundColor(Color.YellowNormal2)
+                                }
+                                
+                                Text("W")
+                            }
+                            
+                            ZStack {
+                                
+                                if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Thu") {
+                                    Circle()
+                                        .frame(height: 24)
+                                        .foregroundColor(Color.YellowNormal2)
+                                }
+                                
+                                Text("T")
+                            }
+                            
+                            ZStack {
+                                
+                                if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Fri") {
+                                    Circle()
+                                        .frame(height: 24)
+                                        .foregroundColor(Color.YellowNormal2)
+                                }
+                                
+                                Text("F")
+                            }
+                            
+                            ZStack {
+                                
+                                if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Sat") {
+                                    Circle()
+                                        .frame(height: 24)
+                                        .foregroundColor(Color.YellowNormal2)
+                                }
+                                
+                                Text("S")
+                            }
+                            
+                            ZStack {
+                                
+                                if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Sun") {
+                                    Circle()
+                                        .frame(height: 24)
+                                        .foregroundColor(Color.YellowNormal2)
+                                }
+                                
+                                Text("S")
+                            }
+                            
+                        }
+                        .frame(maxWidth: .infinity)
+                        .font(.caption).fontWeight(.semibold)
+                        .padding()
+                        
+                        ScrollView {
+                            
+                            VStack {
+                                
+                                if vm.supaWorkoutsExactDay.isEmpty {
                                     
-                                    ForEach(0 ..< vm.supaWorkoutsExactDay.count) { index in
+                                    Text("No workouts recorded for today!")
+                                        .font(.title3)
+                                        .bold()
+                                        .padding()
+                                    
+                                } else {
+                                    
+                                    VStack {
                                         
-                                        NavigationLink(destination:
-                                            SummaryDetailView(index: index)
-                                        ) {
+                                        ForEach(0 ..< vm.supaWorkoutsExactDay.count) { index in
                                             
-                                            ZStack {
+                                            NavigationLink(destination:
+                                                SummaryDetailView(index: index)
+                                            ) {
                                                 
-                                                RoundedRectangle(cornerRadius: 8)
-                                                    .frame(width: 354)
-                                                    .foregroundStyle(.white)
-                                                    .shadow(radius: 1, x:2, y:2)
-                                                
-                                                HStack {
+                                                ZStack {
                                                     
-                                                    VStack (alignment: .leading) {
+                                                    RoundedRectangle(cornerRadius: 8)
+                                                        .frame(width: 354)
+                                                        .foregroundStyle(.white)
+                                                        .shadow(radius: 1, x:2, y:2)
+                                                    
+                                                    HStack {
                                                         
-                                                        Text(vm.supaWorkoutsExactDay[index].routeName)
-                                                            .font(.title3)
-                                                            .bold()
-                                                        Text("\(vm.supaWorkoutsExactDay[index].startDate.formatted(date: .complete, time: .shortened))")
-                                                            .font(.caption)
+                                                        VStack (alignment: .leading) {
+                                                            
+                                                            Text(vm.supaWorkoutsExactDay[index].routeName)
+                                                                .font(.title3)
+                                                                .bold()
+                                                            Text("\(vm.supaWorkoutsExactDay[index].startDate.formatted(date: .complete, time: .shortened))")
+                                                                .font(.caption)
+                                                            
+                                                        }
+                                                        .multilineTextAlignment(.leading)
+                                                        .padding()
+                                                        
+                                                        Spacer()
                                                         
                                                     }
-                                                    .multilineTextAlignment(.leading)
-                                                    .padding()
-                                                    
-                                                    Spacer()
                                                     
                                                 }
-                                                
+                                                .tint(.black)
                                             }
-                                            .tint(.black)
+                                            
+                                            
                                         }
                                         
-                                        
                                     }
+                                    .padding([.leading, .trailing, .bottom])
                                     
                                 }
-                                .padding([.leading, .trailing, .bottom])
                                 
                             }
                             
                         }
                         
                     }
-                    
                 }
-            }
 
-            Divider()
+                Divider()
+                
+            }
             
-        }
+        })
         .navigationTitle("See All")
         
     }
