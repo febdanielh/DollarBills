@@ -22,7 +22,9 @@ struct CreateRoomView: View {
     @State var timeInterval : TimeInterval = timeIntervals[0]
     
     var body: some View {
+        
         VStack {
+            
             Divider()
                 .padding(.bottom)
             
@@ -45,7 +47,9 @@ struct CreateRoomView: View {
             }
             .buttonStyle(ActiveBlackButtonDuel())
             .padding()
+            
             Spacer()
+            
         }
         .fullScreenCover(isPresented: $game.playingGame) {
             GameView()

@@ -13,172 +13,28 @@ struct SummaryDetailView: View {
     
     @State var picking : Bool = false
     
-    @State var pickedDate = Date()
-    
     var index: Int
     
     var body: some View {
         
-        VStack(alignment: .leading) {
-            
-            HStack (spacing: 12) {
+        ScrollView {
+            VStack(alignment: .leading) {
                 
-                Button(action: {
-                    pickedDate = pickedDate.addingTimeInterval(-86400)
-                }, label: {
-                    Image(systemName: "chevron.left") ///ini diganti atau perubahan tanggalnya per minggu
-                })
-                .foregroundStyle(.black)
-                
-                
-                Text(pickedDate.formatted(date: .complete, time: .omitted))
-                    .bold()
-                
-                Button(action: {
-                    pickedDate = pickedDate.addingTimeInterval(86400)
-                    
-                }, label: {
-                    Image(systemName: "chevron.right") ///sama ni per minggu, maju mundur
-                })
-                .foregroundStyle(.black)
-                
-                //                Spacer()
-                
-                Button(action: {
-                    picking.toggle()
-                }, label: {
-                    Image(systemName: "calendar")
-                }) ///buka kalender
-                .foregroundStyle(.black)
-                
-                
-            }.padding().frame(maxWidth: .infinity)
-            
-            if picking {
-                DatePicker(
-                    "Start Date",
-                    selection: $pickedDate,
-                    displayedComponents: [.date]
-                )
-                .datePickerStyle(.graphical)
-                .tint(.black)
-                .padding()
-            }
-            
-            Divider()
-            
-            ScrollView {
+                Divider()
                 
                 ZStack {
                     Color.SheetGray
                     VStack(alignment: .leading) {
                         
-                        HStack(spacing: 40) {
+                        VStack(alignment: .leading){
                             
-                            
-                            ZStack {
-                                
-                                if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Mon") {
-                                    Circle()
-                                        .frame(height: 24)
-                                        .foregroundColor(Color.YellowNormal2)
-                                }
-                                
-                                Text("M")
-                            }
-                            
-                            ZStack {
-                                
-                                if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Tue") {
-                                    Circle()
-                                        .frame(height: 24)
-                                        .foregroundColor(Color.YellowNormal2)
-                                }
-                                
-                                Text("T")
-                            }
-                            
-                            ZStack {
-                                
-                                if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Wed") {
-                                    Circle()
-                                        .frame(height: 24)
-                                        .foregroundColor(Color.YellowNormal2)
-                                }
-                                
-                                Text("W")
-                            }
-                            
-                            ZStack {
-                                
-                                if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Thu") {
-                                    Circle()
-                                        .frame(height: 24)
-                                        .foregroundColor(Color.YellowNormal2)
-                                }
-                                
-                                Text("T")
-                            }
-                            
-                            ZStack {
-                                
-                                if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Fri") {
-                                    Circle()
-                                        .frame(height: 24)
-                                        .foregroundColor(Color.YellowNormal2)
-                                }
-                                
-                                Text("F")
-                            }
-                            
-                            ZStack {
-                                
-                                if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Sat") {
-                                    Circle()
-                                        .frame(height: 24)
-                                        .foregroundColor(Color.YellowNormal2)
-                                }
-                                
-                                Text("S")
-                            }
-                            
-                            ZStack {
-                                
-                                if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Sun") {
-                                    Circle()
-                                        .frame(height: 24)
-                                        .foregroundColor(Color.YellowNormal2)
-                                }
-                                
-                                Text("S")
-                            }
+                            Text("\(vm.supaWorkoutsExactDay[index].routeName)")
+                                .font(.title2)
+                                .bold()
+                                .padding(.leading)
                             
                         }
-                        .frame(maxWidth: .infinity)
-                        .font(.caption).fontWeight(.semibold)
                         .padding()
-                        
-                        Text("Your Run")
-                            .font(.title3).bold()
-                            .padding(.horizontal)
-                        
-                        VStack(alignment: .leading, spacing: 18) {
-                            RoundedRectangle(cornerRadius: 16)
-                                .foregroundColor(Color.TextDimGray)
-                                .frame(height: 350)
-                            VStack(alignment: .leading){
-                                
-                                Text("\(vm.supaWorkoutsExactDay[index].routeName)")
-                                    .font(.title2)
-                                    .bold()
-                                    .padding(.leading)
-                                
-                            }.padding(.bottom)
-                        }
-                        .background(.white)
-                        .cornerRadius(16)
-                        .padding([.bottom, .leading, .trailing])
-                        
                         HStack(spacing: 5){
                             ZStack {
                                 RoundedRectangle(cornerRadius: 8)
@@ -213,16 +69,6 @@ struct SummaryDetailView: View {
                             }
                         }.padding(.horizontal)
                         
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 8)
-                                .foregroundColor(.white)
-                                .frame(height: 87)
-                            VStack{
-                                Text("Elevation")
-                                    .font(.footnote).fontWeight(.semibold)
-                            }
-                        }.padding()
-                        
                         HStack(spacing: 5){
                             ZStack {
                                 RoundedRectangle(cornerRadius: 8)
@@ -240,7 +86,7 @@ struct SummaryDetailView: View {
                                 VStack{
                                     Text(String(vm.workoutsExactDay[index].calorieBurned))
                                         .font(.footnote).fontWeight(.semibold).padding(.bottom, 10)
-                                    Text("Energy")
+                                    Text("Calories Burned")
                                         .font(.caption2)
                                 }
                             }
@@ -249,7 +95,7 @@ struct SummaryDetailView: View {
                                     .foregroundColor(.white)
                                     .frame(height: 115)
                                 VStack{
-                                    Text("BELUM ADA")
+                                    Text("0")
                                         .font(.footnote).fontWeight(.semibold).padding(.bottom, 10)
                                     Text("Steps")
                                         .font(.caption2)
@@ -267,33 +113,44 @@ struct SummaryDetailView: View {
                                 .foregroundColor(.white)
                                 .frame(height: 87)
                             
-                            HStack{
-                                
-                                ForEach (0 ..< vm.supaWorkoutsExactDay[index].itemName.count) { i in
-                                    
-                                    ZStack {
-                                        
-                                        RoundedRectangle(cornerRadius: 15)
-                                            .foregroundStyle(.white)
-                                            .frame(width: 48, height: 48)
-                                            .overlay(
-                                                RoundedRectangle(cornerRadius: 15)
-                                                    .stroke(Color(red: 236/255, green: 234/255, blue: 235/255),
-                                                            lineWidth: 2)
-                                                    .shadow(radius: 3, x: 2, y: 2)
-                                                    .clipShape(
-                                                        RoundedRectangle(cornerRadius: 15)
-                                                    )
-                                            )
-                                        
-                                        Image("\(vm.supaWorkoutsExactDay[index].itemName[i])")
-                                            .resizable()
-                                            .frame(width: 48, height: 48)
-                                        
-                                    }
+                            if vm.supaWorkoutsExactDay[index].itemName.isEmpty {
+                                HStack {
+                                    Text("No items collected during this run!")
+                                        .font(.caption2)
+                                        .padding(.horizontal)
                                 }
-                                Spacer()
-                            }.padding(.horizontal)
+                            } else {
+                                HStack{
+                                    
+                                    ForEach (0 ..< vm.supaWorkoutsExactDay[index].itemName.count) { i in
+                                        
+                                        ZStack {
+                                            
+                                            RoundedRectangle(cornerRadius: 15)
+                                                .foregroundStyle(.white)
+                                                .frame(width: 48, height: 48)
+                                                .overlay(
+                                                    RoundedRectangle(cornerRadius: 15)
+                                                        .stroke(Color(red: 236/255, green: 234/255, blue: 235/255),
+                                                                lineWidth: 2)
+                                                        .shadow(radius: 3, x: 2, y: 2)
+                                                        .clipShape(
+                                                            RoundedRectangle(cornerRadius: 15)
+                                                        )
+                                                )
+                                            
+                                            Image("\(vm.supaWorkoutsExactDay[index].itemName[i])")
+                                                .resizable()
+                                                .frame(width: 48, height: 48)
+                                            
+                                        }
+                                    }
+                                    Spacer()
+                                }.padding(.horizontal)
+                            }
+                            
+                            
+                            
                         }.padding([.horizontal, .bottom])
                         
                         Text("Duel Mode")
@@ -352,14 +209,16 @@ struct SummaryDetailView: View {
                                 .offset(y: 15)
                         }.padding([.horizontal, .bottom])
                         
-                        
                     }
                 }
+                
+            }
+            .onChange(of: pickedDate) { oldValue, newValue in
+                vm.getThatDay(pickedDate: pickedDate)
             }
         }
-        .onChange(of: pickedDate) { oldValue, newValue in
-            vm.getThatDay(pickedDate: pickedDate)
-        }
+        .scrollIndicators(.hidden)
+        
         
     }
 }

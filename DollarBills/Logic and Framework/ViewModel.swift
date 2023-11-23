@@ -9,6 +9,7 @@ import MapKit
 import HealthKit
 import Combine
 import SwiftUI
+
 //import CoreHaptics
 //import Supabase
 
@@ -28,47 +29,65 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     @Published var supaWorkouts: [WorkoutReadPayload] = []
     
-    func getThatDay(pickedDate: Date) {
+    @Published var gotEveryday: Bool = false
+    
+    func getEveryWorkout() {
         
         loadWorkouts()
         
-        var workoutsToday: [Workout] = []
-        
-        for i in workouts {
-            print(i.date.formatted(date:.complete, time: .omitted))
-            if (i.date.formatted(date: .complete, time: .omitted) ==
-                pickedDate.formatted(date: .complete, time: .omitted)) {
-                workoutsToday.append(i)
-            }
-        }
-        
-        workoutsExactDay = workoutsToday
-        
         Task {
+            
             do {
-                supaWorkouts = try await fetchWorkouts()
+                self.supaWorkouts = try await self.fetchWorkouts()
             } catch {
                 print(error)
             }
             
         }
         
-        var supaWorkoutsToday: [WorkoutReadPayload] = []
+        gotEveryday = true
         
-        for i in supaWorkouts {
-            if (i.startDate.formatted(date: .complete, time: .omitted) ==
-                pickedDate.formatted(date: .complete, time: .omitted)) {
-                supaWorkoutsToday.append(i)
+    }
+    
+    func getThatDay(pickedDate: Date) {
+            
+            var workoutsToday: [Workout] = []
+            
+            for i in self.workouts {
+                print(i.date.formatted(date:.complete, time: .omitted))
+                if (i.date.formatted(date: .complete, time: .omitted) ==
+                    pickedDate.formatted(date: .complete, time: .omitted)) {
+                    workoutsToday.append(i)
+                }
             }
-        }
-        
-        supaWorkoutsExactDay = supaWorkoutsToday
+            
+            workoutsExactDay = workoutsToday
+            
+            var supaWorkoutsToday: [WorkoutReadPayload] = []
+            
+            for i in self.supaWorkouts {
+                if (i.startDate.formatted(date: .complete, time: .omitted) ==
+                    pickedDate.formatted(date: .complete, time: .omitted)) {
+                    supaWorkoutsToday.append(i)
+                }
+            }
+            
+            supaWorkoutsExactDay = supaWorkoutsToday
         
     }
     
     @Published var currentRoomID: String = ""
     @Published var currentDisplayScreen: DisplayScreen = .viewMain
     @Published var selectedSegment = 0
+    {
+        didSet {
+            if (selectedSegment == 1) {
+                gotEveryday = false
+            } else {
+                gotEveryday = true
+            }
+        }
+    }
     @Published var locationAccess : Bool = true
     @Published var routes: [MKRoute] = []
     @Published var cachedDirections: [String: [String]] = [:]

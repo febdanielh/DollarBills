@@ -301,6 +301,7 @@ import SwiftUI
 struct SummaryView: View {
     
     @EnvironmentObject var vm : ViewModel
+    
     @State var progress = 0.1
     
     @State private var durationFormatter: DateComponentsFormatter = {
@@ -333,9 +334,9 @@ struct SummaryView: View {
                                 .font(.title)
                                 .bold()
                             Spacer()
-                            Button {
-                                
-                            } label: {
+                            NavigationLink(destination:
+                                SeeAllView()
+                            ) {
                                 Text("See All >")
                                     .font(.callout)
                                     .fontWeight(.semibold)
@@ -355,10 +356,14 @@ struct SummaryView: View {
                             
                             if vm.supaWorkoutsExactDay.isEmpty {
                                 
-                                Text("No workouts recorded for today!")
-                                    .font(.title3)
-                                    .bold()
-                                    .padding()
+                                VStack (alignment: .center) {
+                                    
+                                    Text("No workouts recorded for today!")
+                                        .font(.title3)
+                                        .bold()
+                                        .padding()
+                                    
+                                }
                                 
                             } else {
                                 
@@ -443,6 +448,7 @@ struct SummaryView: View {
                     
                 }
                 .onAppear(perform: {
+                    vm.getEveryWorkout()
                     vm.getThatDay(pickedDate: Date())
                 })
                 
