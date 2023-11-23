@@ -104,7 +104,7 @@ class Supabase {
         
         do {
             
-            workoutsFetched = try await client.database.from("Workout").select().execute().value
+            workoutsFetched = try await client.database.from("Workout").select().eq(column: "userID", value: userID).execute().value
             
             print("workoutsFetched: \(workoutsFetched)")
             
