@@ -16,7 +16,7 @@ struct GameData: Codable {
     var playerName: String
     var timeRemaining: TimeInterval?
     var score: Int?
-    var message: String?
+    var itemUsed: String?
     var outcome: String?
     var distance: Double?
 }
@@ -29,7 +29,7 @@ extension RealTimeGame {
     ///
     /// - Returns: A representation of game data that contains only the score.
     func encode(timeRemaining: TimeInterval) -> Data? {
-        let gameData = GameData(matchName: matchName, playerName: GKLocalPlayer.local.displayName, timeRemaining: timeRemaining, message: nil, outcome: nil)
+        let gameData = GameData(matchName: matchName, playerName: GKLocalPlayer.local.displayName, timeRemaining: timeRemaining, itemUsed: nil, outcome: nil)
         return encode(gameData: gameData)
     }
     
@@ -37,7 +37,14 @@ extension RealTimeGame {
     ///
     /// - Returns: A representation of game data that contains only the distance
     func encode(distance: Double) -> Data? {
-        let gameData = GameData(matchName: matchName, playerName: GKLocalPlayer.local.displayName, message: nil, outcome: nil, distance: distance)
+        let gameData = GameData(matchName: matchName, playerName: GKLocalPlayer.local.displayName, outcome: nil, distance: distance)
+        return encode(gameData: gameData)
+    }
+    
+    
+    ///send data to affect opponent's distance
+    func encodeOpponent(distance: Double, item: String) -> Data? {
+        let gameData = GameData(matchName: matchName, playerName: opponentName, itemUsed: item, outcome: nil, distance: distance)
         return encode(gameData: gameData)
     }
     
@@ -45,7 +52,7 @@ extension RealTimeGame {
     ///
     /// - Returns: A representation of game data that contains only the game outcome.
     func encode(outcome: String) -> Data? {
-        let gameData = GameData(matchName: matchName, playerName: GKLocalPlayer.local.displayName, score: nil, message: nil, outcome: outcome)
+        let gameData = GameData(matchName: matchName, playerName: GKLocalPlayer.local.displayName, score: nil, itemUsed: nil, outcome: outcome)
         return encode(gameData: gameData)
     }
     

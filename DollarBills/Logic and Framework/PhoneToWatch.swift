@@ -8,7 +8,10 @@
 import SwiftUI
 import WatchConnectivity
 
+var statisticsData: [String:Double] = [:]
 class PhoneToWatch: NSObject, ObservableObject {
+    @Published var isRunning: Bool = false
+    
     var session: WCSession
     
     init(session: WCSession = .default) {
@@ -18,7 +21,22 @@ class PhoneToWatch: NSObject, ObservableObject {
         session.activate()
     }
     
+    func activateSession() {
+        if (WCSession.isSupported()) {
+            let session = WCSession.default
+            session.delegate = self
+            if session.isReachable {
+                print("WC session not yet reachable")
+            }
+            session.activate()
+            print("Watch session activated")
+        } else {
+            print("WC Session not supported")
+        }
+    }
+    
     func sendMessageToWatch() {
+        print("halo")
         let message = ["Message": "Start Workout"]
         if (WCSession.default.isReachable) {
             WCSession.default.sendMessage(message, replyHandler: nil) { error in
@@ -37,13 +55,27 @@ class PhoneToWatch: NSObject, ObservableObject {
             print("start duel send message")
         }
     }
+    
+    func sendMessageToWatch(message: Dictionary<String, Double>) {
+        if (WCSession.default.isReachable) {
+            WCSession.default.sendMessage(message as [String : Any], replyHandler: nil) { error in
+                print("Error when sending the message with error: \(error.localizedDescription)")}
+        }
+        print("sendMessageToWatch called")
+    }
+    
+    func sendStatisticsData() {
+        sendMessageToWatch(message: statisticsData)
+    }
 }
 
 extension PhoneToWatch: WCSessionDelegate {
     func sessionDidBecomeInactive(_ session: WCSession) {
+        session.activate()
     }
     
     func sessionDidDeactivate(_ session: WCSession) {
+        session.activate()
     }
     
     
@@ -59,5 +91,16 @@ extension PhoneToWatch: WCSessionDelegate {
         } else {
             print("Not Reachable on Phone")
         }
+    }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        if let value = message["ended"] as? String {
+            if (value == "ended") {
+                print("workout ended on phone aswellll")
+                isRunning = false
+            }
+        }
+        //        if (message.first?.key == "ended") {
+        //        }
     }
 }

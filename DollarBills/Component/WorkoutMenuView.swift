@@ -41,7 +41,7 @@ struct WorkoutMenuView: View {
                     }
                     Button("Finish & Save") {
                         Task {
-                            await vm.endWorkout()
+                            try await vm.endWorkout()
                         }
                     }
                 }

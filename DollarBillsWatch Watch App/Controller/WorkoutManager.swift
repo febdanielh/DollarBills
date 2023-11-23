@@ -20,7 +20,6 @@ class WorkoutManager: NSObject, ObservableObject {
     var routeBuilder: HKWorkoutRouteBuilder?
     
     var locationManager = LocationManager()
-    
     @Published var currentDisplayScreen: DisplayScreen = .viewHome
     
     init(watchSession: WCSession) {
@@ -31,6 +30,7 @@ class WorkoutManager: NSObject, ObservableObject {
     
     func startWorkout(workoutType: HKWorkoutActivityType) {
         let configuration = HKWorkoutConfiguration()
+        let startDate = Date()
         configuration.activityType = workoutType
         configuration.locationType = .outdoor
         
@@ -46,14 +46,12 @@ class WorkoutManager: NSObject, ObservableObject {
         
         builder?.dataSource = HKLiveWorkoutDataSource(healthStore: healthStore,
                                                       workoutConfiguration: configuration)
-        
-        let startDate = Date()
         session?.startActivity(with: startDate)
         builder?.beginCollection(withStart: startDate) { (success, error) in
         }
         
-        //        locationManager.setupLocationManager()
     }
+    
     
     func requestAuthorization() {
         let typesToShare: Set = [
@@ -88,7 +86,6 @@ class WorkoutManager: NSObject, ObservableObject {
             }
         })
     }
-    
     
     // MARK: - Session State Control
     
@@ -231,7 +228,6 @@ extension WorkoutManager: WCSessionDelegate {
         if let value = message["Message"] as? String {
             print("message received")
             if (value == "Start Workout") {
-                startWorkout(workoutType: .running)
                 currentDisplayScreen = .viewRun
             } else if (value == "Start Match") {
                 currentDisplayScreen = .viewDuel

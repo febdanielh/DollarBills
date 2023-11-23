@@ -52,60 +52,97 @@ struct ExploreView: View {
                 .padding(.top)
                 .frame(width: 356)
                 
-                // Search Bar
-                TextField("Search for places or running routes", text: $routeSearching)
-                    .font(.body)
-                    .padding(7)
-                    .padding(.horizontal, 10)
-                    .background(Color(.systemGray6))
-                    .cornerRadius(30)
-                    .onTapGesture {
-                        self.isEditing = true
+                HStack {
+                    
+                    // Search Bar
+                    TextField("Search for places or running routes", text: $routeSearching)
+                        .font(.body)
+                        .padding(7)
+                        .padding(.horizontal, 10)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(30)
+                        .onTapGesture {
+                            self.isEditing = true
+                        }
+                        .padding(.bottom, 5)
+                        .frame(width: routeSearching.isEmpty ? 356 : 290)
+                    
+                    if !routeSearching.isEmpty {
+                        Button {
+                            routeSearching = ""
+                        } label: {
+                            Text("Clear")
+                                .padding(.trailing)
+                        }
                     }
-                    .padding(.bottom, 5)
-                    .frame(width: 356)
+
+                }
+                .frame(width: 356)
+                
+                HStack {
+                    
+                    if !routeSearching.isEmpty {
+                        Text("Showing search results for : \"\(routeSearching)\"")
+                            .font(.footnote)
+                            .padding(.horizontal)
+                    }
+                    Spacer()
+                    
+                }.frame(width: 356)
                 
                 Divider()
                 
-                ScrollView {
-                    ZStack {
-                        Color.SheetGray
-                            .ignoresSafeArea()
-                        VStack(spacing: 20) {
-                            Text("Routes of The Week")
-                                .foregroundStyle(.black)
-                                .font(.system(size: 20)).fontWeight(.semibold)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.top)
-                                .frame(width: 361)
-                            
-                            SnapCarouselView(trailingSpace: 10, index: $currentIndex, items: vm.annotations) { routes in
-                                RoutesOfTheWeek(isRouteSelected: $isRouteSelected, routes: routes)
-                            }
-                            .padding(.bottom, 210)
-                            
-                            HStack(spacing: 6) {
-                                ForEach(vm.annotations.indices, id: \.self) { index in
-                                    RoundedRectangle(cornerRadius: currentIndex == index ? 24 : 100, style: .continuous)
-                                        .fill(.black)
-                                        .frame(width: currentIndex == index ? 13 : 5, height: 6)
-                                        .opacity(currentIndex == index ? 1 : 0.2)
-                                        .animation(.spring(), value: currentIndex == index )
+                if routeSearching.isEmpty {
+                    
+                    ScrollView {
+                        
+                        ZStack {
+                            Color.SheetGray
+                                .ignoresSafeArea()
+                            VStack(spacing: 20) {
+                                Text("Routes of The Week")
+                                    .foregroundStyle(.black)
+                                    .font(.system(size: 20)).fontWeight(.semibold)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(.top)
+                                    .frame(width: 361)
+                                
+                                SnapCarouselView(trailingSpace: 10, index: $currentIndex, items: vm.annotations) { routes in
+                                    RoutesOfTheWeek(isRouteSelected: $isRouteSelected, routes: routes)
                                 }
+                                .padding(.bottom, 210)
+                                
+                                HStack(spacing: 6) {
+                                    ForEach(vm.annotations.indices, id: \.self) { index in
+                                        RoundedRectangle(cornerRadius: currentIndex == index ? 24 : 100, style: .continuous)
+                                            .fill(.black)
+                                            .frame(width: currentIndex == index ? 13 : 5, height: 6)
+                                            .opacity(currentIndex == index ? 1 : 0.2)
+                                            .animation(.spring(), value: currentIndex == index )
+                                    }
+                                }
+                                
+                                if CLLocationManager.authorizationStatus() == .notDetermined {
+                                    AllowLocationRect()
+                                } else {
+                                    NearestRouteCard(vm: _vm, tag: $tag, routes: RouteData.routeData, selectedRoute: $vm.selectedRoute)
+                                }
+                                
+                                QokkaPickCard(vm: _vm, tag: $tag, routes: RouteData.furthrPick, selectedRoute: $vm.selectedRoute)
                             }
-                            
-                            if CLLocationManager.authorizationStatus() == .notDetermined {
-                                AllowLocationRect()
-                            } else {
-                                NearestRouteCard(vm: _vm, tag: $tag, routes: RouteData.routeData, selectedRoute: $vm.selectedRoute)
-                            }
-                            
-                            QokkaPickCard(vm: _vm, tag: $tag, routes: RouteData.furthrPick, selectedRoute: $vm.selectedRoute)
+                            .frame(maxWidth: .infinity)
                         }
-                        .frame(maxWidth: .infinity)
                     }
+                    .scrollIndicators(.hidden)
+                    
                 }
-                .scrollIndicators(.hidden)
+                
+                else {
+                    
+                    SearchingView(isRouteSelected: $isRouteSelected, routeSearching: $routeSearching)
+                    
+                }
+                
             }
         }
         

@@ -10,22 +10,22 @@ import SwiftUI
 struct ItemProgress: View {
     @State private var progress: Double = 0.0
     let totalTime: Double = 20.0
-
+    let item: String
+    
     var body: some View {
         VStack {
             ZStack {
                 Circle()
                     .trim(from: 0, to: CGFloat(progress))
                     .stroke(Color.yellow, lineWidth: 5)
-                    .frame(width: 42, height: 42)
+                    .frame(width: 175, height: 175)
                     .rotationEffect(.degrees(-90))
-
                 Circle()
                     .fill(Color.white)
                     .frame(width: 30, height: 30)
-                Image("itemRock")
+                Image(item)
                     .resizable()
-                    .frame(width: 40, height: 40)
+                    .frame(width: 136, height: 123)
             }
             .onAppear(perform: {
                 startProgress()
@@ -43,5 +43,5 @@ struct ItemProgress: View {
 }
 
 #Preview {
-    ItemProgress()
+    ItemProgress(item: "imageRock")
 }

@@ -11,7 +11,7 @@ struct ItemsSheet: View {
     
     @EnvironmentObject var vm: ViewModel
     @EnvironmentObject var game: RealTimeGame
-    @ObservedObject var ptw = PhoneToWatch()
+    @EnvironmentObject var ptw: PhoneToWatch
     @Binding var selectedItems: [Items]
     @Binding var timeInterval: TimeInterval
     @State var isItemFull: Bool = false

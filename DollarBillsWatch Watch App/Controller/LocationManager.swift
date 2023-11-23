@@ -42,7 +42,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             if CLLocationManager.locationServicesEnabled() {
                 self.locationManager = CLLocationManager()
                 self.locationManager?.delegate = self
-//                self.locationManager?.startUpdatingLocation()
             } else {
                 print("Location Services not Enabled.")
             }

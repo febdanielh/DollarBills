@@ -9,6 +9,7 @@ import MapKit
 import HealthKit
 import Combine
 import SwiftUI
+
 //import CoreHaptics
 //import Supabase
 
@@ -16,9 +17,77 @@ import SwiftUI
 class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     private var locationManager: CLLocationManager = CLLocationManager()
+    
+    // Workouts
+    @Published var workouts = [Workout]()
+    
+    @Published var loadingWorkouts = true
+    
+    @Published var workoutsExactDay : [Workout] = []
+    
+    @Published var supaWorkoutsExactDay : [WorkoutReadPayload] = []
+    
+    @Published var supaWorkouts: [WorkoutReadPayload] = []
+    
+    @Published var gotEveryday: Bool = false
+    
+    func getEveryWorkout() {
+        
+        loadWorkouts()
+        
+        Task {
+            
+            do {
+                self.supaWorkouts = try await self.fetchWorkouts()
+            } catch {
+                print(error)
+            }
+            
+        }
+        
+        gotEveryday = true
+        
+    }
+    
+    func getThatDay(pickedDate: Date) {
+            
+            var workoutsToday: [Workout] = []
+            
+            for i in self.workouts {
+                print(i.date.formatted(date:.complete, time: .omitted))
+                if (i.date.formatted(date: .complete, time: .omitted) ==
+                    pickedDate.formatted(date: .complete, time: .omitted)) {
+                    workoutsToday.append(i)
+                }
+            }
+            
+            workoutsExactDay = workoutsToday
+            
+            var supaWorkoutsToday: [WorkoutReadPayload] = []
+            
+            for i in self.supaWorkouts {
+                if (i.startDate.formatted(date: .complete, time: .omitted) ==
+                    pickedDate.formatted(date: .complete, time: .omitted)) {
+                    supaWorkoutsToday.append(i)
+                }
+            }
+            
+            supaWorkoutsExactDay = supaWorkoutsToday
+        
+    }
+    
     @Published var currentRoomID: String = ""
     @Published var currentDisplayScreen: DisplayScreen = .viewMain
     @Published var selectedSegment = 0
+    {
+        didSet {
+            if (selectedSegment == 1) {
+                gotEveryday = false
+            } else {
+                gotEveryday = true
+            }
+        }
+    }
     @Published var locationAccess : Bool = true
     @Published var routes: [MKRoute] = []
     @Published var cachedDirections: [String: [String]] = [:]
@@ -45,6 +114,8 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     @Published var users = [User]()
     @Published var detailRoom = [DetailRoomPayload]()
+    
+    var rtg = RealTimeGame()
     
     // MARK: - Properties
     func updateTrackingMode() {
@@ -78,7 +149,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var activityType = HKWorkoutActivityType.running
     @Published var startDate = Date()
     @Published var meters = 0.0
-    @Published var heartRate = 40
+    @Published var heartRate = 0
     @Published var calorieBurned: Double = 0.0
     @Published var totalElapsedTime: TimeInterval = 0.0
     @Published var timer: Timer?
@@ -87,6 +158,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var isPaused: Bool = false
     @Published var points: Int = 0
     
+    @Published var sendDataTimer: Timer?
     
     // Calculated property that returns an MKPolyline based on the locations array
     var polyline: MKPolyline {
@@ -95,7 +167,15 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     var newWorkout: Workout {
-        return Workout(activityType: activityType, polyline: polyline, locations: locations, date: startDate, duration: totalElapsedTime, heartRate: heartRate, calorieBurned: calorieBurned, itemsCollected: itemsCollected)
+        return Workout(activityType: activityType, polyline: polyline, locations: locations, date: startDate, duration: totalElapsedTime, heartRate: heartRate, calorieBurned: calorieBurned)
+    }
+    
+    func getItemNames() -> [String] {
+        var itemNames: [String] = []
+        for item in itemsCollected {
+            itemNames.append(item.namaItem)
+        }
+        return itemNames
     }
     
     @Published var showPermissionsView = false
@@ -127,10 +207,6 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     var locationAuth: Bool {locationStatus == .authorizedWhenInUse}
     var mapView: MKMapView = MKMapView()
-    
-    // Workouts
-    @Published var workouts = [Workout]()
-    @Published var loadingWorkouts = true
     
     @Published var selectedWorkout: Workout? { didSet {
         updatePolylines()
@@ -217,37 +293,15 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
                 }
             }
         }
+        print ("workouts:\(workouts)")
     }
-    
-    func getToday() -> Workout? {
-        for i in workouts {
-            print(i.date.formatted(date:.complete, time: .omitted))
-            if (i.date.formatted(date: .complete, time: .omitted) ==
-                "Wednesday, 11 October 2023") {
-                return i
-            }
-        }
-        return nil
-    }
-    
-    func getThatDay(pickedDate: Date) -> Workout? {
-        for i in workouts {
-            print(pickedDate.formatted(date:.complete, time: .omitted))
-            if (i.date.formatted(date: .complete, time: .omitted) ==
-                pickedDate.formatted(date: .complete, time: .omitted)) {
-                return i
-            }
-        }
-        return nil
-    }
-    
     
     // MARK: - Workout Tracking // add the heart data recovery part
     
     func startTotalElapsedTimeTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (Timer) in
             Task {
-                await self?.updateTotalElapsedTime()
+                await self.updateTotalElapsedTime()
             }
         }
     }
@@ -258,6 +312,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
             let currentAccumulatedTime = Date().timeIntervalSince(currentDate)
             totalElapsedTime += currentAccumulatedTime
             lastDateObserved = Date()
+            statisticsData["duration"] = totalElapsedTime
         }
     }
     
@@ -272,13 +327,22 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         routeBuilder = HKWorkoutRouteBuilder(healthStore: healthStore, device: .local())
         workoutBuilder = HKWorkoutBuilder(healthStore: healthStore, configuration: config, device: .local())
+        locationManager.allowsBackgroundLocationUpdates = true
+        updateTrackingMode(.followWithHeading)
+        lastDateObserved = Date()
+        totalElapsedTime = 0
         
         do {
             try await workoutBuilder?.beginCollection(at: .now)
-            createWorkoutItems(distance: 0.0, pace: 0.0, duration: 0.0)
         } catch {
             self.showError(.startingWorkout)
             return
+        }
+        
+        do {
+            try await createWorkoutItems()
+        } catch {
+            print(error)
         }
         
         do {
@@ -304,12 +368,6 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         } catch {
             print("Error retrieving heart rate: \(error.localizedDescription)")
         }
-        
-        locationManager.allowsBackgroundLocationUpdates = true
-        updateTrackingMode(.followWithHeading)
-        
-        lastDateObserved = Date()
-        totalElapsedTime = 0
         
         startTotalElapsedTimeTimer()
         
@@ -355,10 +413,17 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         
     }
     
-    func endWorkout() async {
+    func endWorkout() async throws {
+        
         locationManager.allowsBackgroundLocationUpdates = false
         
         timer?.invalidate()
+        
+//        timer = nil
+//        timer = nil
+//        statisticsData["duration"] = 0.0
+//        statisticsData["distance"] = 0.0
+        
         recording = false
         
         let workout = newWorkout
@@ -372,6 +437,7 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         do {
             try await updateUserPoints(points: points)
+            try await updateWorkoutItems(distance: workout.distance, pace: workout.supaFormatPace(), duration: workout.duration)
         } catch {
             print(error.localizedDescription)
         }
@@ -456,6 +522,8 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         distance = locations.last!.distance(from: startPoint)
         distance = distance/1000
+        
+        statisticsData["distance"] = meters
         
         //        if selectedAnnotation != AnnotationModel(routeName: "", waypoints: []) {
         //            if locationManager.monitoredRegions.isEmpty == true {
@@ -555,6 +623,8 @@ class ViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
         itemsCollected.append(randomItem)
         print("Added random item: \(randomItem.namaItem)")
+        
+        sendGetItemData(item: randomItem)
     }
     
     func removeAll() {

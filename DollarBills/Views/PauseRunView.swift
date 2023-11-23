@@ -69,15 +69,6 @@ struct PauseRunView: View {
                 }
                 Spacer()
                 VStack(spacing: 20){
-                    Text(workout.formattedElevation())
-                        .font(.system(size: 20))
-                        .fontWeight(.black)
-                    Text("Elevation")
-                        .font(.system(size: 20))
-                        .fontWeight(.semibold)
-                }
-                Spacer()
-                VStack(spacing: 20){
                     Text(String(workout.calorieBurned))
                         .font(.system(size: 20))
                         .fontWeight(.black)
@@ -101,7 +92,7 @@ struct PauseRunView: View {
                     .alert("Finish?", isPresented: $showAlert) {
                         Button("Yes") {
                             Task {
-                                await vm.endWorkout()
+                                try await vm.endWorkout()
                             }
                             vm.currentDisplayScreen = .viewMain
                         }

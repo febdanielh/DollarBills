@@ -19,6 +19,7 @@ enum DisplayScreen {
 struct ContentView: View {
     
     @Environment(\.scenePhase) var scenePhase
+    @EnvironmentObject var phoneToWatch: PhoneToWatch
     @EnvironmentObject var networkMonitor: NetworkMonitor
     @EnvironmentObject var vm: ViewModel
     @EnvironmentObject private var game : RealTimeGame
@@ -34,6 +35,7 @@ struct ContentView: View {
             case .viewMain:
                 MainView(tag: $vm.tag, isRouteSelected: $vm.isRouteSelected)
                     .onAppear {
+                        phoneToWatch.isRunning = false
                         vm.removeAll()
                         vm.selectedRoute = Routes(tag: 0, routeName: "", routeNameDetail: "", routeImage: "", routeCount: 0, latitude: 0.0, longitude: 0.0)
                         directions.removeAll()
@@ -49,8 +51,7 @@ struct ContentView: View {
                         vm.serviceAvailabilityCheck()
                     }
             case .viewRun:
-                //                RunView(workout: vm.newWorkout, itemCollected: $vm.itemsCollected)
-                RunWatchView(workout: vm.newWorkout, itemCollected: $vm.itemsCollected)
+                RunWatchView()
             case .viewPause:
                 PauseRunView(workout: vm.newWorkout, directions: $directions)
             default:
@@ -61,6 +62,7 @@ struct ContentView: View {
             OnboardingView(shouldShowOnboarding: $shouldShowOnboarding)
                 .onDisappear {
                     launchedBefore = true
+                    vm.getEveryWorkout()
                     vm.currentDisplayScreen = .viewMain
                     game.authenticatePlayer()
                 }
@@ -68,10 +70,7 @@ struct ContentView: View {
         else if !networkMonitor.isConnected {
             DisconnectedView()
         }
-        
-        
     }
-    
 }
 
 #Preview {

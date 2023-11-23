@@ -1,22 +1,21 @@
 /*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-The view that displays the game play interface.
-*/
+ See LICENSE folder for this sample’s licensing information.
+ 
+ Abstract:
+ The view that displays the game play interface.
+ */
 
 import SwiftUI
 import GameKit
 
 struct GameView: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var game: RealTimeGame
+    @EnvironmentObject var game: RealTimeGame
     @State private var showMessages = false
     @State private var isChatting = false
     
     var body: some View {
         VStack {
-            // Display the game title.
             Text("Duel")
                 .font(.title)
             
@@ -27,7 +26,6 @@ struct GameView: View {
             
             Form {
                 Section("Game Data") {
-                    // Display the local player's avatar, name, and score.
                     HStack {
                         HStack {
                             game.myAvatar
@@ -44,7 +42,6 @@ struct GameView: View {
                             .lineLimit(2)
                     }
                     
-                    // Display the opponent's avatar, name, and score.
                     HStack {
                         HStack {
                             game.opponentAvatar
@@ -74,7 +71,7 @@ struct GameView: View {
                         } label: {
                             Text("Execute \(item.namaItem)")
                         }
-
+                        
                     }
                 }
                 Section("Rules") {
@@ -84,8 +81,6 @@ struct GameView: View {
         }
         .alert("Game Over", isPresented: $game.youWon, actions: {
             Button("OK", role: .cancel) {
-                //  Save the score when the local player wins.
-//                game.saveScore()
                 game.resetMatch()
             }
         }, message: {
@@ -101,8 +96,8 @@ struct GameView: View {
     }
 }
 
-struct GameViewPreviews: PreviewProvider {
-    static var previews: some View {
-        GameView(game: RealTimeGame())
-    }
-}
+//struct GameViewPreviews: PreviewProvider {
+//    static var previews: some View {
+//        GameView(game: RealTimeGame())
+//    }
+//}

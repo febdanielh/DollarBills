@@ -13,275 +13,117 @@ struct SummaryDetailView: View {
     
     @State var picking : Bool = false
     
-    @State var pickedDate = Date()
-    
-    @State var todaysWorkout : Workout?
+    var index: Int
     
     var body: some View {
         
-        VStack(alignment: .leading) {
-            
-            HStack (spacing: 12) {
+        ScrollView {
+            VStack(alignment: .leading) {
                 
-                Button(action: {
-                    pickedDate = pickedDate.addingTimeInterval(-86400)
-                }, label: {
-                    Image(systemName: "chevron.left") ///ini diganti atau perubahan tanggalnya per minggu
-                })
-                .foregroundStyle(.black)
-                
-                
-                Text(pickedDate.formatted(date: .complete, time: .omitted))
-                    .bold()
-                
-                Button(action: {
-                    pickedDate = pickedDate.addingTimeInterval(86400)
-                    
-                }, label: {
-                    Image(systemName: "chevron.right") ///sama ni per minggu, maju mundur
-                })
-                .foregroundStyle(.black)
-                
-                //                Spacer()
-                
-                Button(action: {
-                    picking.toggle()
-                }, label: {
-                    Image(systemName: "calendar")
-                }) ///buka kalender
-                .foregroundStyle(.black)
-                
-                
-            }.padding().frame(maxWidth: .infinity)
-            
-            if picking {
-                DatePicker(
-                    "Start Date",
-                    selection: $pickedDate,
-                    displayedComponents: [.date]
-                )
-                .datePickerStyle(.graphical)
-                .tint(.black)
-                .padding()
-            }
-            
-            Divider()
-            
-            ScrollView {
+                Divider()
                 
                 ZStack {
                     Color.SheetGray
                     VStack(alignment: .leading) {
                         
-                        HStack(spacing: 40) {
+                        VStack(alignment: .leading){
                             
-                            
-                            ZStack {
-                                
-                                if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Mon") {
-                                    Circle()
-                                        .frame(height: 24)
-                                        .foregroundColor(Color.YellowNormal2)
-                                }
-                                
-                                Text("M")
-                            }
-                            
-                            ZStack {
-                                
-                                if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Tue") {
-                                    Circle()
-                                        .frame(height: 24)
-                                        .foregroundColor(Color.YellowNormal2)
-                                }
-                                
-                                Text("T")
-                            }
-                            
-                            ZStack {
-                                
-                                if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Wed") {
-                                    Circle()
-                                        .frame(height: 24)
-                                        .foregroundColor(Color.YellowNormal2)
-                                }
-                                
-                                Text("W")
-                            }
-                            
-                            ZStack {
-                                
-                                if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Thu") {
-                                    Circle()
-                                        .frame(height: 24)
-                                        .foregroundColor(Color.YellowNormal2)
-                                }
-                                
-                                Text("T")
-                            }
-                            
-                            ZStack {
-                                
-                                if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Fri") {
-                                    Circle()
-                                        .frame(height: 24)
-                                        .foregroundColor(Color.YellowNormal2)
-                                }
-                                
-                                Text("F")
-                            }
-                            
-                            ZStack {
-                                
-                                if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Sat") {
-                                    Circle()
-                                        .frame(height: 24)
-                                        .foregroundColor(Color.YellowNormal2)
-                                }
-                                
-                                Text("S")
-                            }
-                            
-                            ZStack {
-                                
-                                if (pickedDate.formatted(Date.FormatStyle().weekday(.abbreviated)) == "Sun") {
-                                    Circle()
-                                        .frame(height: 24)
-                                        .foregroundColor(Color.YellowNormal2)
-                                }
-                                
-                                Text("S")
-                            }
-                            
-                        }
-                        .frame(maxWidth: .infinity)
-                        .font(.caption).fontWeight(.semibold)
-                        .padding()
-                        
-                        Text("Your Run")
-                            .font(.title3).bold()
-                            .padding(.horizontal)
-                        
-                        if (todaysWorkout == nil) {
-                            
-                            Text("No runs found on this day.")
-                                .padding(.horizontal)
-                            
-                        }
-                        
-                        else {
-                            
-                            VStack(alignment: .leading, spacing: 18) {
-                                RoundedRectangle(cornerRadius: 16)
-                                    .foregroundColor(Color.TextDimGray)
-                                    .frame(height: 350)
-                                VStack(alignment: .leading){
-                                    Text("HARUSNYA NAMA RUTE")
-                                        .font(.title2)
-                                        .bold()
-                                        .padding(.leading)
-                                    
-                                    HStack {
-                                        Image("Pinpoint")
-                                        Text("HARUSNYA NAMA DAERAH")
-                                            .font(.subheadline)
-                                            .fontWeight(.semibold)
-                                            .foregroundStyle(Color.YellowDark4)
-                                    }.padding(.leading).padding(.bottom, 10)
-                                }.padding(.bottom)
-                            }
-                            .background(.white)
-                            .cornerRadius(16)
-                            .padding([.bottom, .leading, .trailing])
-                            
-                            HStack(spacing: 5){
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .foregroundColor(.white)
-                                    VStack{
-                                        Text((todaysWorkout?.formattedDistance())!)
-                                            .font(.headline).padding(.bottom, 10)
-                                        Text("Distance")
-                                            .font(.footnote)
-                                    }
-                                }
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .foregroundColor(.white)
-                                    VStack{
-                                        Text((todaysWorkout?.formattedDuration())!)
-                                            .font(.headline).padding(.bottom, 10)
-                                        Text("Duration")
-                                            .font(.footnote)
-                                    }
-                                }
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .foregroundColor(.white)
-                                        .frame(height: 115)
-                                    VStack{
-                                        Text((todaysWorkout?.formattedPace())!)
-                                            .font(.headline).padding(.bottom, 10)
-                                        Text("Pace")
-                                            .font(.footnote)
-                                    }
-                                }
-                            }.padding(.horizontal)
-                            
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 8)
-                                    .foregroundColor(.white)
-                                    .frame(height: 87)
-                                VStack{
-                                    Text("Elevation")
-                                        .font(.footnote).fontWeight(.semibold)
-                                }
-                            }.padding()
-                            
-                            HStack(spacing: 5){
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .foregroundColor(.white)
-                                    VStack{
-                                        Text(String(todaysWorkout!.heartRate))
-                                            .font(.footnote).fontWeight(.semibold).padding(.bottom, 10)
-                                        Text("Heart Rate")
-                                            .font(.caption2)
-                                    }
-                                }
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .foregroundColor(.white)
-                                    VStack{
-                                        Text(String(todaysWorkout!.calorieBurned))
-                                            .font(.footnote).fontWeight(.semibold).padding(.bottom, 10)
-                                        Text("Energy")
-                                            .font(.caption2)
-                                    }
-                                }
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .foregroundColor(.white)
-                                        .frame(height: 115)
-                                    VStack{
-                                        Text("BELUM ADA")
-                                            .font(.footnote).fontWeight(.semibold).padding(.bottom, 10)
-                                        Text("Steps")
-                                            .font(.caption2)
-                                    }
-                                }
-                            }.padding(.horizontal)
-                            
-                            
-                            Text("Item")
-                                .font(.title3).bold()
+                            Text("\(vm.supaWorkoutsExactDay[index].routeName)")
+                                .font(.title2)
+                                .bold()
                                 .padding(.leading)
+                            
+                        }
+                        .padding()
+                        HStack(spacing: 5){
                             ZStack {
                                 RoundedRectangle(cornerRadius: 8)
                                     .foregroundColor(.white)
-                                    .frame(height: 87)
+                                VStack{
+                                    Text("\(vm.supaWorkoutsExactDay[index].distance)")
+                                        .font(.headline).padding(.bottom, 10)
+                                    Text("Distance")
+                                        .font(.footnote)
+                                }
+                            }
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 8)
+                                    .foregroundColor(.white)
+                                VStack{
+                                    Text("\(vm.supaWorkoutsExactDay[index].duration)")
+                                        .font(.headline).padding(.bottom, 10)
+                                    Text("Duration")
+                                        .font(.footnote)
+                                }
+                            }
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 8)
+                                    .foregroundColor(.white)
+                                    .frame(height: 115)
+                                VStack{
+                                    Text("\(vm.supaWorkoutsExactDay[index].pace)")
+                                        .font(.headline).padding(.bottom, 10)
+                                    Text("Pace")
+                                        .font(.footnote)
+                                }
+                            }
+                        }.padding(.horizontal)
+                        
+                        HStack(spacing: 5){
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 8)
+                                    .foregroundColor(.white)
+                                VStack{
+                                    Text(String(vm.workoutsExactDay[index].heartRate))
+                                        .font(.footnote).fontWeight(.semibold).padding(.bottom, 10)
+                                    Text("Heart Rate")
+                                        .font(.caption2)
+                                }
+                            }
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 8)
+                                    .foregroundColor(.white)
+                                VStack{
+                                    Text(String(vm.workoutsExactDay[index].calorieBurned))
+                                        .font(.footnote).fontWeight(.semibold).padding(.bottom, 10)
+                                    Text("Calories Burned")
+                                        .font(.caption2)
+                                }
+                            }
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 8)
+                                    .foregroundColor(.white)
+                                    .frame(height: 115)
+                                VStack{
+                                    Text("0")
+                                        .font(.footnote).fontWeight(.semibold).padding(.bottom, 10)
+                                    Text("Steps")
+                                        .font(.caption2)
+                                }
+                            }
+                        }.padding(.horizontal)
+                        
+                        
+                        Text("Item")
+                            .font(.title3).bold()
+                            .padding(.leading)
+                        ZStack {
+                            
+                            RoundedRectangle(cornerRadius: 8)
+                                .foregroundColor(.white)
+                                .frame(height: 87)
+                            
+                            if vm.supaWorkoutsExactDay[index].itemName.isEmpty {
+                                HStack {
+                                    Text("No items collected during this run!")
+                                        .font(.caption2)
+                                        .padding(.horizontal)
+                                }
+                            } else {
                                 HStack{
-                                    ForEach (0 ..< todaysWorkout!.itemsCollected.count) { i in
+                                    
+                                    ForEach (0 ..< vm.supaWorkoutsExactDay[index].itemName.count) { i in
+                                        
                                         ZStack {
                                             
                                             RoundedRectangle(cornerRadius: 15)
@@ -297,7 +139,7 @@ struct SummaryDetailView: View {
                                                         )
                                                 )
                                             
-                                            Image(todaysWorkout!.itemsCollected[i].image)
+                                            Image("\(vm.supaWorkoutsExactDay[index].itemName[i])")
                                                 .resizable()
                                                 .frame(width: 48, height: 48)
                                             
@@ -305,72 +147,75 @@ struct SummaryDetailView: View {
                                     }
                                     Spacer()
                                 }.padding(.horizontal)
-                            }.padding([.horizontal, .bottom])
+                            }
                             
-                            Text("Duel Mode")
-                                .font(.title3).bold()
-                                .padding(.leading)
-                            ZStack {
-                                HStack(spacing: 3){
-                                    Rectangle()
-                                        .frame(height: 128)
-                                        .foregroundColor(Color.lightBlueDuel)
-                                    Rectangle()
-                                        .frame(height: 128)
-                                        .foregroundColor(Color.lightRedDuel)
-                                }.clipShape(RoundedRectangle(cornerRadius: 8))
-                                VStack (spacing: 8){
-                                    HStack{
-                                        ZStack {
-                                            RoundedRectangle(cornerRadius: 15)
-                                                .frame(width: 102, height: 24, alignment: .center)
-                                                .foregroundColor(Color.blueResumeButton)
-                                            Text("You")
-                                                .font(.system(size: 10)).bold()
-                                                .foregroundColor(.white)
-                                        }
-                                        Text("You Win")
-                                            .font(.system(size: 14)).fontWeight(.semibold)
-                                            .frame(width: 110)
-                                        ZStack {
-                                            RoundedRectangle(cornerRadius: 15)
-                                                .frame(width: 102, height: 24, alignment: .center)
-                                                .foregroundColor(Color.redStopButton)
-                                            Text("Reza")
-                                                .font(.system(size: 10)).bold()
-                                                .foregroundColor(.white)
-                                        }
-                                    }.padding(.horizontal)
-                                    HStack {
-                                        VStack(alignment: .leading, spacing: 5) {
-                                            Text("Total Distance")
-                                                .font(.caption)
-                                            Text("4.72 km")
-                                                .font(.subheadline)
-                                                .fontWeight(.black)
-                                        }
-                                        Spacer()
-                                        VStack(alignment: .trailing, spacing: 5){
-                                            Text("Total Distance")
-                                                .font(.caption)
-                                            Text("3.57 km")
-                                                .font(.subheadline)
-                                                .fontWeight(.black)
-                                        }
-                                    }.frame(width: 314).padding(.top, 10)
-                                }.padding(.bottom)
-                                CircleDuel()
-                                    .offset(y: 15)
-                            }.padding([.horizontal, .bottom])
-                        }
+                            
+                            
+                        }.padding([.horizontal, .bottom])
+                        
+                        Text("Duel Mode")
+                            .font(.title3).bold()
+                            .padding(.leading)
+                        ZStack {
+                            HStack(spacing: 3){
+                                Rectangle()
+                                    .frame(height: 128)
+                                    .foregroundColor(Color.lightBlueDuel)
+                                Rectangle()
+                                    .frame(height: 128)
+                                    .foregroundColor(Color.lightRedDuel)
+                            }.clipShape(RoundedRectangle(cornerRadius: 8))
+                            VStack (spacing: 8){
+                                HStack{
+                                    ZStack {
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .frame(width: 102, height: 24, alignment: .center)
+                                            .foregroundColor(Color.blueResumeButton)
+                                        Text("You")
+                                            .font(.system(size: 10)).bold()
+                                            .foregroundColor(.white)
+                                    }
+                                    Text("You Win")
+                                        .font(.system(size: 14)).fontWeight(.semibold)
+                                        .frame(width: 110)
+                                    ZStack {
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .frame(width: 102, height: 24, alignment: .center)
+                                            .foregroundColor(Color.redStopButton)
+                                        Text("Reza")
+                                            .font(.system(size: 10)).bold()
+                                            .foregroundColor(.white)
+                                    }
+                                }.padding(.horizontal)
+                                HStack {
+                                    VStack(alignment: .leading, spacing: 5) {
+                                        Text("Total Distance")
+                                            .font(.caption)
+                                        Text("4.72 km")
+                                            .font(.subheadline)
+                                            .fontWeight(.black)
+                                    }
+                                    Spacer()
+                                    VStack(alignment: .trailing, spacing: 5){
+                                        Text("Total Distance")
+                                            .font(.caption)
+                                        Text("3.57 km")
+                                            .font(.subheadline)
+                                            .fontWeight(.black)
+                                    }
+                                }.frame(width: 314).padding(.top, 10)
+                            }.padding(.bottom)
+                            CircleDuel()
+                                .offset(y: 15)
+                        }.padding([.horizontal, .bottom])
                         
                     }
                 }
+                
             }
         }
-        .onChange(of: pickedDate) { oldValue, newValue in
-            todaysWorkout = vm.getThatDay(pickedDate: pickedDate)
-        }
+        .scrollIndicators(.hidden)
+        
         
     }
 }

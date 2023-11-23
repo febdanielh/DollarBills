@@ -15,6 +15,7 @@ struct ContentView2: View {
     
     var body: some View {
         VStack {
+            
             // Display the game title.
             Text("Duel")
                 .font(.title)
@@ -34,15 +35,15 @@ struct ContentView2: View {
             .disabled(!game.matchAvailable)
         }
         // Authenticate the local player when the game first launches.
-//        .onAppear {
-//            if !game.playingGame {
-//                game.authenticatePlayer()
-//            }
-//        }
+        .onAppear {
+            if !game.playingGame {
+                game.authenticatePlayer()
+            }
+        }
             
         // Display the game interface if a match is ongoing.
         .fullScreenCover(isPresented: $game.playingGame) {
-            GameView(game: game)
+            GameView()
         }
         
         // Display the local player's friends.
