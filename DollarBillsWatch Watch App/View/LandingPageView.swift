@@ -53,6 +53,7 @@ struct LandingPageView: View {
                         .padding(.top, 10)
                     
                     NavigationLink(destination: RouteDetailView(route: routes[3])) {
+
                         RecentRouteCard(routes: routes[3])
                     }
                     .padding(.top,3)

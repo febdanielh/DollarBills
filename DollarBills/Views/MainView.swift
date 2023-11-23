@@ -18,6 +18,7 @@ struct MainView: View {
     @ObservedObject var roomManager = RoomManager()
     
     var body: some View {
+        
         VStack {
             
             if (vm.selectedSegment == 0) {
@@ -49,7 +50,9 @@ struct MainView: View {
             
         }
         .frame(height: 60)
+        
     }
+    
 }
 
 #Preview {

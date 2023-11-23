@@ -20,7 +20,7 @@ struct Player: View {
                     Circle()
                         .frame(height: 62)
                         .foregroundColor(.blue)
-                    Text("Elvis")
+                    Text("Elvis") //wtp.opponentName
                         .fontWeight(.semibold)
                     Image("crown")
                         .offset(x: -17, y: -36)
@@ -40,7 +40,7 @@ struct Player: View {
                     Circle()
                         .frame(height: 40)
                         .foregroundColor(.blue)
-                    Text("Elvis")
+                    Text("Elvis") //wtp.opponentName
                         .font(.system(size: 14))
                         .fontWeight(.semibold)
                 }.padding(.trailing)

@@ -13,20 +13,20 @@ struct LoadingView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                if showGIF {
-                    GIFImage()
-                        .onAppear {
-                            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
-                                withAnimation {
-                                    showGIF = false
-                                }
-                            }
-                        }
-                }
-                
-                if !showGIF {
+//                if showGIF {
+//                    GIFImage()
+//                        .onAppear {
+//                            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+//                                withAnimation {
+//                                    showGIF = false
+//                                }
+//                            }
+//                        }
+//                }
+//                
+//                if !showGIF {
                     ContentView()
-                }
+//                }
             }
         }
     }

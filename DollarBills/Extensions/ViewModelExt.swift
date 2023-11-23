@@ -10,6 +10,8 @@ import Supabase
 import AuthenticationServices
 import GoTrue
 import SwiftUI
+import HealthKit
+import WatchConnectivity
 
 extension ViewModel {
     
@@ -46,8 +48,10 @@ extension ViewModel {
         try await Supabase.shared.createDuelRoomItem(item: duelRoom)
     }
     
-    func createWorkoutItems(distance: Double, pace: Double, duration: Double) {
-        let workout = WorkoutPayload(workoutID: nil, startDate: Date().description, endDate: Date().description, distance: distance, pace: pace, duration: duration)
+    func createWorkoutItems() async throws {
+        let userIDNow = try await self.fetchUserID()
+        
+        let workout = WorkoutPayload(workoutID: nil, userID: userIDNow, startDate: .now, endDate: .now, distance: 0.0, pace: 0.0, duration: 0.0, routeName: selectedAnnotation.routeName)
         Task {
             try await Supabase.shared.createWorkoutItem(item: workout)
         }
@@ -120,6 +124,14 @@ extension ViewModel {
         }
     }
     
+    func fetchWorkouts() async throws -> [WorkoutReadPayload] {
+        
+        let userID = try await fetchUserID()
+        let returningWorkouts = try await Supabase.shared.fetchCurrentUserWorkouts(for: userID)
+        return returningWorkouts
+        
+    }
+    
     // MARK: Delete
     
     
@@ -127,6 +139,13 @@ extension ViewModel {
     func updateUserPoints(points: Int) async throws {
         let userPoint = points
         try await Supabase.shared.updateUserPoints(points: userPoint)
+    }
+    
+    func updateWorkoutItems(distance: Double, pace: Double, duration: Double) async throws {
+        let userIDNow = try await fetchUserID()
+        let itemNames: [String] = getItemNames()
+        let item = WorkoutUpdatePayload(workoutID: nil, userID: nil, startDate: nil, endDate: .now, distance: distance, pace: pace, duration: duration, itemName: itemNames)
+        try await Supabase.shared.updateWorkoutItems(item: item, uid: userIDNow)
     }
     
     // MARK: Sign In
@@ -140,6 +159,38 @@ extension ViewModel {
             isAuthenticated = true
         } catch {
             isAuthenticated = false
+        }
+    }
+}
+
+
+extension ViewModel: WCSessionDelegate {
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        if let error = error {
+            print("The session activation is failed with error: \(error.localizedDescription)")
+        } else {
+            print("The session has completed activation.")
+        }
+        
+        if WCSession.default.isReachable {
+            print("Reachable on Phone")
+        } else {
+            print("Not Reachable on Phone")
+        }
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+    }
+    
+    func sendGetItemData(item: Items) {
+        guard let data = try? JSONEncoder().encode(item) else {
+            return
+        }
+        WCSession.default.sendMessageData(data, replyHandler: nil) { error in
+            print(error.localizedDescription)
         }
     }
 }

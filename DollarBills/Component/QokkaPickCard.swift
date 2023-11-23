@@ -9,6 +9,7 @@ import SwiftUI
 import CoreLocation
 
 struct QokkaPickCard: View {
+    
     @EnvironmentObject var vm: ViewModel
     @Binding var tag: Int
     

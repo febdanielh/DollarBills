@@ -12,19 +12,20 @@ struct DuelItem: View {
     @State var isTap = false
     @State var isSent = false
     @State var isDisabled = false
-    
-    @EnvironmentObject var watchToPhone: WatchToPhone
+    @ObservedObject var watchToPhone = WatchToPhone()
+//    @EnvironmentObject var watchToPhone: WatchToPhone
+    let item: Items
     
     var body: some View {
         ZStack {
-            ActiveItem()
+            ActiveItem(imageName: item.image)
                 .onTapGesture {
                     isTap.toggle()
                 }
             if isTap {
                 ItemStatus(isSent: $isSent)
                     .onTapGesture {
-//                        watchToPhone.sendMessageToPhone(itemName: "Blue Potion")
+                        watchToPhone.sendItemMessageToPhone(itemName: item.namaItem)
                         isSent = true
                         isDisabled = true
                     }
@@ -34,11 +35,11 @@ struct DuelItem: View {
 }
 
 #Preview {
-    DuelItem()
+    DuelItem(item: Items(namaItem: "Blue Potion", image: "0Potion", desc: "Double up your distance for 10 seconds", descSummary: "Distance Doubled", timeEffect: 10))
 }
 
 struct ActiveItem: View {
-//    let imageName: String
+    let imageName: String
     var body: some View {
         ZStack {
             Rectangle()
@@ -52,7 +53,7 @@ struct ActiveItem: View {
                     RoundedRectangle(cornerRadius: 15)
                         .stroke(Color(red: 0.90, green: 0.81, blue: 0.32), lineWidth: 0.50)
                 )
-            Image("3Rock") //imageName
+            Image(imageName)
                 .resizable()
                 .frame(width: 120, height: 88)
         }
@@ -62,7 +63,7 @@ struct ActiveItem: View {
 struct InactiveItem: View {
     var body: some View {
         ZStack {
-            ActiveItem()
+            ActiveItem(imageName: "Blue Potion")
             Rectangle()
                 .frame(width: 95, height: 95)
                 .cornerRadius(15)

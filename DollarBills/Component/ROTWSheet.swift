@@ -34,6 +34,7 @@ struct ROTWSheet: View {
                         Button {
                             vm.currentDisplayScreen = .viewMain
                             isRouteSelected = false
+                            vm.currentDisplayScreen = .viewMain
                         } label: {
                             Image("close black")
                         }
@@ -102,11 +103,6 @@ struct ROTWSheet: View {
                         Text("START RUNNING")
                             .bold()
                     })
-                    .onTapGesture {
-                        Task {
-                            await vm.startWorkout(type: .running)
-                        }
-                    }
                     .frame(maxWidth: .infinity)
                     .buttonStyle(ActiveBlackSheetButton())
                     .padding(.bottom)
@@ -127,9 +123,9 @@ struct ROTWSheet: View {
                 }.padding(.vertical).padding(.horizontal, 24)
             }
         }
-        .onAppear{
-            distance = vm.getUserDistance(latitude: selectedAnnotation.waypoints[0].coordinate.latitude , longitude: selectedAnnotation.waypoints[0].coordinate.longitude)
-        }
+        .onAppear(perform: {
+            distance = vm.getUserDistance(latitude: selectedAnnotation.waypoints[0].coordinate.latitude, longitude: selectedAnnotation.waypoints[0].coordinate.longitude)
+        })
         .presentationDetents([.fraction(0.47), .medium])
         .interactiveDismissDisabled(true)
         .presentationBackgroundInteraction(.enabled)

@@ -15,7 +15,7 @@ class Supabase {
     
     private init(){}
     
-    lazy var client = SupabaseClient(supabaseURL: SupaExt.supabaseURL, supabaseKey: SupaExt.supabaseKey)
+    var client = SupabaseClient(supabaseURL: SupaExt.supabaseURL, supabaseKey: SupaExt.supabaseKey)
     
     
     // MARK: Inserts
@@ -36,7 +36,7 @@ class Supabase {
     
     func createWorkoutItem(item: WorkoutPayload) async throws {
         Task {
-            let response = client.database.from("Workout").insert(values: item).single()
+            let response = client.database.from("Workout").insert(values: item)
             do {
                 try await response.execute()
             } catch {
@@ -93,6 +93,30 @@ class Supabase {
             return "Not Found"
         }
         return response
+        
+    }
+    
+    func fetchCurrentUserWorkouts(for userID: UUID) async throws -> [WorkoutReadPayload] {
+        
+        print("haloooo0")
+        
+        var workoutsFetched: [WorkoutReadPayload]
+        
+        do {
+            
+            workoutsFetched = try await client.database.from("Workout").select().eq(column: "userID", value: userID).execute().value
+            
+            print("workoutsFetched: \(workoutsFetched)")
+            
+            return workoutsFetched
+            
+        } catch {
+            
+            print(error)
+            
+        }
+        
+        return []
         
     }
     
@@ -155,6 +179,18 @@ class Supabase {
     // MARK: Delete
     
     // MARK: Update
+    func updateWorkoutItems(item: WorkoutUpdatePayload, uid: UUID) async throws {
+        let query = client.database
+            .from("Workout")
+            .update(values: item)
+            .eq(column: "userID", value: uid)
+            .order(column: "startDate", ascending: false)
+            .limit(count: 1)
+        Task {
+            try await query.execute()
+        }
+    }
+    
     func updateUserPoints(points: Int) async throws {
         let id = try await client.auth.session.user.id
         

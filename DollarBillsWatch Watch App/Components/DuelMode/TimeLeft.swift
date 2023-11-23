@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct TimeLeft: View {
+    @EnvironmentObject var wtp: WatchToPhone
     var body: some View {
         HStack {
             Text("Time Left")
                 .font(.body)
             Spacer()
-            Text("00:20,04")
+            Text("\(wtp.timeRemaining)")
                 .font(.title3)
                 .fontWeight(.semibold)
             
