@@ -120,7 +120,7 @@ struct RunView: View {
                     .alert("Finish?", isPresented: $showAlert) {
                         Button("Yes") {
                             Task {
-                                await vm.endWorkout()
+                                try await vm.endWorkout()
                             }
                             vm.currentDisplayScreen = .viewMain
                         }
@@ -161,7 +161,6 @@ struct RunView: View {
 //}
 
 struct RunWatchView: View {
-    let workout: Workout
     
     @EnvironmentObject var vm: ViewModel
     @EnvironmentObject var phoneToWatch: PhoneToWatch
@@ -179,20 +178,39 @@ struct RunWatchView: View {
         return workout.distance / 500.0
     }
     
+    @State var timer: Timer? = nil
+
     var body: some View {
-        VStack {
-            Text("Switch to Apple watch for Running Mode")
-                .font(.body)
-                .italic()
-            Spacer().frame(height: 61)
-            Image(systemName: "applewatch.radiowaves.left.and.right")
-                .resizable()
-                .frame(width: 65, height: 45)
-                .fontWeight(.black)
+        
+        if phoneToWatch.isRunning {
+            VStack {
+                Text("Switch to Apple watch for Running Mode")
+                    .font(.body)
+                    .italic()
+                Spacer().frame(height: 61)
+                Image(systemName: "applewatch.radiowaves.left.and.right")
+                    .resizable()
+                    .frame(width: 65, height: 45)
+                    .fontWeight(.black)
+            }
+            .foregroundColor(Color.TextDimGray)
+            .onAppear {
+                Task {
+                    await vm.startWorkout(type: .running)
+                }
+                phoneToWatch.sendMessageToWatch()
+                self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (Timer) in
+                    phoneToWatch.sendStatisticsData()
+                })
+            }
+            .onDisappear {
+                Task {
+                    try await vm.endWorkout()
+                }
+                vm.currentDisplayScreen = .viewMain
+                
+            }
         }
-        .foregroundColor(Color.TextDimGray)
-        .onAppear {
-            phoneToWatch.sendMessageToWatch()
-        }
+        
     }
 }

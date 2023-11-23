@@ -8,9 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		150CC29B2AEB747900527BED /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150CC29A2AEB747900527BED /* ItemDetailView.swift */; };
-		153E11B42AE53C5600B173F5 /* Summary View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E11B32AE53C5600B173F5 /* Summary View.swift */; };
+		153B06E92B0E28D0002A54F7 /* RunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B06E82B0E28D0002A54F7 /* RunView.swift */; };
+		153E11B42AE53C5600B173F5 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E11B32AE53C5600B173F5 /* SummaryView.swift */; };
 		153E11B82AE53F9200B173F5 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E11B72AE53F9200B173F5 /* LeaderboardView.swift */; };
+		154D52F72B0A33EB009FEADD /* SummaryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154D52F62B0A33EB009FEADD /* SummaryCardView.swift */; };
 		156FE4C92B028EAF00B67615 /* LandingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156FE4C82B028EAF00B67615 /* LandingPageView.swift */; };
+		156FE4CC2B03DFEC00B67615 /* SearchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156FE4CB2B03DFEC00B67615 /* SearchingView.swift */; };
 		15A71DF52B0114A3000517EF /* RealTimeGame+GKMatchmakerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A71DE92B0114A2000517EF /* RealTimeGame+GKMatchmakerViewControllerDelegate.swift */; };
 		15A71DF62B0114A3000517EF /* RealTimeGame+GKMatchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A71DEA2B0114A2000517EF /* RealTimeGame+GKMatchDelegate.swift */; };
 		15A71DF72B0114A3000517EF /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A71DEB2B0114A2000517EF /* FriendsView.swift */; };
@@ -82,7 +85,6 @@
 		6A95859B2AEEC3F8001AD5D8 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A95859A2AEEC3F8001AD5D8 /* Button.swift */; };
 		6A95859D2AEECC48001AD5D8 /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A95859C2AEECC48001AD5D8 /* Countdown.swift */; };
 		9B08B0CB2AE76D2C00021F79 /* HeartRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B08B0CA2AE76D2C00021F79 /* HeartRate.swift */; };
-		9B29AA1F2AD7B362007DBEA5 /* RunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B29AA1E2AD7B362007DBEA5 /* RunView.swift */; };
 		9B5133162AFB31880002A5C0 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5133152AFB31880002A5C0 /* WorkoutManager.swift */; };
 		9B5133192AFB3FB10002A5C0 /* ElapsedTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5133182AFB3FB10002A5C0 /* ElapsedTimeView.swift */; };
 		9B5272A82B0366EB00E70AA7 /* DollarBillsWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6A3C861E2AEB6DB000D73FDF /* DollarBillsWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -177,9 +179,12 @@
 
 /* Begin PBXFileReference section */
 		150CC29A2AEB747900527BED /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
-		153E11B32AE53C5600B173F5 /* Summary View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Summary View.swift"; sourceTree = "<group>"; };
+		153B06E82B0E28D0002A54F7 /* RunView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunView.swift; sourceTree = "<group>"; };
+		153E11B32AE53C5600B173F5 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		153E11B72AE53F9200B173F5 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
+		154D52F62B0A33EB009FEADD /* SummaryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCardView.swift; sourceTree = "<group>"; };
 		156FE4C82B028EAF00B67615 /* LandingPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingPageView.swift; sourceTree = "<group>"; };
+		156FE4CB2B03DFEC00B67615 /* SearchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingView.swift; sourceTree = "<group>"; };
 		15A71DE92B0114A2000517EF /* RealTimeGame+GKMatchmakerViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealTimeGame+GKMatchmakerViewControllerDelegate.swift"; sourceTree = "<group>"; };
 		15A71DEA2B0114A2000517EF /* RealTimeGame+GKMatchDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealTimeGame+GKMatchDelegate.swift"; sourceTree = "<group>"; };
 		15A71DEB2B0114A2000517EF /* FriendsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
@@ -252,7 +257,6 @@
 		6A95859A2AEEC3F8001AD5D8 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		6A95859C2AEECC48001AD5D8 /* Countdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countdown.swift; sourceTree = "<group>"; };
 		9B08B0CA2AE76D2C00021F79 /* HeartRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRate.swift; sourceTree = "<group>"; };
-		9B29AA1E2AD7B362007DBEA5 /* RunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunView.swift; sourceTree = "<group>"; };
 		9B5133152AFB31880002A5C0 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
 		9B5133182AFB3FB10002A5C0 /* ElapsedTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElapsedTimeView.swift; sourceTree = "<group>"; };
 		9B51331A2AFB50C20002A5C0 /* DollarBillsWatch-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "DollarBillsWatch-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -641,7 +645,7 @@
 				E1347E412AC43557008224CF /* ContentView.swift */,
 				E168B99C2ACD4CFA00CF56D9 /* MapView.swift */,
 				9BD93E462ACEC20F004862F7 /* PermissionView.swift */,
-				9B29AA1E2AD7B362007DBEA5 /* RunView.swift */,
+				153B06E82B0E28D0002A54F7 /* RunView.swift */,
 				E1A093702AD7E8A000A8A4AC /* PauseRunView.swift */,
 				E16796922AD94B8E00340093 /* OnboardingView.swift */,
 				15D24CB82ADD325700AFE89B /* MainView.swift */,
@@ -650,7 +654,7 @@
 				15D24CBE2ADD372400AFE89B /* ActivityView.swift */,
 				15D24D142AE0FA9400AFE89B /* DuelModeView.swift */,
 				15D24D162AE0FAB600AFE89B /* ProfileView.swift */,
-				153E11B32AE53C5600B173F5 /* Summary View.swift */,
+				153E11B32AE53C5600B173F5 /* SummaryView.swift */,
 				153E11B72AE53F9200B173F5 /* LeaderboardView.swift */,
 				E1941FFD2AE28F8500E29394 /* NearestToYouDetailView.swift */,
 				E19420032AE40DBE00E29394 /* CountdownView.swift */,
@@ -660,6 +664,8 @@
 				E15C45952AF4940200D215AB /* LeaderboardDetailView.swift */,
 				E1806C662AFA868A007A122A /* ROTWMapView.swift */,
 				15B6CEED2AFB3E680082118F /* DisconnectedView.swift */,
+				156FE4CB2B03DFEC00B67615 /* SearchingView.swift */,
+				154D52F62B0A33EB009FEADD /* SummaryCardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -835,6 +841,7 @@
 				E168B9992ACD4C2200CF56D9 /* createMap.swift in Sources */,
 				6A0DFC8A2AFA97EB00E0F324 /* ResultView.swift in Sources */,
 				9BD93E4D2ACF209D004862F7 /* ViewExt.swift in Sources */,
+				156FE4CC2B03DFEC00B67615 /* SearchingView.swift in Sources */,
 				15A71DFC2B0114A3000517EF /* RealTimeGame.swift in Sources */,
 				E1806C612AF942EE007A122A /* ViewModelExt.swift in Sources */,
 				6A0DFC8D2AFA980900E0F324 /* TimePickerView.swift in Sources */,
@@ -879,7 +886,7 @@
 				15A71DF72B0114A3000517EF /* FriendsView.swift in Sources */,
 				E1806C652AF9E0D8007A122A /* SupaModel.swift in Sources */,
 				15D24C3F2AD5D20F00AFE89B /* RouteSheet.swift in Sources */,
-				9B29AA1F2AD7B362007DBEA5 /* RunView.swift in Sources */,
+				154D52F72B0A33EB009FEADD /* SummaryCardView.swift in Sources */,
 				E1347E422AC43557008224CF /* ContentView.swift in Sources */,
 				6A0DFC822AFA978E00E0F324 /* LandingPageView.swift in Sources */,
 				15A71DFF2B0114A3000517EF /* RealTimeGame+MatchData.swift in Sources */,
@@ -892,13 +899,14 @@
 				E1563EB22AFB2DC100BDD638 /* ROTWSheet.swift in Sources */,
 				E1563EB62AFC0DBA00BDD638 /* TimePicker.swift in Sources */,
 				15A71DF52B0114A3000517EF /* RealTimeGame+GKMatchmakerViewControllerDelegate.swift in Sources */,
+				153B06E92B0E28D0002A54F7 /* RunView.swift in Sources */,
 				15A71DFE2B0114A3000517EF /* RealTimeGame+GKLocalPlayerListener.swift in Sources */,
 				15D24CB92ADD325700AFE89B /* MainView.swift in Sources */,
 				E15C459A2AF7FE2700D215AB /* Duel.swift in Sources */,
 				6A0DFC932AFA984100E0F324 /* ItemDescriptionContainer.swift in Sources */,
 				15D24D152AE0FA9400AFE89B /* DuelModeView.swift in Sources */,
 				E15C45942AF3AA8D00D215AB /* Haptics.swift in Sources */,
-				153E11B42AE53C5600B173F5 /* Summary View.swift in Sources */,
+				153E11B42AE53C5600B173F5 /* SummaryView.swift in Sources */,
 				15A71DF62B0114A3000517EF /* RealTimeGame+GKMatchDelegate.swift in Sources */,
 				6A0DFC992AFA987500E0F324 /* LoadingAnimation.swift in Sources */,
 				E1347E402AC43557008224CF /* DollarBillsApp.swift in Sources */,
@@ -935,10 +943,11 @@
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "DollarBillsWatch Watch App/DollarBillsWatch Watch App.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DollarBillsWatch Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = BVKAMN7JUV;
+				DEVELOPMENT_TEAM = KCXWQSNV6P;
 				ENABLE_PREVIEWS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -949,15 +958,16 @@
 				INFOPLIST_KEY_NSLocationUsageDescription = "This app needs to access your location.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs to access your location.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.DollarBills.Furthr;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.DollarBills.Furthr.areez;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.DollarBills.Furthr.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DollarBills.Furthr.areez.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
@@ -975,10 +985,11 @@
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "DollarBillsWatch Watch App/DollarBillsWatch Watch App.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DollarBillsWatch Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = BVKAMN7JUV;
+				DEVELOPMENT_TEAM = KCXWQSNV6P;
 				ENABLE_PREVIEWS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -989,15 +1000,16 @@
 				INFOPLIST_KEY_NSLocationUsageDescription = "This app needs to access your location.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs to access your location.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.DollarBills.Furthr;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.DollarBills.Furthr.areez;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.DollarBills.Furthr.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DollarBills.Furthr.areez.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1132,7 +1144,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DollarBills/Preview Content\"";
-				DEVELOPMENT_TEAM = BVKAMN7JUV;
+				DEVELOPMENT_TEAM = KCXWQSNV6P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DollarBills/Info.plist;
@@ -1151,7 +1163,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.DollarBills.Furthr;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DollarBills.Furthr.areez;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1171,7 +1183,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DollarBills/Preview Content\"";
-				DEVELOPMENT_TEAM = BVKAMN7JUV;
+				DEVELOPMENT_TEAM = KCXWQSNV6P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DollarBills/Info.plist;
@@ -1190,7 +1202,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.DollarBills.Furthr;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DollarBills.Furthr.areez;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

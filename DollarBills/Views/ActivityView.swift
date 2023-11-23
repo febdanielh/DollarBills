@@ -11,13 +11,16 @@ import MapKit
 
 struct ActivityView: View {
     
-    @EnvironmentObject var VM : ViewModel
+    @EnvironmentObject var vm : ViewModel
     
     @State private var authPath = 0
     
     var body: some View {
-        NavigationStack{
+        
+        NavigationStack {
+            
             VStack {
+                
                 HStack{
                     Text("Insights")
                         .font(.system(size: 30))
@@ -27,7 +30,6 @@ struct ActivityView: View {
                 }
                 
                 ZStack {
-                    
                     HStack (spacing: 20) {
                         
                         Button(action: {
@@ -73,7 +75,6 @@ struct ActivityView: View {
                     
                 }
                 
-                
                 if authPath == 0 {
                     SummaryView()
                         .transition(.move(edge:.leading))
@@ -83,7 +84,9 @@ struct ActivityView: View {
                         .transition(.move(edge: .trailing))
                 }
             }
+            
         }
+        
     }
 }
 

@@ -8,7 +8,12 @@
 import SwiftUI
 import WatchConnectivity
 
+var statisticsData: [String:Double] = [:]
 class PhoneToWatch: NSObject, ObservableObject {
+    @EnvironmentObject var vm: ViewModel
+    
+    @Published var isRunning: Bool = false
+    
     var session: WCSession
     
     init(session: WCSession = .default) {
@@ -33,6 +38,7 @@ class PhoneToWatch: NSObject, ObservableObject {
     }
     
     func sendMessageToWatch() {
+        print("halo")
         let message = ["Message": "Start Workout"]
         if (WCSession.default.isReachable) {
             WCSession.default.sendMessage(message, replyHandler: nil) { error in
@@ -50,6 +56,18 @@ class PhoneToWatch: NSObject, ObservableObject {
             }
             print("start duel send message")
         }
+    }
+    
+    func sendMessageToWatch(message: Dictionary<String, Double>) {
+        if (WCSession.default.isReachable) {
+            WCSession.default.sendMessage(message as [String : Any], replyHandler: nil) { error in
+                print("Error when sending the message with error: \(error.localizedDescription)")}
+        }
+        print("sendMessageToWatch called")
+    }
+    
+    func sendStatisticsData() {
+        sendMessageToWatch(message: statisticsData)
     }
 }
 
@@ -74,4 +92,28 @@ extension PhoneToWatch: WCSessionDelegate {
             print("Not Reachable on Phone")
         }
     }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        if (message.first?.key == "ended") {
+            print("workout ended on phone aswellll")
+            isRunning = false
+            Task {
+                try await vm.endWorkout()
+            }
+        }
+    }
+    
+//    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+//        print("Received message from Watch")
+//        wDistance = message["distance"]! as! String
+//        wHeartRate = message["heartRate"]! as! String
+//        wAvgHR = message["averageHeartRate"]! as! String
+//        wActiveEnergy = message["activeEnergy"]! as! String
+//        wElevation = message["elevation"]! as! String
+//        
+//        print(wDistance)
+//        print(wHeartRate)
+//        print(wAvgHR)
+//        print(wActiveEnergy)
+//    }
 }
